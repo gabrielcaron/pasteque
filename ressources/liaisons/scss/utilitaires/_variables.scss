@@ -1,0 +1,45 @@
+/**
+* @author Prenom Nom courriel
+* @todo Importer la fonte Futura
+* @todo Personnaliser les variables selon les spécifications du guide visuel
+*       Certaines variables devront être définies par une fonction de coloration
+* @todo Compléter selon l'énoncé de l'exercice
+* @todo Utiliser le sélecteur & pour les sélecteurs des différentes couleurs
+*/
+
+/** Polices de caractères **/
+
+@font-face {
+  font-family: Roboto, sans-serif;
+}
+
+$fontePrimaire : Futura, sans-serif;
+$fonteSecondaire : Roboto, sans-serif;
+
+/** Palette de couleurs **/
+// Utiliser http://chir.ag/projects/name-that-color pour obtenir des noms uniques et mémorisables
+// Permettez-vous d'utiliser un nom de variable plus explicite si la suggestion de name-that-color est trop étrange
+
+/* Couleurs de base */
+$rouge: #d6151a;
+$rouge_2: #A10F12;
+$rouge_3: #801819;
+$orange: #B85E18;
+$orange_2: #1A1A1F;
+$orange_3: #505050 ;
+$blanc: #FFFFFF;
+$gris: #DCDCDC;
+$beige : #F7F5F2;
+$noir: #1A1A1F;
+$vert: #3B7302;
+$vertFonce : #1B4001;
+$brun: #401E01;
+
+
+$orangeTransparent : transparentize($orange, 0.50);
+
+/* Autres couleurs */
+$hyperlien: $orange;
+
+/** Points de rupture **/
+$desktop : 601px;

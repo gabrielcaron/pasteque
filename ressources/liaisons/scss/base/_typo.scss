@@ -1,0 +1,77 @@
+/******** Typographie *********/
+/****** BASE ******/
+/** Typographie **/
+/**
+* @author Philippe Grenier philippegrenier99@gmail.com
+* @todo Préciser l’interlignage sur le body pour l’écran large
+* @todo Utiliser le mixin fontSize pour définir les tailles de polices
+* @todo Utiliser une variable pour la media query de la règle body
+*/
+/**** Typographie responsive ****/
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 1.375;
+  /* facteur multiplicateur de la taille de la police 1.375x16=22 */
+}
+h1,
+.titreNiveau1,
+h2,
+.titreNiveau2,
+h3,
+.titreNiveau3 {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
+
+h1,
+.titreNiveau1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  margin: 0;
+}
+h1--desktop,
+.titreNiveau1--desktop {
+
+}
+
+
+h2,
+.titreNiveau2 {
+  font-size: 24px;
+  color : black;
+}
+h2--desktop,
+.titreNiveau2--desktop {
+
+}
+
+h3,
+.titreNiveau3 {
+  font-size: 20px;
+  color: black;
+}
+h3--desktop,
+.titreNiveau3--desktop {
+
+}
+
+h4,
+.titreNiveau4 {
+  font-size: 18px;
+  color: #505050 ;
+  font-weight: bold;
+}
+h4--desktop,
+.titreNiveau4--desktop {
+
+}
+
+
+

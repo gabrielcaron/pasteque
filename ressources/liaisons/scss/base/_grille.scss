@@ -1,0 +1,122 @@
+/**** Grille ****/
+/**** Mini système de grilles fluides MOBILE FIRST ****/
+/
+.conteneur {
+    /*background-color: lightBlue;*/
+}
+
+.col {
+    display: block;
+    /* pour espacer les blocs à la vertical.
+       Ajuster selon le besoin */
+    margin: 0 0 0.5em 0;
+    /* ce qui suit n'est pas essentiel */
+    /*background-color: linen;
+    border: 1px solid black;*/
+}
+
+.col_1_de_12,
+.col_2_de_12,
+.col_3_de_12,
+.col_4_de_12,
+.col_5_de_12,
+.col_6_de_12,
+.col_7_de_12,
+.col_8_de_12,
+.col_9_de_12,
+.col_10_de_12,
+.col_11_de_12 {
+    width: 100%;
+}
+
+.invisible {
+    display: none;
+}
+
+/* pour décoller les blocs du viewport, à gauche et à droite.
+Ajuster selon le besoin  */
+.conteneur {
+    padding: 0 0.5em;
+}
+
+/**** Requêtes media ****/
+/* Pour écran large */
+@media (min-width: 600px) {
+    .conteneur {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 0;
+        /* Grille 12 colonnes en arrière-plan - Mettre en commentaires après usage */
+        /*background-image: linear-gradient(to right, rgba(102, 102, 255, 0.25), rgba(179, 179, 255, 0.25) 83.33333%, transparent 83.33333%);
+        background-size: 8.4507%;
+        background-origin: content-box;
+        background-clip: content-box;
+        background-position: left top;*/
+    }
+
+    .col {
+        margin: 0 2% 2% 0;
+        float: left;
+    }
+
+    .rangee > *:last-child {
+        margin-right: 0;
+    }
+
+    .col_1_de_12 {
+        width: 6.5%;
+    }
+
+    .col_2_de_12 {
+        width: 15%;
+    }
+
+    .col_3_de_12 {
+        width: 23.5%;
+    }
+
+    .col_4_de_12 {
+        width: 32%;
+    }
+
+    .col_5_de_12 {
+        width: 40.5%;
+    }
+
+    .col_6_de_12 {
+        width: 49%;
+    }
+
+    .col_7_de_12 {
+        width: 57.5%;
+    }
+
+    .col_8_de_12 {
+        width: 66%;
+    }
+
+    .col_9_de_12 {
+        width: 74.5%;
+    }
+
+    .col_10_de_12 {
+        width: 83%;
+    }
+
+    .col_11_de_12 {
+        width: 91.5%;
+    }
+
+    .col_12_de_12 {
+        width: 100%;
+    }
+
+    footer.col {
+        margin: 0;
+    }
+
+    .invisible {
+        display: block;
+        visibility: hidden;
+    }
+}

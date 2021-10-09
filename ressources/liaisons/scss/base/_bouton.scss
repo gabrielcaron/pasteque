@@ -1,0 +1,38 @@
+.bouton {
+  border-radius: 4px;
+  color: $vertFonce;
+  border: solid 3px $vert;
+  padding: 0.5em 3em;
+  text-decoration: none;
+  font-size: 12px;
+  background-color: white;
+}
+
+
+
+.bouton--hover {
+
+  //background-color: $rouge_2;
+}
+.bouton--active {
+  background-color: $vert;
+  border-radius: 4px;
+  color: white;
+  padding: 0.5em 3em;
+  text-decoration: none;
+  font-size: 12px;
+}
+.bouton--inverse {
+  background-color: white;
+  color: $orange;
+
+  border: 2px solid $orange;
+}
+.bouton--inverse--hover {
+  color: $rouge_2;
+  border-color: $rouge_2;
+}
+.bouton--inverse--active {
+  color: $rouge_3;
+  border-color: $rouge_3;
+}

@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace App;
 use App\Controleurs\ControleurLivre;
 use App\Controleurs\ControleurSite;
+use eftec\bladeone\BladeOne;
 use \PDO;
 
 
@@ -10,6 +11,7 @@ class App
 {
 
     private static ?PDO $pdo = null;
+    private static ?BladeOne $refBlade = null;
 
     public function __construct()
     {
@@ -33,6 +35,16 @@ class App
             App::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         return App::$pdo;
+    }
+
+    public static function getBlade():BladeOne
+    {
+        if(App::$refBlade === null){
+            $cheminDossierVues = '../ressources/vues';
+            $cheminDossierCache = '../ressources/cache';
+            App::$refBlade = new BladeOne($cheminDossierVues,$cheminDossierCache,BladeOne::MODE_AUTO);
+        }
+        return App::$refBlade;
     }
 
     public function routerRequete():void

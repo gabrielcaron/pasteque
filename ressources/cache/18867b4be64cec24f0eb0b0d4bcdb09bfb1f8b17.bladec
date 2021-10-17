@@ -1,0 +1,129 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('contenu'); ?>
+ <section class="filAriane">
+ <span>Accueil / Livre / Lartigues et Prévert</span>
+ </section>
+ <section class="livre">
+ <div class="livre__conteneur1">
+ <img class="livre__conteneurImg" src="liaisons/images/9782897770013.jpg" width="50%">
+ </div>
+ <div class="livre__conteneur2">
+ <h1 class="livre__title"><?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></h1>
+ <p class="livre__auteur"><?php echo \htmlentities($livre->getAuteurAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($livre->getAuteurAssocie()->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?></p>
+ <h2 class="livre__prixCan"><?php echo \htmlentities($livre->getPrixCan(), ENT_QUOTES, 'UTF-8', false); ?></h2>
+ <span class="livre__prixEuro"><?php echo \htmlentities($livre->getPrixEuro(), ENT_QUOTES, 'UTF-8', false); ?></span>
+
+ <div class="livre__ajout">
+ <div class="livre__ajoutQuantite">
+ <button class="plus-btn" type="button" name="button">+</button>
+ <input type="text" name="name" value="1">
+ <button class="minus-btn" type="button" name="button">-</button>
+ </div>
+ <div class="livers__ajoutPanier">
+ <button class="livre__ajoutPanierBtn">
+ AJOUTER AU PANIER
+ </button>
+ </div>
+ </div>
+ <nav class="livre__details">
+ <ul class="livre__detailsListe">
+ <li class="livre__detailsListeItem">Résumé</li>
+ <li class="livre__detailsListeItem">Critiques</li>
+ <li class="livre__detailsListeItem">Reconnaissance</li>
+ </ul>
+ </nav>
+ <div class="livre__resume">
+ <p class="livre__resumeTexte">
+ <?php echo \htmlentities($livre->getLeLivre(), ENT_QUOTES, 'UTF-8', false); ?>
+
+ </p>
+ </div>
+ <div class="livre__critiques">
+ <p class="livre__critiquesTexte">
+ Nicolas Thibault<br>
+ Très bon livre! Super intéressant.
+ <br><br>
+ Gabriel Caron<br>
+ Ce livre est bon, mais sans plus.
+ </p>
+ </div>
+ <?php $__currentLoopData = $livre->getReconnaissanceAssocie(); $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $reconnaissanceLivre): $loop = $this->incrementLoopIndices();  ?>
+ <div class="livre__reconnaissance">
+ <p class="livre__reconnaissanceTexte">
+ <?php echo \htmlentities($reconnaissanceLivre->getReconnaissance(), ENT_QUOTES, 'UTF-8', false); ?>
+
+ </p>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ </section>
+ <section class="informations">
+ <h2 class="informations__titre">Informations</h2>
+ <table class="informations__table">
+ <tr class="informations__tableRow">
+ <th class="informations__tableColumn">Titre</th>
+ <th class="informations__tableColumn"><?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></th>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Auteur</td>
+ <td class="informations__tableColumn"><?php echo \htmlentities($livre->getAuteurAssocie()->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($livre->getAuteurAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Éditeur</td>
+ <td class="informations__tableColumn">La pastèque</td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Prix canadien</td>
+ <td class="informations__tableColumn"><?php echo \htmlentities($livre->getPrixCan(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Prix européen</td>
+ <td class="informations__tableColumn"><?php echo \htmlentities($livre->getPrixEuro(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Catégorie</td>
+ <td class="informations__tableColumn"><?php echo \htmlentities($livre->getCategorieAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Date de parution au Québec</td>
+ <td class="informations__tableColumn"><?php echo \htmlentities($livre->getDateParutionQuebec(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Format</td>
+ <td class="informations__tableColumn"><?php echo \htmlentities($livre->getFormat(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Langue</td>
+ <td class="informations__tableColumn">Français</td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">Nombre de page</td>
+ <td class="informations__tableColumn"><?php echo \htmlentities($livre->getPagination(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <tr class="informations__tableRow">
+ <td class="informations__tableColumn">ISBN</td>
+ <td class="informations__tableColumn"><?php echo \htmlentities($livre->getIsbnPapier(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ </table>
+ </section>
+ <section class="aDecouvrir">
+ <h2 class="aDecouvrir__title">
+ Découvrir des livres similaires
+ </h2>
+ <div class="slide-container" style="width:80%;overflow: auto; white-space: nowrap;">
+ <img src="liaisons/images/9782897770013.jpg" width="25%" />
+ <img src="liaisons/images/9782897770013.jpg" width="25%" />
+ <img src="liaisons/images/9782897770013.jpg" width="25%" />
+ <img src="liaisons/images/9782897770013.jpg" width="25%" />
+ <img src="liaisons/images/9782897770013.jpg" width="25%" />
+ <img src="liaisons/images/9782897770013.jpg" width="25%" />
+ <img src="liaisons/images/9782897770013.jpg" width="25%" />
+ <img src="liaisons/images/9782897770013.jpg" width="25%" />
+ </div>
+ </section>
+<?php $this->stopSection(); ?>
+
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('gabarit'); } ?>

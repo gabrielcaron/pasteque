@@ -1,0 +1,132 @@
+/**
+* @author nicolas thibault nicolasthibaulthotmail.ca
+* @creer la section menu principal
+*/
+/* Bouton du menu */
+.menu {
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+    mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+    @media (max-width: 601px) {
+        text-align: left;
+    }
+    &__recherche{
+        width: 30px;
+        color:$wildSand;
+        background-color: $noirMine;
+    }
+
+    &__controle{
+        z-index: 100;
+        color: white;
+        background-color: #202020;
+        border: none;
+        padding: 10px;
+        min-width: 40px;
+        top: 5px;
+        left: 10px;
+        @media (min-width: 601px) {
+            display: none;
+        }
+        &:hover,
+        &:active {
+
+        }
+        &:focus {
+            outline-offset: -5px;
+            outline: $wildSand auto 5px;
+        }
+    }
+    &__liste {
+        top: 20%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        max-height: none;
+         &Item{
+        @media (min-width: 601px) {
+                display: inline-block;
+            }
+        }
+
+    }
+    &__Logo {
+        width: 4%;
+        position: absolute;
+        //top: 35px;
+        left: 33px;
+        @media (max-width: 601px) {
+            width: 12%;
+            left: 80%;
+        }
+    }
+
+
+    &__lien {
+        text-transform: uppercase;
+        color: rgba(0, 35, 122, 0.5);
+        font-size: 65%;
+        text-decoration: none;
+        font-weight: inherit;
+        width: 100%;
+        display:inline-block;
+        padding:10px;
+
+        &:link,
+        &:visited {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        &:hover,
+        &:active {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+                background: rgba(255, 255, 255, 0.1);
+                color: $noirMine;
+                font-weight: bold;
+        }
+        &:focus {
+            outline-offset: -5px;
+            outline: #f5ae09 auto 5px;
+        }
+        &--actif {
+            border-left: 5px solid #f4d07c;
+        }
+    }
+
+}
+header{
+    background-color: $wildSand;
+
+}
+
+
+.footer {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 30px 30px 20px 30px;
+    color: #2f2f2f;
+    background-color: #fff;
+    border-top: 1px solid #e5e5e5;
+}
+/* Si le javascript est activé */
+
+/* Pour des raisons d'accessibilité, on ne cache le menu mobile
+ * que si Javascript est activé. De cette façon, s'il est désactivé,
+ * le menu restera tout de même visible à l'utilisateur.
+ */
+
+.js .menu__liste{
+    max-height: 100vh;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.js .menu--ferme .menu__liste {
+    max-height: 0;
+    @media (min-width: 601px) {
+        max-height: none;
+    }
+}

@@ -31,7 +31,7 @@
  </div>
 </section>
 </footer>
-<script src="liaisons/js/_menu.js"></script>
+<script src="/liaisons/js/_menu.js"></script>
 <script>
  document.body.classList.add('js');
 </script>

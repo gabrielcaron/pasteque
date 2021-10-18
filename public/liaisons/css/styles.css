@@ -1,10 +1,9 @@
-/* Error: Undefined variable.
+/* Error: Can't find stylesheet to import.
  *    ,
- * 17 |         color:$wildSand;
- *    |               ^^^^^^^^^
+ * 76 | @import 'layout/formulaire';
+ *    |         ^^^^^^^^^^^^^^^^^^^
  *    '
- *   ressources\liaisons\scss\modules\_menu.scss 17:15  @import
- *   ressources\liaisons\scss\styles.scss 63:9          root stylesheet */
+ *   ressources\liaisons\scss\styles.scss 76:9  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 17 \2502          color:$wildSand;\a    \2502                ^^^^^^^^^\a    \2575 \a   ressources\\liaisons\\scss\\modules\\_menu.scss 17:15  @import\a   ressources\\liaisons\\scss\\styles.scss 63:9          root stylesheet";
+  content: "Error: Can't find stylesheet to import.\a    \2577 \a 76 \2502  @import 'layout/formulaire';\d\a    \2502          ^^^^^^^^^^^^^^^^^^^\a    \2575 \a   ressources\\liaisons\\scss\\styles.scss 76:9  root stylesheet";
 }

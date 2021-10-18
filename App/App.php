@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace App;
+use App\Controleurs\ControleurAuteur;
 use App\Controleurs\ControleurLivre;
 use App\Controleurs\ControleurSite;
 use eftec\bladeone\BladeOne;
@@ -87,8 +88,8 @@ class App
                     echo 'Erreur 404';
             }
         }
-        if ($controleur === 'participant'){
-            $this->monControleur = new ControleurParticipant();
+        if ($controleur === 'auteur'){
+            $this->monControleur = new ControleurAuteur();
             switch ($action) {
                 case 'index':
                     $this->monControleur->index();

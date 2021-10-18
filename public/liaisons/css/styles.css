@@ -707,15 +707,6 @@ header {
   background-color: #F5F5F5;
 }
 
-.footer {
-  display: flex;
-  flex-flow: row wrap;
-  padding: 30px 30px 20px 30px;
-  color: #2f2f2f;
-  background-color: #fff;
-  border-top: 1px solid #e5e5e5;
-}
-
 /* Si le javascript est activé */
 /* Pour des raisons d'accessibilité, on ne cache le menu mobile
  * que si Javascript est activé. De cette façon, s'il est désactivé,
@@ -833,15 +824,6 @@ header {
   background-color: #F5F5F5;
 }
 
-.footer {
-  display: flex;
-  flex-flow: row wrap;
-  padding: 30px 30px 20px 30px;
-  color: #2f2f2f;
-  background-color: #fff;
-  border-top: 1px solid #e5e5e5;
-}
-
 /* Si le javascript est activé */
 /* Pour des raisons d'accessibilité, on ne cache le menu mobile
  * que si Javascript est activé. De cette façon, s'il est désactivé,
@@ -870,6 +852,15 @@ header {
   background-color: #eee;
   border-top: 1px solid #333;
   clear: both;
+}
+
+.footer {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 30px 30px 20px 30px;
+  color: #2f2f2f;
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
 }
 
 /****** LAYOUT ******/

@@ -53,7 +53,6 @@
                     {{$reconnaissanceLivre->getReconnaissance()}}
                 </p>
             </div>
-                <h2>test</h2>
             @endforeach
         </div>
     </section>

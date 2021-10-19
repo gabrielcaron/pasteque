@@ -12,7 +12,7 @@
                     <label for="categorie_tous">Tous</label>
                     <!-- Foreach categorie categorie->nom -->
                     @foreach($categories as $categorie)
-                        <li class="enveloppe__"><a class="enveloppe__">{{$categorie->getNom()}}</a></li>
+                        <li class="enveloppe__"><a class="enveloppe__" href="index.php?controleur=livre&action=index&id_categorie={{$categorie->getId()}}">{{$categorie->getNom()}}</a></li>
                     @endforeach
                 </form>
             </ul>

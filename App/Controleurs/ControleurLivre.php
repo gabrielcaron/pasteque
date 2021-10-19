@@ -16,7 +16,14 @@ class ControleurLivre
 
     public function index(): void
     {
-        $livres = Livre::trouverTout();
+        $strIdPage=0;
+        $intIdCategorie=1;
+        $intNbLivreParPage=25;
+        if (isset($_GET['nbLivreParPage'])==true) $intNbLivreParPage=$_GET['nbLivreParPage'];
+        if (isset($_GET['id_page'])==true) $strIdPage=$_GET['id_page'];
+        if (isset($_GET['id_categorie'])!=0) $intIdCategorie=$_GET['id_categorie'];
+        $enregistrementDepart=$strIdPage*$intNbLivreParPage;
+        $livres = $intIdCategorie === 0 ? Livre::trouverTout() : Livre::trouverLivresParCategories($intIdCategorie, $enregistrementDepart, $intNbLivreParPage);
         $categories = Categorie::trouverTout();
         $nombreLivre = Livre::trouverNombreLivres();
         $tDonnees = array("titrePage"=>"Les livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre, "categories"=>$categories);

@@ -1,0 +1,45 @@
+/**
+ * @author Gabriel Caron <1861095@csfoy.ca>
+ * @version 1.0
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* VARIABLES
+* PALETTES DE COULEURS
+** Couleurs de base
+** Autres couleurs
+* POINTS DE RUPTURE
+*/
+
+
+$arrondiMobile: 4rem;
+$arrondiTable: 5.5rem;
+
+
+/** Palette de couleurs **/
+
+/* Couleurs de base AAA */
+$gris90: #E5E5E5;
+$gris80: #CCCCCC;
+$gris35AAA: #595959;
+$bleuRoyal: #0050C8;
+$noir: #000;
+$blanc: #fff;
+
+/* Polices */
+
+$RobotoRegular: Roboto-Regular, sans serif;
+$RobotoItalic: Roboto-Italic, sans serif;
+$RobotoMedium: Roboto-Medium, sans serif;
+$RobotoMediumItalic: Roboto-MediumItalic, sans serif;
+$RobotoBold: Roboto-Bold, sans serif;
+$RobotoBoldItalic: Roboto-BoldItalic, sans serif;
+
+$EspacementStandard: 0.05rem;
+
+/** Points de rupture **/
+$mobile600px: 600px;
+$tablet900px: 900px;
+$desktop1100px: 1100px;
+$desktop1200px: 1200px;

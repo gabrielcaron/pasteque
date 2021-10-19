@@ -1,0 +1,126 @@
+/**
+* @author Gabriel Caron <gabriel.caron@gmail.com>
+* @version 5.1
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* Polices
+*/
+
+/* Polices */
+@font-face {
+  font-family: Roboto-Regular;
+  src: url(../../liaisons/polices/roboto-regular.woff2) format('woff2'),
+  url(../../liaisons/polices/roboto-regular.woff) format('woff'),
+  url(../../liaisons/polices/roboto-regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Roboto-Italic;
+  src: url(../../liaisons/polices/roboto-italic.woff2) format('woff2'),
+  url(../../liaisons/polices/roboto-italic.woff) format('woff'),
+  url(../../liaisons/polices/roboto-italic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Roboto-Medium;
+  src: url(../../liaisons/polices/roboto-medium.woff2) format('woff2'),
+  url(../../liaisons/polices/roboto-medium.woff) format('woff'),
+  url(../../liaisons/polices/roboto-medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Roboto-MediumItalic;
+  src: url(../../liaisons/polices/roboto-mediumItalic.woff2) format('woff2'),
+  url(../../liaisons/polices/roboto-mediumItalic.woff) format('woff'),
+  url(../../liaisons/polices/roboto-mediumItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Roboto-Bold;
+  src: url(../../liaisons/polices/roboto-bold.woff2) format('woff2'),
+  url(../../liaisons/polices/roboto-bold.woff) format('woff'),
+  url(../../liaisons/polices/roboto-bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Roboto-BoldItalic;
+  src: url(../../liaisons/polices/roboto-boldItalic.woff2) format('woff2'),
+  url(../../liaisons/polices/roboto-boldItalic.woff) format('woff'),
+  url(../../liaisons/polices/roboto-boldItalic.ttf) format('truetype');
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $RobotoMedium;
+  font-weight: normal;
+  line-height: 100%;
+  letter-spacing: $EspacementStandard;
+}
+
+h1 {
+  font-size: 4.5rem;
+  text-align: center;
+  padding: 2rem 0 5rem 0;
+  @media screen and (min-width: $mobile600px) {
+    font-size: 7rem;
+    padding: 10rem 0;
+  }
+}
+
+h2 {
+  font-size: 4rem;
+  font-family: $RobotoBold;
+  margin-bottom: 0.5rem;
+
+  @media screen and (min-width: $mobile600px) {
+    font-size: 6rem;
+  }
+}
+
+h3 {
+  font-size: 3.5rem;
+  font-family: $RobotoBold;
+  margin-bottom: 0.5rem;
+
+  @media screen and (min-width: $mobile600px) {
+    font-size: 5rem;
+  }
+}
+
+h4 {
+  font-size: 3rem;
+  font-family: $RobotoBold;
+  margin-bottom: 0.5rem;
+
+  @media screen and (min-width: $mobile600px) {
+    font-size: 4rem;
+  }
+}
+
+h5 {
+  font-size: 2.5rem;
+  font-family: $RobotoBold;
+  margin-bottom: 0.5rem;
+
+  @media screen and (min-width: $mobile600px) {
+    font-size: 3rem;
+  }
+}
+
+h6 {
+  font-size: 2rem;
+  font-family: $RobotoBold;
+  margin-bottom: 0.5rem;
+
+  @media screen and (min-width: $mobile600px) {
+    font-size: 2rem;
+  }
+}
+
+
+body {
+  font-family: $RobotoRegular;
+  font-size: 2rem;
+  line-height: 1.5;
+}

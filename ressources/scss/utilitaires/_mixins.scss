@@ -1,0 +1,120 @@
+/**
+* @author Gabriel Caron - 1861095@csfoy.ca
+* @version 2.5
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* UTILITAIRES DE BASE
+** Box sizing
+* ACCESSIBILITÉ
+** Visually hidden/screen reader only
+** Lien sauter au contenu
+* GRILLE DE BASE
+* Mixin pour conteneur parent en Grid ou Flex
+* Mixin pour rangée Grid sur 12 colonnes
+* Mixin pour rangée Flex par défaut
+* Mixin pour le padding de base
+*/
+
+/***** Utilitaires de base *****/
+
+/** Box sizing **/
+@mixin border-box-sizing {
+  html {
+	box-sizing: border-box;
+  }
+  *, *:before, *:after {
+	box-sizing: inherit;
+  }
+}
+
+/***** Accessibilité *****/
+
+// Hide only visually, but have it available for screenreaders:
+// http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+@mixin visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  // Extends the .visuallyhidden class to allow the element to be focusable
+  // when navigated to via the keyboard: https://www.drupal.org/node/897638
+  &.focusable:active,
+  &.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+  }
+}
+
+.visuallyhidden,
+.screen-reader-only {
+  @include visuallyhidden;
+}
+
+.sauter-contenu {
+  display: block;
+  padding: 0 3rem;
+  line-height: 5rem;
+  color: $noir;
+  background-color: $bleuRoyal;
+  text-align: center;
+}
+
+/***** Grille de base *****/
+
+// Mixin pour conteneur parent en Grid ou Flex
+@mixin conteneur1400px($conteneurBleed: false, $flex: false) {
+  @supports (grid-template-columns: minmax(auto, 1400px)) {
+	@media (min-width: $mobile600px) {
+	  @if $flex == true {
+		display: flex;
+		justify-content: space-between;
+	  } @else {
+		display: grid;
+		grid-template-columns: minmax(auto, 1400px);
+		justify-content: center;
+	  }
+	  @if $conteneurBleed == true {
+		padding: 0;
+	  } @else {
+		@include paddingConteneur;
+	  }
+	}
+  }
+  @supports not (grid-template-columns: minmax(auto, 1400px)) {
+	max-width: 1400px;
+  }
+}
+
+// Mixin pour rangée Grid sur 12 colonnes
+@mixin rangeeGrid12col($pointRupture: $mobile600px) {
+  @supports (grid-template-columns: minmax(auto, 1400px)) {
+	@media (min-width: $pointRupture) {
+	  display: grid;
+	  grid-template-columns: repeat(12, 1fr);
+	  column-gap: 20px;
+	}
+  }
+}
+
+// Mixin pour rangée Flex par défaut
+@mixin rangeeFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+// Mixin pour le padding de base
+@mixin paddingConteneur {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}

@@ -1,7 +1,6 @@
 <?php $_shouldextend[1]=1; ?>
 
 <?php $this->startSection('contenu'); ?>
- <?php echo $strIdPage ?>
  <div class="conteneur">
  <section class="enveloppe">
  <h1 class="enveloppe__">Livres</h1>

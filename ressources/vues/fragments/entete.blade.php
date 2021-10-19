@@ -1,3 +1,16 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP1_Nike</title>
+    <link href="/liaisons/css/styles.css" rel="stylesheet" >
+</head>
+<body class="js">
+<header class="menu__entete">
 <nav class="menu menu--ferme">
     <ul class="menu__liste">
         <div class="menu__recherche">
@@ -8,10 +21,10 @@
             <a href="index.php?controleur=site&action=accueil" class="menu__lien">Accueil</a>
         </li>
         <li class="menu__listeItem">
-            <a href="index.php?controleur=livre&action=index" class="menu__lien">livre</a>
+            <a href="index.php?controleur=livre&action=index" class="menu__lien">Livre</a>
         </li>
         <li class="menu__listeItem">
-            <a href="" class="menu__lien">Artistes </a>
+            <a href="" class="menu__lien">Auteurs</a>
         </li>
         <li class="menu__listeItem">
             <a href="index.php?controleur=site&action=apropos" class="menu__lien">À propos</a>
@@ -30,5 +43,4 @@
         </li>
     </ul>
 </nav>
-
-
+</header>

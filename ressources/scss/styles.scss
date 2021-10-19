@@ -59,22 +59,15 @@
 
 /****** MODULES ******/
 
-/** PiedDePage - Styles du pied de page **/
-@import 'modules/piedDePage';
-
-/** Entete - Styles de l'entête **/
-@import 'modules/entete';
-
-/** Navigation - Styles de la barre de navigation **/
-@import 'modules/navigation';
-
 /** MenuBase - Styles du menu de base **/
-@import 'modules/menuBase';
+@import 'modules/_menu';
 
 
+
+/** menu responsive - Éléments du menu **/
+@import 'modules/menu';
+
+/** footer **/
+@import 'modules/footer';
 
 /****** LAYOUT ******/
-
-/** General - Styles généraux **/
-@import 'layout/formulaire';
-

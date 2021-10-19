@@ -7,11 +7,14 @@
             <p class="enveloppe__"><a  class="enveloppe__" href="#">Accueil</a> / <strong>Livres</strong></p>
             <bouton class="enveloppe__">Filtres</bouton>
             <ul class="enveloppe__">
-                <li class="enveloppe__"><a class="enveloppe__">Tous</a></li>
-                <!-- Foreach categorie categorie->nom -->
-                @foreach($categories as $categorie)
-                <li class="enveloppe__"><a class="enveloppe__">{{$categorie->getNom()}}</a></li>
-                @endforeach
+                <form>
+                    <input type="checkbox" id="categorie_tous" name="categories">
+                    <label for="categorie_tous">Tous</label>
+                    <!-- Foreach categorie categorie->nom -->
+                    @foreach($categories as $categorie)
+                        <li class="enveloppe__"><a class="enveloppe__">{{$categorie->getNom()}}</a></li>
+                    @endforeach
+                </form>
             </ul>
             <!-- Vérification quel est actif -->
             <p class="enveloppe__">Changer pour une vue en liste : <a><img src="https://via.placeholder.com/40"></a></p>
@@ -43,7 +46,6 @@
                     <img src="https://via.placeholder.com/150">
                     <ul class="">
                         <li class="livres__auteur">{{$livre->getAuteurAssocie()->getPrenom()}} {{$livre->getAuteurAssocie()->getNom()}}</li>
-                        <li class="livres__prix">{{$livre->getPrixCan()}}</li>
                         <li class="livres__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
                     </ul>
                 </article>

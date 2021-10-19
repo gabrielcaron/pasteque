@@ -257,6 +257,30 @@ class Livre
         return $resultat->nombreLivres;
     }
 
+    public static function trouverLivresParCategories($idCategories, $enregistrementDepart, $nombreLivreParPage):array {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
+                            FROM livres
+                            INNER JOIN categories ON categories.id = categorie_id
+                            INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
+                            INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
+                            WHERE categories.id = :idCategorie
+                            LIMIT :enregistrementDepart, :nombreLivreParPage';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':idCategorie', $idCategories, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':enregistrementDepart', $enregistrementDepart, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':nombreLivreParPage', $nombreLivreParPage, PDO::PARAM_INT);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $resultat = $requetePreparee->fetchAll();
+        return $resultat;
+    }
+
 
 
 

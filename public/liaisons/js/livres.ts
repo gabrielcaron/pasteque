@@ -2,10 +2,10 @@ let page = {
     initialiser: function () {
         console.log(document.getElementsByClassName("enveloppe__liste"));
         //document.getElementsByClassName("enveloppe__liste").querySelector
-        console.log('salut');
+        console.log();
     }
 }
-console.log('salut')
+console.log($livre);
 
 //*******************
 // Écouteurs d'événements

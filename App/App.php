@@ -55,6 +55,8 @@ class App
         $id = null;
 
         // Déterminer le controleur responsable de traiter la requête
+
+
         if (isset($_GET['controleur'])){
             $controleur = $_GET['controleur'];
         }else{

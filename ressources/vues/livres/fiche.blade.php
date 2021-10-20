@@ -29,7 +29,7 @@
             <nav class="livre__details">
                 <ul class="livre__detailsListe">
                     <li class="livre__detailsListeItem">Résumé</li>
-                    <li class="livre__detailsListeItem">Critiques</li>
+                    {{--<li class="livre__detailsListeItem">Critiques</li>--}}
                     <li class="livre__detailsListeItem">Reconnaissance</li>
                 </ul>
             </nav>
@@ -38,7 +38,7 @@
                     {{$livre->getLeLivre()}}
                 </p>
             </div>
-            <div class="livre__critiques">
+           {{-- <div class="livre__critiques">
                 <p class="livre__critiquesTexte">
                     Nicolas Thibault<br>
                     Très bon livre! Super intéressant.
@@ -46,7 +46,7 @@
                     Gabriel Caron<br>
                     Ce livre est bon, mais sans plus.
                 </p>
-            </div>
+            </div>--}}
             @foreach($livre->getReconnaissanceAssocie() as $reconnaissanceLivre)
             <div class="livre__reconnaissance">
                 <p class="livre__reconnaissanceTexte">

@@ -5,19 +5,21 @@
         <section class="enveloppe">
             <h1 class="enveloppe__">Livres</h1>
             <p class="enveloppe__"><a  class="enveloppe__" href="#">Accueil</a> / <strong>Livres</strong></p>
-            <bouton class="enveloppe__">Filtres</bouton>
-            <ul class="enveloppe__">
+            <button class="enveloppe__">Filtres</button>
                 <form>
-                    <input type="checkbox" id="categorie_tous" name="categories">
-                    <label for="categorie_tous">Tous</label>
-                    <!-- Foreach categorie categorie->nom -->
-                    @foreach($categories as $categorie)
-                        <li class="enveloppe__"><a class="enveloppe__" href="index.php?controleur=livre&action=index&id_categorie={{$categorie->getId()}}">{{$categorie->getNom()}}</a></li>
-                    @endforeach
+                    <ul class="enveloppe__liste">
+                        @foreach($categories as $categorie)
+                            <input type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categories">
+                            <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                        @endforeach
+                        @foreach($categories as $categorie)
+                            <li class="enveloppe__liste--item"><a class="enveloppe__liste--lien" href="index.php?controleur=livre&action=index&id_categorie={{$categorie->getId()}}">{{$categorie->getNom()}}</a></li>
+                        @endforeach
+                    </ul>
                 </form>
-            </ul>
+
             <!-- Vérification quel est actif -->
-            <p class="enveloppe__">Changer pour une vue en liste : <a><img src="https://via.placeholder.com/40"></a></p>
+            <p id="test" class="enveloppe__test">Changer pour une vue en liste : <a><img src="https://via.placeholder.com/40"></a></p>
             <p class="enveloppe__">Changer pour une vue en vignette : <a><img src="https://via.placeholder.com/40"></a></p>
             <form class="enveloppe__">
                 <p class="formulaire__champEnveloppe">

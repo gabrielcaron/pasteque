@@ -5,20 +5,23 @@
  <section class="enveloppe">
  <h1 class="enveloppe__">Livres</h1>
  <p class="enveloppe__"><a  class="enveloppe__" href="#">Accueil</a> / <strong>Livres</strong></p>
- <bouton class="enveloppe__">Filtres</bouton>
- <ul class="enveloppe__">
+ <button class="enveloppe__">Filtres</button>
  <form>
- <input type="checkbox" id="categorie_tous" name="categories">
- <label for="categorie_tous">Tous</label>
- <!-- Foreach categorie categorie->nom -->
+ <ul class="enveloppe__liste">
  <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData);$this->getFirstLoop();
  foreach($__currentLoopData as $categorie): $loop = $this->incrementLoopIndices();  ?>
- <li class="enveloppe__"><a class="enveloppe__" href="index.php?controleur=livre&action=index&id_categorie=<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($categorie->getNom(), ENT_QUOTES, 'UTF-8', false); ?></a></li>
+ <input type="checkbox" id="enveloppe__liste--input--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" name="categories">
+ <label for="enveloppe__liste--input--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" id="enveloppe__liste--label--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($categorie->getNom(), ENT_QUOTES, 'UTF-8', false); ?></label>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
- </form>
+ <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $categorie): $loop = $this->incrementLoopIndices();  ?>
+ <li class="enveloppe__liste--item"><a class="enveloppe__liste--lien" href="index.php?controleur=livre&action=index&id_categorie=<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($categorie->getNom(), ENT_QUOTES, 'UTF-8', false); ?></a></li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </ul>
+ </form>
+
  <!-- Vérification quel est actif -->
- <p class="enveloppe__">Changer pour une vue en liste : <a><img src="https://via.placeholder.com/40"></a></p>
+ <p id="test" class="enveloppe__test">Changer pour une vue en liste : <a><img src="https://via.placeholder.com/40"></a></p>
  <p class="enveloppe__">Changer pour une vue en vignette : <a><img src="https://via.placeholder.com/40"></a></p>
  <form class="enveloppe__">
  <p class="formulaire__champEnveloppe">

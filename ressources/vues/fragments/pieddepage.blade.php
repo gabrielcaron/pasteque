@@ -1,4 +1,3 @@
-<footer>
 <section class="footer__socialMedia">
     <h2 class="footer__socialMediaTitle">Médias sociaux</h2>
     <p class="footer__socialMediaTexte">Suivez-nous sur nos médias sociaux!</p>
@@ -30,11 +29,3 @@
         </ul>
     </div>
 </section>
-</footer>
-<script src="liaisons/js/_menu.js"></script>
-<script>
-    document.body.classList.add('js');
-</script>
-
-</body>
-</html>

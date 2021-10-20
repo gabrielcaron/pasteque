@@ -20,6 +20,11 @@
         <footer>
             @include('fragments.pieddepage')
         </footer>
+        <script src="liaisons/js/_menu.js"></script>
+        <script src="liaisons/js/livres.ts"></script>
+        <script>
+            document.body.classList.add('js');
+        </script>
     </body>
 </html>
 

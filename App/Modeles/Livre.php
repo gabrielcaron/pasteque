@@ -14,7 +14,7 @@ class Livre
     private string $isbn_pdf;
     private string $isbn_epub;
     private string $url_Audio;
-    private string $titre;
+    private  string $titre;
     private string $le_livre;
     private string $arguments_commerciaux;
     private int $statut;
@@ -282,7 +282,7 @@ class Livre
     }
     public static function trouverLivresParAuteur(int $unIdAuteur):array {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT isbn_papier, livres.id
+        $chaineSQL = 'SELECT *
                         FROM livres
                         INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
                         WHERE livres_auteurs.id = :unIdAuteur

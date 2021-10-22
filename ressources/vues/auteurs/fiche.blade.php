@@ -17,14 +17,12 @@
             <p class="auteur__notice">{{$auteur->getNotice()}}</p>
         </div>
     </section>
+
     <section class="auteur__decouvrirLivre">
         <h2 class="auteur__decouvrirTitre">Découvrez ces livres</h2>
         @foreach($auteur->getLivresAssocies() as $livres)
             <div class="livre__reconnaissance">
-                <p class="livre__reconnaissanceTexte">
-                    {{$livres->getTitre()}}
-                    <?php var_dump($livres);?>
-                </p>
+                <img class="livre__reconnaissanceTexte" src="{{$livres->getIsbnPapier()}}.jpg" alt="{{$livres->getTitre()}}">
             </div>
         @endforeach
     </section>

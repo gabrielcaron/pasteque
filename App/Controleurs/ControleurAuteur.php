@@ -17,6 +17,7 @@ class ControleurAuteur
     {
         $intIdAuteur=1;
         if (isset($_GET['id_auteur'])!=0) $intIdAuteur=$_GET['id_auteur'];
+
         $auteurs = Auteur::trouverTout();
         $tDonnees = array("titrePage"=>"Les auteurs", "action"=>"index", "auteurs"=>$auteurs);
         echo App::getBlade()->run("auteurs.index",$tDonnees);

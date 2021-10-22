@@ -2,7 +2,7 @@
 
 @section('contenu')
     <section class="filAriane">
-        <span>Accueil / Livre / Lartigues et Prévert</span>
+        <span>Accueil / Livres / {{$livre->getTitre()}}</span>
     </section>
     <section class="livre">
         <div class="livre__conteneur1">

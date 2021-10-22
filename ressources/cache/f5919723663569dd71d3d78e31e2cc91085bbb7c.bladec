@@ -57,6 +57,7 @@
  </a>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </section>
+ <?php echo $this->runChild('livres.fragments.pagination'); ?>
  </div>
 <?php $this->stopSection(); ?>
 

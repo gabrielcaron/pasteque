@@ -1,7 +1,7 @@
 .bouton {
   border-radius: 4px;
-  color: $vertFonce;
-  border: solid 3px $vert;
+  color: $bleuRoyal;
+  border: solid 3px $bleuRoyal;
   padding: 0.5em 3em;
   text-decoration: none;
   font-size: 12px;
@@ -15,14 +15,14 @@
   //background-color: $rouge_2;
 }
 .bouton--active {
-  background-color: $vert;
+  background-color: $bleuRoyal;
   border-radius: 4px;
   color: white;
   padding: 0.5em 3em;
   text-decoration: none;
   font-size: 12px;
 }
-.bouton--inverse {
+/*.bouton--inverse {
   background-color: white;
   color: $orange;
 
@@ -35,4 +35,4 @@
 .bouton--inverse--active {
   color: $rouge_3;
   border-color: $rouge_3;
-}
+}*/

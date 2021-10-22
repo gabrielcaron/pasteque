@@ -93,4 +93,26 @@ class Auteur
 
         return $auteur;
     }
+    public static function trouverLivresParAuteur(int $unIdAuteur):Auteur {
+
+        // Définir la chaine SQL
+        $chaineSQL = "SELECT isbn_papier, livres.id
+                        FROM livres
+                        INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
+                        WHERE livres_auteurs.id = :unIdAuteur
+                        LIMIT 4";
+
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':unIdAuteur', $unIdAuteur, PDO::PARAM_INT); // validation => Sécurité
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Auteur');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer le résultat
+        $auteur = $requetePreparee->fetch();
+
+        return $auteur;
+    }
 }

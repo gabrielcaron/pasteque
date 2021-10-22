@@ -14,7 +14,7 @@ class Livre
     private string $isbn_pdf;
     private string $isbn_epub;
     private string $url_Audio;
-    private string $titre;
+    private  string $titre;
     private string $le_livre;
     private string $arguments_commerciaux;
     private int $statut;
@@ -279,6 +279,26 @@ class Livre
         // Récupérer une seule occurrence à la fois
         $resultat = $requetePreparee->fetchAll();
         return $resultat;
+    }
+    public static function trouverLivresParAuteur(int $unIdAuteur):array {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT *
+                        FROM livres
+                        INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
+                        WHERE livres_auteurs.id = :unIdAuteur
+                        LIMIT 4';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':unIdAuteur', $unIdAuteur, PDO::PARAM_INT);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $livres = $requetePreparee->fetchAll();
+        //var_dump($participants);
+        return $livres;
     }
 
 

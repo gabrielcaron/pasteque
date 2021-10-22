@@ -1,0 +1,33 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('contenu'); ?>
+ <section class="filAriane">
+ <span>Accueil / Artistes / <?php echo \htmlentities($auteur->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($auteur->getNom(), ENT_QUOTES, 'UTF-8', false); ?></span>
+ </section>
+ <section class="auteur">
+ <div class="auteur__conteneur1">
+ <h1 class="auteur__titreFiche">Fiche auteur</h1>
+ <img class="auteur__conteneurImg" src="liaisons/images/genevieveGodbout.png" width="20%">
+ </div>
+ <div class="auteur__conteneur2">
+ <h2 class="auteur__nom"><?php echo \htmlentities($auteur->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($auteur->getNom(), ENT_QUOTES, 'UTF-8', false); ?></h2>
+ <p class="auteur__site">Visiter son <a href="<?php echo \htmlentities($auteur->getSiteWeb(), ENT_QUOTES, 'UTF-8', false); ?>" class="auteur__siteLien" target="_blank">site internet</a></p>
+ <br>
+ <h3 class="auteur__noticeTitre">Notice</h3>
+ <p class="auteur__notice"><?php echo \htmlentities($auteur->getNotice(), ENT_QUOTES, 'UTF-8', false); ?></p>
+ </div>
+ </section>
+
+ <section class="auteur__decouvrirLivre">
+ <h2 class="auteur__decouvrirTitre">Découvrez ces livres</h2>
+ <?php $__currentLoopData = $auteur->getLivresAssocies(); $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $livres): $loop = $this->incrementLoopIndices();  ?>
+ <div class="livre__reconnaissance">
+ <img class="livre__reconnaissanceTexte" src="<?php echo \htmlentities($livres->getIsbnPapier(), ENT_QUOTES, 'UTF-8', false); ?>.jpg" alt="<?php echo \htmlentities($livres->getTitre(), ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </section>
+<?php $this->stopSection(); ?>
+
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('gabarit'); } ?>

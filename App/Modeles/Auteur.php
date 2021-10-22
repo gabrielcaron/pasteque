@@ -58,6 +58,9 @@ class Auteur
     public function setSiteWeb(string $unSiteWeb):void {
         $this->site_web = $unSiteWeb;
     }
+    public function getLivresAssocies():array|false{
+        return Livre::trouverLivresParAuteur($this->id);
+    }
 
 
     public static function trouverTout():array {

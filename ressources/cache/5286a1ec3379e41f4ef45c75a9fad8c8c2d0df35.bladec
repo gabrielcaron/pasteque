@@ -7,11 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <title>La Pastèque</title>
  <link href="liaisons/css/styles.css" rel="stylesheet" />
- <script>
- if(typeof window.history.pushState == 'function') {
- window.history.pushState({}, "Hide", '<?php echo $_SERVER['SCRIPT_NAME'];?>');
- }
- </script>
+ 
  </head>
  <body class="js">
  <header class="menu__entete">

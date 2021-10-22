@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controleurs;
 use App\App;
-use App\Modeles\Categorie;
 use App\Modeles\Auteur;
+use App\Modeles\Livre;
 
 class ControleurAuteur
 {
@@ -15,10 +15,12 @@ class ControleurAuteur
 
     public function index(): void
     {
+        $intIdAuteur=1;
+        if (isset($_GET['id_auteur'])!=0) $intIdAuteur=$_GET['id_auteur'];
+
         $auteurs = Auteur::trouverTout();
         $tDonnees = array("titrePage"=>"Les auteurs", "action"=>"index", "auteurs"=>$auteurs);
         echo App::getBlade()->run("auteurs.index",$tDonnees);
-
     }
 
     public function fiche($auteurChoisi):void

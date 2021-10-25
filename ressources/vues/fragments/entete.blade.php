@@ -11,7 +11,7 @@
             <a href="index.php?controleur=livre&action=index" class="menu__lien">Livre</a>
         </li>
         <li class="menu__listeItem">
-            <a href="" class="menu__lien">Auteurs</a>
+            <a href="index.php?controleur=auteur&action=index" class="menu__lien">Auteurs</a>
         </li>
         <li class="menu__listeItem">
             <a href="index.php?controleur=site&action=apropos" class="menu__lien">À propos</a>

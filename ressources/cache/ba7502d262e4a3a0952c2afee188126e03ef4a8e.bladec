@@ -9,7 +9,7 @@
  <!-- Vérification quel est actif -->
  <p id="test" class="enveloppe__test">Changer pour une vue en liste : <a><img src="https://via.placeholder.com/40"></a></p>
  <p class="enveloppe__">Changer pour une vue en vignette : <a><img src="https://via.placeholder.com/40"></a></p>
- <form class="enveloppe__">
+ <form class="enveloppe__" novalidate>
  <p class="formulaire__champEnveloppe">
  <label class="" for="">Trier par : </label>
  <select id="" class="">
@@ -21,15 +21,16 @@
  <p><strong>X résultats affichés</strong> de <?php echo \htmlentities($nombreAuteurs, ENT_QUOTES, 'UTF-8', false); ?> résultats</p>
 
  </section>
- <section class="livres">
- <!-- Foreach livres -->
+ <section class="auteurs">
+ <!-- Foreach auteurs -->
  <?php $__currentLoopData = $auteurs; $this->addLoop($__currentLoopData);$this->getFirstLoop();
  foreach($__currentLoopData as $auteur): $loop = $this->incrementLoopIndices();  ?>
- <a href="index.php?controleur=livre&action=fiche&id=<?php echo \htmlentities($auteur->getId(), ENT_QUOTES, 'UTF-8', false); ?>">
- <article class="livres__article">
- <h2 class="livres__titre"><?php echo \htmlentities($auteur->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($auteur->getNom(), ENT_QUOTES, 'UTF-8', false); ?></h2>
+ <!-- Foreach auteurs -->
+ <a href="index.php?controleur=auteur&action=fiche&id=<?php echo \htmlentities($auteur->getId(), ENT_QUOTES, 'UTF-8', false); ?>">
+ <article class="auteurs__article">
+ <h2 class="auteurs__titre"><?php echo \htmlentities($auteur->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($auteur->getNom(), ENT_QUOTES, 'UTF-8', false); ?></h2>
  <img src="https://via.placeholder.com/150">
- <p><?php echo \htmlentities(substr($auteur->getNotice(), 0, 150), ENT_QUOTES, 'UTF-8', false); ?></p>
+ <p><?php echo \htmlentities(substr($auteur->getNotice(), 0, 150), ENT_QUOTES, 'UTF-8', false); ?>...</p>
  </article>
  </a>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>

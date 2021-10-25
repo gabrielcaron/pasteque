@@ -77,6 +77,21 @@ class Auteur
         //var_dump($participants);
         return $auteurs;
     }
+
+    public static function trouverNombreAuteurs():string {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT count(id) AS nombreAuteurs FROM auteurs';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $resultat = $requetePreparee->fetch();
+        return $resultat->nombreAuteurs;
+    }
+
     public static function trouverParId(int $unIdAuteur):Auteur {
 
         // Définir la chaine SQL

@@ -10,7 +10,7 @@
         
     </head>
     <body class="js">
-        <header class="menu__entete">
+        <header class="entete">
             @include('fragments.entete')
         </header>
 

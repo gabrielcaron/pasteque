@@ -10,8 +10,8 @@
 //*******************
 
 var menu = {
-  lblMenuFerme: 'Menu',
-  lblMenuOuvert: 'Fermer',
+  lblMenuFerme: '<img src="liaisons/images/menuicone.png">',
+  lblMenuOuvert: 'X',
   refBouton: null,
   refLibelle: null,
   refMenu: null,
@@ -64,7 +64,13 @@ var menu = {
     {
       this.refLibelle.innerHTML = this.lblMenuOuvert;
     }
-  }
+  },
+  activeMenuItem: function (){
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('controleur');
+
+    document.getElementById(myParam).classList.add('activeMenuItem');
+  },
 };
 
 
@@ -73,3 +79,4 @@ var menu = {
 //*******************
 
 window.addEventListener('load', function () { menu.configurerNav(); });
+window.addEventListener('load', function (){menu.activeMenuItem();});

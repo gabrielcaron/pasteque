@@ -10,7 +10,7 @@
  
  </head>
  <body class="js">
- <header class="menu__entete">
+ <header class="entete">
  <?php echo $this->runChild('fragments.entete'); ?>
  </header>
 

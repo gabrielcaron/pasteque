@@ -54,6 +54,7 @@
             </a>
             @endforeach
         </section>
+        @include('livres.fragments.pagination')
     </div>
 @endsection
 

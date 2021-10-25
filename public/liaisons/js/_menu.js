@@ -10,8 +10,8 @@
 //*******************
 
 var menu = {
-  lblMenuFerme: 'Menu',
-  lblMenuOuvert: 'Fermer',
+  lblMenuFerme: '<img src="liaisons/images/menuicone.png">',
+  lblMenuOuvert: 'X',
   refBouton: null,
   refLibelle: null,
   refMenu: null,
@@ -59,12 +59,25 @@ var menu = {
     if (this.refMenu.classList.contains("menu--ferme"))
     {
       this.refLibelle.innerHTML = this.lblMenuFerme;
+      document.getElementsByClassName('menu__topNavEntete')[0].style.top = '75px';
+      document.getElementsByClassName('menu__topNavEntete')[0].style.transition = '0.5s';
+      console.log('hey')
     }
     else
     {
       this.refLibelle.innerHTML = this.lblMenuOuvert;
+      console.log(document.getElementsByClassName('menu__topNavEntete'))
+
+      document.getElementsByClassName('menu__topNavEntete')[0].style.top = '500px';
+
     }
-  }
+  },
+  activeMenuItem: function (){
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('controleur');
+
+    document.getElementById(myParam).classList.add('activeMenuItem');
+  },
 };
 
 
@@ -73,3 +86,4 @@ var menu = {
 //*******************
 
 window.addEventListener('load', function () { menu.configurerNav(); });
+window.addEventListener('load', function (){menu.activeMenuItem();});

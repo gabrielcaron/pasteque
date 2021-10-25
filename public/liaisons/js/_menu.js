@@ -59,10 +59,17 @@ var menu = {
     if (this.refMenu.classList.contains("menu--ferme"))
     {
       this.refLibelle.innerHTML = this.lblMenuFerme;
+      document.getElementsByClassName('menu__topNavEntete')[0].style.top = '75px';
+      document.getElementsByClassName('menu__topNavEntete')[0].style.transition = '0.5s';
+      console.log('hey')
     }
     else
     {
       this.refLibelle.innerHTML = this.lblMenuOuvert;
+      console.log(document.getElementsByClassName('menu__topNavEntete'))
+
+      document.getElementsByClassName('menu__topNavEntete')[0].style.top = '500px';
+
     }
   },
   activeMenuItem: function (){

@@ -704,6 +704,7 @@ body {
 .menu__topNavEntete {
   display: flex;
   justify-content: end;
+  top: 200px;
 }
 @media (max-width: 1000px) {
   .menu__topNavEntete {
@@ -880,6 +881,7 @@ header {
 .menu__topNavEntete {
   display: flex;
   justify-content: end;
+  top: 200px;
 }
 @media (max-width: 1000px) {
   .menu__topNavEntete {

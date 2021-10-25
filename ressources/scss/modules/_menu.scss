@@ -23,6 +23,7 @@
     &__topNavEntete{
         display: flex;
         justify-content: end;
+        top: 200px;
 
         @media (max-width: 1000px) {
             position: absolute;

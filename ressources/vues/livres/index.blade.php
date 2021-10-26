@@ -6,29 +6,67 @@
             <h1 class="enveloppe__">Livres</h1>
             <p class="enveloppe__"><a  class="enveloppe__" href="#">Accueil</a> / <strong>Livres</strong></p>
             <button class="enveloppe__">Filtres</button>
-            <form class="enveloppe__Tris" action="index.php?controleur=livre&action=index" method="POST">
+            <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=livre&action=index" method="POST">
                     <ul class="enveloppe__liste">
                         @foreach($categories as $categorie)
                             <div>
-                                <input value="{{$categorie->getId()}}" type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="{{$categorie->getId()}}">
-                                <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                                @if(array_search($categorie->getId(), $categoriesSelectionner))
+                                    <input value="{{$categorie->getId()}}" type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categoriesSelectionner{{$categorie->getId()}}" checked>
+                                    <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                                @else
+                                    <input value="{{$categorie->getId()}}" type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categoriesSelectionner{{$categorie->getId()}}">
+                                    <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                                @endif
                             </div>
                         @endforeach
                     </ul>
+                <input id="id_page" value="{{$numeroPage}}" type="hidden" name="id_page">
             <!-- Vérification quel est actif -->
                 <p class="formulaire__champEnveloppe">
-                    <input id="vignette" value="vignette" name="choixVue" type="radio">
-                    <label for="vignette">Changer pour une vue en liste</label>
-                    <input id="vignette" value="vignette" name="choixVue" type="radio">
-                    <label for="vignette">Changer pour une vue en liste</label>
+                    @if($choixVue === 'vignette')
+                        <input id="vignette" value="vignette" name="choixVue" type="radio" checked>
+                        <label for="vignette">Changer pour une vue en liste</label>
+                        <input id="liste" value="liste" name="choixVue" type="radio">
+                        <label for="liste">Changer pour une vue en liste</label>
+                    @else
+                        <input id="vignette" value="vignette" name="choixVue" type="radio">
+                        <label for="vignette">Changer pour une vue en liste</label>
+                        <input id="liste" value="liste" name="choixVue" type="radio" checked>
+                        <label for="liste">Changer pour une vue en liste</label>
+                    @endif
                 </p>
                 <p class="formulaire__champEnveloppe">
-                    <label class="" for="nombreLivres">Nombre de livre par page : </label>
-                    <select name="nombreLivres" id="nombreLivres" class="">
-                        <option value="9">9 livres par page</option>
-                        <option value="15">15 livres par page</option>
-                        <option value="30">30 livres par page</option>
-                        <option value="tous">tout livres par page</option>
+                    <label class="" for="nbLivreParPage">Nombre de livre par page : </label>
+                    <select name="nbLivreParPage" id="nbLivreParPage" class="">
+                        @switch($intNbLivreParPage)
+                            @case(9)
+                                <option value="9" selected>9 livres par page</option>
+                                <option value="15">15 livres par page</option>
+                                <option value="30">30 livres par page</option>
+                                <option value="tous">tout livres par page</option>
+                                @break
+
+                            @case(15)
+                                <option value="9">9 livres par page</option>
+                                <option value="15" selected>15 livres par page</option>
+                                <option value="30">30 livres par page</option>
+                                <option value="tous">tout livres par page</option>
+                                @break
+
+                            @case(30)
+                                <option value="9">9 livres par page</option>
+                                <option value="15">15 livres par page</option>
+                                <option value="30" selected>30 livres par page</option>
+                                <option value="tous">tout livres par page</option>
+                                @break
+
+                            @default
+                                <option value="9">9 livres par page</option>
+                                <option value="15">15 livres par page</option>
+                                <option value="30">30 livres par page</option>
+                                <option value="tous" selected>tout livres par page</option>
+                        @endswitch
+
                     </select>
                 </p>
                 <p><strong>X résultats affichés</strong> de {{$nombreLivre}} résultats</p>

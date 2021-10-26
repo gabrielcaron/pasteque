@@ -63,11 +63,19 @@
 @import 'modules/_menu';
 
 
-
 /** menu responsive - Éléments du menu **/
 @import 'modules/menu';
 
 /** footer **/
 @import 'modules/footer';
 
+/** Accueil **/
+@import 'modules/accueil';
+
+/** Livres **/
+@import 'modules/livres';
+
 /****** LAYOUT ******/
+
+/** Général **/
+@import 'layout/general';

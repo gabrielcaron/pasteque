@@ -1,0 +1,21 @@
+/**
+* @author Gabriel Caron <1861095@csfoy.ca>
+* @version 1.0
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* LIVRES
+* Styles généraux
+*/
+
+
+.livre {
+  &__lien {
+	grid-column: span 4;
+	text-decoration: none;
+  }
+  &__titre {
+	font-size: 2.5rem;
+  }
+}

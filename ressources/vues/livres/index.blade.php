@@ -6,23 +6,25 @@
             <h1 class="enveloppe__">Livres</h1>
             <p class="enveloppe__"><a  class="enveloppe__" href="#">Accueil</a> / <strong>Livres</strong></p>
             <button class="enveloppe__">Filtres</button>
-            <form class="enveloppe__Tris" action="{{$urlLivre}}" method="POST">
+            <form class="enveloppe__Tris" action="index.php?controleur=livre&action=index" method="POST">
                     <ul class="enveloppe__liste">
                         @foreach($categories as $categorie)
-                            <input type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categories">
-                            <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                            <div>
+                                <input value="{{$categorie->getId()}}" type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="{{$categorie->getId()}}">
+                                <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                            </div>
                         @endforeach
                     </ul>
             <!-- Vérification quel est actif -->
                 <p class="formulaire__champEnveloppe">
-                    <input id="vignette" value="vignette" name="choixVue">
+                    <input id="vignette" value="vignette" name="choixVue" type="radio">
                     <label for="vignette">Changer pour une vue en liste</label>
-                    <input id="vignette" value="vignette" name="choixVue">
+                    <input id="vignette" value="vignette" name="choixVue" type="radio">
                     <label for="vignette">Changer pour une vue en liste</label>
                 </p>
                 <p class="formulaire__champEnveloppe">
-                    <label class="" for="">Nombre de livre par page : </label>
-                    <select id="" class="">
+                    <label class="" for="nombreLivres">Nombre de livre par page : </label>
+                    <select name="nombreLivres" id="nombreLivres" class="">
                         <option value="9">9 livres par page</option>
                         <option value="15">15 livres par page</option>
                         <option value="30">30 livres par page</option>
@@ -32,7 +34,7 @@
                 <p><strong>X résultats affichés</strong> de {{$nombreLivre}} résultats</p>
                 <p class="formulaire__champEnveloppe">
                     <label class="" for="trierPar">Trier par : </label>
-                    <select id="trierPar" class="">
+                    <select name="trierPar" id="trierPar" class="">
                         <option value="categorieA">Categories A-Z</option>
                         <option value="categorieD">Categories Z-A</option>
                         <option value="livresA">Livres A-Z</option>

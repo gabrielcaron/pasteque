@@ -1,0 +1,28 @@
+/**
+* @author Gabriel Caron <1861095@csfoy.ca>
+* @version 1.0
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* ACCUEIL
+* Nouveautés
+*/
+
+
+.accueil {
+  &__titre {
+
+  }
+}
+
+.nouveautes {
+  @include conteneur1400px();
+
+  &__conteneurGrille {
+	@include rangeeGrid12col();
+	margin: 0 8rem;
+  }
+}
+
+

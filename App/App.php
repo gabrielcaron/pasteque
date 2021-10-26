@@ -109,7 +109,7 @@ class App
             $this->monControleur = new ControleurSite();
             switch ($action) {
                 case 'accueil':
-                    $this->monControleur->entete();
+                    $this->monControleur->accueil();
                     break;
                 case 'apropos':
                     $this->monControleur->apropos();

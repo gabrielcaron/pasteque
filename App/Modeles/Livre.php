@@ -14,7 +14,7 @@ class Livre
     private string $isbn_pdf;
     private string $isbn_epub;
     private string $url_Audio;
-    private  string $titre;
+    private string $titre;
     private string $le_livre;
     private string $arguments_commerciaux;
     private int $statut;
@@ -30,185 +30,250 @@ class Livre
     private ?int $type_impression_id;
     private ?int $type_couverture_id;
 
-    public function __construct() {
+    public function __construct()
+    {
         //vide
     }
 
     // $id : Getter et setter
-    public function getId():int {
+    public function getId(): int
+    {
         return $this->id;
     }
-    public function setId(int $unId):void {
+
+    public function setId(int $unId): void
+    {
         $this->id = $unId;
     }
 
     // $isbn_papier : Getter et setter
-    public function getIsbnPapier():string {
+    public function getIsbnPapier(): string
+    {
         return $this->isbn_papier;
     }
-    public function setIsbnPapier(string $isbn):void {
+
+    public function setIsbnPapier(string $isbn): void
+    {
         $this->isbn_papier = $isbn;
     }
 
     // $isbn_pdf : Getter et setter
-    public function getIsbnPdf():string {
+    public function getIsbnPdf(): string
+    {
         return $this->isbn_pdf;
     }
-    public function setIsbnPdf(string $isbn):void {
+
+    public function setIsbnPdf(string $isbn): void
+    {
         $this->isbn_pdf = $isbn;
     }
 
     // $isbn_epub : Getter et setter
-    public function getIsbnEpub():string {
+    public function getIsbnEpub(): string
+    {
         return $this->isbn_epub;
     }
-    public function setIsbnEpub(string $isbn):void {
+
+    public function setIsbnEpub(string $isbn): void
+    {
         $this->isbn_epub = $isbn;
     }
 
     // $url_Audio : Getter et setter
-    public function getUrlAudio():string {
+    public function getUrlAudio(): string
+    {
         return $this->url_Audio;
     }
-    public function setUrlAudio(string $unUrl):void {
+
+    public function setUrlAudio(string $unUrl): void
+    {
         $this->url_Audio = $unUrl;
     }
 
     // $titre : Getter et setter
-    public function getTitre():string {
+    public function getTitre(): string
+    {
         return $this->titre;
     }
-    public function setTitre(string $unTitre):void {
+
+    public function setTitre(string $unTitre): void
+    {
         $this->titre = $unTitre;
     }
 
     // $le_livre : Getter et setter
-    public function getLeLivre():string {
+    public function getLeLivre(): string
+    {
         return $this->le_livre;
     }
-    public function setLeLivre(string $unLeLivre):void {
+
+    public function setLeLivre(string $unLeLivre): void
+    {
         $this->le_livre = $unLeLivre;
     }
 
     // $arguments_commerciaux : Getter et setter
-    public function getArgumentsCommerciaux():string {
+    public function getArgumentsCommerciaux(): string
+    {
         return $this->arguments_commerciaux;
     }
-    public function setArgumentsCommerciaux(string $unArgumentsCommerciaux):void {
+
+    public function setArgumentsCommerciaux(string $unArgumentsCommerciaux): void
+    {
         $this->arguments_commerciaux = $unArgumentsCommerciaux;
     }
 
     // $statut : Getter et setter
-    public function getStatut():int {
+    public function getStatut(): int
+    {
         return $this->statut;
     }
-    public function setStatut(int $unStatut):void {
+
+    public function setStatut(int $unStatut): void
+    {
         $this->statut = $unStatut;
     }
 
     // $pagination : Getter et setter
-    public function getPagination():int {
+    public function getPagination(): int
+    {
         return $this->pagination;
     }
-    public function setPagination(int $unPagination):void {
+
+    public function setPagination(int $unPagination): void
+    {
         $this->pagination = $unPagination;
     }
 
     // $age_min : Getter et setter
-    public function getAgeMin():int {
+    public function getAgeMin(): int
+    {
         return $this->age_min;
     }
-    public function setAgeMin(int $unAgeMin):void {
+
+    public function setAgeMin(int $unAgeMin): void
+    {
         $this->age_min = $unAgeMin;
     }
 
     // $format : Getter et setter
-    public function getFormat():string {
+    public function getFormat(): string
+    {
         return $this->format;
     }
-    public function setFormat(string $unFormat):void {
+
+    public function setFormat(string $unFormat): void
+    {
         $this->format = $unFormat;
     }
 
     // $tirage : Getter et setter
-    public function getTirage():int {
+    public function getTirage(): int
+    {
         return $this->tirage;
     }
-    public function setTirage(int $unTirage):void {
+
+    public function setTirage(int $unTirage): void
+    {
         $this->tirage = $unTirage;
     }
 
     // $prix_can : Getter et setter
-    public function getPrixCan():float {
+    public function getPrixCan(): float
+    {
         return $this->prix_can;
     }
-    public function setPrixCan(float $unPrixCan):void {
+
+    public function setPrixCan(float $unPrixCan): void
+    {
         $this->prix_can = $unPrixCan;
     }
 
     // $prix_euro : Getter et setter
-    public function getPrixEuro():float {
+    public function getPrixEuro(): float
+    {
         return $this->prix_euro;
     }
-    public function setPrixEuro(float $unPrixEuro):void {
+
+    public function setPrixEuro(float $unPrixEuro): void
+    {
         $this->prix_euro = $unPrixEuro;
     }
 
     // $date_parution_quebec : Getter et setter
-    public function getDateParutionQuebec():string {
+    public function getDateParutionQuebec(): string
+    {
         return $this->date_parution_quebec;
     }
-    public function setDateParutionQuebec(string $unParutionQuebec):void {
+
+    public function setDateParutionQuebec(string $unParutionQuebec): void
+    {
         $this->date_parution_quebec = $unParutionQuebec;
     }
 
     // $date_parution_france : Getter et setter
-    public function getDateParutionFrance():string {
+    public function getDateParutionFrance(): string
+    {
         return $this->date_parution_france;
     }
-    public function setDateParutionFrance(string $unParutionFrance):void {
+
+    public function setDateParutionFrance(string $unParutionFrance): void
+    {
         $this->date_parution_france = $unParutionFrance;
     }
 
     // $categorie_id : Getter et setter
-    public function getCategorieId():int {
+    public function getCategorieId(): int
+    {
         return $this->categorie_id;
     }
-    public function setCategorieId(int $unCategorieId):void {
+
+    public function setCategorieId(int $unCategorieId): void
+    {
         $this->categorie_id = $unCategorieId;
     }
 
     // $type_impression_id : Getter et setter
-    public function getTypeImpressionId():int {
+    public function getTypeImpressionId(): int
+    {
         return $this->type_impression_id;
     }
-    public function setTypeImpressionId(int $unTypeImpressionId):void {
+
+    public function setTypeImpressionId(int $unTypeImpressionId): void
+    {
         $this->type_impression_id = $unTypeImpressionId;
     }
 
     // $type_couverture_id : Getter et setter
-    public function getTypeCouvertureId():int {
+    public function getTypeCouvertureId(): int
+    {
         return $this->type_couverture_id;
     }
-    public function setTypeCouvertureId(int $unTypeCouvertureId):void {
+
+    public function setTypeCouvertureId(int $unTypeCouvertureId): void
+    {
         $this->type_couverture_id = $unTypeCouvertureId;
     }
 
 
-    public function getCategorieAssocie():Categorie {
+    public function getCategorieAssocie(): Categorie
+    {
         return Categorie::trouverParId($this->categorie_id);
     }
 
-    public function getAuteurAssocie():Auteur {
+    public function getAuteurAssocie(): Auteur
+    {
         return Auteur::trouverParId($this->id);
     }
 
-    public function getReconnaissanceAssocie():array|false{
+    public function getReconnaissanceAssocie(): array|false
+    {
         return Reconnaissance::trouverParId($this->id);
     }
 
 
-    public static function trouverTout():array {
+    public static function trouverTout(): array
+    {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
                             FROM livres
@@ -227,7 +292,8 @@ class Livre
         return $livres;
     }
 
-    public static function trouverParId(int $idLivre):Livre {
+    public static function trouverParId(int $idLivre): Livre
+    {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM livres  WHERE id = :idLivre';
         // Préparer la requête (optimisation)
@@ -243,7 +309,8 @@ class Livre
         return $livre;
     }
 
-    public static function trouverNombreLivres():string {
+    public static function trouverNombreLivres(): string
+    {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT count(id) AS nombreLivres FROM livres';
         // Préparer la requête (optimisation)
@@ -257,7 +324,8 @@ class Livre
         return $resultat->nombreLivres;
     }
 
-    public static function trouverLivresParCategories($idCategories, $enregistrementDepart, $nombreLivreParPage):array {
+    public static function trouverLivresParCategories($idCategories, $enregistrementDepart, $nombreLivreParPage): array
+    {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
                             FROM livres
@@ -280,7 +348,9 @@ class Livre
         $resultat = $requetePreparee->fetchAll();
         return $resultat;
     }
-    public static function trouverLivresParAuteur(int $unIdAuteur):array {
+
+    public static function trouverLivresParAuteur(int $unIdAuteur): array
+    {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT *
                         FROM livres
@@ -301,7 +371,27 @@ class Livre
         return $livres;
     }
 
+    public static function trouverNouveautesHasard($combien): array
+    {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
+                            FROM livres
+                            INNER JOIN categories ON categories.id = categorie_id
+                            INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
+                            INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
+                            WHERE statut = 2
+                            ORDER BY RAND() LIMIT ' . $combien;
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $livres = $requetePreparee->fetchAll();
 
+        return $livres;
+    }
 
 
 }

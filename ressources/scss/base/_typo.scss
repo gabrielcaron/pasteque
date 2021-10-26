@@ -59,68 +59,42 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 4.5rem;
-  text-align: center;
-  padding: 2rem 0 5rem 0;
-  @media screen and (min-width: $mobile600px) {
-    font-size: 7rem;
-    padding: 10rem 0;
-  }
+  font-size: 7.5rem;
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: 5.5rem;
   font-family: $RobotoBold;
   margin-bottom: 0.5rem;
-
-  @media screen and (min-width: $mobile600px) {
-    font-size: 6rem;
-  }
 }
 
 h3 {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   font-family: $RobotoBold;
   margin-bottom: 0.5rem;
-
-  @media screen and (min-width: $mobile600px) {
-    font-size: 5rem;
-  }
 }
 
 h4 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-family: $RobotoBold;
   margin-bottom: 0.5rem;
-
-  @media screen and (min-width: $mobile600px) {
-    font-size: 4rem;
-  }
 }
 
 h5 {
   font-size: 2.5rem;
   font-family: $RobotoBold;
   margin-bottom: 0.5rem;
-
-  @media screen and (min-width: $mobile600px) {
-    font-size: 3rem;
-  }
 }
 
 h6 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: $RobotoBold;
   margin-bottom: 0.5rem;
-
-  @media screen and (min-width: $mobile600px) {
-    font-size: 2rem;
-  }
 }
 
 
 body {
   font-family: $RobotoRegular;
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.5;
 }

@@ -13,7 +13,9 @@
         text-align: right;
         height: auto;
     }
-
+    &__libelle{
+        font-size: 35px;
+    }
     &__entete{
         max-width: 1200px;
         margin: 0 auto;

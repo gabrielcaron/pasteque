@@ -1,17 +1,129 @@
 /* Pied de page*/
-
-.piedDePage {
-  max-width: 960px;
-  margin: 0 auto;
-  background-color: #eee;
-  border-top: 1px solid #333;
-  clear: both;
-}
 .footer {
-  display: flex;
-  flex-flow: row wrap;
-  padding: 30px 30px 20px 30px;
-  color: #2f2f2f;
-  background-color: #fff;
-  border-top: 1px solid #e5e5e5;
+  background: $bleuRoyal;
+  color: white!important;
+  padding-top: 4rem;
+
+
+  &__infosTitle{
+    margin-top: 0!important;
+  }
+  &__infos{
+    max-width: 70%;
+    margin: 0 auto;
+    margin-top: 5rem;
+    @media (max-width: 860px) {
+      max-width: 80%!important;
+      margin: 0 auto;
+    }
+
+    &Liste:first-child{
+      @media (min-width: 860px) {
+        margin-right: 5rem;
+      }
+    }
+
+    &Flex{
+      @media (min-width: 860px) {
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+
+    &Texte{
+      @media (max-width: 860px) {
+        text-align: center;
+      }
+    }
+
+    &Logo{
+      display: block;
+      @media (max-width: 860px) {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    &Liste{
+      list-style: none;
+      padding: 0;
+    }
+    &Copyright{
+      text-align: center;
+      font-size: 12px;
+      padding-bottom: 2rem;
+    }
+  }
+}
+
+//Menu secondaire
+.menuSec {
+  max-width: 70%;
+  margin: 0 auto;
+  list-style:none;
+  padding:0;
+  text-align:center;
+  mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+
+  @media (max-width: 860px) {
+    max-width: 80%!important;
+    margin: 0 auto;
+  }
+  @media (max-width: 1220px) {
+    max-width: 100%;
+  }
+
+  &__logo{
+    width: 200px;
+  }
+
+  &__liste {
+    top: 20%;
+    margin: 0;
+    display: flex;
+    padding: 0;
+    list-style: none;
+    max-height: none;
+    justify-content: space-between;
+
+    @media (max-width: 860px) {
+      display: block;
+
+    }
+
+    &Item{
+      @media (min-width: 860px) {
+        display: inline-block;
+
+      }
+    }
+  }
+  &__lien {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: inherit;
+    width: 100%;
+    display:inline-block;
+    padding:10px;
+    text-align: left;
+
+
+    &:link,
+    &:visited {
+
+    }
+
+    &:hover,
+    &:active {
+      border-bottom: 5px solid white;
+      transition: 0.3s;
+    }
+    &:focus {
+
+    }
+    &--actif {
+      border-bottom: 5px solid white;
+    }
+  }
 }

@@ -1,0 +1,36 @@
+.socialMedia{
+  background: $gris90;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+
+  &__texte{
+    margin-bottom: 2rem;
+    @media (max-width: 860px) {
+      text-align: center;
+    }
+  }
+  &__div{
+    max-width: 70%;
+    margin: 0 auto;
+  }
+
+  &__flex{
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 860px) {
+      display: grid!important;
+    }
+
+    span{
+      margin-right: 5rem;
+
+      @media (max-width: 860px) {
+        margin-right: 0;
+        margin-top: 2rem;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  }
+}

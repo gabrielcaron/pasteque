@@ -5,7 +5,7 @@ let page = {
         console.log();
     }
 }
-console.log($livre);
+
 
 //*******************
 // Écouteurs d'événements

@@ -1,3 +1,4 @@
-.idea/
+/.idea/*
 .DS_Store
-ressources/cache/
+/ressources/cache/
+/public/liaisons/css/

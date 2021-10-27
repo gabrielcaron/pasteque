@@ -5,7 +5,6 @@ namespace App\Controleurs;
 use App\App;
 use App\Modeles\Categorie;
 use App\Modeles\Livre;
-use App\Modeles\Reconnaissance;
 
 class ControleurLivre
 {
@@ -16,20 +15,33 @@ class ControleurLivre
 
     public function index(): void
     {
-        $strIdPage=0;
-        $intIdCategorie=1;
-        $intNbLivreParPage=25;
-        $nombrePage = 5;
+        var_dump($_POST);
         $urlLivre = 'index.php?controleur=livre&action=index';
-        if (isset($_GET['nbLivreParPage'])==true) $intNbLivreParPage=$_GET['nbLivreParPage'];
-        if (isset($_GET['id_page'])==true) $strIdPage=$_GET['id_page'];
-        if (isset($_GET['id_categorie'])!=0) $intIdCategorie=$_GET['id_categorie'];
-        $enregistrementDepart=$strIdPage*$intNbLivreParPage;
-        $livres = $intIdCategorie === 0 ? Livre::trouverTout() : Livre::trouverLivresParCategories($intIdCategorie, $enregistrementDepart, $intNbLivreParPage);
+
+        $intIdCategorie=[];
+        $nombrePage = 5;
+
+        $intNbLivreParPage = isset($_POST['nbLivreParPage'])===true ? $_POST['nbLivreParPage'] : 9;
+        $choixVue = isset($_POST['choixVue'])===true ? $_POST['choixVue'] : 'vignette';
+        $strIdPage = isset($_POST['id_page'])===true ? $_POST['id_page'] : 0;
         $categories = Categorie::trouverTout();
+
+        for ($i=0;$i<count($categories);$i++) {
+            if (isset($_POST['categoriesSelectionner'.$i])===true) $intIdCategorie[$i] = $_POST['categoriesSelectionner'.$i];
+        }
+        var_dump($intIdCategorie);
+
+
+
+        $enregistrementDepart=$strIdPage*$intNbLivreParPage;
+        $livres = $intIdCategorie === [] ? Livre::trouverTout() : Livre::trouverLivresParCategories($intIdCategorie, $enregistrementDepart, $intNbLivreParPage);
+
         $nombreLivre = Livre::trouverNombreLivres();
+
+
         $tDonnees = array("titrePage"=>"Les livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre,
-            "categories"=>$categories, "numeroPage"=>$strIdPage, "nombreTotalPages"=>$nombrePage, "urlPagination"=>$urlLivre, "categorieSelectionner"=>$intIdCategorie);
+            "categories"=>$categories, "numeroPage"=>$strIdPage, "nombreTotalPages"=>$nombrePage, "urlPagination"=>$urlLivre,
+            "categoriesSelectionner"=>$intIdCategorie, "choixVue"=>$choixVue, "intNbLivreParPage"=>$intNbLivreParPage);
         echo App::getBlade()->run("livres.index",$tDonnees);
 
     }

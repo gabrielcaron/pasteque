@@ -324,17 +324,18 @@ class Livre
         return $resultat->nombreLivres;
     }
 
-    public static function trouverLivresParCategories($idCategories, $enregistrementDepart, $nombreLivreParPage): array
+    public static function trouverLivresParCategories($idCategories, $ordre, $ascOuDesc, $enregistrementDepart, $nombreLivreParPage): array
     {
-        $placeHolders = implode(', ', $idCategories);
-        var_dump($placeHolders);
+        $categories = implode(', ', $idCategories);
+
         // Définir la chaine SQL
         $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
                             FROM livres
-                            INNER JOIN categories ON categories.id = categorie_id
+                            INNER JOIN categories ON categories.id = livres.categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
                             INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
-                            WHERE categories.id IN (:test)
+                            WHERE categories.id IN (:categoriesSelect)
+                            ORDER BY categories.nom desc 
                             LIMIT :enregistrementDepart, :nombreLivreParPage';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
@@ -342,7 +343,9 @@ class Livre
         //$requetePreparee->bindParam(':idCategorie', $idCategories, PDO::PARAM_INT);
         $requetePreparee->bindParam(':enregistrementDepart', $enregistrementDepart, PDO::PARAM_INT);
         $requetePreparee->bindParam(':nombreLivreParPage', $nombreLivreParPage, PDO::PARAM_INT);
-        $requetePreparee->bindParam(':test', $placeHolders, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':categoriesSelect', $categories, PDO::PARAM_STR);
+        //$requetePreparee->bindParam(':ordre', $ordre, PDO::PARAM_STR);
+        //$requetePreparee->bindParam(':ascOuDesc', $ascOuDesc, PDO::PARAM_STR);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
         // Exécuter la requête

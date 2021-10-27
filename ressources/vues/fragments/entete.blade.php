@@ -5,11 +5,12 @@
 <section class="menu__topNavEntete topNavTable" >
         <ul class="menu__liste topNavLink">
 
-            <li class="menu__listeItem">
-                <a href="index.php?controleur=site&action=accueil" class="menu__lien">Mon compte</a>
-            </li>
+
             <li class="menu__listeItem">
                 <a href="index.php?controleur=livre&action=index" class="menu__lien">Livre</a>
+            </li>
+            <li class="menu__listeItem">
+                <a href="index.php?controleur=site&action=accueil" class="menu__lien">Mon compte</a>
             </li>
             <input type="text" placeholder="Recherche" id="recherche" name="recherche" required minlength="4"
                    maxlength="30" size="5">

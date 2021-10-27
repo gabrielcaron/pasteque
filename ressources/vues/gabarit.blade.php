@@ -14,7 +14,7 @@
             @include('fragments.entete')
         </header>
 
-        <main>
+        <main class="main">
             @yield('contenu')
             <section class="socialMedia">
             @include('fragments.infolettre')

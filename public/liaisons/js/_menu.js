@@ -61,7 +61,8 @@ var menu = {
       this.refLibelle.innerHTML = this.lblMenuFerme;
       document.getElementsByClassName('menu__topNavEntete')[0].style.top = '75px';
       document.getElementsByClassName('menu__topNavEntete')[0].style.transition = '0.5s';
-      document.getElementsByClassName('accueil__titre')[0].style.marginTop = '5rem';
+      document.getElementsByClassName('main')[0].style.tr = '0.5s';
+      document.getElementsByClassName('main')[0].style.marginTop = '5rem';
       console.log('hey')
     }
     else
@@ -70,7 +71,7 @@ var menu = {
       console.log(document.getElementsByClassName('menu__topNavEntete'))
 
       document.getElementsByClassName('menu__topNavEntete')[0].style.top = '445px';
-      document.getElementsByClassName('accueil__titre')[0].style.marginTop = '12rem';
+      document.getElementsByClassName('main')[0].style.marginTop = '12rem';
 
     }
   },

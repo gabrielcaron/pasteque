@@ -87,7 +87,8 @@ class App
                     $this->monControleur->fiche($id);
                     break;
                 default:
-                    echo 'Erreur 404';
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
             }
         } else if ($controleur === 'auteur'){
             $this->monControleur = new ControleurAuteur();
@@ -99,7 +100,8 @@ class App
                     $this->monControleur->fiche($id);
                     break;
                 default:
-                    echo 'Erreur 404';
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
             }
         } else if ($controleur === 'site'){
             $this->monControleur = new ControleurSite();
@@ -111,10 +113,12 @@ class App
                     $this->monControleur->apropos();
                     break;
                 default:
-                    echo 'Erreur 404';
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
             }
         } else {
-            echo 'Erreur 404';
+            $this->monControleur=new ControleurSite();
+            $this->monControleur->erreur();
         }
     }
 

@@ -14,7 +14,7 @@
  <?php echo $this->runChild('fragments.entete'); ?>
  </header>
 
- <main>
+ <main class="main">
  <?php echo $this->yieldContent('contenu'); ?>
  <section class="socialMedia">
  <?php echo $this->runChild('fragments.infolettre'); ?>

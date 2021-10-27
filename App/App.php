@@ -76,7 +76,7 @@ class App
         if (isset($_GET['id'])){
             $id = (int)$_GET['id'];
         }
-
+        // Instantier le bon controleur selon la page demandée
         if ($controleur === 'livre'){
             $this->monControleur = new ControleurLivre();
             switch ($action) {
@@ -87,10 +87,10 @@ class App
                     $this->monControleur->fiche($id);
                     break;
                 default:
-                    echo 'Erreur 404';
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
             }
-        }
-        if ($controleur === 'auteur'){
+        } else if ($controleur === 'auteur'){
             $this->monControleur = new ControleurAuteur();
             switch ($action) {
                 case 'index':
@@ -100,12 +100,10 @@ class App
                     $this->monControleur->fiche($id);
                     break;
                 default:
-                    echo 'Erreur 404';
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
             }
-        }
-
-        // Instantier le bon controleur selon la page demandée
-        if ($controleur === 'site'){
+        } else if ($controleur === 'site'){
             $this->monControleur = new ControleurSite();
             switch ($action) {
                 case 'accueil':
@@ -115,10 +113,12 @@ class App
                     $this->monControleur->apropos();
                     break;
                 default:
-                    echo 'Erreur 404';
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
             }
-        }else{
-            echo 'Erreur 404';
+        } else {
+            $this->monControleur=new ControleurSite();
+            $this->monControleur->erreur();
         }
     }
 

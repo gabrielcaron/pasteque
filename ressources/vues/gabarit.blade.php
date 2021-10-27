@@ -10,15 +10,18 @@
 
     </head>
     <body class="js">
-        <header class="menu__entete">
+        <header class="entete">
             @include('fragments.entete')
         </header>
 
-        <main>
+        <main class="main">
             @yield('contenu')
+            <section class="socialMedia">
+            @include('fragments.infolettre')
+            </section>
         </main>
 
-        <footer>
+        <footer class="footer">
             @include('fragments.pieddepage')
         </footer>
         <script src="liaisons/js/_menu.js"></script>

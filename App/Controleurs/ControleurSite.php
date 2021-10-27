@@ -21,6 +21,10 @@ class ControleurSite
         echo App::getBlade()->run("accueil",$tDonnees);
     }
 
+    public function erreur():void{
+        $tDonnees = array("titrePage"=>"erreur 404");
+        echo App::getBlade()->run("404", $tDonnees);
+    }
     public function entete(): void
     {
         echo "<h1>La Pastèque</h1>";

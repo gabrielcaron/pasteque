@@ -73,9 +73,9 @@
 /***** Grille de base *****/
 
 // Mixin pour conteneur parent en Grid ou Flex
-@mixin conteneur1400px($conteneurBleed: false, $flex: false) {
+@mixin conteneur1400px($conteneurBleed: false, $flex: false, $pointRupture: $mobile600px) {
   @supports (grid-template-columns: minmax(auto, 1400px)) {
-	@media (min-width: $mobile600px) {
+	@media (min-width: $pointRupture) {
 	  @if $flex == true {
 		display: flex;
 		justify-content: space-between;

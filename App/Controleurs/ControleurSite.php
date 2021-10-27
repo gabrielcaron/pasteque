@@ -17,9 +17,14 @@ class ControleurSite
     public function accueil(): void {
         $nouveautes = Livre::trouverNouveautesHasard(3);
         $tDonnees = array("titrePage"=>"Accueil", "nouveautes"=>$nouveautes);
+//        var_dump($tDonnees);
         echo App::getBlade()->run("accueil",$tDonnees);
     }
 
+    public function erreur():void{
+        $tDonnees = array("titrePage"=>"erreur 404");
+        echo App::getBlade()->run("404", $tDonnees);
+    }
     public function entete(): void
     {
         echo "<h1>La Pastèque</h1>";

@@ -7,18 +7,21 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <title>La Pastèque</title>
  <link href="liaisons/css/styles.css" rel="stylesheet" />
- 
+
  </head>
  <body class="js">
  <header class="entete">
  <?php echo $this->runChild('fragments.entete'); ?>
  </header>
 
- <main>
+ <main class="main">
  <?php echo $this->yieldContent('contenu'); ?>
+ <section class="socialMedia">
+ <?php echo $this->runChild('fragments.infolettre'); ?>
+ </section>
  </main>
 
- <footer>
+ <footer class="footer">
  <?php echo $this->runChild('fragments.pieddepage'); ?>
  </footer>
  <script src="liaisons/js/_menu.js"></script>

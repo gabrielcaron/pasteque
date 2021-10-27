@@ -8,13 +8,19 @@
             @foreach($nouveautes as $livre)
                 <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
                     <article class="livre__article">
-                        <img src="https://via.placeholder.com/400x500">
+                        <img @if ($livre->getStatut() > 0)
+                             class="livre__image etiquette"
+                             @else
+                             class="livre__image"
+                             @endif src="https://via.placeholder.com/400x500">
+
+                        @if ($livre->getStatut() > 0)
+                            <p class="livre__etiquette">Nouveauté</p>
+                        @endif
                         <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
-                        {{--                    <p class="livres__nouveaute">Nouveauté</p>--}}
-                        {{--                    <p class="livres__nouveaute">A parraitre</p>--}}
-                        <ul class="">
-                            <li class="livre__auteur">{{$livre->getAuteurAssocie()->getPrenom()}} {{$livre->getAuteurAssocie()->getNom()}}</li>
-                            <li class="livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                        <ul class="livre__listeInfos">
+                            <li class="livre__item livre__auteur">{{$livre->getAuteurAssocie()->getPrenom()}} {{$livre->getAuteurAssocie()->getNom()}}</li>
+                            <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
                         </ul>
                     </article>
                 </a>

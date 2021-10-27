@@ -6,36 +6,85 @@
             <h1 class="enveloppe__">Livres</h1>
             <p class="enveloppe__"><a  class="enveloppe__" href="#">Accueil</a> / <strong>Livres</strong></p>
             <button class="enveloppe__">Filtres</button>
-                <form>
+            <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=livre&action=index" method="POST">
                     <ul class="enveloppe__liste">
                         @foreach($categories as $categorie)
-                            <input type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categories">
-                            <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
-                        @endforeach
-                        @foreach($categories as $categorie)
-                            <li class="enveloppe__liste--item"><a class="enveloppe__liste--lien" href="index.php?controleur=livre&action=index&id_categorie={{$categorie->getId()}}">{{$categorie->getNom()}}</a></li>
+                            <div>
+                                @if(array_search($categorie->getId(), $categoriesSelectionner))
+                                    <input value="{{$categorie->getId()}}" type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categoriesSelectionner{{$categorie->getId()}}" checked>
+                                    <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                                @else
+                                    <input value="{{$categorie->getId()}}" type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categoriesSelectionner{{$categorie->getId()}}">
+                                    <label for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                                @endif
+                            </div>
                         @endforeach
                     </ul>
-                </form>
-
+                <input id="id_page" value="{{$numeroPage}}" type="hidden" name="id_page">
             <!-- Vérification quel est actif -->
-            <p id="test" class="enveloppe__test">Changer pour une vue en liste : <a><img src="https://via.placeholder.com/40"></a></p>
-            <p class="enveloppe__">Changer pour une vue en vignette : <a><img src="https://via.placeholder.com/40"></a></p>
-            <form class="enveloppe__">
                 <p class="formulaire__champEnveloppe">
-                    <label class="" for="">Trier par : </label>
-                    <select id="" class="">
-                        <option class="">Categories A-Z</option>
-                        <option class="">Categories Z-A</option>
-                        <option class="">Livres A-Z</option>
-                        <option class="">Livres Z-A</option>
-                        <option class="">Auteurs A-Z</option>
-                        <option class="">Auteurs Z-A</option>
+                    @if($choixVue === 'vignette')
+                        <input id="vignette" value="vignette" name="choixVue" type="radio" checked>
+                        <label for="vignette">Changer pour une vue en liste</label>
+                        <input id="liste" value="liste" name="choixVue" type="radio">
+                        <label for="liste">Changer pour une vue en liste</label>
+                    @else
+                        <input id="vignette" value="vignette" name="choixVue" type="radio">
+                        <label for="vignette">Changer pour une vue en liste</label>
+                        <input id="liste" value="liste" name="choixVue" type="radio" checked>
+                        <label for="liste">Changer pour une vue en liste</label>
+                    @endif
+                </p>
+                <p class="formulaire__champEnveloppe">
+                    <label class="" for="nbLivreParPage">Nombre de livre par page : </label>
+                    <select name="nbLivreParPage" id="nbLivreParPage" class="">
+                        @switch($intNbLivreParPage)
+                            @case(9)
+                                <option value="9" selected>9 livres par page</option>
+                                <option value="15">15 livres par page</option>
+                                <option value="30">30 livres par page</option>
+                                <option value="tous">tout livres par page</option>
+                                @break
+
+                            @case(15)
+                                <option value="9">9 livres par page</option>
+                                <option value="15" selected>15 livres par page</option>
+                                <option value="30">30 livres par page</option>
+                                <option value="tous">tout livres par page</option>
+                                @break
+
+                            @case(30)
+                                <option value="9">9 livres par page</option>
+                                <option value="15">15 livres par page</option>
+                                <option value="30" selected>30 livres par page</option>
+                                <option value="tous">tout livres par page</option>
+                                @break
+
+                            @default
+                                <option value="9">9 livres par page</option>
+                                <option value="15">15 livres par page</option>
+                                <option value="30">30 livres par page</option>
+                                <option value="tous" selected>tout livres par page</option>
+                        @endswitch
+
                     </select>
                 </p>
+                <p><strong>X résultats affichés</strong> de {{$nombreLivre}} résultats</p>
+                <p class="formulaire__champEnveloppe">
+                    <label class="" for="trierPar">Trier par : </label>
+                    <select name="trierPar" id="trierPar" class="">
+                        <option value="categorieA">Categories A-Z</option>
+                        <option value="categorieD">Categories Z-A</option>
+                        <option value="livresA">Livres A-Z</option>
+                        <option value="livresD">Livres Z-A</option>
+                        <option value="auteursA">Auteurs A-Z</option>
+                        <option value="auteursD">Auteurs Z-A</option>
+                        <option value="parutionA">Plus récents au plus anciens</option>
+                        <option value="parutionD">Plus anciens au plus récents</option>
+                    </select>
+                </p>
+                <input class="" type="submit" id="livresTrie">
             </form>
-            <p><strong>X résultats affichés</strong> de {{$nombreLivre}} résultats</p>
-
         </section>
         <section class="livres">
             <!-- Foreach livres -->

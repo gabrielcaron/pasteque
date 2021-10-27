@@ -17,6 +17,7 @@ class ControleurSite
     public function accueil(): void {
         $nouveautes = Livre::trouverNouveautesHasard(3);
         $tDonnees = array("titrePage"=>"Accueil", "nouveautes"=>$nouveautes);
+//        var_dump($tDonnees);
         echo App::getBlade()->run("accueil",$tDonnees);
     }
 

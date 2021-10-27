@@ -335,7 +335,7 @@ class Livre
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
                             INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
                             WHERE categories.id IN (:categoriesSelect)
-                            ORDER BY categories.nom desc 
+                            ORDER BY categories.nom DESC 
                             LIMIT :enregistrementDepart, :nombreLivreParPage';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);

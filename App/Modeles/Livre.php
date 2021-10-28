@@ -324,34 +324,41 @@ class Livre
         return $resultat->nombreLivres;
     }
 
-    public static function trouverLivresParCategories($idCategories, $ordre, $ascOuDesc, $enregistrementDepart, $nombreLivreParPage): array
+    public static function trouverLivresParCategories($idCategories, $trierPar, $enregistrementDepart, $nombreLivreParPage): array
     {
         $categories = implode(', ', $idCategories);
-
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
+        $chaineSQL = 'SELECT *
                             FROM livres
                             INNER JOIN categories ON categories.id = livres.categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
                             INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
                             WHERE categories.id IN (:categoriesSelect)
-                            ORDER BY categories.nom DESC 
+                            ORDER BY 
+                                     case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC,
+                                     case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,
+                                     case when :trierPar = \'categories.nomA\' then categories.nom end ASC,
+                                     case when :trierPar = \'categories.nomD\' then categories.nom end DESC,
+                                     case when :trierPar = \'livres.titreA\' then livres.titre end ASC,
+                                     case when :trierPar = \'livres.titreD\' then livres.titre end DESC,
+                                     case when :trierPar = \'statutA\' then statut end ASC,
+                                     case when :trierPar = \'statutD\' then statut end DESC
                             LIMIT :enregistrementDepart, :nombreLivreParPage';
+        //ORDER BY :ordre :ascOuDesc
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
-        //$requetePreparee->bindParam(':idCategorie', $idCategories, PDO::PARAM_INT);
         $requetePreparee->bindParam(':enregistrementDepart', $enregistrementDepart, PDO::PARAM_INT);
         $requetePreparee->bindParam(':nombreLivreParPage', $nombreLivreParPage, PDO::PARAM_INT);
         $requetePreparee->bindParam(':categoriesSelect', $categories, PDO::PARAM_STR);
-        //$requetePreparee->bindParam(':ordre', $ordre, PDO::PARAM_STR);
-        //$requetePreparee->bindParam(':ascOuDesc', $ascOuDesc, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':trierPar', $trierPar, PDO::PARAM_STR);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $resultat = $requetePreparee->fetchAll();
+        //var_dump($resultat);
         return $resultat;
     }
 

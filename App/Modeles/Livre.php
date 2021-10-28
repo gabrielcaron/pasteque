@@ -326,7 +326,11 @@ class Livre
 
     public static function trouverLivresParCategories($idCategories, $trierPar, $enregistrementDepart, $nombreLivreParPage): array
     {
-        $categories = implode(', ', $idCategories);
+        $categories = implode('\, ', $idCategories);
+       /* for ($i=0;$i<count($idCategories);$i++) {
+            $categories[$i] = $idCategories[$i];
+        }
+        var_dump($idCategories, $categories);*/
         // Définir la chaine SQL
         $chaineSQL = 'SELECT *
                             FROM livres

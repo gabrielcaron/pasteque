@@ -326,18 +326,17 @@ class Livre
 
     public static function trouverLivresParCategories($idCategories, $trierPar, $enregistrementDepart, $nombreLivreParPage): array
     {
-        $categories = implode('\, ', $idCategories);
-       /* for ($i=0;$i<count($idCategories);$i++) {
-            $categories[$i] = $idCategories[$i];
-        }
-        var_dump($idCategories, $categories);*/
+        /* Message à Michelle 29 ooctobre 2021 :
+        Impossibilité d'utiliser un paramètre pour la chaine $categories contenant le séparateur ',' */
+
+        $categories = implode(', ', $idCategories);
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT *
+        $chaineSQL = 'SELECT * 
                             FROM livres
                             INNER JOIN categories ON categories.id = livres.categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
                             INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
-                            WHERE categories.id IN (:categoriesSelect)
+                            WHERE categories.id IN ('. $categories .')
                             ORDER BY 
                                      case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC,
                                      case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,

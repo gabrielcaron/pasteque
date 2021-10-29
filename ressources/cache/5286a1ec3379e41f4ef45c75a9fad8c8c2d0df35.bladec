@@ -25,7 +25,9 @@
  <?php echo $this->runChild('fragments.pieddepage'); ?>
  </footer>
  <script src="liaisons/js/_menu.js"></script>
+ <script src="liaisons/js/_tabsection.js"></script>
  <script src="liaisons/js/livres.ts"></script>
+ <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>
  <script>
  document.body.classList.add('js');
  </script>

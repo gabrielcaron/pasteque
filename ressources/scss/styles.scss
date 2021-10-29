@@ -73,10 +73,19 @@
 @import 'modules/accueil';
 
 /** Livres **/
-@import 'modules/livres';
+@import 'modules/fichelivres';
+
+/** Recherche **/
+@import 'modules/barreRecherche';
 
 /** Infolettre **/
 @import 'modules/infolettre';
+
+/** errreur **/
+@import 'modules/erreur';
+
+/** tabsection **/
+@import 'modules/tabsection';
 
 /****** LAYOUT ******/
 

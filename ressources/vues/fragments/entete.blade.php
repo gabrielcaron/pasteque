@@ -6,22 +6,25 @@
     </div>
     <section class="menu__topNavEntete topNavTable">
         <ul class="nav topNavLink">
-            <li id="options">
-                <a href="#">Tout</a>
-                <ul class="subnav">
-                    <li><a href="#">Bandes dessinés</a></li>
-                    <li><a href="#">Bd jeunesse</a></li>
-                    <li><a href="#">Livres illustrés</a></li>
-                    <li><a href="#">Albums jeunesse</a></li>
-                    <li><a href="#">Documentaires</a></li>
-                    <li><a href="#">Divers</a></li>
-                </ul>
-            </li>
             <li id="search">
-                <form action="" method="get">
-                    <input type="text" name="search_text" id="search_text" placeholder="Recherche"/>
-                    <input type="button" name="search_button" id="search_button"></a>
-                </form>
+                <ul>
+                    <li id="options">
+                        <a href="#">Tout</a>
+                        <ul class="subnav">
+                            <li><a href="#">Bandes dessinés</a></li>
+                            <li><a href="#">Bd jeunesse</a></li>
+                            <li><a href="#">Livres illustrés</a></li>
+                            <li><a href="#">Albums jeunesse</a></li>
+                            <li><a href="#">Documentaires</a></li>
+                            <li><a href="#">Divers</a></li>
+                        </ul>
+                    </li>
+                    <form action="" method="get">
+                        <input type="text" name="search_text" id="search_text" placeholder="Recherche"/>
+                        <input type="button" name="search_button" id="search_button"></a>
+                    </form>
+                </ul>
+
             </li>
 
             <li class="menu__listeItem">

@@ -12,23 +12,45 @@
 
 .livre {
   &__lien {
-	grid-column: span 4;
+
+	@media screen and (min-width: 500px) {
+	  grid-column: span 6;
+	}
+	@media screen and (min-width: $tablet900px) {
+	  grid-column: span 4;
+	}
 	text-decoration: none;
 	filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, 0.1));
 
+	@media screen and (min-width: $tablet900px) {
+	  & .livre__conteneurVignette {
+		position: relative;
+		top: 0;
+		transition: top 0.2s ease-in;
+	  }
+	}
+
 	&:hover {
-	  .livre__image {
-		top: -3rem;
+	  @media screen and (min-width: $tablet900px) {
+		.livre__conteneurVignette {
+		  position: relative; // pour les besoins du hover
+		  top: -2rem;
+		}
 	  }
 
 	  .livre__categorie {
 		background-color: $bleuRoyal;
+		color: $blanc;
+		border: 2px solid $bleuRoyal;
 	  }
 	}
   }
 
+  &__article {
+	margin-bottom: 5rem;
+  }
+
   &__image {
-	position: relative; // pour les besoins du hover
 	border-radius: $arrondiDecoratif;
 	&.etiquette {
 	  border-radius: $arrondiDecoratif $arrondiDecoratif 0 0;
@@ -47,6 +69,10 @@
   &__titre {
 	font-size: 3rem;
 	color: $bleuRoyal;
+	margin-top: 3rem;
+	@media screen and (min-width: $desktop1000px) {
+	  margin-top: 8rem;
+	}
   }
 
   &__listeInfos {
@@ -67,5 +93,17 @@
 	padding: 0.9rem;
 	margin-top: 1rem;
 	display: inline-block;
+  }
+
+  &__tablette {
+	display: none;
+  }
+
+  @media screen and (min-width: $desktop1000px) {
+	&__tablette {
+	  display: block;
+	  position: relative;
+	  top: -26rem;
+	}
   }
 }

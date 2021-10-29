@@ -1,5 +1,4 @@
 .idea/
-.DS_Store
+**/.DS_Store
 ressources/cache/
-public/liaisons/css/styles.css.map
-.idea/gr1_camarines_projet2.iml
+node_modules/

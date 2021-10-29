@@ -1133,8 +1133,12 @@ header {
   margin-bottom: 3rem;
 }
 
+.nouveautes {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
 @supports (grid-template-columns: minmax(auto, 1400px)) {
-  @media (min-width: 600px) {
+  @media (min-width: 500px) {
     .nouveautes {
       display: grid;
       grid-template-columns: minmax(auto, 1400px);
@@ -1149,16 +1153,23 @@ header {
     max-width: 1400px;
   }
 }
-.nouveautes__conteneurGrille {
-  margin: 0 8rem;
-}
 @supports (grid-template-columns: minmax(auto, 1400px)) {
-  @media (min-width: 600px) {
+  @media (min-width: 500px) {
     .nouveautes__conteneurGrille {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: 20px;
     }
+  }
+}
+@media (min-width: 1000px) {
+  .nouveautes__conteneurGrille {
+    margin: 0 6rem;
+  }
+}
+@media (min-width: 1400px) {
+  .nouveautes__conteneurGrille {
+    margin: 0 8rem;
   }
 }
 
@@ -1174,18 +1185,41 @@ header {
 * Styles généraux
 */
 .livre__lien {
-  grid-column: span 4;
   text-decoration: none;
   filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, 0.1));
 }
-.livre__lien:hover .livre__image {
-  top: -3rem;
+@media screen and (min-width: 500px) {
+  .livre__lien {
+    grid-column: span 6;
+  }
+}
+@media screen and (min-width: 900px) {
+  .livre__lien {
+    grid-column: span 4;
+  }
+}
+@media screen and (min-width: 900px) {
+  .livre__lien .livre__conteneurVignette {
+    position: relative;
+    top: 0;
+    transition: top 0.2s ease-in;
+  }
+}
+@media screen and (min-width: 900px) {
+  .livre__lien:hover .livre__conteneurVignette {
+    position: relative;
+    top: -2rem;
+  }
 }
 .livre__lien:hover .livre__categorie {
   background-color: #0050C8;
+  color: #fff;
+  border: 2px solid #0050C8;
+}
+.livre__article {
+  margin-bottom: 5rem;
 }
 .livre__image {
-  position: relative;
   border-radius: 5px;
 }
 .livre__image.etiquette {
@@ -1202,6 +1236,12 @@ header {
 .livre__titre {
   font-size: 3rem;
   color: #0050C8;
+  margin-top: 3rem;
+}
+@media screen and (min-width: 1000px) {
+  .livre__titre {
+    margin-top: 8rem;
+  }
 }
 .livre__listeInfos {
   list-style-type: none;
@@ -1219,6 +1259,16 @@ header {
   padding: 0.9rem;
   margin-top: 1rem;
   display: inline-block;
+}
+.livre__tablette {
+  display: none;
+}
+@media screen and (min-width: 1000px) {
+  .livre__tablette {
+    display: block;
+    position: relative;
+    top: -26rem;
+  }
 }
 
 /** Infolettre **/

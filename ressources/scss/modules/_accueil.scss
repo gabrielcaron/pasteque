@@ -17,11 +17,17 @@
 }
 
 .nouveautes {
-  @include conteneur1400px();
+  @include paddingConteneur;
+  @include conteneur1400px($pointRupture: 500px);
 
   &__conteneurGrille {
-	@include rangeeGrid12col();
-	margin: 0 8rem;
+	@include rangeeGrid12col($pointRupture: 500px);
+	@media (min-width: $desktop1000px) {
+	  margin: 0 6rem;
+	}
+	@media (min-width: $desktop1400px) {
+	  margin: 0 8rem;
+	}
   }
 }
 

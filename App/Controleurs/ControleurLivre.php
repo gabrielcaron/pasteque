@@ -21,27 +21,27 @@ class ControleurLivre
         $intIdCategorie=[];
         $nombrePage = 5;
 
-        $intNbLivreParPage = isset($_POST['nbLivreParPage'])===true ? $_POST['nbLivreParPage'] : 9;
-        $choixVue = isset($_POST['choixVue'])===true ? $_POST['choixVue'] : 'vignette';
-        $strIdPage = isset($_POST['id_page'])===true ? $_POST['id_page'] : 0;
+        $trierPar = $_POST['trierPar'] ?? 'auteurs.nomA';
+        $intNbLivreParPage = $_POST['nbLivreParPage'] ?? 9;
+        $choixVue = $_POST['choixVue'] ?? 'vignette';
+        $strIdPage = $_POST['id_page'] ?? 0;
+
         $categories = Categorie::trouverTout();
-
         for ($i=0;$i<count($categories);$i++) {
-            if (isset($_POST['categoriesSelectionner'.$i])===true) $intIdCategorie[$i] = $_POST['categoriesSelectionner'.$i];
+            if (isset($_POST['categoriesSelectionner'.$i])) $intIdCategorie[$i] = $_POST['categoriesSelectionner'.$i];
         }
-        var_dump($intIdCategorie);
 
-
-
-        $enregistrementDepart=$strIdPage*$intNbLivreParPage;
-        $livres = $intIdCategorie === [] ? Livre::trouverTout() : Livre::trouverLivresParCategories($intIdCategorie, $enregistrementDepart, $intNbLivreParPage);
-
+        $enregistrementDepart = $intNbLivreParPage !== 'tous' ? $strIdPage*$intNbLivreParPage : 0;
+        $intNbLivreParPage = $intNbLivreParPage === 'tous'? Livre::trouverNombreLivres():$intNbLivreParPage;
+        var_dump($intNbLivreParPage);
+        $livres = $intIdCategorie === [] ? Livre::trouverTout() : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, $enregistrementDepart, $intNbLivreParPage);
         $nombreLivre = Livre::trouverNombreLivres();
+        //var_dump($livres);
 
 
         $tDonnees = array("titrePage"=>"Les livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre,
             "categories"=>$categories, "numeroPage"=>$strIdPage, "nombreTotalPages"=>$nombrePage, "urlPagination"=>$urlLivre,
-            "categoriesSelectionner"=>$intIdCategorie, "choixVue"=>$choixVue, "intNbLivreParPage"=>$intNbLivreParPage);
+            "categoriesSelectionner"=>$intIdCategorie, "choixVue"=>$choixVue, "intNbLivreParPage"=>$intNbLivreParPage, "trierPar"=>$trierPar);
         echo App::getBlade()->run("livres.index",$tDonnees);
 
     }

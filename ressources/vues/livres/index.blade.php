@@ -66,21 +66,102 @@
                                 <option value="30">30 livres par page</option>
                                 <option value="tous" selected>tout livres par page</option>
                         @endswitch
-
                     </select>
                 </p>
                 <p><strong>X résultats affichés</strong> de {{$nombreLivre}} résultats</p>
                 <p class="formulaire__champEnveloppe">
                     <label class="" for="trierPar">Trier par : </label>
                     <select name="trierPar" id="trierPar" class="">
-                        <option value="categorieA">Categories A-Z</option>
-                        <option value="categorieD">Categories Z-A</option>
-                        <option value="livresA">Livres A-Z</option>
-                        <option value="livresD">Livres Z-A</option>
-                        <option value="auteursA">Auteurs A-Z</option>
-                        <option value="auteursD">Auteurs Z-A</option>
-                        <option value="parutionA">Plus récents au plus anciens</option>
-                        <option value="parutionD">Plus anciens au plus récents</option>
+                        @switch($trierPar)
+                            @case('categories.nomA')
+                                <option value="categories.nomA" selected>Categories A-Z</option>
+                                <option value="categories.nomD">Categories Z-A</option>
+                                <option value="livres.titreA">Livres A-Z</option>
+                                <option value="livres.titreD">Livres Z-A</option>
+                                <option value="auteurs.nomA">Auteurs A-Z</option>
+                                <option value="auteurs.nomD">Auteurs Z-A</option>
+                                <option value="statutA">Plus récents au plus anciens</option>
+                                <option value="statutD">Plus anciens au plus récents</option>
+                            @break
+
+                            @case('categories.nomD')
+                                <option value="categories.nomA">Categories A-Z</option>
+                                <option value="categories.nomD" selected>Categories Z-A</option>
+                                <option value="livres.titreA">Livres A-Z</option>
+                                <option value="livres.titreD">Livres Z-A</option>
+                                <option value="auteurs.nomA">Auteurs A-Z</option>
+                                <option value="auteurs.nomD">Auteurs Z-A</option>
+                                <option value="statutA">Plus récents au plus anciens</option>
+                                <option value="statutD">Plus anciens au plus récents</option>
+                            @break
+
+                            @case('livres.titreA')
+                                <option value="categories.nomA">Categories A-Z</option>
+                                <option value="categories.nomD">Categories Z-A</option>
+                                <option value="livres.titreA" selected>Livres A-Z</option>
+                                <option value="livres.titreD">Livres Z-A</option>
+                                <option value="auteurs.nomA">Auteurs A-Z</option>
+                                <option value="auteurs.nomD">Auteurs Z-A</option>
+                                <option value="statutA">Plus récents au plus anciens</option>
+                                <option value="statutD">Plus anciens au plus récents</option>
+                            @break
+
+                            @case('livres.titreD')
+                                <option value="categories.nomA">Categories A-Z</option>
+                                <option value="categories.nomD">Categories Z-A</option>
+                                <option value="livres.titreA">Livres A-Z</option>
+                                <option value="livres.titreD" selected>Livres Z-A</option>
+                                <option value="auteurs.nomA">Auteurs A-Z</option>
+                                <option value="auteurs.nomD">Auteurs Z-A</option>
+                                <option value="statutA">Plus récents au plus anciens</option>
+                                <option value="statutD">Plus anciens au plus récents</option>
+                            @break
+
+                            @case('auteurs.nomA')
+                                <option value="categories.nomA">Categories A-Z</option>
+                                <option value="categories.nomD">Categories Z-A</option>
+                                <option value="livres.titreA">Livres A-Z</option>
+                                <option value="livres.titreD">Livres Z-A</option>
+                                <option value="auteurs.nomA" selected>Auteurs A-Z</option>
+                                <option value="auteurs.nomD">Auteurs Z-A</option>
+                                <option value="statutA">Plus récents au plus anciens</option>
+                                <option value="statutD">Plus anciens au plus récents</option>
+                            @break
+
+                            @case('auteurs.nomD')
+                                <option value="categories.nomA">Categories A-Z</option>
+                                <option value="categories.nomD">Categories Z-A</option>
+                                <option value="livres.titreA">Livres A-Z</option>
+                                <option value="livres.titreD">Livres Z-A</option>
+                                <option value="auteurs.nomA">Auteurs A-Z</option>
+                                <option value="auteurs.nomD" selected>Auteurs Z-A</option>
+                                <option value="statutA">Plus récents au plus anciens</option>
+                                <option value="statutD">Plus anciens au plus récents</option>
+                            @break
+
+                            @case('statutA')
+                                <option value="categories.nomA">Categories A-Z</option>
+                                <option value="categories.nomD">Categories Z-A</option>
+                                <option value="livres.titreA">Livres A-Z</option>
+                                <option value="livres.titreD">Livres Z-A</option>
+                                <option value="auteurs.nomA">Auteurs A-Z</option>
+                                <option value="auteurs.nomD">Auteurs Z-A</option>
+                                <option value="statutA" selected>Plus récents au plus anciens</option>
+                                <option value="statutD">Plus anciens au plus récents</option>
+                            @break
+
+                            @default
+                                <option value="categories.nomA">Categories A-Z</option>
+                                <option value="categories.nomD">Categories Z-A</option>
+                                <option value="livres.titreA">Livres A-Z</option>
+                                <option value="livres.titreD">Livres Z-A</option>
+                                <option value="auteurs.nomA">Auteurs A-Z</option>
+                                <option value="auteurs.nomD">Auteurs Z-A</option>
+                                <option value="statutA">Plus récents au plus anciens</option>
+                                <option value="statutD" selected>Plus anciens au plus récents</option>
+
+                        @endswitch
+
                     </select>
                 </p>
                 <input class="" type="submit" id="livresTrie">

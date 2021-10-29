@@ -1,0 +1,12 @@
+.erreur{
+  max-width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 5rem;
+  padding-bottom: 8rem;
+
+  &__sousTitre{
+    color: $bleuRoyal;
+    font-size: 10rem;
+  }
+}

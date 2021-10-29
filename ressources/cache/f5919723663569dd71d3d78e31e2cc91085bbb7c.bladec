@@ -175,9 +175,12 @@
  <a href="index.php?controleur=livre&action=fiche&id=<?php echo \htmlentities($livre->getId(), ENT_QUOTES, 'UTF-8', false); ?>">
  <article class="livres__article">
  <h2 class="livres__titre"><?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></h2>
- <p class="livres__nouveaute">Nouveauté</p>
+ <?php if($livre->getStatut() === 3): ?>
  <p class="livres__nouveaute">A parraitre</p>
- <img src="https://via.placeholder.com/150">
+ <?php elseif($livre->getStatut() === 2): ?>
+ <p class="livres__nouveaute">Nouveauté</p>
+ <?php endif; ?>
+ <img alt="" src="https://via.placeholder.com/150">
  <ul class="">
  <li class="livres__auteur"><?php echo \htmlentities($livre->getAuteurAssocie()->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($livre->getAuteurAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></li>
  <li class="livres__categorie"><?php echo \htmlentities($livre->getCategorieAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></li>

@@ -33,10 +33,8 @@ class ControleurLivre
 
         $enregistrementDepart = $intNbLivreParPage !== 'tous' ? $strIdPage*$intNbLivreParPage : 0;
         $intNbLivreParPage = $intNbLivreParPage === 'tous'? Livre::trouverNombreLivres():$intNbLivreParPage;
-        var_dump($intNbLivreParPage);
         $livres = $intIdCategorie === [] ? Livre::trouverTout() : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, $enregistrementDepart, $intNbLivreParPage);
         $nombreLivre = Livre::trouverNombreLivres();
-        //var_dump($livres);
 
 
         $tDonnees = array("titrePage"=>"Les livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre,

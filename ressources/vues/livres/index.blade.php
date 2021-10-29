@@ -173,9 +173,12 @@
             <a href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
                 <article class="livres__article">
                     <h2 class="livres__titre">{{$livre->getTitre()}}</h2>
-                    <p class="livres__nouveaute">Nouveauté</p>
-                    <p class="livres__nouveaute">A parraitre</p>
-                    <img src="https://via.placeholder.com/150">
+                    @if($livre->getStatut() === 3)
+                        <p class="livres__nouveaute">A parraitre</p>
+                    @elseif($livre->getStatut() === 2)
+                        <p class="livres__nouveaute">Nouveauté</p>
+                    @endif
+                    <img alt="" src="https://via.placeholder.com/150">
                     <ul class="">
                         <li class="livres__auteur">{{$livre->getAuteurAssocie()->getPrenom()}} {{$livre->getAuteurAssocie()->getNom()}}</li>
                         <li class="livres__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>

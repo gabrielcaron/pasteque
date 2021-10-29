@@ -409,5 +409,27 @@ class Livre
         return $livres;
     }
 
+    public static function trouverAParaitreHasard($combien): array
+    {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT DISTINCT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
+                            FROM livres
+                            INNER JOIN categories ON categories.id = categorie_id
+                            INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
+                            INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
+                            WHERE statut = 3
+                            ORDER BY RAND() LIMIT ' . $combien;
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $livres = $requetePreparee->fetchAll();
+
+        return $livres;
+    }
+
 
 }

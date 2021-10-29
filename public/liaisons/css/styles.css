@@ -1130,16 +1130,16 @@ header {
 * Nouveautés
 */
 .accueil__titre {
-  margin-bottom: 3rem;
+  margin: 9rem 0 4rem 0;
 }
 
-.nouveautes {
+.nouveautes, .aparaitre {
   padding-left: 2rem;
   padding-right: 2rem;
 }
 @supports (grid-template-columns: minmax(auto, 1400px)) {
   @media (min-width: 500px) {
-    .nouveautes {
+    .nouveautes, .aparaitre {
       display: grid;
       grid-template-columns: minmax(auto, 1400px);
       justify-content: center;
@@ -1149,13 +1149,13 @@ header {
   }
 }
 @supports not (grid-template-columns: minmax(auto, 1400px)) {
-  .nouveautes {
+  .nouveautes, .aparaitre {
     max-width: 1400px;
   }
 }
 @supports (grid-template-columns: minmax(auto, 1400px)) {
   @media (min-width: 500px) {
-    .nouveautes__conteneurGrille {
+    .nouveautes__conteneurGrille, .aparaitre__conteneurGrille {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: 20px;
@@ -1163,12 +1163,12 @@ header {
   }
 }
 @media (min-width: 1000px) {
-  .nouveautes__conteneurGrille {
+  .nouveautes__conteneurGrille, .aparaitre__conteneurGrille {
     margin: 0 6rem;
   }
 }
 @media (min-width: 1400px) {
-  .nouveautes__conteneurGrille {
+  .nouveautes__conteneurGrille, .aparaitre__conteneurGrille {
     margin: 0 8rem;
   }
 }

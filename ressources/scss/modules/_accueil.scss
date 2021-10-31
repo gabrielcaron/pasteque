@@ -12,11 +12,11 @@
 
 .accueil {
   &__titre {
-	margin-bottom: 3rem;
+	margin: 9rem 0 4rem 0;
   }
 }
 
-.nouveautes {
+.nouveautes, .aparaitre {
   @include paddingConteneur;
   @include conteneur1400px($pointRupture: 500px);
 

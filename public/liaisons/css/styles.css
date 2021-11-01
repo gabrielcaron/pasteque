@@ -806,6 +806,15 @@ header {
   }
 }
 
+.fa {
+  display: inline-block;
+  font: normal normal normal 14 px/1 FontAwesome;
+  font-size: 25px !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Si le javascript est activé */
 /* Pour des raisons d'accessibilité, on ne cache le menu mobile
  * que si Javascript est activé. De cette façon, s'il est désactivé,
@@ -986,6 +995,15 @@ header {
   #recherche {
     width: 100%;
   }
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14 px/1 FontAwesome;
+  font-size: 25px !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Si le javascript est activé */
@@ -1533,6 +1551,124 @@ header {
   }
 }
 
+/** Fiche auteur **/
+.auteur {
+  max-width: 70%;
+  margin: 0 auto;
+  display: flex;
+  margin-top: 5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 1200px) {
+  .auteur {
+    max-width: 90%;
+  }
+}
+@media (max-width: 900px) {
+  .auteur {
+    display: block;
+  }
+}
+.auteur__titreFiche {
+  max-width: 70%;
+  margin: 0 auto;
+}
+@media (max-width: 1200px) {
+  .auteur__titreFiche {
+    max-width: 90%;
+  }
+}
+.auteur__nom {
+  font-size: 2.5rem;
+}
+.auteur__conteneur1 {
+  width: 45%;
+  max-width: 550px;
+}
+@media (max-width: 900px) {
+  .auteur__conteneur1 {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+.auteur__conteneur1 img {
+  width: 100%;
+  max-height: 800px;
+  object-fit: cover;
+}
+@media (max-width: 900px) {
+  .auteur__conteneur1 img {
+    height: 50%;
+    object-fit: cover;
+  }
+}
+.auteur__conteneur2 {
+  width: 45%;
+}
+@media (max-width: 900px) {
+  .auteur__conteneur2 {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+.auteur__decouvrirLivre {
+  max-width: 70%;
+  margin: 0 auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+@media (max-width: 1200px) {
+  .auteur__decouvrirLivre {
+    max-width: 90%;
+  }
+}
+.auteur__decouvrirLivreCon {
+  float: left;
+  width: 100%;
+  padding: 5px;
+}
+@media (min-width: 500px) {
+  .auteur__decouvrirLivreCon {
+    width: 50% !important;
+  }
+}
+@media (min-width: 720px) {
+  .auteur__decouvrirLivreCon {
+    width: 33% !important;
+  }
+}
+@media (min-width: 900px) {
+  .auteur__decouvrirLivreCon {
+    width: 25% !important;
+  }
+}
+.auteur__decouvrirLivreCard {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+}
+@media (max-width: 500px) {
+  .auteur__decouvrirLivreCard {
+    width: 250px !important;
+    margin: 0 auto !important;
+  }
+}
+.auteur__decouvrirLivreCard img {
+  max-width: 100%;
+  width: 100%;
+}
+.auteur__decouvrirLivreConteneur {
+  width: 100%;
+}
+.auteur__decouvrirLivreConteneur:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 /** Recherche **/
 * {
   margin: 0;
@@ -1561,10 +1697,6 @@ header {
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-.nav li a:hover {
-  background-color: #0050C8;
-}
-
 #settings a {
   padding: 18px;
   height: 24px;
@@ -1577,7 +1709,7 @@ header {
 }
 
 #search_text {
-  width: 160px;
+  width: 55%;
   padding: 15px 0 15px 20px;
   font-size: 16px;
   font-family: Montserrat, sans-serif;
@@ -1673,6 +1805,10 @@ header {
   visibility: visible;
   top: 100%;
   opacity: 1;
+}
+
+.liste {
+  display: contents;
 }
 
 /*

@@ -21,7 +21,6 @@
                         @endforeach
                     </ul>
                 <input id="id_page" value="{{$numeroPage}}" type="hidden" name="id_page">
-            <!-- Vérification quel est actif -->
                 <p class="formulaire__champEnveloppe">
                     @if($choixVue === 'vignette')
                         <input id="vignette" value="vignette" name="choixVue" type="radio" checked>

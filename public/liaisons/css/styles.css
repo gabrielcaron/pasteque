@@ -676,7 +676,7 @@ body {
 }
 .menu__topNavEntete {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   top: 200px;
 }
 @media (max-width: 1000px) {
@@ -858,7 +858,7 @@ header {
 }
 .menu__topNavEntete {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   top: 200px;
 }
 @media (max-width: 1000px) {
@@ -1070,7 +1070,9 @@ header {
   list-style: none;
   padding: 0;
   text-align: center;
+  /*
   mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+  */
 }
 @media (max-width: 860px) {
   .menuSec {
@@ -1135,16 +1137,16 @@ header {
 * Nouveautés
 */
 .accueil__titre {
-  margin-bottom: 3rem;
+  margin: 9rem 0 4rem 0;
 }
 
-.nouveautes {
+.nouveautes, .aparaitre {
   padding-left: 2rem;
   padding-right: 2rem;
 }
 @supports (grid-template-columns: minmax(auto, 1400px)) {
   @media (min-width: 500px) {
-    .nouveautes {
+    .nouveautes, .aparaitre {
       display: grid;
       grid-template-columns: minmax(auto, 1400px);
       justify-content: center;
@@ -1154,13 +1156,13 @@ header {
   }
 }
 @supports not (grid-template-columns: minmax(auto, 1400px)) {
-  .nouveautes {
+  .nouveautes, .aparaitre {
     max-width: 1400px;
   }
 }
 @supports (grid-template-columns: minmax(auto, 1400px)) {
   @media (min-width: 500px) {
-    .nouveautes__conteneurGrille {
+    .nouveautes__conteneurGrille, .aparaitre__conteneurGrille {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: 20px;
@@ -1168,17 +1170,17 @@ header {
   }
 }
 @media (min-width: 1000px) {
-  .nouveautes__conteneurGrille {
+  .nouveautes__conteneurGrille, .aparaitre__conteneurGrille {
     margin: 0 6rem;
   }
 }
 @media (min-width: 1400px) {
-  .nouveautes__conteneurGrille {
+  .nouveautes__conteneurGrille, .aparaitre__conteneurGrille {
     margin: 0 8rem;
   }
 }
 
-/** Livres **/
+/** Fiche Livres **/
 /**
 * @author Gabriel Caron <1861095@csfoy.ca>
 * @version 1.0
@@ -1228,90 +1230,11 @@ header {
   }
 }
 .livre__lien {
+  grid-column: span 4;
   text-decoration: none;
-  filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, 0.1));
-}
-@media screen and (min-width: 500px) {
-  .livre__lien {
-    grid-column: span 6;
-  }
-}
-@media screen and (min-width: 900px) {
-  .livre__lien {
-    grid-column: span 4;
-  }
-}
-@media screen and (min-width: 900px) {
-  .livre__lien .livre__conteneurVignette {
-    position: relative;
-    top: 0;
-    transition: top 0.2s ease-in;
-  }
-}
-@media screen and (min-width: 900px) {
-  .livre__lien:hover .livre__conteneurVignette {
-    position: relative;
-    top: -2rem;
-  }
-}
-.livre__lien:hover .livre__categorie {
-  background-color: #0050C8;
-  color: #fff;
-  border: 2px solid #0050C8;
-}
-.livre__article {
-  margin-bottom: 5rem;
-}
-.livre__image {
-  border-radius: 5px;
-}
-.livre__image.etiquette {
-  border-radius: 5px 5px 0 0;
-}
-.livre__etiquette {
-  background-color: #0050C8;
-  margin: 0;
-  padding: 1rem;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 0 5px 5px;
 }
 .livre__titre {
-  font-size: 3rem;
-  color: #0050C8;
-  margin-top: 3rem;
-}
-@media screen and (min-width: 1000px) {
-  .livre__titre {
-    margin-top: 8rem;
-  }
-}
-.livre__listeInfos {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.livre__auteur {
   font-size: 2.5rem;
-  color: #000;
-}
-.livre__categorie {
-  font-size: 1.6rem;
-  color: #000;
-  border: 2px solid #E5E5E5;
-  padding: 0.9rem;
-  margin-top: 1rem;
-  display: inline-block;
-}
-.livre__tablette {
-  display: none;
-}
-@media screen and (min-width: 1000px) {
-  .livre__tablette {
-    display: block;
-    position: relative;
-    top: -26rem;
-  }
 }
 .livre__conteneur1 {
   width: 45%;
@@ -1457,6 +1380,159 @@ header {
   font-weight: bold;
 }
 
+/** Livres **/
+/**
+* @author Gabriel Caron <1861095@csfoy.ca>
+* @version 1.0
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* LIVRES
+* Styles généraux
+*/
+.livre__lien {
+  text-decoration: none;
+  filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, 0.1));
+}
+@media screen and (min-width: 500px) {
+  .livre__lien {
+    grid-column: span 6;
+  }
+}
+@media screen and (min-width: 900px) {
+  .livre__lien {
+    grid-column: span 4;
+  }
+}
+@media screen and (min-width: 900px) {
+  .livre__lien .livre__conteneurVignette {
+    position: relative;
+    top: 0;
+    transition: top 0.2s ease-in;
+  }
+}
+@media screen and (min-width: 900px) {
+  .livre__lien:hover .livre__conteneurVignette {
+    position: relative;
+    top: -2rem;
+  }
+}
+.livre__lien:hover .livre__categorie {
+  background-color: #0050C8;
+  color: #fff;
+  border: 2px solid #0050C8;
+}
+.livre__article {
+  margin-bottom: 5rem;
+}
+.livre__image {
+  border-radius: 5px;
+}
+.livre__image.etiquette {
+  border-radius: 5px 5px 0 0;
+}
+.livre__etiquette {
+  background-color: #0050C8;
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 0 5px 5px;
+}
+.livre__titre {
+  font-size: 3rem;
+  color: #0050C8;
+  margin-top: 3rem;
+}
+@media screen and (min-width: 1000px) {
+  .livre__titre {
+    margin-top: 8rem;
+  }
+}
+.livre__listeInfos {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.livre__auteur {
+  font-size: 2.5rem;
+  color: #000;
+}
+.livre__categorie {
+  font-size: 1.6rem;
+  color: #000;
+  border: 2px solid #E5E5E5;
+  padding: 0.9rem;
+  margin-top: 1rem;
+  display: inline-block;
+}
+.livre__tablette {
+  display: none;
+}
+@media screen and (min-width: 1000px) {
+  .livre__tablette {
+    display: block;
+    position: relative;
+    top: -26rem;
+  }
+}
+
+/** Accueil **/
+/**
+* @author Gabriel Caron <1861095@csfoy.ca>
+* @version 1.0
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* ACCUEIL
+* Nouveautés
+*/
+.accueil__titre {
+  margin-bottom: 3rem;
+}
+
+.nouveautes {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 500px) {
+    .nouveautes {
+      display: grid;
+      grid-template-columns: minmax(auto, 1400px);
+      justify-content: center;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+@supports not (grid-template-columns: minmax(auto, 1400px)) {
+  .nouveautes {
+    max-width: 1400px;
+  }
+}
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 500px) {
+    .nouveautes__conteneurGrille {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 20px;
+    }
+  }
+}
+@media (min-width: 1000px) {
+  .nouveautes__conteneurGrille {
+    margin: 0 6rem;
+  }
+}
+@media (min-width: 1400px) {
+  .nouveautes__conteneurGrille {
+    margin: 0 8rem;
+  }
+}
+
 /** Recherche **/
 * {
   margin: 0;
@@ -1497,7 +1573,7 @@ header {
 }
 
 #search {
-  width: 220px;
+  display: flex;
 }
 
 #search_text {
@@ -1599,28 +1675,28 @@ header {
   opacity: 1;
 }
 
+/*
 @media (max-width: 700px) {
   #search {
-    width: 220px;
+    width: 80%;
   }
-
-  #search_text {
-    width: 160px;
+  #search_text{
+    width: 87%;
     padding: 15px 0 15px 20px;
     font-size: 16px;
     font-family: Montserrat, sans-serif;
     height: 40px;
     margin-right: 0;
-    color: black !important;
+    color: black!important;
     outline: none;
     background: none;
-    border-top: 2px solid #0050C8;
-    border-bottom: 2px solid #0050C8;
+    border-top:2px solid $bleuRoyal ;
+    border-bottom:2px solid $bleuRoyal ;
     float: left;
     box-sizing: border-box;
     transition: all 0.15s;
   }
-}
+}*/
 /** Infolettre **/
 .socialMedia {
   background: #E5E5E5;

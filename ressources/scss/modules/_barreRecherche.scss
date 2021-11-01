@@ -38,7 +38,7 @@
 }
 
 #search {
-  width: 220px;
+  display: flex;
 }
 #search_text{
   width: 160px;
@@ -125,12 +125,13 @@
   top: 100%;
   opacity: 1;
 }
+/*
 @media (max-width: 700px) {
   #search {
-    width: 220px;
+    width: 80%;
   }
   #search_text{
-    width: 160px;
+    width: 87%;
     padding: 15px 0 15px 20px;
     font-size: 16px;
     font-family: Montserrat, sans-serif;
@@ -145,4 +146,4 @@
     box-sizing: border-box;
     transition: all 0.15s;
   }
-}
+}*/

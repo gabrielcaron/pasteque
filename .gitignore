@@ -3,3 +3,5 @@
 ressources/cache/
 node_modules/
 /node_modules/.bin/
+/node_modules/i/
+/node_modules/normalize.scss/

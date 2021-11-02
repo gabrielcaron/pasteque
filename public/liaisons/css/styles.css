@@ -1198,6 +1198,25 @@ header {
   }
 }
 
+.actualites .actualite__lien {
+  grid-column: 1/12;
+}
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 600px) {
+    .actualites .actualite__article {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 20px;
+    }
+  }
+}
+.actualites .actualite__image {
+  grid-column: span 2;
+}
+.actualites .actualite__titre {
+  grid-column: span 10;
+}
+
 /** Fiche Livres **/
 /**
 * @author Gabriel Caron <1861095@csfoy.ca>
@@ -1551,122 +1570,23 @@ header {
   }
 }
 
-/** Fiche auteur **/
-.auteur {
-  max-width: 70%;
-  margin: 0 auto;
-  display: flex;
-  margin-top: 5rem;
-  align-items: center;
-  justify-content: space-between;
+.actualites .actualite__lien {
+  grid-column: 1/12;
 }
-@media (max-width: 1200px) {
-  .auteur {
-    max-width: 90%;
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 600px) {
+    .actualites .actualite__article {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 20px;
+    }
   }
 }
-@media (max-width: 900px) {
-  .auteur {
-    display: block;
-  }
+.actualites .actualite__image {
+  grid-column: span 2;
 }
-.auteur__titreFiche {
-  max-width: 70%;
-  margin: 0 auto;
-}
-@media (max-width: 1200px) {
-  .auteur__titreFiche {
-    max-width: 90%;
-  }
-}
-.auteur__nom {
-  font-size: 2.5rem;
-}
-.auteur__conteneur1 {
-  width: 45%;
-  max-width: 550px;
-}
-@media (max-width: 900px) {
-  .auteur__conteneur1 {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-.auteur__conteneur1 img {
-  width: 100%;
-  max-height: 800px;
-  object-fit: cover;
-}
-@media (max-width: 900px) {
-  .auteur__conteneur1 img {
-    height: 50%;
-    object-fit: cover;
-  }
-}
-.auteur__conteneur2 {
-  width: 45%;
-}
-@media (max-width: 900px) {
-  .auteur__conteneur2 {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-.auteur__decouvrirLivre {
-  max-width: 70%;
-  margin: 0 auto;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-@media (max-width: 1200px) {
-  .auteur__decouvrirLivre {
-    max-width: 90%;
-  }
-}
-.auteur__decouvrirLivreCon {
-  float: left;
-  width: 100%;
-  padding: 5px;
-}
-@media (min-width: 500px) {
-  .auteur__decouvrirLivreCon {
-    width: 50% !important;
-  }
-}
-@media (min-width: 720px) {
-  .auteur__decouvrirLivreCon {
-    width: 33% !important;
-  }
-}
-@media (min-width: 900px) {
-  .auteur__decouvrirLivreCon {
-    width: 25% !important;
-  }
-}
-.auteur__decouvrirLivreCard {
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  border-bottom: 2px solid #ccc;
-  width: 100%;
-}
-@media (max-width: 500px) {
-  .auteur__decouvrirLivreCard {
-    width: 250px !important;
-    margin: 0 auto !important;
-  }
-}
-.auteur__decouvrirLivreCard img {
-  max-width: 100%;
-  width: 100%;
-}
-.auteur__decouvrirLivreConteneur {
-  width: 100%;
-}
-.auteur__decouvrirLivreConteneur:after {
-  content: "";
-  display: table;
-  clear: both;
+.actualites .actualite__titre {
+  grid-column: span 10;
 }
 
 /** Recherche **/

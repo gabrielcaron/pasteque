@@ -31,5 +31,22 @@
   }
 }
 
+.actualites {
+  & .actualite {
+	&__lien {
+	  grid-column: 1 / 12;
+	}
+	&__article {
+	  @include rangeeGrid12col();
+	}
+	&__image {
+	  grid-column: span 2;
+	}
+	&__titre {
+	  grid-column: span 10;
+	}
+  }
+}
+
 
 

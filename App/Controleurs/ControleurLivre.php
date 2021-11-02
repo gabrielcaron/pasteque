@@ -16,27 +16,30 @@ class ControleurLivre
     public function index(): void
     {
         var_dump($_POST);
+        //Url de base
         $urlLivre = 'index.php?controleur=livre&action=index';
 
-        $intIdCategorie=[];
-        $nombrePage = 5;
-
+        //Filtres et tris
         $trierPar = $_POST['trierPar'] ?? 'auteurs.nomA';
         $intNbLivreParPage = $_POST['nbLivreParPage'] ?? 9;
         $choixVue = $_POST['choixVue'] ?? 'vignette';
         $strIdPage = $_POST['id_page'] ?? 0;
-
         $categories = Categorie::trouverTout();
+        $intIdCategorie=[];
         for ($i=0;$i<count($categories);$i++) {
             if (isset($_POST['categoriesSelectionner'.$i])) $intIdCategorie[$i] = $_POST['categoriesSelectionner'.$i];
         }
 
+        //Pagination
+        $nombreLivre = $intIdCategorie === [] ? Livre::trouverNombreLivres() : Livre::trouverNombreLivresAvecCategories($intIdCategorie);
         $enregistrementDepart = $intNbLivreParPage !== 'tous' ? $strIdPage*$intNbLivreParPage : 0;
         $intNbLivreParPage = $intNbLivreParPage === 'tous'? Livre::trouverNombreLivres():$intNbLivreParPage;
-        $livres = $intIdCategorie === [] ? Livre::trouverTout() : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, $enregistrementDepart, $intNbLivreParPage);
-        $nombreLivre = Livre::trouverNombreLivres();
+        $nombrePage = intval($nombreLivre / $intNbLivreParPage);
 
+        //Livres à afficher
+        $livres = $intIdCategorie === [] ? Livre::trouverToutSansCategories($trierPar, $enregistrementDepart, $intNbLivreParPage) : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, $enregistrementDepart, $intNbLivreParPage);
 
+        //Tableau des données à passer à la vue
         $tDonnees = array("titrePage"=>"Les livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre,
             "categories"=>$categories, "numeroPage"=>$strIdPage, "nombreTotalPages"=>$nombrePage, "urlPagination"=>$urlLivre,
             "categoriesSelectionner"=>$intIdCategorie, "choixVue"=>$choixVue, "intNbLivreParPage"=>$intNbLivreParPage, "trierPar"=>$trierPar);

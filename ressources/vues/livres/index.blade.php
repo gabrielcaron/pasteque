@@ -70,7 +70,7 @@
                         @endswitch
                     </select>
                 </p>
-                <p><strong>X résultats affichés</strong> de {{$nombreLivre}} résultats</p>
+                <p><strong>{{$intNbLivreParPage}} résultats affichés</strong> de {{$nombreLivre}} résultats</p>
                 <p class="formulaire__champEnveloppe">
                     <label class="" for="trierPar">Trier par : </label>
                     <select name="trierPar" id="trierPar" class="">
@@ -183,7 +183,7 @@
                     <img alt="" src="https://via.placeholder.com/150">
                     <ul class="">
                         @foreach($livre->getAuteurAssocie() as $auteur)
-                        <li class="livres__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                            <li class="livres__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                         @endforeach
                         <li class="livres__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
                     </ul>

@@ -22,7 +22,9 @@
                         </div>
                         <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
                         <ul class="livre__listeInfos">
-                            <li class="livre__item livre__auteur">{{$livre->getAuteurAssocie()->getPrenom()}} {{$livre->getAuteurAssocie()->getNom()}}</li>
+                            @foreach($livre->getAuteurAssocie() as $auteur)
+                            <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                            @endforeach
                             <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
                         </ul>
                     </article>
@@ -52,7 +54,9 @@
                         </div>
                         <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
                         <ul class="livre__listeInfos">
-                            <li class="livre__item livre__auteur">{{$livre->getAuteurAssocie()->getPrenom()}} {{$livre->getAuteurAssocie()->getNom()}}</li>
+                            @foreach($livre->getAuteurAssocie() as $auteur)
+                                <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                            @endforeach
                             <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
                         </ul>
                     </article>

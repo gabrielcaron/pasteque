@@ -371,7 +371,7 @@ class Livre
         $chaineSQL = 'SELECT *
                         FROM livres
                         INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
-                        WHERE livres_auteurs.id = :unIdAuteur
+                        WHERE livres_auteurs.auteur_id = :unIdAuteur
                         LIMIT 4';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);

@@ -806,6 +806,15 @@ header {
   }
 }
 
+.fa {
+  display: inline-block;
+  font: normal normal normal 14 px/1 FontAwesome;
+  font-size: 25px !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Si le javascript est activé */
 /* Pour des raisons d'accessibilité, on ne cache le menu mobile
  * que si Javascript est activé. De cette façon, s'il est désactivé,
@@ -986,6 +995,15 @@ header {
   #recherche {
     width: 100%;
   }
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14 px/1 FontAwesome;
+  font-size: 25px !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Si le javascript est activé */
@@ -1599,10 +1617,6 @@ header {
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-.nav li a:hover {
-  background-color: #0050C8;
-}
-
 #settings a {
   padding: 18px;
   height: 24px;
@@ -1615,7 +1629,7 @@ header {
 }
 
 #search_text {
-  width: 160px;
+  width: 55%;
   padding: 15px 0 15px 20px;
   font-size: 16px;
   font-family: Montserrat, sans-serif;
@@ -1711,6 +1725,10 @@ header {
   visibility: visible;
   top: 100%;
   opacity: 1;
+}
+
+.liste {
+  display: contents;
 }
 
 /*

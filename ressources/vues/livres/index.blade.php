@@ -3,8 +3,11 @@
 @section('contenu')
     <div class="conteneur">
         <section class="enveloppe">
+            <section class="filAriane">
+                <span><a href="index.php">Accueil</a> / Livres</span>
+            </section>
             <h1 class="enveloppe__">Livres</h1>
-            <p class="enveloppe__"><a  class="enveloppe__" href="#">Accueil</a> / <strong>Livres</strong></p>
+
             <button class="enveloppe__">Filtres</button>
             <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=livre&action=index" method="POST">
                     <ul class="enveloppe__liste">
@@ -21,7 +24,6 @@
                         @endforeach
                     </ul>
                 <input id="id_page" value="{{$numeroPage}}" type="hidden" name="id_page">
-            <!-- Vérification quel est actif -->
                 <p class="formulaire__champEnveloppe">
                     @if($choixVue === 'vignette')
                         <input id="vignette" value="vignette" name="choixVue" type="radio" checked>

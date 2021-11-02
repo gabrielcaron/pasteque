@@ -2,7 +2,7 @@
 
 @section('contenu')
     <section class="filAriane">
-        <span>Accueil / Livres / {{$livre->getTitre()}}</span>
+        <span><a href="index.php">Accueil</a> / <a href="index.php?controleur=livre&action=index">Livres</a> / {{$livre->getTitre()}}</span>
     </section>
     <section class="livre">
         <div class="livre__conteneur1">
@@ -18,7 +18,7 @@
                 <h1 class="livre__title">{{$livre->getTitre()}}</h1>
                 <h3 class="livre__prixCan">{{$livre->getPrixCan()}}$</h3>
             </div>
-            <span class="livre__auteur">{{$livre->getAuteurAssocie()->getNom()}} {{$livre->getAuteurAssocie()->getPrenom()}}</span>
+            <a href="index.php?controleur=auteur&action=fiche&id={{$livre->getAuteurAssocie()->getId()}}"><span class="livre__auteur">{{$livre->getAuteurAssocie()->getNom()}} {{$livre->getAuteurAssocie()->getPrenom()}}</span></a>
             <br><br><span class="livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</span>
 
             <div class="livre__ajout">

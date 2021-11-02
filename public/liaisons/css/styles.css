@@ -1180,6 +1180,25 @@ header {
   }
 }
 
+.actualites .actualite__lien {
+  grid-column: 1/12;
+}
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 600px) {
+    .actualites .actualite__article {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 20px;
+    }
+  }
+}
+.actualites .actualite__image {
+  grid-column: span 2;
+}
+.actualites .actualite__titre {
+  grid-column: span 10;
+}
+
 /** Fiche Livres **/
 /**
 * @author Gabriel Caron <1861095@csfoy.ca>
@@ -1531,6 +1550,25 @@ header {
   .nouveautes__conteneurGrille, .aparaitre__conteneurGrille {
     margin: 0 8rem;
   }
+}
+
+.actualites .actualite__lien {
+  grid-column: 1/12;
+}
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 600px) {
+    .actualites .actualite__article {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 20px;
+    }
+  }
+}
+.actualites .actualite__image {
+  grid-column: span 2;
+}
+.actualites .actualite__titre {
+  grid-column: span 10;
 }
 
 /** Recherche **/

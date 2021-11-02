@@ -88,16 +88,15 @@ class Actualite
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT *  FROM actualites ORDER BY date DESC;';
+        $chaineSQL = 'SELECT * FROM actualites WHERE date > DATE_SUB(NOW(),INTERVAL 30 DAY) ORDER BY date DESC';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir le mode de récupération
-        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Actualite');
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $livres = $requetePreparee->fetchAll();
-        //var_dump($participants);
         return $livres;
     }
 

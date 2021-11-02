@@ -7,164 +7,45 @@
  <span><a href="index.php">Accueil</a> / Livres</span>
  </section>
  <h1 class="enveloppe__">Livres</h1>
-
  <button class="enveloppe__">Filtres</button>
  <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=livre&action=index" method="POST">
+ <input id="id_page" value="0" type="hidden" name="id_page">
  <ul class="enveloppe__liste">
  <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData);$this->getFirstLoop();
  foreach($__currentLoopData as $categorie): $loop = $this->incrementLoopIndices();  ?>
  <div>
- <?php if(array_search($categorie->getId(), $categoriesSelectionner)): ?>
- <input value="<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" type="checkbox" id="enveloppe__liste--input--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" name="categoriesSelectionner<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" checked>
+ <input value="<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" type="checkbox" id="enveloppe__liste--input--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" name="categoriesSelectionner<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" <?php if(array_search($categorie->getId(), $categoriesSelectionner)): ?> checked <?php endif; ?>>
  <label for="enveloppe__liste--input--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" id="enveloppe__liste--label--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($categorie->getNom(), ENT_QUOTES, 'UTF-8', false); ?></label>
- <?php else: ?>
- <input value="<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" type="checkbox" id="enveloppe__liste--input--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" name="categoriesSelectionner<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>">
- <label for="enveloppe__liste--input--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>" id="enveloppe__liste--label--<?php echo \htmlentities($categorie->getId(), ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($categorie->getNom(), ENT_QUOTES, 'UTF-8', false); ?></label>
- <?php endif; ?>
  </div>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </ul>
- <input id="id_page" value="<?php echo \htmlentities($numeroPage, ENT_QUOTES, 'UTF-8', false); ?>" type="hidden" name="id_page">
  <p class="formulaire__champEnveloppe">
- <?php if($choixVue === 'vignette'): ?>
- <input id="vignette" value="vignette" name="choixVue" type="radio" checked>
+ <input id="vignette" value="vignette" name="choixVue" type="radio" <?php if($choixVue === 'vignette'): ?> checked <?php endif; ?>>
  <label for="vignette">Changer pour une vue en liste</label>
- <input id="liste" value="liste" name="choixVue" type="radio">
+ <input id="liste" value="liste" name="choixVue" type="radio" <?php if($choixVue === 'liste'): ?> checked <?php endif; ?>>
  <label for="liste">Changer pour une vue en liste</label>
- <?php else: ?>
- <input id="vignette" value="vignette" name="choixVue" type="radio">
- <label for="vignette">Changer pour une vue en liste</label>
- <input id="liste" value="liste" name="choixVue" type="radio" checked>
- <label for="liste">Changer pour une vue en liste</label>
- <?php endif; ?>
  </p>
  <p class="formulaire__champEnveloppe">
  <label class="" for="nbLivreParPage">Nombre de livre par page : </label>
  <select name="nbLivreParPage" id="nbLivreParPage" class="">
- <?php switch ($intNbLivreParPage) {
- case (9): ?>
- <option value="9" selected>9 livres par page</option>
- <option value="15">15 livres par page</option>
- <option value="30">30 livres par page</option>
- <option value="tous">tout livres par page</option>
- <?php break; ?>
-
- <?php case (15): ?>
- <option value="9">9 livres par page</option>
- <option value="15" selected>15 livres par page</option>
- <option value="30">30 livres par page</option>
- <option value="tous">tout livres par page</option>
- <?php break; ?>
-
- <?php case (30): ?>
- <option value="9">9 livres par page</option>
- <option value="15">15 livres par page</option>
- <option value="30" selected>30 livres par page</option>
- <option value="tous">tout livres par page</option>
- <?php break; ?>
-
- <?php default: ?>
- <option value="9">9 livres par page</option>
- <option value="15">15 livres par page</option>
- <option value="30">30 livres par page</option>
- <option value="tous" selected>tout livres par page</option>
- <?php } // end switch ?>
+ <option value="9" <?php if($intNbLivreParPage === '9'): ?> selected <?php endif; ?>>9 livres par page</option>
+ <option value="15" <?php if($intNbLivreParPage === '15'): ?> selected <?php endif; ?>>15 livres par page</option>
+ <option value="30" <?php if($intNbLivreParPage === '30'): ?> selected <?php endif; ?>>30 livres par page</option>
+ <option value="tous" <?php if($intNbLivreParPage !== '9' && $intNbLivreParPage !== '15' &&  $intNbLivreParPage !== '30'): ?> selected <?php endif; ?>>tout livres par page</option>
  </select>
  </p>
  <p><strong><?php echo \htmlentities($intNbLivreParPage, ENT_QUOTES, 'UTF-8', false); ?> résultats affichés</strong> de <?php echo \htmlentities($nombreLivre, ENT_QUOTES, 'UTF-8', false); ?> résultats</p>
  <p class="formulaire__champEnveloppe">
  <label class="" for="trierPar">Trier par : </label>
  <select name="trierPar" id="trierPar" class="">
- <?php switch ($trierPar) {
- case ('categories.nomA'): ?>
- <option value="categories.nomA" selected>Categories A-Z</option>
- <option value="categories.nomD">Categories Z-A</option>
- <option value="livres.titreA">Livres A-Z</option>
- <option value="livres.titreD">Livres Z-A</option>
- <option value="auteurs.nomA">Auteurs A-Z</option>
- <option value="auteurs.nomD">Auteurs Z-A</option>
- <option value="statutA">Plus récents au plus anciens</option>
- <option value="statutD">Plus anciens au plus récents</option>
- <?php break; ?>
-
- <?php case ('categories.nomD'): ?>
- <option value="categories.nomA">Categories A-Z</option>
- <option value="categories.nomD" selected>Categories Z-A</option>
- <option value="livres.titreA">Livres A-Z</option>
- <option value="livres.titreD">Livres Z-A</option>
- <option value="auteurs.nomA">Auteurs A-Z</option>
- <option value="auteurs.nomD">Auteurs Z-A</option>
- <option value="statutA">Plus récents au plus anciens</option>
- <option value="statutD">Plus anciens au plus récents</option>
- <?php break; ?>
-
- <?php case ('livres.titreA'): ?>
- <option value="categories.nomA">Categories A-Z</option>
- <option value="categories.nomD">Categories Z-A</option>
- <option value="livres.titreA" selected>Livres A-Z</option>
- <option value="livres.titreD">Livres Z-A</option>
- <option value="auteurs.nomA">Auteurs A-Z</option>
- <option value="auteurs.nomD">Auteurs Z-A</option>
- <option value="statutA">Plus récents au plus anciens</option>
- <option value="statutD">Plus anciens au plus récents</option>
- <?php break; ?>
-
- <?php case ('livres.titreD'): ?>
- <option value="categories.nomA">Categories A-Z</option>
- <option value="categories.nomD">Categories Z-A</option>
- <option value="livres.titreA">Livres A-Z</option>
- <option value="livres.titreD" selected>Livres Z-A</option>
- <option value="auteurs.nomA">Auteurs A-Z</option>
- <option value="auteurs.nomD">Auteurs Z-A</option>
- <option value="statutA">Plus récents au plus anciens</option>
- <option value="statutD">Plus anciens au plus récents</option>
- <?php break; ?>
-
- <?php case ('auteurs.nomA'): ?>
- <option value="categories.nomA">Categories A-Z</option>
- <option value="categories.nomD">Categories Z-A</option>
- <option value="livres.titreA">Livres A-Z</option>
- <option value="livres.titreD">Livres Z-A</option>
- <option value="auteurs.nomA" selected>Auteurs A-Z</option>
- <option value="auteurs.nomD">Auteurs Z-A</option>
- <option value="statutA">Plus récents au plus anciens</option>
- <option value="statutD">Plus anciens au plus récents</option>
- <?php break; ?>
-
- <?php case ('auteurs.nomD'): ?>
- <option value="categories.nomA">Categories A-Z</option>
- <option value="categories.nomD">Categories Z-A</option>
- <option value="livres.titreA">Livres A-Z</option>
- <option value="livres.titreD">Livres Z-A</option>
- <option value="auteurs.nomA">Auteurs A-Z</option>
- <option value="auteurs.nomD" selected>Auteurs Z-A</option>
- <option value="statutA">Plus récents au plus anciens</option>
- <option value="statutD">Plus anciens au plus récents</option>
- <?php break; ?>
-
- <?php case ('statutA'): ?>
- <option value="categories.nomA">Categories A-Z</option>
- <option value="categories.nomD">Categories Z-A</option>
- <option value="livres.titreA">Livres A-Z</option>
- <option value="livres.titreD">Livres Z-A</option>
- <option value="auteurs.nomA">Auteurs A-Z</option>
- <option value="auteurs.nomD">Auteurs Z-A</option>
- <option value="statutA" selected>Plus récents au plus anciens</option>
- <option value="statutD">Plus anciens au plus récents</option>
- <?php break; ?>
-
- <?php default: ?>
- <option value="categories.nomA">Categories A-Z</option>
- <option value="categories.nomD">Categories Z-A</option>
- <option value="livres.titreA">Livres A-Z</option>
- <option value="livres.titreD">Livres Z-A</option>
- <option value="auteurs.nomA">Auteurs A-Z</option>
- <option value="auteurs.nomD">Auteurs Z-A</option>
- <option value="statutA">Plus récents au plus anciens</option>
- <option value="statutD" selected>Plus anciens au plus récents</option>
-
- <?php } // end switch ?>
-
+ <option value="categories.nomA" <?php if($trierPar === 'categories.nomA'): ?> selected <?php endif; ?>>Categories A-Z</option>
+ <option value="categories.nomD" <?php if($trierPar === 'categories.nomD'): ?> selected <?php endif; ?>>Categories Z-A</option>
+ <option value="livres.titreA" <?php if($trierPar === 'livres.titreA'): ?> selected <?php endif; ?>>Livres A-Z</option>
+ <option value="livres.titreD" <?php if($trierPar === 'livres.titreD'): ?> selected <?php endif; ?>>Livres Z-A</option>
+ <option value="auteurs.nomA" <?php if($trierPar === 'auteurs.nomA'): ?> selected <?php endif; ?>>Auteurs A-Z</option>
+ <option value="auteurs.nomD" <?php if($trierPar === 'auteurs.nomD'): ?> selected <?php endif; ?>>Auteurs Z-A</option>
+ <option value="statutA" <?php if($trierPar === 'statutA'): ?> selected <?php endif; ?>>Plus récents au plus anciens</option>
+ <option value="statutD" <?php if($trierPar === 'statutD'): ?> selected <?php endif; ?>>Plus anciens au plus récents</option>
  </select>
  </p>
  <input class="" type="submit" id="livresTrie">

@@ -41,7 +41,6 @@ class ControleurLivre
             "categories"=>$categories, "numeroPage"=>$strIdPage, "nombreTotalPages"=>$nombrePage, "urlPagination"=>$urlLivre,
             "categoriesSelectionner"=>$intIdCategorie, "choixVue"=>$choixVue, "intNbLivreParPage"=>$intNbLivreParPage, "trierPar"=>$trierPar);
         echo App::getBlade()->run("livres.index",$tDonnees);
-
     }
 
     public function fiche($livreChoisi):void

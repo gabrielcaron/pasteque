@@ -18,7 +18,11 @@
                 <h1 class="livre__title">{{$livre->getTitre()}}</h1>
                 <h3 class="livre__prixCan">{{$livre->getPrixCan()}}$</h3>
             </div>
-            <a href="index.php?controleur=auteur&action=fiche&id={{$livre->getAuteurAssocie()->getId()}}"><span class="livre__auteur">{{$livre->getAuteurAssocie()->getNom()}} {{$livre->getAuteurAssocie()->getPrenom()}}</span></a>
+            @foreach($livre->getAuteurAssocie() as $auteur)
+                <a href="index.php?controleur=auteur&action=fiche&id={{$auteur->getId()}}">
+                    <span class="livre__auteur">{{$auteur->getNom()}} {{$auteur->getPrenom()}}</span>
+                </a>
+            @endforeach
             <br><br><span class="livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</span>
 
             <div class="livre__ajout">
@@ -73,7 +77,10 @@
             </tr>
             <tr class="informations__tableRow">
                 <td class="informations__tableColumn">Auteur</td>
-                <td class="informations__tableColumn">{{$livre->getAuteurAssocie()->getPrenom()}} {{$livre->getAuteurAssocie()->getNom()}}</td>
+                <td class="informations__tableColumn">@foreach($livre->getAuteurAssocie() as $auteur)<a
+                            href="index.php?controleur=auteur&action=fiche&id={{$auteur->getId()}}">
+                        <span class="livre__auteur">{{$auteur->getNom()}} {{$auteur->getPrenom()}}</span>
+                    </a>@endforeach</td>
             </tr>
             <tr class="informations__tableRow">
                 <td class="informations__tableColumn">Éditeur</td>

@@ -182,7 +182,9 @@
                     @endif
                     <img alt="" src="https://via.placeholder.com/150">
                     <ul class="">
-                        <li class="livres__auteur">{{$livre->getAuteurAssocie()->getPrenom()}} {{$livre->getAuteurAssocie()->getNom()}}</li>
+                        @foreach($livre->getAuteurAssocie() as $auteur)
+                        <li class="livres__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                        @endforeach
                         <li class="livres__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
                     </ul>
                 </article>

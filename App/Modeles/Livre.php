@@ -261,9 +261,9 @@ class Livre
         return Categorie::trouverParId($this->categorie_id);
     }
 
-    public function getAuteurAssocie(): Auteur
+    public function getAuteurAssocie(): array
     {
-        return Auteur::trouverParId($this->id);
+        return Auteur::trouverParIdLivre($this->id);
     }
 
     public function getReconnaissanceAssocie(): array|false
@@ -275,7 +275,7 @@ class Livre
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
+        $chaineSQL = 'SELECT livres.*
                             FROM livres
                             INNER JOIN categories ON categories.id = categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
@@ -288,7 +288,8 @@ class Livre
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $livres = $requetePreparee->fetchAll();
-        //var_dump($participants);
+        //var_dump($livres);
+
         return $livres;
     }
 
@@ -331,7 +332,7 @@ class Livre
 
         $categories = implode(', ', $idCategories);
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT * 
+        $chaineSQL = 'SELECT livres.*
                             FROM livres
                             INNER JOIN categories ON categories.id = livres.categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
@@ -361,7 +362,7 @@ class Livre
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $resultat = $requetePreparee->fetchAll();
-        //var_dump($resultat);
+
         return $resultat;
     }
 

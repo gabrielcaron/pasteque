@@ -72,33 +72,33 @@
                 </fieldset>
             </form>
         </section>
-        <section class="index livre">
+        <section class="index livre {{$choixVue}}">
             <!-- un titre display none? -->
-            <div class="nouveautes__conteneurGrille">
+            <div class="nouveautes__conteneurGrille {{$choixVue}}">
                 <!-- Foreach Nouveautés -->
                 {{--            Faire un modulo, s'il se divise par 3, c'est une rangée--}}
                 @foreach($livres as $livre)
-                    <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
-                        <article class="livre__article">
-                            <div class="livre__conteneurVignette">
+                    <a class="livre__lien {{$choixVue}}" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
+                        <article class="livre__article {{$choixVue}}">
+                            <div class="livre__conteneurVignette {{$choixVue}}">
                                 <img @if ($livre->getStatut() > 1)
-                                     class="livre__image etiquette"
+                                     class="livre__image etiquette {{$choixVue}}"
                                      @else
-                                     class="livre__image"
+                                     class="livre__image {{$choixVue}}"
                                      @endif src="https://via.placeholder.com/460x500">
 
                                 @if ($livre->getStatut() === 2)
-                                    <p class="livre__etiquette">Nouveauté</p>
+                                    <p class="livre__etiquette {{$choixVue}}">Nouveauté</p>
                                 @elseif($livre->getStatut() === 3)
-                                    <p class="livre__etiquette">À paraitre</p>
+                                    <p class="livre__etiquette {{$choixVue}}">À paraitre</p>
                                 @endif
                             </div>
-                            <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
-                            <ul class="livre__listeInfos">
+                            <h3 class="livre__titre {{$choixVue}}">{{$livre->getTitre()}}</h3>
+                            <ul class="livre__listeInfos {{$choixVue}}">
                                 @foreach($livre->getAuteurAssocie() as $auteur)
-                                    <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                                    <li class="livre__item livre__auteur {{$choixVue}}">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                                 @endforeach
-                                <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                                <li class="livre__item livre__categorie {{$choixVue}}">{{$livre->getCategorieAssocie()->getNom()}}</li>
                             </ul>
                         </article>
                     </a>

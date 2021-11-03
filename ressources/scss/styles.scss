@@ -27,10 +27,6 @@
    ** Navigation - Styles de la barre de navigation
    ** MenuBase - Styles du menu de base
 
- * LAYOUT
-   ** Formulaire - Formulaire du site
-
- */
 
 /****** Librairies ******/
 
@@ -44,6 +40,11 @@
 
 /** Mixins - Définitions des mixins **/
 @import 'utilitaires/mixins';
+
+/* LAYOUT
+** Formulaire - Formulaire du site*/
+@import 'layout/formulaire';
+
 
 /****** BASE ******/
 

@@ -33,7 +33,7 @@ class ControleurLivre
         //Pagination
         $nombreLivre = $intIdCategorie === [] ? Livre::trouverNombreLivres() : Livre::trouverNombreLivresAvecCategories($intIdCategorie);
         $enregistrementDepart = $intNbLivreParPage !== 'tous' ? $strIdPage*$intNbLivreParPage : 0;
-        $intNbLivreParPage = $intNbLivreParPage === 'tous'? Livre::trouverNombreLivres() : $intNbLivreParPage;
+        if ($intNbLivreParPage === 'tous') $intNbLivreParPage = $nombreLivre !== Livre::trouverNombreLivres() ? Livre::trouverNombreLivresAvecCategories($intIdCategorie) : $nombreLivre;
         $nombrePage = intval($nombreLivre / $intNbLivreParPage);
 
         //Livres à afficher

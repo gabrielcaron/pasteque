@@ -1,6 +1,6 @@
 /**
-* @author Gabriel Caron <1861095@csfoy.ca>
-* @version 1.1
+* @author Gabriel Caron <gabriel.caron@gmail.com>
+* @version 2021.0
 *
 * ------------------
 * TABLE DES MATIERES
@@ -18,4 +18,29 @@ html {
 img {
   vertical-align: bottom;
   max-width: 100%;
+}
+
+.bouton {
+  display: inline-block;
+  background: #EB5F00;
+  border-radius: 5px;
+  border: none;
+  font-family: $RobotoBold;
+  color: $blanc;
+  text-decoration: none;
+  padding: 1.5rem 0;
+  margin: 2rem 0;
+
+  @media screen and (min-width: $mobile600px) {
+    padding: 1.5rem 4rem;
+  }
+}
+
+.navigation {
+  & .bouton {
+    font-size: 2rem;
+    &--action {
+      font-size: 2.5rem;
+    }
+  }
 }

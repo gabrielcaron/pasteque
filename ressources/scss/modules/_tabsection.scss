@@ -58,12 +58,15 @@ $color-red-light: #fa5757;
         font-weight: 600;
         line-height: inherit;
         cursor: pointer;
+        text-align: center;
         width: calc(100% / 2);
+        place-items: center;
         height: auto;
         padding: 1rem 0;
+        display: grid;
         border-bottom: 2.5px solid transparent;
-        color: $color-blue-gray;
-        background: $color-white;
+        color: #9194a1;
+        background: #ffffff;
         transition: all 0.3s ease;
 
         @media (max-width: 900px) {
@@ -90,6 +93,15 @@ $color-red-light: #fa5757;
           overflow: hidden;
           border-bottom: 2.5px solid $bleuRoyal;
           color: $bleuRoyal;
+          fill: $bleuRoyal;
+        }
+
+        &Path{
+          fill: #595959;
+        }
+
+        &.active &Path{
+          fill: $bleuRoyal;
         }
       }
     }

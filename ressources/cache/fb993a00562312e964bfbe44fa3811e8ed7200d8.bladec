@@ -46,7 +46,7 @@
  <a href="index.php?controleur=auteur&action=index" class="menu__lien">Artistes</a>
  </li>
  <li class="menu__listeItem">
- <a href="index.php?controleur=site&action=apropos" class="menu__lien" id="apropos">À propos</a>
+ <a href="#" class="menu__lien" id="apropos">À propos</a>
  </li>
  <li class="menu__listeItem" id="galerie">
  <a href="" class="menu__lien">Galerie-boutique</a>

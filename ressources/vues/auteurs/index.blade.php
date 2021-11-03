@@ -3,7 +3,7 @@
 @section('contenu')
     <div class="conteneur">
         <section class="filAriane">
-            <span><a href="index.php">Accueil</a> / <a href="index.php?controleur=livre&action=index">Livres</a> / {{$livre->getTitre()}}</span>
+            <span><a href="index.php">Accueil</a> / <a href="index.php?controleur=Auteur&action=index">Artistes</a></span>
         </section>
         <section>
             <h1>Liste Auteurs</h1>

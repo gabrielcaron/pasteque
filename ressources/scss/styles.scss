@@ -62,7 +62,6 @@
 /** MenuBase - Styles du menu de base **/
 @import 'modules/_menu';
 
-
 /** menu responsive - Éléments du menu **/
 @import 'modules/menu';
 
@@ -74,6 +73,9 @@
 
 /** Fiche Livres **/
 @import 'modules/fichelivres';
+
+/** Index Livres **/
+@import 'modules/indexLivres';
 
 /** Livres **/
 @import 'modules/livres';
@@ -90,12 +92,8 @@
 /** Infolettre **/
 @import 'modules/infolettre';
 
-
-/** Livres **/
+/** Entete **/
 @import 'modules/entete';
-
-/** Livres **/
-@import 'modules/livres';
 
 /** errreur **/
 @import 'modules/erreur';

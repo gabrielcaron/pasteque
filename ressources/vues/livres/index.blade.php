@@ -1,7 +1,7 @@
 @extends('gabarit')
 
 @section('contenu')
-    <div class="conteneur">
+    <div class="indexLivres">
         <section class="enveloppe">
             <section class="filAriane">
                 <span><a href="index.php">Accueil</a> / Livres</span>
@@ -50,23 +50,23 @@
                 <input class="" type="submit" id="livresTrie">
             </form>
         </section>
-        <section class="livres">
+        <section class="indexLivres__sectionLivres">
             <!-- Foreach livres -->
             @foreach($livres as $livre)
-            <a href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
-                <article class="livres__article">
-                    <h2 class="livres__titre">{{$livre->getTitre()}}</h2>
+            <a class="indexLivres__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
+                <article class="indexLivres__article">
+                    <h2 class="indexLivres__titre">{{$livre->getTitre()}}</h2>
                     @if($livre->getStatut() === 3)
-                        <p class="livres__nouveaute">A parraitre</p>
+                        <p class="indexLivres__etiquette">A parraitre</p>
                     @elseif($livre->getStatut() === 2)
-                        <p class="livres__nouveaute">Nouveauté</p>
+                        <p class="indexLivres__etiquette">Nouveauté</p>
                     @endif
-                    <img alt="" src="https://via.placeholder.com/150">
-                    <ul class="">
+                    <img class="indexLivres__img" alt="" src="https://via.placeholder.com/150">
+                    <ul class="indexLivres__liste">
                         @foreach($livre->getAuteurAssocie() as $auteur)
-                            <li class="livres__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                            <li class="indexLivres__listeItem">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                         @endforeach
-                        <li class="livres__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                        <li class="indexLivres__listeItem">{{$livre->getCategorieAssocie()->getNom()}}</li>
                     </ul>
                 </article>
             </a>

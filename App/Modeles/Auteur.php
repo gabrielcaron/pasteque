@@ -114,7 +114,7 @@ class Auteur
     public static function trouverParIdLivre(int $unIdLivres):array {
 
         // Définir la chaine SQL
-        $chaineSQL = "SELECT * FROM `auteurs` INNER JOIN livres_auteurs ON auteurs.id = livres_auteurs.auteur_id WHERE livres_auteurs.livre_id = :unIdLivres";
+        $chaineSQL = "SELECT auteurs.* FROM `auteurs` INNER JOIN livres_auteurs ON auteurs.id = livres_auteurs.auteur_id WHERE livres_auteurs.livre_id = :unIdLivres";
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête

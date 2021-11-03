@@ -1234,7 +1234,7 @@ header {
   padding-top: 2rem;
 }
 
-.livre {
+.ficheLivre {
   max-width: 70%;
   margin: 0 auto;
   display: flex;
@@ -1243,94 +1243,98 @@ header {
   justify-content: space-between;
 }
 @media (max-width: 1200px) {
-  .livre {
+  .ficheLivre {
     max-width: 90%;
   }
 }
 @media (max-width: 900px) {
-  .livre {
+  .ficheLivre {
     display: block;
   }
 }
-.livre__categorie {
+.ficheLivre__auteur {
+  color: #0050C8 !important;
+  font-size: 20px !important;
+}
+.ficheLivre__categorie {
   padding: 1rem;
   border: 1px solid #E5E5E5;
 }
-.livre__flexNomPrix {
+.ficheLivre__flexNomPrix {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 @media (max-width: 900px) {
-  .livre__flexNomPrix {
+  .ficheLivre__flexNomPrix {
     display: block;
   }
 }
-.livre__lien {
+.ficheLivre__lien {
   grid-column: span 4;
   text-decoration: none;
 }
-.livre__titre {
+.ficheLivre__titre {
   font-size: 2.5rem;
 }
-.livre__conteneur1 {
+.ficheLivre__conteneur1 {
   width: 45%;
   max-width: 550px;
 }
-.livre__conteneur1 img {
+.ficheLivre__conteneur1 img {
   width: 100%;
   max-height: 800px;
   object-fit: cover;
 }
 @media (max-width: 900px) {
-  .livre__conteneur1 img {
+  .ficheLivre__conteneur1 img {
     height: 50%;
     object-fit: cover;
   }
 }
 @media (max-width: 900px) {
-  .livre__conteneur1 {
+  .ficheLivre__conteneur1 {
     width: 80%;
     margin: 0 auto;
   }
 }
-.livre__conteneur2 {
+.ficheLivre__conteneur2 {
   width: 45%;
 }
 @media (max-width: 900px) {
-  .livre__conteneur2 {
+  .ficheLivre__conteneur2 {
     width: 80%;
     margin: 0 auto;
   }
 }
-.livre__title {
+.ficheLivre__title {
   font-size: 2rem;
 }
-.livre__prixCan {
+.ficheLivre__prixCan {
   font-size: 3rem;
 }
-.livre__prixEuro {
+.ficheLivre__prixEuro {
   font-size: 2rem;
 }
-.livre__ajoutInput {
+.ficheLivre__ajoutInput {
   width: 30px;
   text-align: center;
   height: 50px;
   border: 2px solid #0050C8;
   color: #0050C8;
 }
-.livre__ajoutQuantite {
+.ficheLivre__ajoutQuantite {
   display: flex;
   justify-content: flex-start;
   width: 115px;
   margin-right: 2rem;
 }
 @media (max-width: 900px) {
-  .livre__ajoutQuantite {
+  .ficheLivre__ajoutQuantite {
     margin: 0 auto;
   }
 }
-.livre__statut {
+.ficheLivre__statut {
   background: #0050C8;
   margin: 0;
   color: white;
@@ -1338,16 +1342,16 @@ header {
   padding-bottom: 1rem;
   text-align: center;
 }
-.livre__ajout {
+.ficheLivre__ajout {
   display: flex;
   margin-top: 5rem;
 }
 @media (max-width: 900px) {
-  .livre__ajout {
+  .ficheLivre__ajout {
     display: block;
   }
 }
-.livre__panierImg {
+.ficheLivre__panierImg {
   background: url("../images/panier-achat.png");
   display: flex;
   position: absolute;
@@ -1355,7 +1359,7 @@ header {
   width: 30px;
   background-repeat: no-repeat;
 }
-.livre__ajoutPanierBtn {
+.ficheLivre__ajoutPanierBtn {
   width: 250px;
   position: relative;
   border-radius: 10px;
@@ -1367,7 +1371,7 @@ header {
   padding-left: 2rem;
 }
 @media (max-width: 900px) {
-  .livre__ajoutPanierBtn {
+  .ficheLivre__ajoutPanierBtn {
     margin-top: 2rem;
   }
 }
@@ -2074,9 +2078,12 @@ header {
   font-weight: 600;
   line-height: inherit;
   cursor: pointer;
+  text-align: center;
   width: calc(100% / 2);
+  place-items: center;
   height: auto;
   padding: 1rem 0;
+  display: grid;
   border-bottom: 2.5px solid transparent;
   color: #9194a1;
   background: #ffffff;
@@ -2105,6 +2112,13 @@ header {
   overflow: hidden;
   border-bottom: 2.5px solid #0050C8;
   color: #0050C8;
+  fill: #0050C8;
+}
+.tabSection__menuLinkPath {
+  fill: #595959;
+}
+.tabSection__menuLink.active .tabSection__menuLinkPath {
+  fill: #0050C8;
 }
 .tabSection__bar {
   padding: 2.5rem 0;
@@ -2124,8 +2138,8 @@ header {
 /****** LAYOUT ******/
 /** Général **/
 /**
-* @author Gabriel Caron <1861095@csfoy.ca>
-* @version 1.1
+* @author Gabriel Caron <gabriel.caron@gmail.com>
+* @version 2021.0
 *
 * ------------------
 * TABLE DES MATIERES
@@ -2142,6 +2156,30 @@ html {
 img {
   vertical-align: bottom;
   max-width: 100%;
+}
+
+.bouton {
+  display: inline-block;
+  background: #EB5F00;
+  border-radius: 5px;
+  border: none;
+  font-family: Roboto-Bold, sans serif;
+  color: #fff;
+  text-decoration: none;
+  padding: 1.5rem 0;
+  margin: 2rem 0;
+}
+@media screen and (min-width: 600px) {
+  .bouton {
+    padding: 1.5rem 4rem;
+  }
+}
+
+.navigation .bouton {
+  font-size: 2rem;
+}
+.navigation .bouton--action {
+  font-size: 2.5rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

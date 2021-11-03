@@ -25,10 +25,7 @@
    ** Navigation - Styles de la barre de navigation
    ** MenuBase - Styles du menu de base
 
- * LAYOUT
-   ** Formulaire - Formulaire du site
 
- */
 /****** Librairies ******/
 /** Normalize **/
 /*! normalize.scss v0.1.0 | MIT License | based on git.io/normalize */
@@ -503,6 +500,192 @@ th {
 }
 
 /***** Grille de base *****/
+/* LAYOUT
+** Formulaire - Formulaire du site*/
+/**
+* @author Gabriel Caron <gabriel.caron@gmail.com>
+* @version 2021.3
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* Formulaire
+*/
+.formulaire__sectionLegende {
+  padding: 2rem 0;
+}
+.formulaire__liste {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  list-style-type: none;
+}
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 600px) {
+    .formulaire__liste {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 20px;
+    }
+  }
+}
+@media screen and (min-width: 600px) {
+  .formulaire__liste > * {
+    grid-column: span 4;
+  }
+}
+.formulaire .bloc .surtitre {
+  display: block;
+  background-color: #285195;
+  color: #fff;
+  font-family: Roboto-Bold, sans serif;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  border-radius: 0.75rem 0.75rem 0 0;
+  padding: 1rem 0.5rem;
+  margin: -3rem -1rem 1rem -1rem;
+}
+.formulaire .bloc .radio {
+  width: 2.5rem;
+  height: 2.5rem;
+  vertical-align: middle;
+}
+.formulaire .bloc .radio + .libelle {
+  display: initial;
+  padding-left: 0.5rem;
+}
+.formulaire .bloc .cocher {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.formulaire .bloc .cocher + .libelle {
+  display: initial;
+  padding-left: 0.5rem;
+  vertical-align: text-bottom;
+}
+.formulaire .bloc input[type=text], .formulaire .bloc input[type=number] {
+  width: calc(100% - 8px);
+  height: 4.4rem;
+}
+.formulaire .bloc input[type=text].montantDonPersonnalise, .formulaire .bloc input[type=number].montantDonPersonnalise {
+  width: 10rem;
+  font-family: Roboto-Medium, sans serif;
+  font-style: normal;
+  font-size: 3rem;
+  line-height: 100%;
+  border: 5px solid #285195;
+  border-radius: 1.5rem;
+  text-align: center;
+  padding: 1rem;
+}
+.formulaire .bloc .libelle {
+  display: block;
+  font-size: 2rem;
+  vertical-align: middle;
+  padding: 0.5rem 0;
+}
+.formulaire .bloc .libelle.modifierMontantDon {
+  display: inline-block;
+  font-family: Roboto-Bold, sans serif;
+  font-size: 2.2rem;
+  padding-right: 2rem;
+  vertical-align: baseline;
+}
+.formulaire .bloc select {
+  width: 100%;
+  height: 5rem;
+  padding: 0.75rem;
+}
+.formulaire .bloc textarea {
+  width: calc(100% - 6px);
+  height: 25rem;
+}
+.formulaire__groupeChamps {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 600px) {
+    .formulaire__groupeChamps.rangeeReduite, .formulaire__groupeChamps .rangee {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 20px;
+    }
+  }
+}
+.formulaire__groupeChamps.rangeeReduite > *, .formulaire__groupeChamps .rangee > * {
+  grid-column: 1/13;
+}
+.formulaire__groupeChamps.rangeeReduite .bloc, .formulaire__groupeChamps .rangee .bloc {
+  grid-column: 1/9;
+  margin: 1rem 0;
+}
+.formulaire__groupeChamps.rangeeReduite .bloc.demi, .formulaire__groupeChamps .rangee .bloc.demi {
+  grid-column: 1/6;
+}
+.formulaire__groupeChamps.tuiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.formulaire__groupeChamps.tuiles .formulaire__conteneur3colonnes {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  padding-left: 0;
+  margin: 0;
+}
+.formulaire__groupeChamps.tuiles .formulaire__conteneur3colonnes .bloc {
+  width: calc(50% - 2rem);
+}
+.formulaire__groupeChamps.tuiles .bloc {
+  display: flex;
+  margin: 0;
+}
+@media screen and (max-width: 600px) {
+  .formulaire__groupeChamps.tuiles .bloc {
+    width: calc(50% - 1rem);
+  }
+}
+.formulaire__groupeChamps.tuiles .bloc .libelle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.formulaire__groupeChamps.tuiles .libelle, .formulaire__groupeChamps.tuiles .suggere {
+  width: 100%;
+  font-family: Roboto-Medium, sans serif;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 100%;
+  border: 5px solid #285195;
+  border-radius: 1.5rem;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+.formulaire__groupeChamps.tuiles .cocher:checked + .libelle, .formulaire__groupeChamps.tuiles .radio:checked + .libelle {
+  background-color: #285195;
+  color: #fff;
+}
+.formulaire__groupeChamps.tuiles.grandes .libelle, .formulaire__groupeChamps.tuiles.grandes .suggere {
+  font-family: Roboto-Bold, sans serif;
+  font-size: 4rem;
+}
+.formulaire__securise::before {
+  content: "";
+  display: inline-block;
+  width: 3rem;
+  height: 2.5rem;
+  vertical-align: top;
+  background-repeat: no-repeat;
+  transition: all, 0.1s ease-in-out;
+  background-image: url(../images/icones/connexionssl.svg);
+}
+
 /****** BASE ******/
 /** Typographie - Styles généraux de la typographie **/
 /**
@@ -1521,6 +1704,23 @@ header {
 
 .indexLivres .nouveautes__conteneurGrille {
   margin: initial;
+}
+
+@supports (grid-template-columns: minmax(auto, 1400px)) {
+  @media (min-width: 600px) {
+    .index.livre, .enveloppe {
+      display: grid;
+      grid-template-columns: minmax(auto, 1400px);
+      justify-content: center;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+@supports not (grid-template-columns: minmax(auto, 1400px)) {
+  .index.livre, .enveloppe {
+    max-width: 1400px;
+  }
 }
 
 /** Accueil **/

@@ -15,12 +15,27 @@ class ControleurAuteur
 
     public function index(): void
     {
-        $intIdAuteur=1;
-        if (isset($_GET['id_auteur'])!=0) $intIdAuteur=$_GET['id_auteur'];
+        var_dump($_POST);
+        //Url de base
+        $urlAuteur = 'index.php?controleur=auteur&action=index';
 
-        $auteurs = Auteur::trouverTout();
+        //Filtres et tris
+        $trierPar = $_POST['trierPar'] ?? 'auteurs.nomA';
+        $nbAuteursParPage = $_POST['nbAuteursParPage'] ?? 9;
+        $choixVue = $_POST['choixVue'] ?? 'vignette';
+        $strIdPage = $_POST['id_page'] ?? 0;
+
+        //Pagination
         $nombreAuteurs = Auteur::trouverNombreAuteurs();
-        $tDonnees = array("titrePage"=>"Les auteurs", "action"=>"index", "auteurs"=>$auteurs, "nombreAuteurs"=>$nombreAuteurs);
+        $enregistrementDepart = $nbAuteursParPage !== 'tous' ? $strIdPage*$nbAuteursParPage : 0;
+        $nbAuteursParPage = $nbAuteursParPage === 'tous' ? $nombreAuteurs : $nbAuteursParPage;
+        $nombrePage = intval($nombreAuteurs / $nbAuteursParPage);
+
+        $auteurs = Auteur::trouverTout($trierPar, $enregistrementDepart, $nbAuteursParPage);
+
+        $tDonnees = array("titrePage"=>"Les auteurs", "action"=>"index", "auteurs"=>$auteurs, "nombreAuteurs"=>$nombreAuteurs,
+            "nombreTotalPages"=>$nombrePage, "choixVue"=>$choixVue, "urlPagination"=>$urlAuteur, "numeroPage"=>$strIdPage,
+            "nbAuteursParPage"=>$nbAuteursParPage, "trierPar"=>$trierPar);
         echo App::getBlade()->run("auteurs.index",$tDonnees);
     }
 

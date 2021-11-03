@@ -56,20 +56,20 @@
                     <legend class="formulaire__sectionLegende">
                         <h3 class="formulaire__sectionTitre">Trier par:</h3>
                     </legend>
-                <p class="bloc">
-                    <select name="trierPar" id="trierPar">
-                        <option value="categories.nomA" @if($trierPar === 'categories.nomA') selected @endIf>Categories A-Z</option>
-                        <option value="categories.nomD" @if($trierPar === 'categories.nomD') selected @endIf>Categories Z-A</option>
-                        <option value="livres.titreA" @if($trierPar === 'livres.titreA') selected @endIf>Livres A-Z</option>
-                        <option value="livres.titreD" @if($trierPar === 'livres.titreD') selected @endIf>Livres Z-A</option>
-                        <option value="auteurs.nomA" @if($trierPar === 'auteurs.nomA') selected @endIf>Auteurs A-Z</option>
-                        <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs Z-A</option>
-                        <option value="statutD" @if($trierPar === 'statutD') selected @endIf>Plus récents au plus anciens</option>
-                        <option value="statutA" @if($trierPar === 'statutA') selected @endIf>Plus anciens au plus récents</option>
-                    </select>
-                </p>
-                <input class="" type="submit" id="livresTrie">
+                    <p class="bloc">
+                        <select name="trierPar" id="trierPar">
+                            <option value="categories.nomA" @if($trierPar === 'categories.nomA') selected @endIf>Categories A-Z</option>
+                            <option value="categories.nomD" @if($trierPar === 'categories.nomD') selected @endIf>Categories Z-A</option>
+                            <option value="livres.titreA" @if($trierPar === 'livres.titreA') selected @endIf>Livres A-Z</option>
+                            <option value="livres.titreD" @if($trierPar === 'livres.titreD') selected @endIf>Livres Z-A</option>
+                            <option value="auteurs.nomA" @if($trierPar === 'auteurs.nomA') selected @endIf>Auteurs A-Z</option>
+                            <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs Z-A</option>
+                            <option value="statutD" @if($trierPar === 'statutD') selected @endIf>Plus récents au plus anciens</option>
+                            <option value="statutA" @if($trierPar === 'statutA') selected @endIf>Plus anciens au plus récents</option>
+                        </select>
+                    </p>
                 </fieldset>
+                <input class="" type="submit" id="livresTrie">
             </form>
         </section>
         <section class="index livre {{$choixVue}}">

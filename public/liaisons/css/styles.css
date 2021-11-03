@@ -1515,6 +1515,10 @@ header {
   }
 }
 
+.indexLivres .nouveautes__conteneurGrille {
+  margin: initial;
+}
+
 /** Accueil **/
 /**
 * @author Gabriel Caron <1861095@csfoy.ca>
@@ -1910,106 +1914,8 @@ header {
   }
 }
 
-/** Livres **/
+/** Entete **/
 /* Entete*/
-/** Livres **/
-/**
-* @author Gabriel Caron <1861095@csfoy.ca>
-* @version 1.0
-*
-* ------------------
-* TABLE DES MATIERES
-* ------------------
-* LIVRES
-* Styles généraux
-*/
-.livre__lien {
-  text-decoration: none;
-  filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, 0.1));
-}
-@media screen and (min-width: 500px) {
-  .livre__lien {
-    grid-column: span 6;
-  }
-}
-@media screen and (min-width: 900px) {
-  .livre__lien {
-    grid-column: span 4;
-  }
-}
-@media screen and (min-width: 900px) {
-  .livre__lien .livre__conteneurVignette {
-    position: relative;
-    top: 0;
-    transition: top 0.2s ease-in;
-  }
-}
-@media screen and (min-width: 900px) {
-  .livre__lien:hover .livre__conteneurVignette {
-    position: relative;
-    top: -2rem;
-  }
-}
-.livre__lien:hover .livre__categorie {
-  background-color: #0050C8;
-  color: #fff;
-  border: 2px solid #0050C8;
-}
-.livre__article {
-  margin-bottom: 5rem;
-}
-.livre__image {
-  border-radius: 5px;
-}
-.livre__image.etiquette {
-  border-radius: 5px 5px 0 0;
-}
-.livre__etiquette {
-  background-color: #0050C8;
-  margin: 0;
-  padding: 1rem;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 0 5px 5px;
-}
-.livre__titre {
-  font-size: 3rem;
-  color: #0050C8;
-  margin-top: 3rem;
-}
-@media screen and (min-width: 1000px) {
-  .livre__titre {
-    margin-top: 8rem;
-  }
-}
-.livre__listeInfos {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.livre__auteur {
-  font-size: 2.5rem;
-  color: #000;
-}
-.livre__categorie {
-  font-size: 1.6rem;
-  color: #000;
-  border: 2px solid #E5E5E5;
-  padding: 0.9rem;
-  margin-top: 1rem;
-  display: inline-block;
-}
-.livre__tablette {
-  display: none;
-}
-@media screen and (min-width: 1000px) {
-  .livre__tablette {
-    display: block;
-    position: relative;
-    top: -26rem;
-  }
-}
-
 /** errreur **/
 .erreur {
   max-width: 70%;

@@ -1,7 +1,7 @@
 <?php $_shouldextend[1]=1; ?>
 
 <?php $this->startSection('contenu'); ?>
- <div class="conteneur">
+ <div class="indexLivres">
  <section class="enveloppe">
  <section class="filAriane">
  <span><a href="index.php">Accueil</a> / Livres</span>
@@ -51,29 +51,40 @@
  <input class="" type="submit" id="livresTrie">
  </form>
  </section>
- <section class="livres">
- <!-- Foreach livres -->
+ <section class="index livre">
+ <!-- un titre display none? -->
+ <div class="nouveautes__conteneurGrille">
+ <!-- Foreach Nouveautés -->
+ <?php /*            Faire un modulo, s'il se divise par 3, c'est une rangée*/ ?>
  <?php $__currentLoopData = $livres; $this->addLoop($__currentLoopData);$this->getFirstLoop();
  foreach($__currentLoopData as $livre): $loop = $this->incrementLoopIndices();  ?>
- <a href="index.php?controleur=livre&action=fiche&id=<?php echo \htmlentities($livre->getId(), ENT_QUOTES, 'UTF-8', false); ?>">
- <article class="livres__article">
- <h2 class="livres__titre"><?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></h2>
- <?php if($livre->getStatut() === 3): ?>
- <p class="livres__nouveaute">A parraitre</p>
- <?php elseif($livre->getStatut() === 2): ?>
- <p class="livres__nouveaute">Nouveauté</p>
+ <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id=<?php echo \htmlentities($livre->getId(), ENT_QUOTES, 'UTF-8', false); ?>">
+ <article class="livre__article">
+ <div class="livre__conteneurVignette">
+ <img <?php if($livre->getStatut() > 1): ?>
+ class="livre__image etiquette"
+ <?php else: ?>
+ class="livre__image"
+ <?php endif; ?> src="https://via.placeholder.com/460x500">
+
+ <?php if($livre->getStatut() === 2): ?>
+ <p class="livre__etiquette">Nouveauté</p>
+ <?php elseif($livre->getStatut() === 3): ?>
+ <p class="livre__etiquette">À paraitre</p>
  <?php endif; ?>
- <img alt="" src="https://via.placeholder.com/150">
- <ul class="">
+ </div>
+ <h3 class="livre__titre"><?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></h3>
+ <ul class="livre__listeInfos">
  <?php $__currentLoopData = $livre->getAuteurAssocie(); $this->addLoop($__currentLoopData);$this->getFirstLoop();
  foreach($__currentLoopData as $auteur): $loop = $this->incrementLoopIndices();  ?>
- <li class="livres__auteur"><?php echo \htmlentities($auteur->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($auteur->getNom(), ENT_QUOTES, 'UTF-8', false); ?></li>
+ <li class="livre__item livre__auteur"><?php echo \htmlentities($auteur->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($auteur->getNom(), ENT_QUOTES, 'UTF-8', false); ?></li>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
- <li class="livres__categorie"><?php echo \htmlentities($livre->getCategorieAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></li>
+ <li class="livre__item livre__categorie"><?php echo \htmlentities($livre->getCategorieAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></li>
  </ul>
  </article>
  </a>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
  </section>
  <?php echo $this->runChild('livres.fragments.pagination'); ?>
  </div>

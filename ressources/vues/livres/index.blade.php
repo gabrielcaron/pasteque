@@ -50,27 +50,38 @@
                 <input class="" type="submit" id="livresTrie">
             </form>
         </section>
-        <section class="indexLivres__sectionLivres">
-            <!-- Foreach livres -->
-            @foreach($livres as $livre)
-            <a class="indexLivres__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
-                <article class="indexLivres__article">
-                    <h2 class="indexLivres__titre">{{$livre->getTitre()}}</h2>
-                    @if($livre->getStatut() === 3)
-                        <p class="indexLivres__etiquette">A parraitre</p>
-                    @elseif($livre->getStatut() === 2)
-                        <p class="indexLivres__etiquette">Nouveauté</p>
-                    @endif
-                    <img class="indexLivres__img" alt="" src="https://via.placeholder.com/150">
-                    <ul class="indexLivres__liste">
-                        @foreach($livre->getAuteurAssocie() as $auteur)
-                            <li class="indexLivres__listeItem">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
-                        @endforeach
-                        <li class="indexLivres__listeItem">{{$livre->getCategorieAssocie()->getNom()}}</li>
-                    </ul>
-                </article>
-            </a>
-            @endforeach
+        <section class="index livre">
+            <!-- un titre display none? -->
+            <div class="nouveautes__conteneurGrille">
+                <!-- Foreach Nouveautés -->
+                {{--            Faire un modulo, s'il se divise par 3, c'est une rangée--}}
+                @foreach($livres as $livre)
+                    <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
+                        <article class="livre__article">
+                            <div class="livre__conteneurVignette">
+                                <img @if ($livre->getStatut() > 1)
+                                     class="livre__image etiquette"
+                                     @else
+                                     class="livre__image"
+                                     @endif src="https://via.placeholder.com/460x500">
+
+                                @if ($livre->getStatut() === 2)
+                                    <p class="livre__etiquette">Nouveauté</p>
+                                @elseif($livre->getStatut() === 3)
+                                    <p class="livre__etiquette">À paraitre</p>
+                                @endif
+                            </div>
+                            <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
+                            <ul class="livre__listeInfos">
+                                @foreach($livre->getAuteurAssocie() as $auteur)
+                                    <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                                @endforeach
+                                <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                            </ul>
+                        </article>
+                    </a>
+                @endforeach
+            </div>
         </section>
         @include('livres.fragments.pagination')
     </div>

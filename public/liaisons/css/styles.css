@@ -1417,16 +1417,6 @@ header {
   font-weight: bold;
 }
 
-/** Index Livres **/
-/**
-* @author Michel Veillette <1965623@csfoy.ca>
-* @version 1.0
-*
-* ------------------
-* TABLE DES MATIERES
-* ------------------
-* INDEXLIVRES
-*/
 /** Livres **/
 /**
 * @author Gabriel Caron <1861095@csfoy.ca>
@@ -1523,6 +1513,10 @@ header {
     position: relative;
     top: -26rem;
   }
+}
+
+.indexLivres .nouveautes__conteneurGrille {
+  margin: initial;
 }
 
 /** Accueil **/

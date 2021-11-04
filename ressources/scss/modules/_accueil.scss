@@ -12,6 +12,7 @@
 
 .accueil {
   &__titre {
+	grid-column: span 12;
 	margin: 9rem 0 4rem 0;
   }
 }
@@ -32,18 +33,35 @@
 }
 
 .actualites {
+  @include paddingConteneur;
+  @include conteneur1400px($pointRupture: 500px);
+
   & .actualite {
+	grid-column: 1 / 12;
+	margin-bottom: 3rem;
+	@include rangeeGrid12col($pointRupture: 500px);
+
+
+	&__image {
+	  grid-column: span 3;
+	}
+
+	&__conteneurInfos {
+	  grid-column: span 9;
+	}
+
+	&__contenu {
+	  margin: 1rem 0;
+	}
+
+	// À déplacer dans boutons.scss éventuellement
 	&__lien {
 	  grid-column: 1 / 12;
-	}
-	&__article {
-	  @include rangeeGrid12col();
-	}
-	&__image {
-	  grid-column: span 2;
-	}
-	&__titre {
-	  grid-column: span 10;
+	  font-family: $RobotoMedium;
+	  font-size: 2rem;
+	  text-transform: uppercase;
+	  letter-spacing: 2px;
+	  padding-right: 3rem;
 	}
   }
 }

@@ -42,14 +42,14 @@ class Actualite
     }
 
     // $l_actualite : Getter et setter
-    public function getLienActualite(): string
+    public function getlActualite(): string
     {
         return $this->l_actualite;
     }
 
-    public function setLienActualite(int $unLienActualite): void
+    public function setlActualite(int $uneActualite): void
     {
-        $this->l_actualite = $unLienActualite;
+        $this->l_actualite = $uneActualite;
     }
 
     // $date : Getter et setter

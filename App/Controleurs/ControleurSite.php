@@ -20,7 +20,7 @@ class ControleurSite
         $aparaitre = Livre::trouverAParaitreHasard(3);
         $actualites = Actualite::trouverTout();
 //        var_dump($actualites);
-        $tDonnees = array("titrePage"=>"Accueil", "nouveautes"=>$nouveautes, "aparaitre"=>$aparaitre, "actualites"=>$actualites);
+        $tDonnees = array("titrePage"=>"Accueil", "classeMain"=>"accueil", "nouveautes"=>$nouveautes, "aparaitre"=>$aparaitre, "actualites"=>$actualites);
 //        var_dump($tDonnees);
         echo App::getBlade()->run("accueil",$tDonnees);
     }

@@ -117,4 +117,13 @@
 @mixin paddingConteneur {
   padding-left: 2rem;
   padding-right: 2rem;
+
+  @media screen and (min-width: $desktop1000px) {
+	padding-left: 3rem;
+	padding-right: 3rem;
+  }
+
+  @media screen and (min-width: $desktop1400px) {
+	padding: initial;
+  }
 }

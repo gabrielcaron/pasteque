@@ -1,163 +1,220 @@
-/* Élément de base */
-.conteneur {
-  margin: 0 auto;
-  width: 100%;
-}
-li {
-  list-style: none;
-  margin: 1px;
-}
-ul {
-  padding: 0;
-}
-.hidden {
-  display: none;
-}
-.picture {
-width: 100%;
-  &__image {
-    width: 100%;
-  }
-}
-.erreur {
-  color: red;
-}
+/**
+* @author Gabriel Caron <gabriel.caron@gmail.com>
+* @version 2021.3
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* Formulaire
+*/
 
-/* Élément du footer */
-.footer {
-  background-color: $vert;
-  &__h4 {
-    padding-top: 10px;
-    color: white;
-    text-align: center;
-  }
-  &__mediaSociaux {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  &__mediaSocial {
-    padding: 20px;
-    width: 15%;
-  }
-}
+// Temporaire, juste pour valider si l'étape initiale s'affiche correctement avec de passer au JS
 
-/* Élément du formulaire */
 .formulaire {
-  margin: 10px;
-  &__titre {
-    text-align: Center;
-  }
-  &__sousTitre {
-    margin: 10px;
-  }
-  &__legend {
-    text-align: center;
-    &--avecTitreVisible {
-      text-align: center;
-      width: 100%;
-      border-top: 3px solid $brun;
-      border-bottom: 3px solid $brun;
-    }
-  }
-  &__fieldset {
-    border: none;
-    &--bouton {
-      position: relative;
-    }
-    &--bouton svg{
-      position: absolute;
-      width: 50px;
-      top: 15px;
-      left:190px;
-      color: $vert;
-    }
+
+  // Styles généraux
+
+  &__sectionLegende {
+    padding: 2rem 0;
   }
 
-  /* Liste des étapes */
-  &__etapeListe {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    list-style: none;
+  &__liste {
     padding: 0;
-    &--item {
-      width: 100%;
-      text-align: center;
-      background-color: $brun;
-      border: solid 1px white;
-      &--active {
-        width: 100%;
-        text-align: center;
-        background-color: $vert;
-        border: solid 1px white;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    list-style-type: none;
+
+    @include rangeeGrid12col();
+    @media screen and (min-width: $mobile600px) {
+      & > * {
+        grid-column: span 4;
+      }
+
+    }
+
+  }
+
+  .bloc {
+
+    & .surtitre {
+      display: block;
+      background-color: $bleu;
+      color: $blanc;
+      font-family: $RobotoBold;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      border-radius: 0.75rem 0.75rem 0 0;
+      padding: 1rem 0.5rem;
+      margin: -3rem -1rem 1rem -1rem;
+    }
+
+    .radio {
+      width: 2.5rem;
+      height: 2.5rem;
+      vertical-align: middle;
+
+      & + .libelle {
+        display: initial;
+        padding-left: 0.5rem;
       }
     }
-    &--lien {
-      text-align: center;
+
+    .cocher {
+      width: 2.5rem;
+      height: 2.5rem;
+      & + .libelle {
+        display: initial;
+        padding-left: 0.5rem;
+        vertical-align: text-bottom;
+      }
     }
-    &--h2 {
-      color: white;
+
+    input[type=text], input[type=number] {
+      width: calc(100% - 8px);
+      height: 4.4rem;
+
+      &.montantDonPersonnalise {
+        width: 10rem;
+        font-family: $RobotoMedium;
+        font-style: normal;
+        font-size: 3rem;
+        line-height: 100%;
+        border: 5px solid $bleu;
+        border-radius: 1.5rem;
+        text-align: center;
+        padding: 1rem;
+      }
     }
-    &--h3 {
-      color: white;
+
+    // Sinon, les libellés prennent 100% de la largeur par défaut
+    .libelle {
+      display: block;
+      font-size: 2rem;
+      vertical-align: middle;
+      padding: 0.5rem 0;
+
+      &.modifierMontantDon {
+        display: inline-block;
+        font-family: $RobotoBold;
+        font-size: 2.2rem;
+        padding-right: 2rem;
+        vertical-align: baseline;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 5rem;
+      padding: 0.75rem;
+    }
+
+    textarea {
+      width: calc(100% - 6px);
+      height: 25rem;
+    }
+
+  }
+
+
+  // Styles spéciques dans les fieldsets
+
+  &__groupeChamps {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    &.rangeeReduite, & .rangee {
+      @include rangeeGrid12col();
+      & > * {
+        grid-column: 1 / 13;
+      }
+      & .bloc {
+        grid-column: 1 / 9;
+        margin: 1rem 0;
+        &.demi {
+          grid-column: 1 / 6;
+        }
+      }
+    }
+
+    &.tuiles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+
+      & .formulaire__conteneur3colonnes {
+        display: flex;
+        gap: 2rem;
+        width: 100%;
+        padding-left: 0;
+        margin: 0;
+
+        & .bloc {
+          width: calc(50% - 2rem);
+        }
+      }
+
+
+      & .bloc {
+        display: flex;
+        margin: 0;
+        @media screen and (max-width: $mobile600px) {
+          width: calc(50% - 1rem);
+        }
+
+        & .libelle {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+
+      // Seul le libellé est visible, la case à cocher est masquée
+      & .libelle, & .suggere {
+        width: 100%;
+        font-family: $RobotoMedium;
+        font-style: normal;
+        font-size: 2rem;
+        line-height: 100%;
+        border: 5px solid $bleu;
+        border-radius: 1.5rem;
+        text-align: center;
+        padding: 3rem 1rem;
+      }
+
+      // Change la couleur de la tuile (label) lorsque cochée
+      & .cocher:checked + .libelle, & .radio:checked + .libelle {
+        background-color: $bleu;
+        color: $blanc;
+      }
+
+      // Grandes tuiles
+      &.grandes {
+        & .libelle, & .suggere {
+          font-family: $RobotoBold;
+          font-size: 4rem;
+        }
+      }
     }
   }
 
-  /* Mise en forme des différentes enveloppe pour les flex-box */
-  &__champEnveloppe {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
+  // Icônes du formulaire (pourrait être déplacé dans un module éventuellement)
 
-  &__champEnveloppe label {
-    padding-bottom: 10px;
-  }
+  &__securise {
 
-  &__champEnveloppe input {
-    margin-bottom: 10px;
-  }
-  &__champEnveloppe select {
-    margin-bottom: 10px;
-    width: calc(50% - 1rem);
-  }
-  &__enveloppe--choix {
-    &--item {
-      margin: 5px;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 3rem;
+      height: 2.5rem;
+      vertical-align: top;
+      background-repeat: no-repeat;
+      transition: all, 0.1s ease-in-out;
+      background-image: url(../images/icones/connexionssl.svg);
     }
   }
-  &__enveloppe--choixMultiple {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 5px;
-    &--item {
-      width: calc(50% - 1rem);
-    }
-  }
-  &__radioLabel--choix {
-    display: block;
-    font-size: 20px;
-    text-align: center;
-    background-color: white;
-    color: $vertFonce;
-    border: 3px solid $vert;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  &__radioInput--choix:checked + &__radioLabel--choix {
-    display: block;
-    font-size: 20px;
-    text-align: center;
-    background-color: $vert;
-    color: white;
-    border: 3px solid $vert;
-    padding: 20px;
-    border-radius: 5px;
-  }
-
 }
-

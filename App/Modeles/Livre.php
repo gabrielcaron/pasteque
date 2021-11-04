@@ -261,9 +261,9 @@ class Livre
         return Categorie::trouverParId($this->categorie_id);
     }
 
-    public function getAuteurAssocie(): Auteur
+    public function getAuteurAssocie(): array
     {
-        return Auteur::trouverParId($this->id);
+        return Auteur::trouverParIdLivre($this->id);
     }
 
     public function getReconnaissanceAssocie(): array|false
@@ -275,7 +275,7 @@ class Livre
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
+        $chaineSQL = 'SELECT livres.*
                             FROM livres
                             INNER JOIN categories ON categories.id = categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
@@ -288,8 +288,43 @@ class Livre
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $livres = $requetePreparee->fetchAll();
-        //var_dump($participants);
+        //var_dump($livres);
+
         return $livres;
+    }
+
+    public static function trouverToutSansCategories($trierPar, $enregistrementDepart, $nombreLivreParPage): array
+    {
+        $chaineSQL = 'SELECT livres.*
+                            FROM livres
+                            INNER JOIN categories ON categories.id = livres.categorie_id
+                            INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
+                            INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
+                            ORDER BY 
+                                     case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC,
+                                     case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,
+                                     case when :trierPar = \'categories.nomA\' then categories.nom end ASC,
+                                     case when :trierPar = \'categories.nomD\' then categories.nom end DESC,
+                                     case when :trierPar = \'livres.titreA\' then livres.titre end ASC,
+                                     case when :trierPar = \'livres.titreD\' then livres.titre end DESC,
+                                     case when :trierPar = \'statutA\' then statut end ASC,
+                                     case when :trierPar = \'statutD\' then statut end DESC
+                            LIMIT :enregistrementDepart, :nombreLivreParPage';
+        //ORDER BY :ordre :ascOuDesc
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':enregistrementDepart', $enregistrementDepart, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':nombreLivreParPage', $nombreLivreParPage, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':trierPar', $trierPar, PDO::PARAM_STR);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $resultat = $requetePreparee->fetchAll();
+
+        return $resultat;
     }
 
     public static function trouverParId(int $idLivre): Livre
@@ -324,6 +359,27 @@ class Livre
         return $resultat->nombreLivres;
     }
 
+    public static function trouverNombreLivresAvecCategories($idCategories): string
+    {
+        /* Message à Michelle 29 ooctobre 2021 :
+        Impossibilité d'utiliser un paramètre pour la chaine $categories contenant le séparateur ',' */
+
+        $categories = implode(', ', $idCategories);
+
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT count(id) AS nombreLivres FROM livres WHERE categorie_id IN ('. $categories .')';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        //$requetePreparee->bindParam(':categoriesSelect', $categories, PDO::PARAM_STR);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $resultat = $requetePreparee->fetch();
+        return $resultat->nombreLivres;
+    }
+
     public static function trouverLivresParCategories($idCategories, $trierPar, $enregistrementDepart, $nombreLivreParPage): array
     {
         /* Message à Michelle 29 ooctobre 2021 :
@@ -331,7 +387,7 @@ class Livre
 
         $categories = implode(', ', $idCategories);
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT * 
+        $chaineSQL = 'SELECT livres.*
                             FROM livres
                             INNER JOIN categories ON categories.id = livres.categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
@@ -353,7 +409,7 @@ class Livre
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
         $requetePreparee->bindParam(':enregistrementDepart', $enregistrementDepart, PDO::PARAM_INT);
         $requetePreparee->bindParam(':nombreLivreParPage', $nombreLivreParPage, PDO::PARAM_INT);
-        $requetePreparee->bindParam(':categoriesSelect', $categories, PDO::PARAM_STR);
+        //$requetePreparee->bindParam(':categoriesSelect', $categories, PDO::PARAM_STR);
         $requetePreparee->bindParam(':trierPar', $trierPar, PDO::PARAM_STR);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Livre');
@@ -361,7 +417,7 @@ class Livre
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $resultat = $requetePreparee->fetchAll();
-        //var_dump($resultat);
+
         return $resultat;
     }
 
@@ -371,7 +427,7 @@ class Livre
         $chaineSQL = 'SELECT *
                         FROM livres
                         INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
-                        WHERE livres_auteurs.id = :unIdAuteur
+                        WHERE livres_auteurs.auteur_id = :unIdAuteur
                         LIMIT 4';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);

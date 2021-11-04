@@ -1,13 +1,11 @@
 <section class="menu__entete">
     <div class="menu__listeLogo">
-        <a href="index.php?controleur=site&action=accueil"><img class="menu__logo"
-                                                                src="liaisons/images/logotype-pasteque.png"
-                                                                width="200px"></a>
+        <a href="index.php?controleur=site&action=accueil"><img class="menu__logo" src="liaisons/images/logotype-pasteque.png" width="200px"></a>
     </div>
     <section class="menu__topNavEntete topNavTable">
         <ul class="nav topNavLink">
             <li id="search">
-                <ul>
+                <ul class="liste">
                     <li id="options">
                         <a href="#">Tout</a>
                         <ul class="subnav">
@@ -28,39 +26,12 @@
             </li>
 
             <li class="menu__listeItem">
-                <a href="index.php?controleur=livre&action=index" class="menu__lien">Livre</a>
+                <a href="index.php?controleur=livre&action=index" class="menu__lien">Mon compte</a>
             </li>
             <li class="menu__listeItem">
-                <a href="index.php?controleur=site&action=accueil" class="menu__lien">Mon compte</a>
+                <a href="index.php?controleur=site&action=accueil" class="menu__lien"><i class="fa fa-shopping-cart"></i></a>
             </li>
         </ul>
-        {{--<ul class="menu__liste topNavLink">
-            <li class="menu__listeItem">
-                <a href="index.php?controleur=livre&action=index" class="menu__lien">Livre</a>
-            </li>
-            <li class="menu__listeItem">
-                <a href="index.php?controleur=site&action=accueil" class="menu__lien">Mon compte</a>
-            </li>
-            <li id="search">
-                <form action="" method="get">
-                    <input type="text" name="search_text" id="search_text" placeholder="Recherche" minlength="4"
-                           maxlength="50" size="10"/>
-                    <input type="button" name="search_button" id="search_button"></a>
-                </form>
-            </li>
-            <li id="options">
-                <a href="#">Tout</a>
-                <ul class="subnav">
-                    <li><a href="#">Bandes dessinées</a></li>
-                    <li><a href="#">Bd jeunesse</a></li>
-                    <li><a href="#">Livres illustrés</a></li>
-                    <li><a href="#">Albums jeunesse</a></li>
-                    <li><a href="#">Documents</a></li>
-                    <li><a href="#">Divers</a></li>
-                </ul>
-            </li>
-        </ul>--}}
-
 
     </section>
     <nav class="menu menu--ferme ">
@@ -72,10 +43,10 @@
                 <a href="index.php?controleur=livre&action=index" class="menu__lien">Livre</a>
             </li>
             <li class="menu__listeItem" id="auteur">
-                <a href="index.php?controleur=auteur&action=index" class="menu__lien">Auteurs</a>
+                <a href="index.php?controleur=auteur&action=index" class="menu__lien">Artistes</a>
             </li>
             <li class="menu__listeItem">
-                <a href="index.php?controleur=site&action=apropos" class="menu__lien" id="apropos">À propos</a>
+                <a href="#" class="menu__lien" id="apropos">À propos</a>
             </li>
             <li class="menu__listeItem" id="galerie">
                 <a href="" class="menu__lien">Galerie-boutique</a>

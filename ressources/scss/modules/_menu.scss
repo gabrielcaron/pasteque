@@ -165,7 +165,14 @@ header{
     }
 }
 
-
+.fa {
+    display: inline-block;
+    font: normal normal normal 14 px/1 FontAwesome;
+    font-size: 25px!important;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 /* Si le javascript est activé */
 
 /* Pour des raisons d'accessibilité, on ne cache le menu mobile

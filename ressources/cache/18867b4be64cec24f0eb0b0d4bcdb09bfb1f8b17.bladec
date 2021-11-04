@@ -2,34 +2,40 @@
 
 <?php $this->startSection('contenu'); ?>
  <section class="filAriane">
- <span>Accueil / Livres / <?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></span>
+ <span><a href="index.php">Accueil</a> / <a href="index.php?controleur=livre&action=index">Livres</a> / <?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></span>
  </section>
- <section class="livre">
- <div class="livre__conteneur1">
- <img class="livre__conteneurImg" src="liaisons/images/9782897770013.jpg" width="100%">
+ <section class="ficheLivre">
+ <div class="ficheLivre__conteneur1">
+ <img class="ficheLivre__conteneurImg" src="liaisons/images/9782897770013.jpg" width="100%">
  <?php if($livre->getStatut()===3): ?>
- <p class="livre__statut">À paraitre</p>
+ <p class="ficheLivre__statut">À paraitre</p>
  <?php elseif($livre->getStatut()===2): ?>
- <p class="livre__statut">Nouveauté</p>
+ <p class="ficheLivre__statut">Nouveauté</p>
  <?php endif; ?>
  </div>
- <div class="livre__conteneur2">
- <div class="livre__flexNomPrix">
- <h1 class="livre__title"><?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></h1>
- <h3 class="livre__prixCan"><?php echo \htmlentities($livre->getPrixCan(), ENT_QUOTES, 'UTF-8', false); ?>$</h3>
+ <div class="ficheLivre__conteneur2">
+ <div class="ficheLivre__flexNomPrix">
+ <h1 class="ficheLivre__title"><?php echo \htmlentities($livre->getTitre(), ENT_QUOTES, 'UTF-8', false); ?></h1>
+ <h3 class="ficheLivre__prixCan"><?php echo \htmlentities($livre->getPrixCan(), ENT_QUOTES, 'UTF-8', false); ?>$</h3>
  </div>
- <span class="livre__auteur"><?php echo \htmlentities($livre->getAuteurAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($livre->getAuteurAssocie()->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?></span>
- <br><br><span class="livre__categorie"><?php echo \htmlentities($livre->getCategorieAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></span>
+ <?php $__currentLoopData = $livre->getAuteurAssocie(); $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $auteur): $loop = $this->incrementLoopIndices();  ?>
+ <a href="index.php?controleur=auteur&action=fiche&id=<?php echo \htmlentities($auteur->getId(), ENT_QUOTES, 'UTF-8', false); ?>">
+ <span class="ficheLivre__auteur"><?php echo \htmlentities($auteur->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($auteur->getNom(), ENT_QUOTES, 'UTF-8', false); ?></span>
+ </a>
+ <br>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ <br><br><span class="ficheLivre__categorie"><?php echo \htmlentities($livre->getCategorieAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></span>
 
- <div class="livre__ajout">
- <div class="livre__ajoutQuantite">
+ <div class="ficheLivre__ajout">
+ <div class="ficheLivre__ajoutQuantite">
  <button class="minus-btn btnQuantite" type="button" name="button">-</button>
- <input class="livre__ajoutInput" type="text" name="name" value="1">
+ <input class="ficheLivre__ajoutInput" type="text" name="name" value="1">
  <button class="plus-btn btnQuantite" type="button" name="button">+</button>
 
  </div>
- <div class="livre__ajoutPanier">
- <button class="livre__ajoutPanierBtn"><span class="livre__panierImg"></span>
+ <div class="ficheLivre__ajoutPanier">
+ <button class="ficheLivre__ajoutPanierBtn"><span class="ficheLivre__panierImg"></span>
  AJOUTER AU PANIER
  </button>
  </div>
@@ -39,10 +45,16 @@
  <div class="tabSection">
  <div class="tabSection__menu">
  <button class="tabSection__menuLink active" data-content="first">
+ <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path class="tabSection__menuLinkPath" d="M10.5 0H2.5C1.4 0 0.51 0.9 0.51 2L0.5 18C0.5 19.1 1.39 20 2.49 20H14.5C15.6 20 16.5 19.1 16.5 18V6L10.5 0ZM12.5 16H4.5V14H12.5V16ZM12.5 12H4.5V10H12.5V12ZM9.5 7V1.5L15 7H9.5Z" fill="#595959"/>
+ </svg>
  <span data-title="first">Résumé</span>
  </button>
  <button class="tabSection__menuLink" data-content="second">
- <span data-title="second">Reconnaissances</span>
+ <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path class="tabSection__menuLinkPath" d="M16.5 2H14.5V0H4.5V2H2.5C1.4 2 0.5 2.9 0.5 4V5C0.5 7.55 2.42 9.63 4.89 9.94C5.52 11.44 6.87 12.57 8.5 12.9V16H4.5V18H14.5V16H10.5V12.9C12.13 12.57 13.48 11.44 14.11 9.94C16.58 9.63 18.5 7.55 18.5 5V4C18.5 2.9 17.6 2 16.5 2ZM2.5 5V4H4.5V7.82C3.34 7.4 2.5 6.3 2.5 5ZM16.5 5C16.5 6.3 15.66 7.4 14.5 7.82V4H16.5V5Z" fill="#595959"/>
+ </svg>
+ <span data-title="second">Prix obtenus</span>
  </button>
  </div>
  <div class="tabSection__bar">
@@ -76,7 +88,11 @@
  </tr>
  <tr class="informations__tableRow">
  <td class="informations__tableColumn">Auteur</td>
- <td class="informations__tableColumn"><?php echo \htmlentities($livre->getAuteurAssocie()->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($livre->getAuteurAssocie()->getNom(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td class="informations__tableColumn"><?php $__currentLoopData = $livre->getAuteurAssocie(); $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $auteur): $loop = $this->incrementLoopIndices();  ?><a
+ href="index.php?controleur=auteur&action=fiche&id=<?php echo \htmlentities($auteur->getId(), ENT_QUOTES, 'UTF-8', false); ?>">
+ <span class="livre__auteur"><?php echo \htmlentities($auteur->getPrenom(), ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($auteur->getNom(), ENT_QUOTES, 'UTF-8', false); ?></span>
+ </a><?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?></td>
  </tr>
  <tr class="informations__tableRow">
  <td class="informations__tableColumn">Éditeur</td>

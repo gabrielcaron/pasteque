@@ -1,6 +1,6 @@
 @extends('gabarit')
 @section('contenu')
-    <li class="indexLivres">
+    <div class="indexLivres">
         <section class="enveloppe">
             <section class="filAriane">
                 <span><a href="index.php">Accueil</a> / Livres</span>
@@ -16,36 +16,28 @@
                     <ul class="formulaire__liste">
                         @foreach($categories as $categorie)
                             <li class="bloc">
-                                <input class="cocher screen-reader-only" value="{{$categorie->getId()}}" type="checkbox"
-                                       id="enveloppe__liste--input--{{$categorie->getId()}}"
-                                       name="categoriesSelectionner{{$categorie->getId()}}"
-                                       @if(array_search($categorie->getId(), $categoriesSelectionner)) checked @endIf>
-                                <label class="libelle" for="enveloppe__liste--input--{{$categorie->getId()}}"
-                                       id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                                <input class="cocher screen-reader-only" value="{{$categorie->getId()}}" type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categoriesSelectionner{{$categorie->getId()}}" @if(array_search($categorie->getId(), $categoriesSelectionner)) checked @endIf>
+                                <label class="libelle" for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
                             </li>
                         @endforeach
                     </ul>
                 </fieldset>
                 <fieldset class="formulaire__groupeChamps tuiles">
-                    <!--				Modification par rapport à la maquette: des tuiles ont été utilisées pour le type de don afin de s'uniformiser avec le reste du formulaire-->
                     <legend class="formulaire__sectionLegende">
                         <h3 class="formulaire__sectionTitre">Type de vue:</h3>
                     </legend>
                     <ul class="formulaire__liste">
                         <li class="bloc">
-                            <input  class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue" type="radio"
-                                    @if($choixVue === 'vignette') checked @endIf>
-                            <label  class="libelle" for="vignette">Changer pour une vue en liste</label>
+                            <input  class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue" type="radio" @if($choixVue === 'vignette') checked @endIf>
+                            <label  class="libelle" for="vignette">Changer pour une vue en vignette</label>
                         </li>
                         <li class="bloc">
-                            <input class="radio screen-reader-only" id="liste" value="liste" name="choixVue" type="radio"
-                                   @if($choixVue === 'liste') checked @endIf>
+                            <input class="radio screen-reader-only" id="liste" value="liste" name="choixVue" type="radio" @if($choixVue === 'liste') checked @endIf>
                             <label class="libelle" for="liste">Changer pour une vue en liste</label>
                         </li>
                     </ul>
                 </fieldset>
                 <fieldset class="formulaire__groupeChamps tuiles">
-                    <!--				Modification par rapport à la maquette: des tuiles ont été utilisées pour le type de don afin de s'uniformiser avec le reste du formulaire-->
                     <legend class="formulaire__sectionLegende">
                         <h3 class="formulaire__sectionTitre">Nombre de livre par page :</h3>
                     </legend>
@@ -64,49 +56,49 @@
                     <legend class="formulaire__sectionLegende">
                         <h3 class="formulaire__sectionTitre">Trier par:</h3>
                     </legend>
-                <p class="bloc">
-                    <select name="trierPar" id="trierPar">
-                        <option value="categories.nomA" @if($trierPar === 'categories.nomA') selected @endIf>Categories A-Z</option>
-                        <option value="categories.nomD" @if($trierPar === 'categories.nomD') selected @endIf>Categories Z-A</option>
-                        <option value="livres.titreA" @if($trierPar === 'livres.titreA') selected @endIf>Livres A-Z</option>
-                        <option value="livres.titreD" @if($trierPar === 'livres.titreD') selected @endIf>Livres Z-A</option>
-                        <option value="auteurs.nomA" @if($trierPar === 'auteurs.nomA') selected @endIf>Auteurs A-Z</option>
-                        <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs Z-A</option>
-                        <option value="statutA" @if($trierPar === 'statutA') selected @endIf>Plus récents au plus anciens</option>
-                        <option value="statutD" @if($trierPar === 'statutD') selected @endIf>Plus anciens au plus récents</option>
-                    </select>
-                </p>
-                <input class="" type="submit" id="livresTrie">
+                    <p class="bloc">
+                        <select name="trierPar" id="trierPar">
+                            <option value="categories.nomA" @if($trierPar === 'categories.nomA') selected @endIf>Categories A-Z</option>
+                            <option value="categories.nomD" @if($trierPar === 'categories.nomD') selected @endIf>Categories Z-A</option>
+                            <option value="livres.titreA" @if($trierPar === 'livres.titreA') selected @endIf>Livres A-Z</option>
+                            <option value="livres.titreD" @if($trierPar === 'livres.titreD') selected @endIf>Livres Z-A</option>
+                            <option value="auteurs.nomA" @if($trierPar === 'auteurs.nomA') selected @endIf>Auteurs A-Z</option>
+                            <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs Z-A</option>
+                            <option value="statutD" @if($trierPar === 'statutD') selected @endIf>Plus récents au plus anciens</option>
+                            <option value="statutA" @if($trierPar === 'statutA') selected @endIf>Plus anciens au plus récents</option>
+                        </select>
+                    </p>
                 </fieldset>
+                <input class="" type="submit" id="livresTrie">
             </form>
         </section>
-        <section class="index livre">
+        <section class="index livre {{$choixVue}}">
             <!-- un titre display none? -->
-            <div class="nouveautes__conteneurGrille">
+            <div class="nouveautes__conteneurGrille {{$choixVue}}">
                 <!-- Foreach Nouveautés -->
                 {{--            Faire un modulo, s'il se divise par 3, c'est une rangée--}}
                 @foreach($livres as $livre)
-                    <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
-                        <article class="livre__article">
-                            <div class="livre__conteneurVignette">
+                    <a class="livre__lien {{$choixVue}}" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
+                        <article class="livre__article {{$choixVue}}">
+                            <div class="livre__conteneurVignette {{$choixVue}}">
                                 <img @if ($livre->getStatut() > 1)
-                                     class="livre__image etiquette"
+                                     class="livre__image etiquette {{$choixVue}}"
                                      @else
-                                     class="livre__image"
+                                     class="livre__image {{$choixVue}}"
                                      @endif src="https://via.placeholder.com/460x500">
 
                                 @if ($livre->getStatut() === 2)
-                                    <p class="livre__etiquette">Nouveauté</p>
+                                    <p class="livre__etiquette {{$choixVue}}">Nouveauté</p>
                                 @elseif($livre->getStatut() === 3)
-                                    <p class="livre__etiquette">À paraitre</p>
+                                    <p class="livre__etiquette {{$choixVue}}">À paraitre</p>
                                 @endif
                             </div>
-                            <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
-                            <ul class="livre__listeInfos">
+                            <h3 class="livre__titre {{$choixVue}}">{{$livre->getTitre()}}</h3>
+                            <ul class="livre__listeInfos {{$choixVue}}">
                                 @foreach($livre->getAuteurAssocie() as $auteur)
-                                    <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                                    <li class="livre__item livre__auteur {{$choixVue}}">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                                 @endforeach
-                                <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                                <li class="livre__item livre__categorie {{$choixVue}}">{{$livre->getCategorieAssocie()->getNom()}}</li>
                             </ul>
                         </article>
                     </a>

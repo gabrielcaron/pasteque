@@ -63,11 +63,20 @@ class Auteur
     }
 
 
-    public static function trouverTout():array {
+    public static function trouverTout($trierPar, $enregistrementDepart, $nbAuteursParPage):array {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT * FROM auteurs';
+        $chaineSQL = 'SELECT * 
+                        FROM auteurs
+                        ORDER BY
+                                case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC,
+                                case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC
+                        LIMIT :enregistrementDepart, :nbAuteursParPage';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        $requetePreparee->bindParam(':enregistrementDepart', $enregistrementDepart, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':nbAuteursParPage', $nbAuteursParPage, PDO::PARAM_INT);
+        //$requetePreparee->bindParam(':categoriesSelect', $categories, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':trierPar', $trierPar, PDO::PARAM_STR);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Auteur');
         // Exécuter la requête

@@ -295,14 +295,18 @@ class Livre
 
     public static function trouverToutSansCategories($trierPar, $enregistrementDepart, $nombreLivreParPage): array
     {
+        /* Message à Michelle 3 novembre 2021 :
+        Je dois faire l'affichage du INNER JOIN et ORDER BY seulement lorsque je trie par auteur, sinon il y a des doublons (nous en avions discuté ensemble) */
+        $innerJoin = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id': '';
+        $orderBy = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC, case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,': '';
+
+
         $chaineSQL = 'SELECT livres.*
                             FROM livres
                             INNER JOIN categories ON categories.id = livres.categorie_id
-                            INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
-                            INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
+                            '. $innerJoin .'
                             ORDER BY 
-                                     case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC,
-                                     case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,
+                                     '. $orderBy .'
                                      case when :trierPar = \'categories.nomA\' then categories.nom end ASC,
                                      case when :trierPar = \'categories.nomD\' then categories.nom end DESC,
                                      case when :trierPar = \'livres.titreA\' then livres.titre end ASC,
@@ -363,7 +367,6 @@ class Livre
     {
         /* Message à Michelle 29 ooctobre 2021 :
         Impossibilité d'utiliser un paramètre pour la chaine $categories contenant le séparateur ',' */
-
         $categories = implode(', ', $idCategories);
 
         // Définir la chaine SQL
@@ -384,18 +387,21 @@ class Livre
     {
         /* Message à Michelle 29 ooctobre 2021 :
         Impossibilité d'utiliser un paramètre pour la chaine $categories contenant le séparateur ',' */
-
         $categories = implode(', ', $idCategories);
+
+        /* Message à Michelle 3 novembre 2021 :
+        Je dois faire l'affichage du INNER JOIN et ORDER BY seulement lorsque je trie par auteur, sinon il y a des doublons (nous en avions discuté ensemble) */
+        $innerJoin = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id': '';
+        $orderBy = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC, case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,': '';
+
         // Définir la chaine SQL
         $chaineSQL = 'SELECT livres.*
                             FROM livres
-                            INNER JOIN categories ON categories.id = livres.categorie_id
-                            INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
-                            INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id
+                            INNER JOIN categories ON categories.id = livres.categorie_id 
+                            '. $innerJoin .'
                             WHERE categories.id IN ('. $categories .')
                             ORDER BY 
-                                     case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC,
-                                     case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,
+                                     '. $orderBy .'
                                      case when :trierPar = \'categories.nomA\' then categories.nom end ASC,
                                      case when :trierPar = \'categories.nomD\' then categories.nom end DESC,
                                      case when :trierPar = \'livres.titreA\' then livres.titre end ASC,

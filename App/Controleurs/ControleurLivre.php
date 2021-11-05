@@ -49,6 +49,7 @@ class ControleurLivre
     public function fiche($livreChoisi):void
     {
         $livre = Livre::trouverParId($livreChoisi);
+        $tableauImage = [];
         $tDonnees = array("titrePage"=>"Livre", "action"=>"fiche", "livre"=>$livre);
         echo App::getBlade()->run("livres.fiche",$tDonnees);
     }

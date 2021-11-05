@@ -29,6 +29,7 @@
         <script src="liaisons/js/_tabsection.js"></script>
         <script src="liaisons/js/livres.ts"></script>
         <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>
+        <script src="liaisons/js/productPage.js" type="text/javascript"></script>
         <script>
             document.body.classList.add('js');
         </script>

@@ -19,12 +19,24 @@
   margin: 0 auto;
   display: flex;
   margin-top: 5rem;
-  align-items: center;
-  justify-content: space-between;
 
   @media (max-width: 900px) {
     display: block;
   }
+
+  &__btnFormatActive{
+    background:$bleuRoyal!important;
+    color: white;
+  }
+
+  &__btnFormat{
+    border-radius: 1rem;
+    padding:1rem;
+    background: none;
+    border: 3px solid $bleuRoyal;
+    width: 32%;
+  }
+
 
   &__auteur{
     color: $bleuRoyal!important;
@@ -56,10 +68,14 @@
     width: 45%;
     max-width: 550px;
 
+    @media (min-width: 1000px) {
+      margin-right: 5rem;
+    }
+
 
     img{
       width: 100%;
-      max-height: 800px;
+      max-height: 100%;
       object-fit: cover;
       @media (max-width: 900px) {
         height: 50%;
@@ -74,7 +90,7 @@
     }
   }
   &__conteneur2{
-    width: 45%;
+    width: 60%;
 
     @media (max-width: 900px) {
       width: 80%;
@@ -82,7 +98,7 @@
     }
   }
   &__title{
-    font-size: 2rem;
+    margin: 0!important;
   }
   &__prixCan{
     font-size: 3rem;
@@ -102,6 +118,7 @@
     justify-content: flex-start;
     width: 115px;
     margin-right: 2rem;
+    margin-bottom: 2rem;
 
     @media (max-width:900px) {
       margin: 0 auto;
@@ -115,9 +132,10 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     text-align: center;
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 2rem;
   }
   &__ajout{
-    display: flex;
     margin-top: 5rem;
 
     @media (max-width: 900px) {
@@ -190,5 +208,55 @@
     &Column:first-child{
         font-weight: bold;
     }
+  }
+}
+
+  .ficheLivre{
+    &__productImage img, &__.imageList img {
+      width: 100%;
+    }
+
+    &__productImage {
+      display: block;
+      img {
+        height: 100%;
+        @media (max-width: 800px) {
+          height: 500px;
+        }
+
+        &.active {
+          display: block;
+          margin: 0 0 0.75rem 0;
+        }
+      }
+    }
+    &__imageList {
+      display: flex;
+      overflow: hidden;
+      li {
+        margin: 0 0.75rem 0 0;
+
+        &:nth-child(4) {
+          margin: 0;
+        }
+      }
+      img {
+        height: 20rem;
+        width: 100%;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+@keyframes fadeImg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

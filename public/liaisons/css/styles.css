@@ -848,8 +848,15 @@ body {
     height: auto;
   }
 }
+.menu__flex {
+  display: grid;
+}
+.menu__flexFerme {
+  font-size: 16px;
+}
 .menu__libelle {
   font-size: 35px;
+  color: #0050C8;
 }
 .menu__entete {
   max-width: 1400px;
@@ -878,6 +885,8 @@ body {
   z-index: 100;
   border: none;
   background: none;
+  position: relative;
+  right: 10px;
 }
 @media (min-width: 1000px) {
   .menu__controle {
@@ -886,7 +895,6 @@ body {
 }
 .menu__controle:focus {
   outline-offset: -5px;
-  outline: white auto 5px;
 }
 .menu__liste {
   top: 20%;
@@ -895,6 +903,7 @@ body {
   padding: 0;
   list-style: none;
   max-height: none;
+  margin-top: 2rem;
   justify-content: space-between;
 }
 @media (max-width: 1000px) {
@@ -931,6 +940,12 @@ body {
   padding: 10px;
   text-align: left;
 }
+@media (max-width: 600px) {
+  .menu__lien {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
 .menu__lien:hover, .menu__lien:active {
   border-bottom: 5px solid #0050C8;
   transition: 0.3s;
@@ -940,7 +955,16 @@ body {
 }
 
 .activeMenuItem {
-  border-bottom: 5px solid #0050C8;
+  border-bottom: 3px solid #0050C8;
+}
+@media (max-width: 1000px) {
+  .activeMenuItem {
+    background: #0050C8;
+    border-bottom: 0;
+  }
+  .activeMenuItem a {
+    color: white !important;
+  }
 }
 
 header {
@@ -969,7 +993,8 @@ header {
 .entete {
   border-top: 5px solid #0050C8;
   background: #F7F7F7;
-  height: 150px;
+  height: 175px;
+  padding-top: 2rem;
 }
 @media (max-width: 1000px) {
   .entete {
@@ -1039,8 +1064,15 @@ header {
     height: auto;
   }
 }
+.menu__flex {
+  display: grid;
+}
+.menu__flexFerme {
+  font-size: 16px;
+}
 .menu__libelle {
   font-size: 35px;
+  color: #0050C8;
 }
 .menu__entete {
   max-width: 1400px;
@@ -1069,6 +1101,8 @@ header {
   z-index: 100;
   border: none;
   background: none;
+  position: relative;
+  right: 10px;
 }
 @media (min-width: 1000px) {
   .menu__controle {
@@ -1077,7 +1111,6 @@ header {
 }
 .menu__controle:focus {
   outline-offset: -5px;
-  outline: white auto 5px;
 }
 .menu__liste {
   top: 20%;
@@ -1086,6 +1119,7 @@ header {
   padding: 0;
   list-style: none;
   max-height: none;
+  margin-top: 2rem;
   justify-content: space-between;
 }
 @media (max-width: 1000px) {
@@ -1122,6 +1156,12 @@ header {
   padding: 10px;
   text-align: left;
 }
+@media (max-width: 600px) {
+  .menu__lien {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
 .menu__lien:hover, .menu__lien:active {
   border-bottom: 5px solid #0050C8;
   transition: 0.3s;
@@ -1131,7 +1171,16 @@ header {
 }
 
 .activeMenuItem {
-  border-bottom: 5px solid #0050C8;
+  border-bottom: 3px solid #0050C8;
+}
+@media (max-width: 1000px) {
+  .activeMenuItem {
+    background: #0050C8;
+    border-bottom: 0;
+  }
+  .activeMenuItem a {
+    color: white !important;
+  }
 }
 
 header {
@@ -1160,7 +1209,8 @@ header {
 .entete {
   border-top: 5px solid #0050C8;
   background: #F7F7F7;
-  height: 150px;
+  height: 175px;
+  padding-top: 2rem;
 }
 @media (max-width: 1000px) {
   .entete {
@@ -1478,13 +1528,22 @@ header {
   margin: 0 auto;
   display: flex;
   margin-top: 5rem;
-  align-items: center;
-  justify-content: space-between;
 }
 @media (max-width: 900px) {
   .ficheLivre {
     display: block;
   }
+}
+.ficheLivre__btnFormatActive {
+  background: #0050C8 !important;
+  color: white;
+}
+.ficheLivre__btnFormat {
+  border-radius: 1rem;
+  padding: 1rem;
+  background: none;
+  border: 3px solid #0050C8;
+  width: 32%;
 }
 .ficheLivre__auteur {
   color: #0050C8 !important;
@@ -1515,9 +1574,14 @@ header {
   width: 45%;
   max-width: 550px;
 }
+@media (min-width: 1000px) {
+  .ficheLivre__conteneur1 {
+    margin-right: 5rem;
+  }
+}
 .ficheLivre__conteneur1 img {
   width: 100%;
-  max-height: 800px;
+  max-height: 100%;
   object-fit: cover;
 }
 @media (max-width: 900px) {
@@ -1533,7 +1597,7 @@ header {
   }
 }
 .ficheLivre__conteneur2 {
-  width: 45%;
+  width: 60%;
 }
 @media (max-width: 900px) {
   .ficheLivre__conteneur2 {
@@ -1542,7 +1606,7 @@ header {
   }
 }
 .ficheLivre__title {
-  font-size: 2rem;
+  margin: 0 !important;
 }
 .ficheLivre__prixCan {
   font-size: 3rem;
@@ -1562,6 +1626,7 @@ header {
   justify-content: flex-start;
   width: 115px;
   margin-right: 2rem;
+  margin-bottom: 2rem;
 }
 @media (max-width: 900px) {
   .ficheLivre__ajoutQuantite {
@@ -1575,9 +1640,10 @@ header {
   padding-top: 1rem;
   padding-bottom: 1rem;
   text-align: center;
+  border-radius: 0px 0px 10px 10px;
+  margin-bottom: 2rem;
 }
 .ficheLivre__ajout {
-  display: flex;
   margin-top: 5rem;
 }
 @media (max-width: 900px) {
@@ -1655,6 +1721,52 @@ header {
   font-weight: bold;
 }
 
+.ficheLivre__productImage img, .ficheLivre__.imageList img {
+  width: 100%;
+}
+.ficheLivre__productImage {
+  display: block;
+}
+.ficheLivre__productImage img {
+  height: 100%;
+}
+@media (max-width: 800px) {
+  .ficheLivre__productImage img {
+    height: 500px;
+  }
+}
+.ficheLivre__productImage img.active {
+  display: block;
+  margin: 0 0 0.75rem 0;
+}
+.ficheLivre__imageList {
+  display: flex;
+  overflow: hidden;
+}
+.ficheLivre__imageList li {
+  margin: 0 0.75rem 0 0;
+}
+.ficheLivre__imageList li:nth-child(4) {
+  margin: 0;
+}
+.ficheLivre__imageList img {
+  height: 20rem;
+  width: 100%;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+.ficheLivre__imageList img:hover {
+  opacity: 0.7;
+}
+
+@keyframes fadeImg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /** Livres **/
 /**
 * @author Gabriel Caron <1861095@csfoy.ca>
@@ -2105,7 +2217,7 @@ header {
   color: black;
   display: block;
   line-height: 40px;
-  padding: 0 26px;
+  padding: 0 10px;
   text-decoration: none;
   font-family: Montserrat, sans-serif;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
@@ -2118,10 +2230,6 @@ header {
   line-height: 24px;
 }
 
-#search {
-  display: flex;
-}
-
 #search_text {
   width: 55%;
   padding: 15px 0 15px 20px;
@@ -2132,8 +2240,8 @@ header {
   color: black !important;
   outline: none;
   background: none;
-  border-top: 2px solid #0050C8;
-  border-bottom: 2px solid #0050C8;
+  border-top: 1px solid #0050C8;
+  border-bottom: 1px solid #0050C8;
   float: left;
   box-sizing: border-box;
   transition: all 0.15s;
@@ -2152,9 +2260,9 @@ header {
   background: url(../../liaisons/images/loupe.png) center no-repeat;
   width: 60px;
   float: left;
-  border-top: 2px solid #0050C8;
-  border-bottom: 2px solid #0050C8;
-  border-right: 2px solid #0050C8;
+  border-top: 1px solid #0050C8;
+  border-bottom: 1px solid #0050C8;
+  border-right: 1px solid #0050C8;
   padding: 0;
   text-align: center;
   height: 40px;
@@ -2225,28 +2333,15 @@ header {
   display: contents;
 }
 
-/*
 @media (max-width: 700px) {
+  .entete {
+    min-height: 225px !important;
+  }
+
   #search {
-    width: 80%;
+    width: 100%;
   }
-  #search_text{
-    width: 87%;
-    padding: 15px 0 15px 20px;
-    font-size: 16px;
-    font-family: Montserrat, sans-serif;
-    height: 40px;
-    margin-right: 0;
-    color: black!important;
-    outline: none;
-    background: none;
-    border-top:2px solid $bleuRoyal ;
-    border-bottom:2px solid $bleuRoyal ;
-    float: left;
-    box-sizing: border-box;
-    transition: all 0.15s;
-  }
-}*/
+}
 /** Infolettre **/
 .socialMedia {
   background: #E5E5E5;
@@ -2353,7 +2448,7 @@ header {
   line-height: inherit;
   cursor: pointer;
   text-align: center;
-  width: calc(100% / 2);
+  width: calc(100% / 4);
   place-items: center;
   height: auto;
   padding: 1rem 0;

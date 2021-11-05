@@ -14,6 +14,8 @@
                             <p class="ficheLivre__statut">À paraitre</p>
                         @elseif($livre->getStatut()===2)
                             <p class="ficheLivre__statut">Nouveauté</p>
+                        @else
+                            <p class="ficheLivre__statut"></p>
                             @endif
                     </div>
                     <ul class="ficheLivre__imageList">
@@ -30,7 +32,6 @@
         <div class="ficheLivre__conteneur2">
             <div class="ficheLivre__flexNomPrix">
                 <h1 class="ficheLivre__title">{{$livre->getTitre()}}</h1>
-                <h3 class="ficheLivre__prixCan">{{$livre->getPrixCan()}}$</h3>
             </div>
             @foreach($livre->getAuteurAssocie() as $auteur)
                 <a href="index.php?controleur=auteur&action=fiche&id={{$auteur->getId()}}">
@@ -80,10 +81,24 @@
                 </div>
             </div>
             <section class="ficheLivre__format">
-
-                <button class="ficheLivre__btnFormat @if($livre->getIsbnPapier() !== '') ficheLivre__btnFormatActive @endif">Version papier</button>
-                <button class="ficheLivre__btnFormat @if($livre->getIsbnEpub() !== '') ficheLivre__btnFormatActive @endif">Version numérique</button>
-                <button class="ficheLivre__btnFormat @if($livre->getIsbnPdf() !== '') ficheLivre__btnFormatActive @endif">Version PDF</button>
+                <form id="formTri" class="enveloppe__Tris" action="" method="POST">
+                <fieldset class="formulaire__groupeChamps tuiles">
+                <ul class="formulaire__liste">
+                    <li class="bloc">
+                        <input  class="radio screen-reader-only" id="papier" value="papier" name="version" type="radio" checked>
+                        <label  class="libelle" for="papier">Version papier</label>
+                    </li>
+                    <li class="bloc">
+                        <input class="radio screen-reader-only" id="numerique" value="numerique" name="version" type="radio">
+                        <label class="libelle" for="numerique">Version numérique</label>
+                    </li>
+                    <li class="bloc">
+                        <input class="radio screen-reader-only" id="pdf" value="pdf" name="version" type="radio">
+                        <label class="libelle" for="pdf">Version PDF</label>
+                    </li>
+                </ul>
+                </fieldset>
+                </form>
             </section>
             <div class="ficheLivre__ajout">
                 <div class="ficheLivre__ajoutQuantite">

@@ -539,7 +539,7 @@ th {
 }
 .formulaire .bloc .surtitre {
   display: block;
-  background-color: #285195;
+  background-color: #0050C8;
   color: #fff;
   font-family: Roboto-Bold, sans serif;
   font-size: 1.6rem;
@@ -576,7 +576,7 @@ th {
   font-style: normal;
   font-size: 3rem;
   line-height: 100%;
-  border: 5px solid #285195;
+  border: 5px solid #0050C8;
   border-radius: 1.5rem;
   text-align: center;
   padding: 1rem;
@@ -662,13 +662,13 @@ th {
   font-style: normal;
   font-size: 2rem;
   line-height: 100%;
-  border: 5px solid #285195;
+  border: 5px solid #0050C8;
   border-radius: 1.5rem;
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 1rem 1rem;
 }
 .formulaire__groupeChamps.tuiles .cocher:checked + .libelle, .formulaire__groupeChamps.tuiles .radio:checked + .libelle {
-  background-color: #285195;
+  background-color: #0050C8;
   color: #fff;
 }
 .formulaire__groupeChamps.tuiles.grandes .libelle, .formulaire__groupeChamps.tuiles.grandes .suggere {

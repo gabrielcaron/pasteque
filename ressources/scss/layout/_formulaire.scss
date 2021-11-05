@@ -41,7 +41,7 @@
 
     & .surtitre {
       display: block;
-      background-color: $bleu;
+      background-color: $bleuRoyal;
       color: $blanc;
       font-family: $RobotoBold;
       font-size: 1.6rem;
@@ -82,7 +82,7 @@
         font-style: normal;
         font-size: 3rem;
         line-height: 100%;
-        border: 5px solid $bleu;
+        border: 5px solid $bleuRoyal;
         border-radius: 1.5rem;
         text-align: center;
         padding: 1rem;
@@ -180,15 +180,15 @@
         font-style: normal;
         font-size: 2rem;
         line-height: 100%;
-        border: 5px solid $bleu;
+        border: 5px solid $bleuRoyal;
         border-radius: 1.5rem;
         text-align: center;
-        padding: 3rem 1rem;
+        padding: 1rem 1rem;
       }
 
       // Change la couleur de la tuile (label) lorsque cochée
       & .cocher:checked + .libelle, & .radio:checked + .libelle {
-        background-color: $bleu;
+        background-color: $bleuRoyal;
         color: $blanc;
       }
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenu')
-    <section class="nouveautes livre">
+    <section class="nouveautes livres">
         <h2 class="accueil__titre">Nouveautés</h2>
         <div class="nouveautes__conteneurGrille">
             <!-- Foreach Nouveautés -->
@@ -14,23 +14,18 @@
                 <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
                     <article class="livre__article">
                         <div class="livre__conteneurVignette">
-                            <img @if ($livre->getStatut() > 1)
-                                 class="livre__image etiquette"
-                                 @else
-                                 class="livre__image"
-                                 @endif src="https://via.placeholder.com/460x500">
-
-                            @if ($livre->getStatut() == 2)
+                            <img class="livre__image etiquette" src="https://via.placeholder.com/460x500">
                                 <p class="livre__etiquette">Nouveauté</p>
-                            @endif
                         </div>
-                        <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
-                        <ul class="livre__listeInfos">
-                            @foreach($livre->getAuteurAssocie() as $auteur)
-                                <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
-                            @endforeach
-                            <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
-                        </ul>
+                        <div class="livre__conteneurTitreInfos">
+                            <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
+                            <ul class="livre__listeInfos">
+                                @foreach($livre->getAuteurAssocie() as $auteur)
+                                    <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                                @endforeach
+                                <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                            </ul>
+                        </div>
                     </article>
                 </a>
             @endforeach
@@ -49,7 +44,7 @@
             <path d="m0 22.7499h1398l-355 76.9048h-720z" fill="url(#b)" fill-opacity=".04"/>
         </svg>
     </section>
-    <section class="aparaitre livre">
+    <section class="aparaitre livres">
         <h2 class="accueil__titre">À paraître</h2>
         <div class="nouveautes__conteneurGrille">
             <!-- Foreach À paraître -->
@@ -58,16 +53,8 @@
                 <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
                     <article class="livre__article">
                         <div class="livre__conteneurVignette">
-                            <img @if ($livre->getStatut() > 1)
-                                 {{--                                 Enlever, puisque la requête prend seulement des nouveautés--}}
-                                 class="livre__image etiquette"
-                                 @else
-                                 class="livre__image"
-                                 @endif src="https://via.placeholder.com/460x500">
-
-                            @if ($livre->getStatut() == 3)
-                                <p class="livre__etiquette">Nouveauté</p>
-                            @endif
+                            <img class="livre__image etiquette" src="https://via.placeholder.com/460x500">
+                                <p class="livre__etiquette">À paraître</p>
                         </div>
                         <div class="livre__conteneurTitreInfos">
                             <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
@@ -97,7 +84,7 @@
         </svg>
     </section>
     <section class="actualites">
-        <div class="nouveautes__conteneurGrille">
+        <div class="actualites__conteneurGrille">
             <h2 class="accueil__titre">Actualités</h2>
             <!-- Foreach Actualités -->
             @foreach($actualites as $actualite)

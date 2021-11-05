@@ -9,9 +9,20 @@
 * Styles généraux
 */
 
+// Par défaut, le mode d'affichage est en vignettes
 
-.accueil {
+// Rangée de livres
+
+.livres {
+  @include paddingConteneur;
+  @include conteneur1400px($pointRupture: 500px);
+
   .livre {
+
+	&.conteneurGrille {
+	  @include rangeeGrid12col($pointRupture: 500px);
+	}
+
 	&__lien {
 
 	  @media screen and (min-width: 500px) {
@@ -53,6 +64,7 @@
 
 	&__image {
 	  border-radius: $arrondiDecoratif;
+
 	  &.etiquette {
 		border-radius: $arrondiDecoratif $arrondiDecoratif 0 0;
 	  }
@@ -67,14 +79,15 @@
 	  border-radius: 0 0 $arrondiDecoratif $arrondiDecoratif;
 	}
 
+	&__conteneurTitreInfos {
+	  height: 17rem;
+	}
+
 	&__titre {
 	  font-size: 3rem;
 	  line-height: 110%;
 	  color: $bleuRoyal;
-	  margin-top: 3rem;
-	  @media screen and (min-width: $desktop1000px) {
-		margin-top: 8rem;
-	  }
+	  margin-top: 2rem;
 	}
 
 	&__listeInfos {
@@ -96,29 +109,51 @@
 	  margin-top: 1rem;
 	  display: inline-block;
 	}
+  }
+}
 
-	&__tablette {
-	  display: none;
+.modeliste.livres {
+  .livre {
+	&__lien {
+
+	  @media screen and (min-width: 500px) {
+		grid-column: 1 / 12;
+	  }
+
+	  @media screen and (min-width: $tablet900px) {
+		& .livre__conteneurVignette {
+		  position: relative;
+		  top: 0;
+		  transition: top 0.2s ease-in;
+		}
+	  }
 	}
 
-	@media screen and (min-width: $desktop1000px) {
-	  &__tablette {
-		grid-column: 1 / 12;
-		display: block;
-		position: relative;
-		top: -31rem;
+	&__article {
+	  @include rangeeGrid12col();
+	}
+
+	&__conteneurVignette {
+	  grid-column: span 4;
+
+	  @media screen and (min-width: $tablet900px) {
+		grid-column: span 2;
 	  }
+	}
+
+	&__conteneurTitreInfos {
+	  grid-column: span 8;
+
+	  @media screen and (min-width: $tablet900px) {
+		grid-column: span 10;
+	  }
+	}
+
+	&__titre {
+	  font-size: 4rem;
+	  margin-top: initial;
 	}
   }
 }
 
-.indexLivres {
-	& .nouveautes {
-		&__conteneurGrille {
-			margin: initial;
-		}
-	}
-}
-.index.livre, .enveloppe{
-	@include conteneur1400px;
-}
+

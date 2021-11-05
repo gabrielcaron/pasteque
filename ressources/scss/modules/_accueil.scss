@@ -18,8 +18,7 @@
 }
 
 .nouveautes, .aparaitre {
-  @include paddingConteneur;
-  @include conteneur1400px($pointRupture: 500px);
+  margin-bottom: -15rem;
 
   &__conteneurGrille {
 	@include rangeeGrid12col($pointRupture: 500px);
@@ -30,6 +29,28 @@
 	  margin: 0 8rem;
 	}
   }
+
+  .livre {
+	&__titre {
+	  margin-top: 3rem;
+	  @media screen and (min-width: $desktop1000px) {
+	    margin-top: 8rem;
+	  }
+	}
+
+	&__tablette {
+	  display: none;
+	}
+
+	@media screen and (min-width: $desktop1000px) {
+	  &__tablette {
+		grid-column: 1 / 12;
+		display: block;
+		position: relative;
+		top: -27rem;
+	  }
+	}
+  }
 }
 
 .actualites {
@@ -37,7 +58,6 @@
   @include conteneur1400px($pointRupture: 500px);
 
   & .actualite {
-	grid-column: 1 / 12;
 	margin-bottom: 3rem;
 	@include rangeeGrid12col($pointRupture: 500px);
 

@@ -21,6 +21,9 @@
   margin-bottom: -15rem;
 
   &__conteneurGrille {
+	@media screen and (max-width: $desktop1000px) {
+	  grid-column: span 12;
+	}
 	@include rangeeGrid12col($pointRupture: 500px);
 	@media (min-width: $desktop1000px) {
 	  margin: 0 6rem;

@@ -11,7 +11,7 @@
 
 var menu = {
   lblMenuFerme: '<img src="liaisons/images/menuicone.png">',
-  lblMenuOuvert: 'X',
+  lblMenuOuvert: '<div class="menu__flex"><span>X</span><span class="menu__flexFerme">FERMER</span></div>',
   refBouton: null,
   refLibelle: null,
   refMenu: null,

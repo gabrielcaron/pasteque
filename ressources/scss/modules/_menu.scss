@@ -15,11 +15,19 @@
         text-align: right;
         height: auto;
     }
+    &__flex{
+        display: grid;
+
+        &Ferme{
+            font-size: 16px;
+        }
+    }
     &__libelle{
         font-size: 35px;
+        color: $bleuRoyal;
     }
     &__entete{
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         position: relative;
         margin-top: 1rem;
@@ -43,6 +51,8 @@
         z-index: 100;
         border: none;
         background: none;
+        position: relative;
+        right: 10px;
         @media (min-width: 1000px) {
             display: none;
         }
@@ -52,7 +62,6 @@
         }
         &:focus {
             outline-offset: -5px;
-            outline: white auto 5px;
         }
     }
     &__liste {
@@ -62,13 +71,16 @@
         padding: 0;
         list-style: none;
         max-height: none;
+        margin-top: 2rem;
         @media (max-width: 1000px) {
             display: block;
         }
         justify-content: space-between;
          &Item{
+
         @media (min-width: 1000px) {
                 display: inline-block;
+
             }
         }
         &Element {
@@ -102,6 +114,11 @@
         padding:10px;
         text-align: left;
 
+        @media (max-width: 600px) {
+            width: 90%;
+            margin: 0 auto;
+        }
+
         &:link,
         &:visited {
 
@@ -116,13 +133,22 @@
 
         }
         &--actif {
+
             border-bottom: 5px solid $bleuRoyal;
         }
     }
 
 }
 .activeMenuItem{
-    border-bottom: 5px solid $bleuRoyal;
+    border-bottom: 3px solid $bleuRoyal;
+@media (max-width: 1000px) {
+    background: $bleuRoyal;
+    border-bottom: 0;
+    a{
+        color: white!important;
+    }
+}
+
 }
 header{
     background-color: white;
@@ -150,7 +176,8 @@ header{
 .entete{
     border-top: 5px solid $bleuRoyal;
     background: #F7F7F7;
-    height: 150px;
+    height: 175px;
+    padding-top: 2rem;
     @media (max-width: 1000px) {
         height: auto!important;
         min-height: 200px;

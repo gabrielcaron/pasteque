@@ -25,11 +25,11 @@
 
             </li>
 
-            <li class="menu__listeItem">
-                <a href="index.php?controleur=livre&action=index" class="menu__lien">Mon compte</a>
+            <li class="menuTop__listeItem">
+                <a href="index.php?controleur=livre&action=index" class="menuTop__lien">Mon compte</a>
             </li>
-            <li class="menu__listeItem">
-                <a href="index.php?controleur=site&action=accueil" class="menu__lien"><i class="fa fa-shopping-cart"></i></a>
+            <li class="menuTop__listeItem">
+                <a href="index.php?controleur=site&action=accueil" class="menuTop__lien"><i class="fa fa-shopping-cart"></i></a>
             </li>
         </ul>
 

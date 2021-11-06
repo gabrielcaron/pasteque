@@ -20,7 +20,13 @@
   .livre {
 
 	&.conteneurGrille {
+
+	  @media screen and (max-width: $desktop1000px) {
+		grid-column: span 12;
+	  }
+
 	  @include rangeeGrid12col($pointRupture: 500px);
+
 	}
 
 	&__lien {
@@ -33,14 +39,6 @@
 	  }
 	  text-decoration: none;
 	  filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, 0.1));
-
-	  @media screen and (min-width: $tablet900px) {
-		& .livre__conteneurVignette {
-		  position: relative;
-		  top: 0;
-		  transition: top 0.2s ease-in;
-		}
-	  }
 
 	  &:hover {
 		@media screen and (min-width: $tablet900px) {
@@ -77,6 +75,23 @@
 	  text-align: center;
 	  color: $blanc;
 	  border-radius: 0 0 $arrondiDecoratif $arrondiDecoratif;
+	}
+
+	&__conteneurVignette {
+	  position: relative; // pour les besoins du hover
+	  top: 0;
+
+	  @media screen and (min-width: 500px) {
+		height: 70rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+	  }
+
+	  @media screen and (min-width: $tablet900px) {
+		  //height: 63rem;
+		  transition: top 0.2s ease-in;
+	  }
 	}
 
 	&__conteneurTitreInfos {
@@ -125,6 +140,12 @@
 		  position: relative;
 		  top: 0;
 		  transition: top 0.2s ease-in;
+
+		  // Annulation du positionnement par vignettes
+		  height: initial;
+		  display: initial;
+		  flex-direction: initial;
+		  justify-content: initial;
 		}
 	  }
 	}

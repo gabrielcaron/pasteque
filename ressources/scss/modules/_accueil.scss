@@ -34,6 +34,19 @@
   }
 
   .livre {
+	&__conteneurVignette {
+	  @media screen and (min-width: 500px) {
+		height: 48rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+	  }
+
+	  @media screen and (min-width: $tablet900px) {
+		height: 63rem;
+		transition: top 0.2s ease-in;
+	  }
+	}
 	&__titre {
 	  margin-top: 3rem;
 	  @media screen and (min-width: $desktop1000px) {

@@ -21,7 +21,7 @@
                                      srcset="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg 1x, ../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg 2x"
                                      alt="">
                             </picture>
-                            <p class="livre__etiquette">Nouveautés</p>
+                            <p class="livre__etiquette">Nouveauté</p>
                         </div>
                         <div class="livre__conteneurTitreInfos">
                             <h3 class="livre__titre">{{$livre->getTitre()}}</h3>

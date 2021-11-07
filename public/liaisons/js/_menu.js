@@ -56,7 +56,16 @@ var menu = {
     this.refMenu.classList.toggle("menu--ferme");
 
     // On change le libellé du bouton selon l'état du menu
-
+    // On change le libellé du bouton selon l'état du menu
+    if (this.refMenu.classList.contains("menu--ferme"))
+    {
+      this.refLibelle.innerHTML = this.lblMenuFerme;
+      console.log('hey')
+    }
+    else
+    {
+      this.refLibelle.innerHTML = this.lblMenuOuvert;
+    }
   },
   activeMenuItem: function (){
     const urlParams = new URLSearchParams(window.location.search);

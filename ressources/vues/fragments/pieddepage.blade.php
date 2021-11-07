@@ -32,11 +32,11 @@
     </div>
     <p class="footer__infosTexte">Notre bureau et notre boutique se situent au<br>
         102 avenue Laurier Ouest<br>
-        Montréal, H2T 2N7 102</p>
-    <span>Métro: Station Laurier </span>
-    <p class="footer__infosTexte"><strong>Toutes nos coordonnées &#8594;</strong></p>
-    <h3 class="footer__infosH3">Heures d'ouverture</h3>
-    <div class="footer__infosFlex">
+        Montréal, H2T 2N7 102</p><br>
+    <span>Métro: Station Laurier </span><br>
+    <p class="footer__infosTexte"><strong>Toutes nos coordonnées &#8594;</strong></p><br><br>
+    <h3 class="footer__infosH3">Heures d'ouverture</h3><br>
+    <div class="footer__infosFlex"><br>
         <ul class="footer__infosListe">
             <li><h5 class="footer__infosListeTitre">Galerie-boutique</h5></li>
             <li class="footer__infosListeItem">Lundi et mardi : fermé</li>

@@ -42,9 +42,9 @@
         <h2 class="accueil__titre">Nouveautés</h2>
         <div class="livre conteneurGrille">
             <!-- Foreach Nouveautés -->
-            {{--            Faire un modulo, s'il se divise par 3, c'est une rangée--}}
+{{--                        Faire un modulo, s'il se divise par 3, c'est une rangée--}}
             @foreach($nouveautes as $livre)
-                <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getIdLivre()}}">
+                <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
                     <article class="livre__article">
                         <div class="livre__conteneurVignette">
                             <picture class="livre__picture">
@@ -89,7 +89,7 @@
             <!-- Foreach À paraître -->
             {{--            Faire un modulo, s'il se divise par 3, c'est une rangée--}}
             @foreach($aparaitre as $livre)
-                <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getIdLivre()}}">
+                <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
                     <article class="livre__article">
                         <div class="livre__conteneurVignette">
                             <picture class="livre__picture">

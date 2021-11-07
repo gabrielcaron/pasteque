@@ -62,8 +62,13 @@ class Auteur
         return Livre::trouverLivresParAuteur($this->id);
     }
 
-
-    public static function trouverTout($trierPar, $enregistrementDepart, $nbAuteursParPage):array {
+    /** Méthode pour trouver tous les auteurs
+     * @param string $trierPar - Chaine par quoi trier les auteurs
+     * @param int $enregistrementDepart - Nombre de départ
+     * @param int $nbAuteursParPage - Nombre d'auteurs par page
+     * @return array - Tableau des auteurs
+     */
+    public static function trouverTout(string $trierPar, int $enregistrementDepart, int $nbAuteursParPage):array {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * 
                         FROM auteurs
@@ -82,11 +87,13 @@ class Auteur
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $auteurs = $requetePreparee->fetchAll();
         //var_dump($participants);
-        return $auteurs;
+        return $requetePreparee->fetchAll();
     }
 
+    /** Méthode pour trouver le nombre d'auteur
+     * @return string - Nombre de d'auteurs
+     */
     public static function trouverNombreAuteurs():string {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT count(id) AS nombreAuteurs FROM auteurs';
@@ -101,8 +108,11 @@ class Auteur
         return $resultat->nombreAuteurs;
     }
 
+    /** Méthode pour trouver un seul auteur
+     * @param int $unIdAuteur - Id d'un auteur
+     * @return Auteur - Un auteur
+     */
     public static function trouverParId(int $unIdAuteur):Auteur {
-
         // Définir la chaine SQL
         $chaineSQL = "SELECT  *
         FROM `auteurs` 
@@ -116,12 +126,14 @@ class Auteur
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer le résultat
-        $auteur = $requetePreparee->fetch();
-
-        return $auteur;
+        return $requetePreparee->fetch();
     }
-    public static function trouverParIdLivre(int $unIdLivres):array {
 
+    /** Méthode pour trouver tout
+     * @param int $unIdAuteur - Id d'un auteur
+     * @return Auteur - Un auteur
+     */
+    public static function trouverParIdLivre(int $unIdLivres):array {
         // Définir la chaine SQL
         $chaineSQL = "SELECT auteurs.* FROM `auteurs` INNER JOIN livres_auteurs ON auteurs.id = livres_auteurs.auteur_id WHERE livres_auteurs.livre_id = :unIdLivres";
         // Préparer la requête (optimisation)
@@ -133,8 +145,6 @@ class Auteur
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer le résultat
-        $auteur = $requetePreparee->fetchAll();
-
-        return $auteur;
+        return $requetePreparee->fetchAll();
     }
 }

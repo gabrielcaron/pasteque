@@ -13,6 +13,7 @@ class ControleurLivre
         //vide
     }
 
+    //Index des livres
     public function index(): void
     {
         var_dump($_POST);
@@ -46,6 +47,7 @@ class ControleurLivre
         echo App::getBlade()->run("livres.index",$tDonnees);
     }
 
+    //Fiche des livres
     public function fiche($livreChoisi):void
     {
         $livre = Livre::trouverParId($livreChoisi);

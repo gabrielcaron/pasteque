@@ -16,11 +16,11 @@
                     </legend>
                     <ul class="formulaire__liste">
                         <li class="bloc">
-                            <input  class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue" type="radio" @if($choixVue === 'vignette') checked @endIf>
+                            <input  onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue" type="radio" @if($choixVue === 'vignette') checked @endIf>
                             <label  class="libelle" for="vignette">Vue en vignette</label>
                         </li>
                         <li class="bloc">
-                            <input class="radio screen-reader-only" id="liste" value="liste" name="choixVue" type="radio" @if($choixVue === 'liste') checked @endIf>
+                            <input onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="liste" value="liste" name="choixVue" type="radio" @if($choixVue === 'liste') checked @endIf>
                             <label class="libelle" for="liste">Vue en liste</label>
                         </li>
                     </ul>
@@ -32,7 +32,7 @@
                     <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
                         {{--<label class="" for="nbAuteursParPage"> </label>--}}
                         <label class="screen-reader-only" for="nbAuteursParPage">Nombre d'auteurs par page :</label>
-                        <select name="nbAuteursParPage" id="nbAuteursParPage">
+                        <select onchange="document.getElementById('formTri').submit()" name="nbAuteursParPage" id="nbAuteursParPage">
                             <option value="9" @if($nbAuteursParPage === '9') selected @endIf>9 auteurs par page</option>
                             <option value="15" @if($nbAuteursParPage === '15') selected @endIf>15 auteurs par page</option>
                             <option value="30" @if($nbAuteursParPage === '30') selected @endIf>30 auteurs par page</option>
@@ -42,14 +42,14 @@
                     <p class="formulaire__champEnveloppe"><strong>{{$nbAuteursParPage}} résultats affichés</strong> de {{$nombreAuteurs}}</p>
                     <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
                         <label class="screen-reader-only" for="trierPar">Trier par : </label>
-                        <select name="trierPar" id="trierPar" class="">
+                        <select onchange="document.getElementById('formTri').submit()" name="trierPar" id="trierPar" class="">
                             <option value="auteurs.nomA" @if($trierPar === 'auteurs.nomA') selected @endIf>Auteurs A-Z</option>
                             <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs Z-A</option>
                         </select>
                     </p>
                 </fieldset>
 
-                <input class="" type="submit" id="auteurTrie">
+                <input style="display: none" class="" type="submit" id="auteurTrie">
             </form>
         </section>
         <section >
@@ -79,9 +79,12 @@
                 @endforeach
             </div>
         </section>
+        @if($nbAuteursParPage === '9' || $nbAuteursParPage === '15' ||  $nbAuteursParPage === '30')
+            <section>
+                @include('auteurs.fragments.pagination')
+            </section>
+        @endif
     </section>
-    @if($nbAuteursParPage === '9' || $nbAuteursParPage === '15' ||  $nbAuteursParPage === '30')
-        @include('auteurs.fragments.pagination')
-    @endif
+
 @endsection
 

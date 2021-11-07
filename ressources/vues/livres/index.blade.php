@@ -72,34 +72,37 @@
                 <input class="" type="submit" id="livresTrie">
             </form>
         </section>
-        <section class="index livre {{$choixVue}}">
+        <section class="livres">
             <!-- un titre display none? -->
-            <div class="nouveautes__conteneurGrille {{$choixVue}}">
+            <div class="livre conteneurGrille">
                 <!-- Foreach Nouveautés -->
                 {{--            Faire un modulo, s'il se divise par 3, c'est une rangée--}}
                 @foreach($livres as $livre)
-                    <a class="livre__lien {{$choixVue}}" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
-                        <article class="livre__article {{$choixVue}}">
-                            <div class="livre__conteneurVignette {{$choixVue}}">
-                                <img @if ($livre->getStatut() > 1)
-                                     class="livre__image etiquette {{$choixVue}}"
-                                     @else
-                                     class="livre__image {{$choixVue}}"
-                                     @endif src="https://via.placeholder.com/460x500">
-
+                    <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
+                        <article class="livre__article">
+                            <div class="livre__conteneurVignette">
+                                <picture class="livre__picture">
+                                    <!-- Image pour mobile, tablette et poste de table -->
+                                    <img class="livre__image etiquette"
+                                         src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg"
+                                         srcset="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg 1x, ../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg 2x"
+                                         alt="">
+                                </picture>
                                 @if ($livre->getStatut() === 2)
-                                    <p class="livre__etiquette {{$choixVue}}">Nouveauté</p>
+                                    <p class="livre__etiquette">Nouveauté</p>
                                 @elseif($livre->getStatut() === 3)
-                                    <p class="livre__etiquette {{$choixVue}}">À paraitre</p>
+                                    <p class="livre__etiquette">À paraitre</p>
                                 @endif
                             </div>
-                            <h3 class="livre__titre {{$choixVue}}">{{$livre->getTitre()}}</h3>
-                            <ul class="livre__listeInfos {{$choixVue}}">
-                                @foreach($livre->getAuteurAssocie() as $auteur)
-                                    <li class="livre__item livre__auteur {{$choixVue}}">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
-                                @endforeach
-                                <li class="livre__item livre__categorie {{$choixVue}}">{{$livre->getCategorieAssocie()->getNom()}}</li>
-                            </ul>
+                            <div class="livre__conteneurTitreInfos">
+                                <h3 class="livre__titre {{$choixVue}}">{{$livre->getTitre()}}</h3>
+                                <ul class="livre__listeInfos {{$choixVue}}">
+                                    @foreach($livre->getAuteurAssocie() as $auteur)
+                                        <li class="livre__item livre__auteur {{$choixVue}}">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                                    @endforeach
+                                    <li class="livre__item livre__categorie {{$choixVue}}">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                                </ul>
+                            </div>
                         </article>
                     </a>
                 @endforeach

@@ -12,7 +12,7 @@
 
 .accueil {
   &__titre {
-	margin: 5rem 0 3rem 0;
+	margin: 8rem 0 3rem 0;
   }
 }
 
@@ -66,17 +66,40 @@
   @include paddingConteneur;
   @include conteneur1400px($pointRupture: 500px);
 
+  &__titre {
+	margin: 10rem 0 6rem 0;
+  }
+
   & .actualite {
 	margin-bottom: 3rem;
 	@include rangeeGrid12col($pointRupture: 500px);
 
+	&__picture {
+	  @media screen and (min-width: 500px) {
+		grid-column: span 5;
+	  }
 
-	&__image {
-	  grid-column: span 3;
+	  @media screen and (min-width: $desktop1000px) {
+		grid-column: span 3;
+	  }
+
+	  @media screen and (min-width: $desktop1400px) {
+		grid-column: span 2;
+	  }
 	}
 
 	&__conteneurInfos {
-	  grid-column: span 9;
+	  @media screen and (min-width: 500px) {
+		grid-column: span 6;
+	  }
+
+	  @media screen and (min-width: $desktop1000px) {
+		grid-column: span 9;
+	  }
+
+	  @media screen and (min-width: $desktop1400px) {
+		grid-column: span 10;
+	  }
 	}
 
 	&__contenu {

@@ -85,6 +85,13 @@ class Actualite
         $this->lien_instagram = $unLienInstagram;
     }
 
+    public function getIntro()
+    {
+        $actualite = $this->l_actualite;
+        $actualite = explode("! ", $actualite);
+        return $actualite[0] . ".";
+    }
+
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
@@ -99,5 +106,7 @@ class Actualite
         $livres = $requetePreparee->fetchAll();
         return $livres;
     }
+
+
 
 }

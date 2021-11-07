@@ -97,10 +97,17 @@ class Evenement
         $this->lien_instagram = $unLienInstagram;
     }
 
+    public function getIntro()
+    {
+        $evenement = $this->l_evenement;
+        $evenement = explode(". ", $evenement);
+        return $evenement[0] . ".";
+    }
+
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT * FROM evenements ORDER BY date DESC';
+        $chaineSQL = 'SELECT * FROM evenements WHERE date > DATE_SUB(NOW(),INTERVAL 30 DAY) ORDER BY date DESC';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir le mode de récupération

@@ -97,7 +97,7 @@
     </section>
     <section class="actualites">
         <div class="actualites__conteneurGrille">
-            <h2 class="accueil__titre">Actualités</h2>
+            <h2 class="actualites__titre">Actualités</h2>
             <!-- Foreach Actualités -->
             @foreach($actualites as $actualite)
                 <article class="actualite">
@@ -126,7 +126,7 @@
     {{--    Les styles des événements sont identiques aux actualités --}}
     <section class="actualites">
         <div class="actualites__conteneurGrille">
-            <h2 class="accueil__titre">Événements</h2>
+            <h2 class="actualites__titre">Événements</h2>
             <!-- Foreach Actualités -->
             @foreach($evenements as $evenement)
                 <article class="actualite">

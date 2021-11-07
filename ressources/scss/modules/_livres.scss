@@ -15,14 +15,40 @@
 
 .livres {
   @include paddingConteneur;
-  @include conteneur1400px($pointRupture: 500px);
+
+
+  @media screen and (min-width: 500px) {
+	@include conteneur1400px($pointRupture: 500px, $largeurMax: 460px);
+  }
+
+  @media screen and (min-width: 600px) {
+	@include conteneur1400px($pointRupture: 500px, $largeurMax: 560px);
+  }
+
+  @media screen and (min-width: $tablet900px) {
+	@include conteneur1400px($pointRupture: 500px, $largeurMax: 860px);
+  }
+
+  @media screen and (min-width: 1100px) {
+	@include conteneur1400px($pointRupture: 500px, $largeurMax: 1040px);
+  }
+
+  @media screen and (min-width: 1200px) {
+	@include conteneur1400px($pointRupture: 500px, $largeurMax: 1140px);
+  }
+
+  @media screen and (min-width: $desktop1400px) {
+	@include conteneur1400px($pointRupture: 500px);
+  }
 
   .livre {
 
 	&.conteneurGrille {
 
-	  @media screen and (max-width: $desktop1000px) {
-		grid-column: span 12;
+	  @media screen and (min-width: 500px) {
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
 	  }
 
 	  @include rangeeGrid12col($pointRupture: 500px);
@@ -82,20 +108,32 @@
 	  top: 0;
 
 	  @media screen and (min-width: 500px) {
-		height: 70rem;
+		height: 37rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: end;
+		transition: top 0.2s ease-in;
+	  }
+
+	  @media screen and (min-width: 600px) {
+		height: 40rem;
 	  }
 
 	  @media screen and (min-width: $tablet900px) {
-		  //height: 63rem;
-		  transition: top 0.2s ease-in;
+		height: 45rem;
 	  }
-	}
 
-	&__conteneurTitreInfos {
-	  height: 17rem;
+	  @media screen and (min-width: 1100px) {
+		height: 53rem;
+	  }
+
+	  @media screen and (min-width: 1200px) {
+		height: 58rem;
+	  }
+
+	  @media screen and (min-width: $desktop1400px) {
+		height: 70rem;
+	  }
 	}
 
 	&__titre {

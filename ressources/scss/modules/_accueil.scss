@@ -13,7 +13,7 @@
 .accueil {
   &__titre {
 	grid-column: span 12;
-	margin: 9rem 0 4rem 0;
+	margin: 5rem 0 3rem 0;
   }
 }
 
@@ -46,6 +46,9 @@
 		height: 63rem;
 		transition: top 0.2s ease-in;
 	  }
+	}
+	&__conteneurTitreInfos {
+	  height: 17rem;
 	}
 	&__titre {
 	  margin-top: 3rem;

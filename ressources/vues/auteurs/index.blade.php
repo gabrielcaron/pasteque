@@ -83,7 +83,9 @@
                 @endforeach
             </div>
         </section>
-        @include('auteurs.fragments.pagination')
+        @if($nbAuteursParPage === '9' || $nbAuteursParPage === '15' ||  $nbAuteursParPage === '30')
+            @include('auteurs.fragments.pagination')
+        @endif
     </div>
 @endsection
 

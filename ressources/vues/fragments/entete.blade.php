@@ -52,7 +52,7 @@
                 <a href="index.php?controleur=site&action=accueil" class="menu__lien">Accueil</a>
             </li>
             <li class="menu__listeItem" id="livre">
-                <a href="index.php?controleur=livre&action=index" class="menu__lien">Livre</a>
+                <a href="index.php?controleur=livre&action=index" class="menu__lien">Livres</a>
             </li>
             <li class="menu__listeItem" id="auteur">
                 <a href="index.php?controleur=auteur&action=index" class="menu__lien">Artistes</a>

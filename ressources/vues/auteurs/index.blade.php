@@ -1,7 +1,7 @@
 @extends('gabarit')
 
 @section('contenu')
-    <div class="conteneur">
+    <div class="indexLivres">
         <section class="filAriane">
             <span><a href="index.php">Accueil</a> / <a href="index.php?controleur=auteur&action=index">Artistes</a></span>
         </section>
@@ -57,19 +57,33 @@
                 <input class="" type="submit" id="auteurTrie">
             </form>
         </section>
-        <section class="auteurs">
-            <!-- Foreach auteurs -->
-            @foreach($auteurs as $auteur)
-                <a href="index.php?controleur=auteur&action=fiche&id={{$auteur->getId()}}">
-                    <article class="auteurs__article">
-                        <h2 class="auteurs__titre">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</h2>
-                        <img src="https://via.placeholder.com/150">
-                        <p>{{substr($auteur->getNotice(), 0, 150)}}...</p>
-                    </article>
-                </a>
-            @endforeach
+        <section class="livres @if($choixVue==='liste') modeliste @endif">
+            <!-- un titre display none? -->
+            <div class="livre conteneurGrille">
+                <!-- Foreach Nouveautés -->
+                {{--            Faire un modulo, s'il se divise par 3, c'est une rangée--}}
+                @foreach($auteurs as $auteur)
+                    <a class="livre__lien" href="index.php?controleur=auteur&action=fiche&id={{$auteur->getId()}}">
+                        <article class="livre__article">
+                            <div class="livre__conteneurVignette">
+                                <picture class="livre__picture">
+                                    <!-- Image pour mobile, tablette et poste de table
+                                    <img class="livre__image etiquette"
+                                         src="../public/liaisons/images/livres/-470.jpg"
+                                         srcset="../public/liaisons/images/livres/-470.jpg 1x, ../public/liaisons/images/livres/-940.jpg 2x"
+                                         alt="">-->
+                                </picture>
+                            </div>
+                            <div class="livre__conteneurTitreInfos">
+                                <h3 class="livre__titre">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</h3>
+                                <p>{{substr($auteur->getNotice(), 0, 150)}}...</p>
+                            </div>
+                        </article>
+                    </a>
+                @endforeach
+            </div>
         </section>
-        @include('livres.fragments.pagination')
+        @include('auteurs.fragments.pagination')
     </div>
 @endsection
 

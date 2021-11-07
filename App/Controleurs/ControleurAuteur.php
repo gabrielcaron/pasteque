@@ -21,7 +21,7 @@ class ControleurAuteur
 
         //Filtres et tris
         $trierPar = $_POST['trierPar'] ?? 'auteurs.nomA';
-        $nbAuteursParPage = $_POST['nbAuteursParPage'] ?? 9;
+        $nbAuteursParPage = $_POST['nbAuteursParPage'] ?? '9';
         $choixVue = $_POST['choixVue'] ?? 'vignette';
         $strIdPage = $_POST['id_page'] ?? 0;
 

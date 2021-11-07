@@ -21,6 +21,13 @@
   @media screen and (min-width: $desktop1000px) {
 	@include paddingConteneur;
   }
+	&__flex{
+		display: grid;
+
+		&Ferme{
+			font-size: 16px;
+		}
+	}
 
   &__libelle {
 	font-size: 35px;

@@ -72,7 +72,7 @@
                 <input class="" type="submit" id="livresTrie">
             </form>
         </section>
-        <section class="livres">
+        <section class="livres @if($choixVue==='liste') modeliste @endif">
             <!-- un titre display none? -->
             <div class="livre conteneurGrille">
                 <!-- Foreach Nouveautés -->
@@ -95,12 +95,12 @@
                                 @endif
                             </div>
                             <div class="livre__conteneurTitreInfos">
-                                <h3 class="livre__titre {{$choixVue}}">{{$livre->getTitre()}}</h3>
-                                <ul class="livre__listeInfos {{$choixVue}}">
+                                <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
+                                <ul class="livre__listeInfos">
                                     @foreach($livre->getAuteurAssocie() as $auteur)
-                                        <li class="livre__item livre__auteur {{$choixVue}}">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
+                                        <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                                     @endforeach
-                                    <li class="livre__item livre__categorie {{$choixVue}}">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                                    <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
                                 </ul>
                             </div>
                         </article>
@@ -108,7 +108,9 @@
                 @endforeach
             </div>
         </section>
-        @include('livres.fragments.pagination')
+        @if($intNbLivreParPage === '9' || $intNbLivreParPage === '15' ||  $intNbLivreParPage === '30')
+            @include('livres.fragments.pagination')
+        @endif
     </div>
 @endsection
 

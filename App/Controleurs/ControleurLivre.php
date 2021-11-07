@@ -21,7 +21,7 @@ class ControleurLivre
 
         //Filtres et tris
         $trierPar = $_POST['trierPar'] ?? 'auteurs.nomA';
-        $intNbLivreParPage = $_POST['nbLivreParPage'] ?? 9;
+        $intNbLivreParPage = $_POST['nbLivreParPage'] ?? '9';
         $choixVue = $_POST['choixVue'] ?? 'vignette';
         $strIdPage = $_POST['id_page'] ?? 0;
         $categories = Categorie::trouverTout();

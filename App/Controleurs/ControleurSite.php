@@ -6,6 +6,7 @@ namespace App\Controleurs;
 use App\App;
 use App\Modeles\Actualite;
 use App\Modeles\Categorie;
+use App\Modeles\Evenement;
 use App\Modeles\Livre;
 
 class ControleurSite
@@ -18,11 +19,10 @@ class ControleurSite
     public function accueil(): void {
 
         $nouveautes = Livre::trouverNouveautesHasard(3);
-//        var_dump($nouveautes);
         $aparaitre = Livre::trouverAParaitreHasard(3);
         $actualites = Actualite::trouverTout();
-//        var_dump($actualites);
-        $tDonnees = array("titrePage"=>"Accueil", "classeMain"=>"accueil", "nouveautes"=>$nouveautes, "aparaitre"=>$aparaitre, "actualites"=>$actualites);
+        $evenements = Evenement::trouverTout();
+        $tDonnees = array("titrePage"=>"Accueil", "classeMain"=>"accueil", "nouveautes"=>$nouveautes, "aparaitre"=>$aparaitre, "actualites"=>$actualites, "evenements"=>$evenements);
 //        var_dump($tDonnees);
         echo App::getBlade()->run("accueil",$tDonnees);
     }

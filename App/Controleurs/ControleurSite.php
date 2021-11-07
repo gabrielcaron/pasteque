@@ -16,7 +16,9 @@ class ControleurSite
     }
 
     public function accueil(): void {
+
         $nouveautes = Livre::trouverNouveautesHasard(3);
+//        var_dump($nouveautes);
         $aparaitre = Livre::trouverAParaitreHasard(3);
         $actualites = Actualite::trouverTout();
 //        var_dump($actualites);

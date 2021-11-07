@@ -91,14 +91,14 @@
 	  }
 	}
   }
-  @supports not (grid-template-columns: minmax(auto, 1400px)) {
-	max-width: 1400px;
+  @supports not (grid-template-columns: minmax(auto, $desktop1400px)) {
+	max-width: $desktop1400px;
   }
 }
 
 // Mixin pour rangée Grid sur 12 colonnes
 @mixin rangeeGrid12col($pointRupture: $mobile600px) {
-  @supports (grid-template-columns: minmax(auto, 1400px)) {
+  @supports (grid-template-columns: minmax(auto, $desktop1400px)) {
 	@media (min-width: $pointRupture) {
 	  display: grid;
 	  grid-template-columns: repeat(12, 1fr);

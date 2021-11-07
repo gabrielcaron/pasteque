@@ -10,7 +10,7 @@
 //*******************
 
 var menu = {
-  lblMenuFerme: '<img src="liaisons/images/menuicone.png">',
+  lblMenuFerme: '<div class="menu__flex"><img src="liaisons/images/menuicone.png"><span class="menu__flexOuvert">MENU</span></div>',
   lblMenuOuvert: '<div class="menu__flex"><span>X</span><span class="menu__flexFerme">FERMER</span></div>',
   refBouton: null,
   refLibelle: null,

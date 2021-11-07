@@ -73,15 +73,15 @@
 /***** Grille de base *****/
 
 // Mixin pour conteneur parent en Grid ou Flex
-@mixin conteneur1400px($conteneurBleed: false, $flex: false, $pointRupture: $mobile600px) {
-  @supports (grid-template-columns: minmax(auto, 1400px)) {
+@mixin conteneur1400px($conteneurBleed: false, $flex: false, $pointRupture: $mobile600px, $largeurMax: $desktop1400px) {
+  @supports (grid-template-columns: minmax(auto, $largeurMax)) {
 	@media (min-width: $pointRupture) {
 	  @if $flex == true {
 		display: flex;
 		justify-content: space-between;
 	  } @else {
 		display: grid;
-		grid-template-columns: minmax(auto, 1400px);
+		grid-template-columns: minmax(auto, $largeurMax);
 		justify-content: center;
 	  }
 	  @if $conteneurBleed == true {

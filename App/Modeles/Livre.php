@@ -10,6 +10,7 @@ use \PDO;
 class Livre
 {
     private int $id;
+    private int $idLivre;
     private string $isbn_papier;
     private string $isbn_pdf;
     private string $isbn_epub;
@@ -44,6 +45,16 @@ class Livre
     public function setId(int $unId): void
     {
         $this->id = $unId;
+    }
+
+    public function getIdLivre(): int
+    {
+        return $this->idLivre;
+    }
+
+    public function setIdLivre(int $unId): void
+    {
+        $this->idLivre = $unId;
     }
 
     // $isbn_papier : Getter et setter
@@ -452,7 +463,7 @@ class Livre
     public static function trouverNouveautesHasard($combien): array
     {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
+        $chaineSQL = 'SELECT DISTINCT *, livres.id AS idLivre, categories.nom AS categorieNom, auteurs.nom AS auteurNom
                             FROM livres
                             INNER JOIN categories ON categories.id = categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
@@ -474,7 +485,7 @@ class Livre
     public static function trouverAParaitreHasard($combien): array
     {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT DISTINCT *, categories.nom AS categorieNom, auteurs.nom AS auteurNom
+        $chaineSQL = 'SELECT DISTINCT *, livres.id AS idLivre, categories.nom AS categorieNom, auteurs.nom AS auteurNom
                             FROM livres
                             INNER JOIN categories ON categories.id = categorie_id
                             INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id

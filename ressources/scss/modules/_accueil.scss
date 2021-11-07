@@ -12,18 +12,18 @@
 
 .accueil {
   &__titre {
-	grid-column: span 12;
 	margin: 5rem 0 3rem 0;
   }
 }
 
-.nouveautes, .aparaitre {
-  margin-bottom: -15rem;
+.nouveautes {
 
-  &__conteneurGrille {
-	@media screen and (max-width: $desktop1000px) {
-	  grid-column: span 12;
-	}
+  @media screen and (min-width: $desktop1000px) {
+	margin-bottom: -15rem;
+  }
+
+  & .conteneurGrille {
+	grid-row: 2;
 	@include rangeeGrid12col($pointRupture: 500px);
 	@media (min-width: $desktop1000px) {
 	  margin: 0 6rem;
@@ -35,17 +35,7 @@
 
   .livre {
 	&__conteneurVignette {
-	  @media screen and (min-width: 500px) {
-		height: 48rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: end;
-	  }
 
-	  @media screen and (min-width: $tablet900px) {
-		height: 63rem;
-		transition: top 0.2s ease-in;
-	  }
 	}
 	&__conteneurTitreInfos {
 	  height: 17rem;

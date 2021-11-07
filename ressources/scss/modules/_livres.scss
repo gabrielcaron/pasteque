@@ -45,12 +45,6 @@
 
 	&.conteneurGrille {
 
-	  @media screen and (min-width: 500px) {
-		display: flex;
-		flex-direction: column;
-		justify-content: end;
-	  }
-
 	  @include rangeeGrid12col($pointRupture: 500px);
 
 	}
@@ -193,6 +187,7 @@
 	}
 
 	&__conteneurVignette {
+	  height: initial;
 	  grid-column: span 4;
 
 	  @media screen and (min-width: $tablet900px) {

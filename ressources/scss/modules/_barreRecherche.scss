@@ -1,29 +1,19 @@
-@import url(http://fonts.googleapis.com/css?family=Montserrat);
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .nav {
-  height: 40px;
-  display: inline-block;
+
 }
 
 .nav li {
-  float: left;
   list-style-type: none;
   position: relative;
 }
 
 .nav li a {
-  font-size: 16px;
+  font-size: 1.8rem;
   color: black;
   display: block;
   line-height: 40px;
   padding: 0 10px;
   text-decoration: none;
-  font-family: Montserrat, sans-serif;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -35,62 +25,87 @@
 }
 
 #search {
+  width: 100%;
 
+  @media screen and (min-width: $mobile600px) {
+    width: initial;
+  }
+
+  @media screen and (min-width: $desktop1000px) {
+    width: initial;
+  }
+
+  & .formRecherche {
+	display: flex;
+	flex-basis: 100%;
+  }
 }
-#search_text{
-  width: 55%;
+
+#search_text {
   padding: 15px 0 15px 20px;
-  font-size: 16px;
-  font-family: Montserrat, sans-serif;
-  height: 40px;
   margin-right: 0;
-  color: black!important;
+  color: black !important;
   outline: none;
   background: none;
-  border-top:1px solid $bleuRoyal ;
-  border-bottom:1px solid $bleuRoyal ;
-  float: left;
+  border-top: 1px solid $bleuRoyal;
+  border-bottom: 1px solid $bleuRoyal;
   box-sizing: border-box;
+  width: 100%;
   transition: all 0.15s;
+
+  @media screen and (min-width: $mobile600px) {
+    width: initial;
+  }
 }
+
 ::-webkit-input-placeholder { /* WebKit browsers */
   color: black;
 }
+
 #search_text:focus {
-  background: rgb(64, 151, 119);
+  //background: $blanc;
 }
+
 #search_button {
   background: url(../../liaisons/images/loupe.png) center no-repeat;
   width: 60px;
-  float: left;
   border-top: 1px solid $bleuRoyal;
   border-bottom: 1px solid $bleuRoyal;
   border-right: 1px solid $bleuRoyal;
   padding: 0;
   text-align: center;
-  height: 40px;
+  height: 100%;
   cursor: pointer;
   border-radius: 0 10px 10px 0;
 }
-#options{
+
+#options {
   background: $bleuRoyal;
   border-radius: 10px 0 0 10px;
 
 }
-#options a{
+
+#options a {
   border-left: 0 none;
   color: white;
 }
-#options a:hover{
+
+#options a:hover {
   border-left: 0 none;
   color: $bleuRoyal;
 }
-#options>a {
+
+#options > a {
   background-image: url(liaisons/images/triangle.png);
   background-position: 85% center;
   background-repeat: no-repeat;
-  padding-right: 24px;
+  padding: 0.5rem 2rem 0 2rem;
+
+  &:hover {
+	color: $blanc;
+  }
 }
+
 .subnav {
   visibility: hidden;
   position: absolute;
@@ -102,35 +117,33 @@
   transition: all 0.1s;
   background: $bleuRoyal;
 }
+
 .subnav li {
   float: none;
 }
-.subnav li:hover{
+
+.subnav li:hover {
   color: $bleuRoyal;
   border: 2px solid $bleuRoyal;
 }
+
 .subnav li a {
   border-bottom: 2px solid white;
 }
+
 .subnav li a:hover {
   background: white;
   color: $bleuRoyal;
   border: 2px solid $bleuRoyal;
 }
+
 #options:hover .subnav {
   visibility: visible;
   top: 100%;
   opacity: 1;
 }
-.listeEntete{
-  display: contents;
-}
 
-@media (max-width: 700px) {
-  .entete{
-    min-height: 225px!important;
-  }
-  #search{
-    width: 100%;
-  }
+.listeEntete {
+  display: flex;
+  flex-basis: 100%;
 }

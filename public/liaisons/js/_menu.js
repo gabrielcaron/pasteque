@@ -56,24 +56,7 @@ var menu = {
     this.refMenu.classList.toggle("menu--ferme");
 
     // On change le libellé du bouton selon l'état du menu
-    if (this.refMenu.classList.contains("menu--ferme"))
-    {
-      this.refLibelle.innerHTML = this.lblMenuFerme;
-      document.getElementsByClassName('menu__topNavEntete')[0].style.top = '75px';
-      document.getElementsByClassName('menu__topNavEntete')[0].style.transition = '0.5s';
-      document.getElementsByClassName('main')[0].style.tr = '0.5s';
-      document.getElementsByClassName('main')[0].style.marginTop = '5rem';
-      console.log('hey')
-    }
-    else
-    {
-      this.refLibelle.innerHTML = this.lblMenuOuvert;
-      console.log(document.getElementsByClassName('menu__topNavEntete'))
 
-      document.getElementsByClassName('menu__topNavEntete')[0].style.top = '445px';
-      document.getElementsByClassName('main')[0].style.marginTop = '12rem';
-
-    }
   },
   activeMenuItem: function (){
     const urlParams = new URLSearchParams(window.location.search);

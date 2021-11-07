@@ -3,203 +3,241 @@
 * @creer la section menu principal
 */
 /* Bouton du menu */
+
 .menu {
-    list-style:none;
-    margin:0;
-    padding:0;
-    text-align:center;
-    /*
-    mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
-    */
-    @media (max-width: 1000px) {
-        text-align: right;
-        height: auto;
-    }
-    &__flex{
-        display: grid;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 5rem 0;
 
-        &Ferme{
-            font-size: 16px;
-        }
-    }
-    &__libelle{
-        font-size: 35px;
-        color: $bleuRoyal;
-    }
-    &__entete{
-        max-width: 1400px;
-        margin: 0 auto;
-        position: relative;
-        margin-top: 1rem;
-    }
-    &__topNavEntete{
-        display: flex;
-        justify-content: flex-end;
-        top: 200px;
+  @media (max-width: 1000px - 1) {
+	text-align: right;
+	height: auto;
+	width: 100%;
+	position: absolute;
+	z-index: 1000;
+	padding: 0;
+  }
 
-        @media (max-width: 1000px) {
-            position: absolute;
-            top: 10rem;
-            right: 0;
-        }
-        @media (max-width: 600px) {
-            width: 100%;
-        }
-    }
+  @media screen and (min-width: $desktop1000px) {
+	@include paddingConteneur;
+  }
 
-    &__controle{
-        z-index: 100;
-        border: none;
-        background: none;
-        position: relative;
-        right: 10px;
-        @media (min-width: 1000px) {
-            display: none;
-        }
-        &:hover,
-        &:active {
+  &__libelle {
+	font-size: 35px;
+	color: $bleuRoyal;
+  }
 
-        }
-        &:focus {
-            outline-offset: -5px;
-        }
-    }
-    &__liste {
-        top: 20%;
-        margin: 0;
-        display: flex;
-        padding: 0;
-        list-style: none;
-        max-height: none;
-        margin-top: 2rem;
-        @media (max-width: 1000px) {
-            display: block;
-        }
-        justify-content: space-between;
-         &Item{
+  &__entete {
+	@include rangeeFlex;
+	flex-wrap: wrap;
+	padding-top: 3rem;
+	position: relative; // Pour positionner le menu mobile seulement
 
-        @media (min-width: 1000px) {
-                display: inline-block;
+	@media screen and (min-width: $mobile600px) {
+	  padding-bottom: 3rem;
+	}
 
-            }
-        }
-        &Element {
+	@media screen and (min-width: $desktop1000px) {
+	  padding-top: 7rem;
+	}
+  }
 
-            ul {
-                list-style: none;
-                display: flex;
-            }
-        }
-        &Logo {
-            position: absolute;
-            //top: 35px;
-            left: 33px;
-            @media (max-width: 1000px) {
-                left: 20px;
-                top: 10px;
-            }
-        }
+  &__topNavEntete {
+	flex-basis: 100%;
+	@include paddingConteneur;
+	@include rangeeFlex;
+	align-items: center;
+	flex-wrap: wrap;
 
-    }
+	&Logo {
+	  display: inline-block;
+	  width: 25rem;
+
+	  @media screen and (min-width: $mobile600px) {
+		width: 30rem;
+	  }
+
+	  @media screen and (min-width: $desktop1000px) {
+		width: 35rem;
+	  }
+	}
+  }
+
+  &Top {
+	&__lien {
+	  font-family: $RobotoMedium;
+	}
+  }
+
+  &__controle {
+	z-index: 100;
+	border: none;
+	background: none;
+	position: relative;
+	padding-right: 2rem;
+	@media (min-width: 1000px) {
+	  display: none;
+	  padding-right: initial;
+	}
+
+	&:hover,
+	&:active {
+
+	}
+
+	&:focus {
+	  outline-offset: -5px;
+	}
+  }
+
+  &__liste {
+	@include rangeeFlex;
+	justify-content: start;
+	flex-wrap: wrap;
+	margin: 2rem 0 0 0;
+	padding: 0;
+	list-style: none;
+	max-height: none;
+
+	@media (max-width: $desktop1000px - 1) {
+	  display: block;
+	}
+
+	&Item {
+	  background-color: $blanc;
+	  border-bottom: 5px solid $bleuRoyal;
+
+	  @media (max-width: $desktop1000px - 1) {
+		&:nth-child(1) {
+		  border-top: 5px solid $bleuRoyal;
+		}
+	  }
+
+	  @media (min-width: $desktop1000px) {
+		display: inline-block;
+		border-bottom: 5px solid transparent;
+		background-color: initial;
+	  }
+	}
+
+	&Element {
+	  ul {
+		list-style: none;
+		display: flex;
+	  }
+	}
+
+  }
 
 
+  &__lien {
+	color: $noir;
+	font-family: $RobotoMedium;
+	font-size: 2rem;
+	text-decoration: none;
+	display: inline-block;
+	padding: 1rem 2rem 0.3em 2rem;
+	width: 100%;
+	border-bottom: 5px solid transparent;
 
-    &__lien {
-        color: black;
-        font-size: 18px;
-        text-decoration: none;
-        font-weight: inherit;
-        width: 100%;
-        display:inline-block;
-        padding:10px;
-        text-align: left;
+	@media screen and (min-width: $mobile600px) {
+	  margin-right: 3rem;
+	}
 
-        @media (max-width: 600px) {
-            width: 90%;
-            margin: 0 auto;
-        }
+	@media screen and (min-width: $desktop1000px) {
+	  width: initial;
+	  padding: initial;
+	}
 
-        &:link,
-        &:visited {
+	@media screen and (min-width: 1150px) {
+	  font-size: 2.5rem;
+	}
 
-        }
+	@media screen and (min-width: $desktop1400px + 50) {
+	  margin-right: 5rem;
+	  font-size: 3rem;
+	}
 
-        &:hover,
-        &:active {
-            border-bottom: 5px solid $bleuRoyal;
-            transition: 0.3s;
-        }
-        &:focus {
+	&:link,
+	&:visited {
 
-        }
-        &--actif {
+	}
 
-            border-bottom: 5px solid $bleuRoyal;
-        }
-    }
+	&:hover,
+	&:active {
+	  background-color: $bleuRoyal;
+	  color: $blanc;
+
+	  @media screen and (min-width: $desktop1000px) {
+		border-bottom: 5px solid $bleuRoyal;
+		background-color: initial;
+		color: initial;
+	  }
+	  transition: 0.3s;
+	}
+
+	&:focus {
+
+	}
+
+	&--actif {
+
+	  border-bottom: 5px solid $bleuRoyal;
+	}
+  }
 
 }
-.activeMenuItem{
-    border-bottom: 3px solid $bleuRoyal;
-@media (max-width: 1000px) {
-    background: $bleuRoyal;
-    border-bottom: 0;
-    a{
-        color: white!important;
-    }
-}
+
+.activeMenuItem {
+  border-bottom: 3px solid $bleuRoyal;
+  @media (max-width: 1000px - 1) {
+	background: $bleuRoyal;
+	border-bottom: 0;
+	a {
+	  color: white !important;
+	}
+  }
 
 }
-header{
-    background-color: white;
+
+header {
+  background-color: white;
 
 }
-.topNavLink{
-    display: flex;
-    list-style: none;
-    flex-wrap: wrap;
-    justify-content: end;
-    flex-direction: row-reverse;
 
-    @media (max-width: 600px) {
-        width: 90%;
-        margin: 0 auto;
-    }
+.topNavLink {
+  display: flex;
+  justify-content: end;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-basis: 100%;
+  list-style: none;
+  gap: 2rem;
 
-    input{
-        @media (max-width: 600px) {
-            width: 100%;
-        }
-    }
+  @media screen and (min-width: $desktop1000px) {
+	flex-basis: initial;
+  }
 }
 
-.entete{
-    border-top: 5px solid $bleuRoyal;
-    background: #F7F7F7;
-    height: 175px;
-    padding-top: 2rem;
-    @media (max-width: 1000px) {
-        height: auto!important;
-        min-height: 200px;
-    }
-}
-#recherche{
-    width: 150px;
-    color: black;
-    font-size: 16px;
-    @media (max-width: 600px) {
-        width: 100%;
-    }
+#recherche {
+  width: 150px;
+  color: black;
+  font-size: 16px;
+
+  @media (max-width: 600px - 1) {
+	width: 100%;
+  }
 }
 
 .fa {
-    display: inline-block;
-    font: normal normal normal 14 px/1 FontAwesome;
-    font-size: 25px!important;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font: normal normal normal 14 px/1 FontAwesome;
+  font-size: 25px !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 /* Si le javascript est activé */
 
 /* Pour des raisons d'accessibilité, on ne cache le menu mobile
@@ -207,15 +245,16 @@ header{
  * le menu restera tout de même visible à l'utilisateur.
  */
 
-.js .menu__liste{
-    max-height: 100vh;
-    overflow: hidden;
-    transition: max-height 0.5s;
+.js .menu__liste {
+  max-height: 100vh;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  text-align: left;
 }
 
 .js .menu--ferme .menu__liste {
-    max-height: 0;
-    @media (min-width: 1000px) {
-        max-height: none;
-    }
+  max-height: 0;
+  @media (min-width: 1000px) {
+	max-height: none;
+  }
 }

@@ -118,6 +118,20 @@
 
   }
 
+  &__champEnveloppe {
+    font-family: $RobotoMedium;
+    font-style: normal;
+    font-size: 2rem;
+    line-height: 100%;
+    text-align: center;
+    padding: 1rem 1rem;
+    &Rangee {
+      border: 5px solid $bleuRoyal;
+      border-radius: 1.5rem;
+
+    }
+  }
+
 
   // Styles spéciques dans les fieldsets
 
@@ -137,6 +151,15 @@
         &.demi {
           grid-column: 1 / 6;
         }
+      }
+    }
+
+    &Rangee{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @media(min-width: 600px) {
+        flex-direction: row;
       }
     }
 

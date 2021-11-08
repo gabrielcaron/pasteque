@@ -60,9 +60,9 @@ class Reconnaissance
 
     /** Méthode pour trouver les reconnaissances associées à un livre
      * @param int $idLivre - Id d'un livre
-     * @return array|false - Tableau des reconnaissances ou false si aucune reconnaissance
+     * @return array - Tableau des reconnaissances
      */
-    public static function trouverParId(int $idLivre):Array|false {
+    public static function trouverParId(int $idLivre):Array {
         // Définir la chaine SQL
         $chaineSQL = "SELECT  *
         FROM `reconnaissances` 

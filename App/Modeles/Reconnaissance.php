@@ -40,6 +40,9 @@ class Reconnaissance
         $this->livre_id = $unLivreId;
     }
 
+    /** Méthode pour trouver toutes les reconnaissances
+     * @return array - Tableau des reconnaissances
+     */
     public static function trouverTout():array {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM reconnaissances';
@@ -55,8 +58,11 @@ class Reconnaissance
         return $reconnaissances;
     }
 
+    /** Méthode pour trouver les reconnaissances associées à un livre
+     * @param int $idLivre - Id d'un livre
+     * @return array|false - Tableau des reconnaissances ou false si aucune reconnaissance
+     */
     public static function trouverParId(int $idLivre):Array|false {
-
         // Définir la chaine SQL
         $chaineSQL = "SELECT  *
         FROM `reconnaissances` 

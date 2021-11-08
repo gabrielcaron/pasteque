@@ -58,6 +58,8 @@ class Auteur
     public function setSiteWeb(string $unSiteWeb):void {
         $this->site_web = $unSiteWeb;
     }
+
+
     public function getLivresAssocies():array|false{
         return Livre::trouverLivresParAuteur($this->id);
     }
@@ -80,7 +82,6 @@ class Auteur
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         $requetePreparee->bindParam(':enregistrementDepart', $enregistrementDepart, PDO::PARAM_INT);
         $requetePreparee->bindParam(':nbAuteursParPage', $nbAuteursParPage, PDO::PARAM_INT);
-        //$requetePreparee->bindParam(':categoriesSelect', $categories, PDO::PARAM_STR);
         $requetePreparee->bindParam(':trierPar', $trierPar, PDO::PARAM_STR);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Auteur');
@@ -129,9 +130,9 @@ class Auteur
         return $requetePreparee->fetch();
     }
 
-    /** Méthode pour trouver tout
-     * @param int $unIdAuteur - Id d'un auteur
-     * @return Auteur - Un auteur
+    /** Méthode pour trouver tout les auteurs associés à un livre
+     * @param int $unIdLivres - Id d'un livre
+     * @return array - Tableau des auteurs associés au livre
      */
     public static function trouverParIdLivre(int $unIdLivres):array {
         // Définir la chaine SQL

@@ -38,7 +38,7 @@ class ControleurLivre
         $nombrePage = intval($nombreLivre / $intNbLivreParPage);
 
         //Livres à afficher
-        $livres = $intIdCategorie === [] ? Livre::trouverToutSansCategories($trierPar, $enregistrementDepart, $intNbLivreParPage) : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, $enregistrementDepart, $intNbLivreParPage);
+        $livres = $intIdCategorie === [] ? Livre::trouverToutSansCategories($trierPar, intval($enregistrementDepart), intval($intNbLivreParPage)) : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, intval($enregistrementDepart), intval($intNbLivreParPage));
 
         //Tableau des données à passer à la vue
         $tDonnees = array("titrePage"=>"Les livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre,

@@ -97,6 +97,7 @@ class Evenement
         $this->lien_instagram = $unLienInstagram;
     }
 
+    /*** Mettre $this->>l_evenement dans le explode? ***/
     public function getIntro()
     {
         $evenement = $this->l_evenement;
@@ -104,6 +105,9 @@ class Evenement
         return $evenement[0] . ".";
     }
 
+    /** Méthode pour trouver tous les événements
+     * @return array - Tableau des événements
+     */
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
@@ -115,8 +119,7 @@ class Evenement
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $evenement = $requetePreparee->fetchAll();
-        return $evenement;
+        return $requetePreparee->fetchAll();
     }
 
 }

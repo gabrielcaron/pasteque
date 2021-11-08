@@ -19,10 +19,10 @@
                             @endif
                     </div>
                     <ul class="ficheLivre__imageList">
-                        @for($i=1;$i < 5;$i++)
-                            @if(file_exists("liaisons/images/9782897770013-{$i}.jpg"))
-                                <li class="ficheLivre__imageItem"><img src="liaisons/images/9782897770013-{{$i}}.jpg">
-                                </li>
+                        <li class="ficheLivre__imageItem"><img class="ficheLivre__active" src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg"></li>
+                    @for($i=1;$i < 4;$i++)
+                            @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_00{$i}-940.jpg"))
+                                <li class="ficheLivre__imageItem"><img src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg"></li>
                             @endif
                         @endfor
                     </ul>

@@ -29,9 +29,9 @@ class App
     {
         if (App::$pdo === null) {
             $serveur = 'localhost';
-            $utilisateur = 'root';
-            $motDePasse = 'root';
-            $nomBd = 'pasteque';
+            $utilisateur = 'camarines';
+            $motDePasse = 'camarines_1234';
+            $nomBd = '21_pasteque_camarines';
             $chaineDSN ="mysql:dbname=$nomBd;host=$serveur"; // Data Source Name
             // Tentative de connexion
             App::$pdo = new PDO($chaineDSN, $utilisateur, $motDePasse);

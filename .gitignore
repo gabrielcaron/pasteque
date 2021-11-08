@@ -1,5 +1,5 @@
 .idea/
 **/.DS_Store
 ressources/cache/
-node_modules/
+/node_modules/
 /public/liaisons/css/

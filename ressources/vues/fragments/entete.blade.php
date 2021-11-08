@@ -33,9 +33,6 @@
                             <li><a href="#">Titres</a></li>
                             <li><a href="#">Auteurs</a></li>
                             <li><a href="#">ISBN</a></li>
-                            <li><a href="#">Albums jeunesse</a></li>
-                            <li><a href="#">Documentaires</a></li>
-                            <li><a href="#">Divers</a></li>
                         </ul>
                     </li>
                     <form class="formRecherche" action="" method="get">

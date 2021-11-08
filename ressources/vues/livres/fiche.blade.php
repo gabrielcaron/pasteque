@@ -9,20 +9,25 @@
             <div class="ficheLivre__product">
                 <div class="ficheLivre__productGallery">
                     <div class="ficheLivre__productImage">
-                        <img class="ficheLivre__active" src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
+                        <img class="ficheLivre__active"
+                             src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
                         @if($livre->getStatut()===3)
                             <p class="ficheLivre__statut">À paraitre</p>
                         @elseif($livre->getStatut()===2)
                             <p class="ficheLivre__statut">Nouveauté</p>
                         @else
                             <p class="ficheLivre__statut"></p>
-                            @endif
+                        @endif
                     </div>
                     <ul class="ficheLivre__imageList">
-                        <li class="ficheLivre__imageItem"><img class="ficheLivre__active" src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg"></li>
-                    @for($i=1;$i < 4;$i++)
+                        <li class="ficheLivre__imageItem"><img class="ficheLivre__active"
+                                                               src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
+                        </li>
+                        @for($i=1;$i < 4;$i++)
                             @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_00{$i}-940.jpg"))
-                                <li class="ficheLivre__imageItem"><img src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg"></li>
+                                <li class="ficheLivre__imageItem"><img
+                                            src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg">
+                                </li>
                             @endif
                         @endfor
                     </ul>
@@ -50,14 +55,17 @@
                         </svg>
                         <span data-title="first">Résumé</span>
                     </button>
-                    <button class="tabSection__menuLink" data-content="second">
-                        <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class="tabSection__menuLinkPath"
-                                  d="M16.5 2H14.5V0H4.5V2H2.5C1.4 2 0.5 2.9 0.5 4V5C0.5 7.55 2.42 9.63 4.89 9.94C5.52 11.44 6.87 12.57 8.5 12.9V16H4.5V18H14.5V16H10.5V12.9C12.13 12.57 13.48 11.44 14.11 9.94C16.58 9.63 18.5 7.55 18.5 5V4C18.5 2.9 17.6 2 16.5 2ZM2.5 5V4H4.5V7.82C3.34 7.4 2.5 6.3 2.5 5ZM16.5 5C16.5 6.3 15.66 7.4 14.5 7.82V4H16.5V5Z"
-                                  fill="#595959"/>
-                        </svg>
-                        <span data-title="second">Prix obtenus</span>
-                    </button>
+                    @if($livre->getReconnaissanceAssocie()!== [])
+                        <button class="tabSection__menuLink" data-content="second">
+                            <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path class="tabSection__menuLinkPath"
+                                      d="M16.5 2H14.5V0H4.5V2H2.5C1.4 2 0.5 2.9 0.5 4V5C0.5 7.55 2.42 9.63 4.89 9.94C5.52 11.44 6.87 12.57 8.5 12.9V16H4.5V18H14.5V16H10.5V12.9C12.13 12.57 13.48 11.44 14.11 9.94C16.58 9.63 18.5 7.55 18.5 5V4C18.5 2.9 17.6 2 16.5 2ZM2.5 5V4H4.5V7.82C3.34 7.4 2.5 6.3 2.5 5ZM16.5 5C16.5 6.3 15.66 7.4 14.5 7.82V4H16.5V5Z"
+                                      fill="#595959"/>
+                            </svg>
+                            <span data-title="second">Prix obtenus</span>
+                        </button>
+                    @endif
                 </div>
                 <div class="tabSection__bar">
                     <div class="tabSection__barContent active" id="first">
@@ -67,37 +75,46 @@
                             </p>
                         </div>
                     </div>
-                    <div class="tabSection__barContent" id="second">
-                        <div class="tabSection__texts">
-                                @if($livre->getReconnaissanceAssocie()!== [])
-                                    @foreach($livre->getReconnaissanceAssocie() as $reconnaissanceLivre)
-                                {{$reconnaissanceLivre->getReconnaissance()}}
-                                    @endforeach
-                                @else
-                                    <p>Il n'y a malheureusement aucune reconnaissance pour ce livre</p>
-                                @endif
+
+                    @if($livre->getReconnaissanceAssocie()!== [])
+                        <div class="tabSection__barContent" id="second">
+                            <div class="tabSection__texts">
+                                @foreach($livre->getReconnaissanceAssocie() as $reconnaissanceLivre)
+                                    {{$reconnaissanceLivre->getReconnaissance()}}
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
             <section class="ficheLivre__format">
                 <form id="formTri" class="enveloppe__Tris" action="" method="POST">
-                <fieldset class="formulaire__groupeChamps tuiles">
-                <ul class="formulaire__liste">
-                    <li class="bloc">
-                        <input  class="radio screen-reader-only" id="papier" value="papier" name="version" type="radio" checked>
-                        <label  class="libelle" for="papier">Version papier</label>
-                    </li>
-                    <li class="bloc">
-                        <input class="radio screen-reader-only" id="numerique" value="numerique" name="version" type="radio">
-                        <label class="libelle" for="numerique">Version numérique</label>
-                    </li>
-                    <li class="bloc">
-                        <input class="radio screen-reader-only" id="pdf" value="pdf" name="version" type="radio">
-                        <label class="libelle" for="pdf">Version PDF</label>
-                    </li>
-                </ul>
-                </fieldset>
+                    <fieldset class="formulaire__groupeChamps tuiles">
+                        <ul class="formulaire__liste">
+                            @if($livre->getIsbnPapier()!== [])
+                                <li class="bloc">
+                                    <input class="radio screen-reader-only" id="papier" value="papier" name="version"
+                                           type="radio" checked>
+                                    <label class="libelle" for="papier">Version papier</label>
+                                </li>
+                            @endif
+                            @if($livre->getIsbnEpub()!== [])
+                                <li class="bloc">
+                                    <input class="radio screen-reader-only" id="numerique" value="numerique"
+                                           name="version"
+                                           type="radio">
+                                    <label class="libelle" for="numerique">Version numérique</label>
+                                </li>
+                            @endif
+                            @if($livre->getIsbnPdf()!== [])
+                                <li class="bloc">
+                                    <input class="radio screen-reader-only" id="pdf" value="pdf" name="version"
+                                           type="radio">
+                                    <label class="libelle" for="pdf">Version PDF</label>
+                                </li>
+                            @endif
+                        </ul>
+                    </fieldset>
                 </form>
             </section>
             <div class="ficheLivre__ajout">

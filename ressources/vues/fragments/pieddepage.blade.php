@@ -4,7 +4,7 @@
             <a href="index.php?controleur=site&action=accueil" class="menuSec__lien">Accueil</a>
         </li>
         <li class="menuSec__listeItem">
-            <a href="index.php?controleur=livre&action=index" class="menuSec__lien" >Livre</a>
+            <a href="index.php?controleur=livre&action=index" class="menuSec__lien" >Livres</a>
         </li>
         <li class="menuSec__listeItem">
             <a href="index.php?controleur=auteur&action=index" class="menuSec__lien" >Auteurs</a>

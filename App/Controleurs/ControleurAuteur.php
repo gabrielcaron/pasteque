@@ -16,7 +16,7 @@ class ControleurAuteur
     //Index des auteurs
     public function index(): void
     {
-        var_dump($_POST);
+//        var_dump($_POST);
         //Url de base
         $urlAuteur = 'index.php?controleur=auteur&action=index';
 

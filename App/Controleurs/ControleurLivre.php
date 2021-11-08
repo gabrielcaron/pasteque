@@ -16,7 +16,7 @@ class ControleurLivre
     //Index des livres
     public function index(): void
     {
-        var_dump($_POST);
+//        var_dump($_POST);
         //Url de base
         $urlLivre = 'index.php?controleur=livre&action=index';
 

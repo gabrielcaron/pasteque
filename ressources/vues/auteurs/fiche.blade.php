@@ -25,7 +25,7 @@
         @foreach($auteur->getLivresAssocies() as $livres)
             <div class="auteur__decouvrirLivreCon">
                 <div class="auteur__decouvrirLivreCard">
-                    <a href="index.php?controleur=livre&action=fiche&id={{$livres->getId()}}"> <img class="auteur__decouvrirLivreImg" src="https://via.placeholder.com/350{{--{{$livres->getIsbnPapier()}}.jpg--}}" alt="{{$livres->getTitre()}}"></a>
+                    <a href="index.php?controleur=livre&action=fiche&id={{$livres->getId()}}"> <img class="auteur__decouvrirLivreImg" src="../public/liaisons/images/livres/{{$livres->getIsbnPapier()}}-940.jpg" alt="{{$livres->getTitre()}}"></a>
                 </div>
             </div>
         @endforeach

@@ -13,6 +13,7 @@ class ControleurLivre
         //vide
     }
 
+    //Index des livres
     public function index(): void
     {
         var_dump($_POST);
@@ -37,7 +38,7 @@ class ControleurLivre
         $nombrePage = intval($nombreLivre / $intNbLivreParPage);
 
         //Livres à afficher
-        $livres = $intIdCategorie === [] ? Livre::trouverToutSansCategories($trierPar, $enregistrementDepart, $intNbLivreParPage) : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, $enregistrementDepart, $intNbLivreParPage);
+        $livres = $intIdCategorie === [] ? Livre::trouverToutSansCategories($trierPar, intval($enregistrementDepart), intval($intNbLivreParPage)) : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, intval($enregistrementDepart), intval($intNbLivreParPage));
 
         //Tableau des données à passer à la vue
         $tDonnees = array("titrePage"=>"Les livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre,
@@ -46,6 +47,7 @@ class ControleurLivre
         echo App::getBlade()->run("livres.index",$tDonnees);
     }
 
+    //Fiche des livres
     public function fiche($livreChoisi):void
     {
         $livre = Livre::trouverParId($livreChoisi);

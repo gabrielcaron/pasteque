@@ -21,7 +21,12 @@ class App
         $this->routerRequete();
     }
 
-    public static function getPDO() {
+    /**
+     * Méthode pour faire l'utilisation de PDO
+     * @return PDO|null - Ref de pdo
+     */
+    public static function getPDO(): ?PDO
+    {
         if (App::$pdo === null) {
             $serveur = 'localhost';
             $utilisateur = 'root';
@@ -38,6 +43,10 @@ class App
         return App::$pdo;
     }
 
+    /**
+     * Méthode pour faire l'utilisation de BladeOne
+     * @return BladeOne - Ref de BladeOne
+     */
     public static function getBlade():BladeOne
     {
         if(App::$refBlade === null){
@@ -48,6 +57,9 @@ class App
         return App::$refBlade;
     }
 
+    /**
+     * Méthode pour faire le router dans l'app mono-page
+     */
     public function routerRequete():void
     {
         $controleur = null;
@@ -55,27 +67,16 @@ class App
         $id = null;
 
         // Déterminer le controleur responsable de traiter la requête
-
-
-        if (isset($_GET['controleur'])){
-            $controleur = $_GET['controleur'];
-        }else{
-            //valeur par defaut
-            $controleur = 'site';
-        }
+        $controleur = $_GET['controleur'] ?? 'site';
 
         // Déterminer l'action du controleur
-        if (isset($_GET['action'])){
-            $action = $_GET['action'];
-        }else{
-            //valeur par defaut
-            $action = 'accueil';
-        }
+        $action = $_GET['action'] ?? 'accueil';
 
         // Déterminer l'id
         if (isset($_GET['id'])){
             $id = (int)$_GET['id'];
         }
+
         // Instantier le bon controleur selon la page demandée
         if ($controleur === 'livre'){
             $this->monControleur = new ControleurLivre();

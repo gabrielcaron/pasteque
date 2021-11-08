@@ -13,6 +13,7 @@ class ControleurAuteur
         //vide
     }
 
+    //Index des auteurs
     public function index(): void
     {
         var_dump($_POST);
@@ -31,7 +32,7 @@ class ControleurAuteur
         $nbAuteursParPage = $nbAuteursParPage === 'tous' ? $nombreAuteurs : $nbAuteursParPage;
         $nombrePage = intval($nombreAuteurs / $nbAuteursParPage);
 
-        $auteurs = Auteur::trouverTout($trierPar, $enregistrementDepart, $nbAuteursParPage);
+        $auteurs = Auteur::trouverTout($trierPar, intval($enregistrementDepart), intval($nbAuteursParPage));
 
         $tDonnees = array("titrePage"=>"Les auteurs", "action"=>"index", "auteurs"=>$auteurs, "nombreAuteurs"=>$nombreAuteurs,
             "nombreTotalPages"=>$nombrePage, "choixVue"=>$choixVue, "urlPagination"=>$urlAuteur, "numeroPage"=>$strIdPage,
@@ -39,6 +40,7 @@ class ControleurAuteur
         echo App::getBlade()->run("auteurs.index",$tDonnees);
     }
 
+    //Fiche des auteurs
     public function fiche($auteurChoisi):void
     {
         $auteur = Auteur::trouverParId($auteurChoisi);

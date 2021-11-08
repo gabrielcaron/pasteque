@@ -8,7 +8,7 @@
     <section class="auteur">
         <div class="auteur__conteneur1">
 
-            <img class="auteur__conteneurImg" src="liaisons/images/genevieveGodbout.png" width="20%">
+            <img class="auteur__conteneurImg" src="../public/liaisons/images/auteurs/{{$auteur->getId()}}-1140.jpg" alt="{{$auteur->getPrenom()}} {{$auteur->getNom()}}" width="20%">
         </div>
         <div class="auteur__conteneur2">
             <h2 class="auteur__nom">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</h2>

@@ -272,7 +272,9 @@ class Livre
         return Reconnaissance::trouverParId($this->id);
     }
 
-
+    /** Méthode pour trouver tous les livres
+     * @return array - Tableau des livres
+     */
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
@@ -288,19 +290,21 @@ class Livre
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $livres = $requetePreparee->fetchAll();
-        //var_dump($livres);
-
-        return $livres;
+        return $requetePreparee->fetchAll();
     }
 
-    public static function trouverToutSansCategories($trierPar, $enregistrementDepart, $nombreLivreParPage): array
+    /** Méthode pour trouver tous les livres avec ORDER BY et LIMIT, sans catégories
+     * @param string $trierPar - Chaine par quoi trier les auteurs
+     * @param int $enregistrementDepart - Nombre de départ
+     * @param int $nombreLivreParPage - Nombre de livres par page
+     * @return array - Tableau des livres
+     */
+    public static function trouverToutSansCategories(string $trierPar, int $enregistrementDepart, int $nombreLivreParPage): array
     {
         /* Message à Michelle 3 novembre 2021 :
         Je dois faire l'affichage du INNER JOIN et ORDER BY seulement lorsque je trie par auteur, sinon il y a des doublons (nous en avions discuté ensemble) */
         $innerJoin = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id': '';
         $orderBy = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC, case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,': '';
-
 
         $chaineSQL = 'SELECT livres.*
                             FROM livres
@@ -327,11 +331,13 @@ class Livre
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $resultat = $requetePreparee->fetchAll();
-
-        return $resultat;
+        return $requetePreparee->fetchAll();
     }
 
+    /** Méthode pour trouver un livre
+     * @param int $idLivre - Id d'un livre
+     * @return Livre - Un livre
+     */
     public static function trouverParId(int $idLivre): Livre
     {
         // Définir la chaine SQL
@@ -345,10 +351,12 @@ class Livre
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $livre = $requetePreparee->fetch();
-        return $livre;
+        return $requetePreparee->fetch();
     }
 
+    /** Méthode pour trouver le nombre de livre
+     * @return string - Le nombre de livre total
+     */
     public static function trouverNombreLivres(): string
     {
         // Définir la chaine SQL
@@ -364,7 +372,11 @@ class Livre
         return $resultat->nombreLivres;
     }
 
-    public static function trouverNombreLivresAvecCategories($idCategories): string
+    /** Méthode pour trouver le nombre de livre avec catégorie sélectionné
+     * @param array $idCategories - Tableau des catégories
+     * @return string - Le nombre de livre total
+     */
+    public static function trouverNombreLivresAvecCategories(array $idCategories): string
     {
         /* Message à Michelle 29 ooctobre 2021 :
         Impossibilité d'utiliser un paramètre pour la chaine $categories contenant le séparateur ',' */
@@ -384,10 +396,17 @@ class Livre
         return $resultat->nombreLivres;
     }
 
-    public static function trouverLivresParCategories($idCategories, $trierPar, $enregistrementDepart, $nombreLivreParPage): array
+    /** Méthode pour trouver tous les livres avec ORDER BY et LIMIT, avec catégories
+     * @param array $idCategories - Tableau des catégories
+     * @param string $trierPar - Chaine par quoi trier les auteurs
+     * @param int $enregistrementDepart - Nombre de départ
+     * @param int $nombreLivreParPage - Nombre de livres par page
+     * @return array - Tableau des livres
+     */
+    public static function trouverLivresParCategories(array $idCategories, string $trierPar, int $enregistrementDepart, int $nombreLivreParPage): array
     {
         /* Message à Michelle 29 ooctobre 2021 :
-        Impossibilité d'utiliser un paramètre pour la chaine $categories contenant le séparateur ',' */
+        Impossibilité d'utiliser un paramètre (bindParam) pour la chaine $categories contenant le séparateur ',' */
         $categories = implode(', ', $idCategories);
 
         /* Message à Michelle 3 novembre 2021 :
@@ -423,11 +442,13 @@ class Livre
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $resultat = $requetePreparee->fetchAll();
-
-        return $resultat;
+        return $requetePreparee->fetchAll();
     }
 
+    /** Méthode pour trouver les livres associés à un auteur
+     * @param int $unIdAuteur - Id d'un auteur
+     * @return array - Les livres associés
+     */
     public static function trouverLivresParAuteur(int $unIdAuteur): array
     {
         // Définir la chaine SQL
@@ -445,14 +466,16 @@ class Livre
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $livres = $requetePreparee->fetchAll();
         //var_dump($participants);
-        return $livres;
+        return $requetePreparee->fetchAll();
     }
 
-    public static function trouverNouveautesHasard($combien)
+    /** Méthode pour trouver les nouveautés par hasard
+     * @param int $combien - Nombre de livre à sortir
+     * @return array - Les livres nouveautés
+     */
+    public static function trouverNouveautesHasard(int $combien) : array
     {
-
         // Définir la chaine SQL
         $chaineSQL = 'SELECT DISTINCT * FROM livres WHERE statut = 2
                       ORDER BY RAND() LIMIT ' . $combien;
@@ -463,14 +486,14 @@ class Livre
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $livres = $requetePreparee->fetchAll();
-
-//        var_dump($livres);
-
-        return $livres;
+        return $requetePreparee->fetchAll();
     }
 
-    public static function trouverAParaitreHasard($combien): array
+    /** Méthode pour trouver les à parraitre par hasard
+     * @param int $combien - Nombre de livre à sortir
+     * @return array - Les livres à parraitre
+     */
+    public static function trouverAParaitreHasard(int $combien): array
     {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT DISTINCT * FROM livres WHERE statut = 3
@@ -482,9 +505,7 @@ class Livre
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $livres = $requetePreparee->fetchAll();
-
-        return $livres;
+        return $requetePreparee->fetchAll();
     }
 
 

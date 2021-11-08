@@ -9,7 +9,7 @@
             <div class="ficheLivre__product">
                 <div class="ficheLivre__productGallery">
                     <div class="ficheLivre__productImage">
-                        <img class="ficheLivre__active" src="liaisons/images/9782897770013-0.jpg">
+                        <img class="ficheLivre__active" src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
                         @if($livre->getStatut()===3)
                             <p class="ficheLivre__statut">À paraitre</p>
                         @elseif($livre->getStatut()===2)

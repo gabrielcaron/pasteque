@@ -67,7 +67,7 @@
                                     <img class="livre__image etiquette"
                                          src="../public/liaisons/images/auteurs/{{$auteur->getId()}}-570.jpg"
                                          srcset="../public/liaisons/images/auteurs/{{$auteur->getId()}}-570.jpg 1x, ../public/liaisons/images/auteurs/{{$auteur->getId()}}-1140.jpg 2x"
-                                         alt="">
+                                         alt="{{$auteur->getPrenom()}} {{$auteur->getNom()}}">
                                 </picture>
                             </div>
                             <div class="livre__conteneurTitreInfos">

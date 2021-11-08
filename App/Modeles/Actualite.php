@@ -85,13 +85,19 @@ class Actualite
         $this->lien_instagram = $unLienInstagram;
     }
 
-    public function getIntro()
+    /** Méthode pour avoir l'affichage de l'intro d'une actualité
+     * @return string - L'intro de l'actualité
+     */
+    public function getIntro():string
     {
         $actualite = $this->l_actualite;
         $actualite = explode("! ", $actualite);
         return $actualite[0] . ".";
     }
 
+    /** Méthode pour trouver toutes les actualités
+     * @return array - Tableau des actualités
+     */
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
@@ -103,8 +109,7 @@ class Actualite
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $livres = $requetePreparee->fetchAll();
-        return $livres;
+        return $requetePreparee->fetchAll();
     }
 
 

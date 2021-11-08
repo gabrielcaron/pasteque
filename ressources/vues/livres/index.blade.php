@@ -84,7 +84,7 @@
                                     <img class="livre__image etiquette"
                                          src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg"
                                          srcset="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg 1x, ../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg 2x"
-                                         alt="">
+                                         alt="{{$livre->getTitre()}}">
                                 </picture>
                                 @if ($livre->getStatut() === 2)
                                     <p class="livre__etiquette">Nouveauté</p>

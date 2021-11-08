@@ -33,7 +33,9 @@ class Categorie
         $this->nom = $unNom;
     }
 
-
+    /** Méthode pour trouver toutes les catégories
+     * @return array - Tableau des catégories
+     */
     public static function trouverTout():array {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM categories';
@@ -44,11 +46,14 @@ class Categorie
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $categories = $requetePreparee->fetchAll();
         //var_dump($participants);
-        return $categories;
+        return $requetePreparee->fetchAll();
     }
 
+    /** Méthode pour trouver une catégorie
+     * @param int $idCategorie - Id d'une catégorie
+     * @return Categorie - Une catégorie
+     */
     public static function trouverParId(int $idCategorie):Categorie {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM categories  WHERE id = :idCategorie';
@@ -61,8 +66,7 @@ class Categorie
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $categorie = $requetePreparee->fetch();
-        return $categorie;
+        return $requetePreparee->fetch();
     }
 
 

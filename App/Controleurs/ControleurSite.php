@@ -14,8 +14,10 @@ class ControleurSite
 
     public function __construct()
     {
+        //Vide
     }
 
+    //Page d'accueil
     public function accueil(): void {
 
         $nouveautes = Livre::trouverNouveautesHasard(3);
@@ -27,6 +29,7 @@ class ControleurSite
         echo App::getBlade()->run("accueil",$tDonnees);
     }
 
+    //Page d'erreur
     public function erreur():void{
         $tDonnees = array("titrePage"=>"erreur 404");
         echo App::getBlade()->run("404", $tDonnees);

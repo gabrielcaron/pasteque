@@ -452,7 +452,7 @@ class Livre
     public static function trouverLivresParAuteur(int $unIdAuteur): array
     {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT *
+        $chaineSQL = 'SELECT livres.*
                         FROM livres
                         INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id
                         WHERE livres_auteurs.auteur_id = :unIdAuteur

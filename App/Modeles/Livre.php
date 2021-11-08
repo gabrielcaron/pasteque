@@ -58,6 +58,17 @@ class Livre
         $this->isbn_papier = $isbn;
     }
 
+    //Arguments commerciaux
+    public function getArgumentCommerciaux(): string
+    {
+        return $this->arguments_commerciaux;
+    }
+
+    public function setArgumentCommerciaux(string $argumentsCommerciaux): void
+    {
+        $this->arguments_commerciaux = $argumentsCommerciaux;
+    }
+
     // $isbn_pdf : Getter et setter
     public function getIsbnPdf(): string
     {

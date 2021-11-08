@@ -20,13 +20,11 @@
                         @endif
                     </div>
                     <ul class="ficheLivre__imageList">
-                        <li class="ficheLivre__imageItem"><img class="ficheLivre__active"
-                                                               src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
+                        <li class="ficheLivre__imageItem"><img class="ficheLivre__active" src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
                         </li>
                         @for($i=1;$i < 4;$i++)
                             @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_00{$i}-940.jpg"))
-                                <li class="ficheLivre__imageItem"><img
-                                            src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg">
+                                <li class="ficheLivre__imageItem"><img src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg">
                                 </li>
                             @endif
                         @endfor
@@ -45,6 +43,7 @@
                 <br>
             @endforeach
             <br><span class="ficheLivre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</span>
+            <br><br><p class="ficheLivre__argument">{{$livre->getArgumentsCommerciaux()}}</p>
             <div class="tabSection">
                 <div class="tabSection__menu">
                     <button class="tabSection__menuLink active" data-content="first">
@@ -91,14 +90,14 @@
                 <form id="formTri" class="enveloppe__Tris" action="" method="POST">
                     <fieldset class="formulaire__groupeChamps tuiles">
                         <ul class="formulaire__liste">
-                            @if($livre->getIsbnPapier()!== [])
+                            @if($livre->getIsbnPapier()!== '')
                                 <li class="bloc">
                                     <input class="radio screen-reader-only" id="papier" value="papier" name="version"
                                            type="radio" checked>
                                     <label class="libelle" for="papier">Version papier</label>
                                 </li>
                             @endif
-                            @if($livre->getIsbnEpub()!== [])
+                            @if($livre->getIsbnEpub()!== '')
                                 <li class="bloc">
                                     <input class="radio screen-reader-only" id="numerique" value="numerique"
                                            name="version"
@@ -106,7 +105,7 @@
                                     <label class="libelle" for="numerique">Version numérique</label>
                                 </li>
                             @endif
-                            @if($livre->getIsbnPdf()!== [])
+                            @if($livre->getIsbnPdf()!== '')
                                 <li class="bloc">
                                     <input class="radio screen-reader-only" id="pdf" value="pdf" name="version"
                                            type="radio">

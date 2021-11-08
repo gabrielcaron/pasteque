@@ -62,7 +62,7 @@ class Reconnaissance
      * @param int $idLivre - Id d'un livre
      * @return array - Tableau des reconnaissances
      */
-    public static function trouverParId(int $idLivre):Array {
+    public static function trouverParId(int $idLivre):array {
         // Définir la chaine SQL
         $chaineSQL = "SELECT  *
         FROM `reconnaissances` 

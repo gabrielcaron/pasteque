@@ -30,12 +30,9 @@
                         <a class="options__tout" href="#">Tout</a>
                         {{--  TODO les options devraient être des boutons radio dans le formulaire ?--}}
                         <ul class="subnav">
-                            <li><a href="#">Bandes dessinés</a></li>
-                            <li><a href="#">Bd jeunesse</a></li>
-                            <li><a href="#">Livres illustrés</a></li>
-                            <li><a href="#">Albums jeunesse</a></li>
-                            <li><a href="#">Documentaires</a></li>
-                            <li><a href="#">Divers</a></li>
+                            <li><a href="#">Titres</a></li>
+                            <li><a href="#">Auteurs</a></li>
+                            <li><a href="#">ISBN</a></li>
                         </ul>
                     </li>
                     <form class="formRecherche" action="" method="get">

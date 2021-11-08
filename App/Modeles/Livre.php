@@ -267,7 +267,7 @@ class Livre
         return Auteur::trouverParIdLivre($this->id);
     }
 
-    public function getReconnaissanceAssocie(): array|false
+    public function getReconnaissanceAssocie(): array
     {
         return Reconnaissance::trouverParId($this->id);
     }

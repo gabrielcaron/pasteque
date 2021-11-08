@@ -1,5 +1,7 @@
 @extends('gabarit')
-
+@section('classeMain')
+    class="artiste"
+@endsection
 @section('contenu')
     <section class="filAriane">
         <span><a href="index.php">Accueil</a><a href="index.php?controleur=auteur&action=index"> / Artistes</a> / {{$auteur->getPrenom()}} {{$auteur->getNom()}}</span>
@@ -24,13 +26,46 @@
         </div>
     </section>
 
-    <section class="nouveautes livres">
+    <section class="livres">
+        <h2 class="livres__titre">Découvrez ses livres</h2>
+        <div class="livre conteneurGrille">
+            @foreach($auteur->getLivresAssocies() as $livre)
+                <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={$livre->getIdLivre()}">
+                    <article class="livre__article">
+                        <div class="livre__conteneurVignette">
+                            <picture class="livre__picture">
+                                <!-- Image pour mobile, tablette et poste de table -->
+                                <img class="livre__image etiquette"
+                                     src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg"
+                                     srcset="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg 1x, ../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg 2x"
+                                     alt="">
+                            </picture>
+                            <p class="livre__etiquette">À paraître</p>
+                        </div>
+                        <div class="livre__conteneurTitreInfos">
+                            <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
+                        </div>
+                    </article>
+                </a>
+            @endforeach
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+   {{-- <section class="nouveautes livres">
         <h2 class="accueil__titre">Découvrir ses livres</h2>
         <div class="livre conteneurGrille">
             <!-- Foreach Nouveautés -->
-            {{--                        Faire un modulo, s'il se divise par 3, c'est une rangée--}}
+            --}}{{--                        Faire un modulo, s'il se divise par 3, c'est une rangée--}}{{--
             @foreach($auteur->getLivresAssocies() as $livre)
-                <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
+                <a class="livre__lienAuteur" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
                     <article class="livre__article">
                         <div class="livre__conteneurVignette">
                             <picture class="livre__picture">
@@ -68,6 +103,6 @@
             <rect fill="url(#a)" height="21.619" rx="3.5" stroke="#f0f0f0" width="1397" x=".5" y=".630859"/>
             <path d="m0 22.7499h1398l-355 76.9048h-720z" fill="url(#b)" fill-opacity=".04"/>
         </svg>
-    </section>
+    </section>--}}
 @endsection
 

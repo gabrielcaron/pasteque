@@ -101,3 +101,32 @@
     }
   }
 }
+.auteur {
+
+  &.auteurConteneurGrille {
+
+    @include rangeeGrid12col($pointRupture: 500px);
+
+  }
+
+  &__lienAuteur {
+
+    @media screen and (min-width: 500px) {
+      grid-column: span 6;
+    }
+    @media screen and (min-width: $tablet900px) {
+      grid-column: span 3;
+    }
+    text-decoration: none;
+    filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, 0.1));
+
+    &:hover {
+      @media screen and (min-width: $tablet900px) {
+        .livre__conteneurVignette {
+          position: relative; // pour les besoins du hover
+          top: -2rem;
+        }
+      }
+    }
+  }
+}

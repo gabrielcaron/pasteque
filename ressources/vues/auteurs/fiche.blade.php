@@ -14,13 +14,13 @@
             <h2 class="auteur__nom">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</h2>
             <p class="auteur__site">Visiter son <a href="{{$auteur->getSiteWeb()}}" class="auteur__siteLien" target="_blank">site internet</a></p>
             <br>
-            <h3 class="auteur__noticeTitre">Notice</h3>
+            <h3 class="auteur__noticeTitre">Biographie</h3>
             <p class="auteur__notice">{{$auteur->getNotice()}}</p>
         </div>
     </section>
 
     <section class="auteur__decouvrirLivre">
-        <h2 class="auteur__decouvrirTitre">Découvrez ces livres</h2>
+        <h2 class="auteur__decouvrirTitre">Découvrez ses livres</h2>
         <div class="auteur__decouvrirLivreConteneur">
         @foreach($auteur->getLivresAssocies() as $livres)
             <div class="auteur__decouvrirLivreCon">

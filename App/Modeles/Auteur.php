@@ -60,7 +60,7 @@ class Auteur
     }
 
 
-    public function getLivresAssocies():array|false{
+    public function getLivresAssocies():array{
         return Livre::trouverLivresParAuteur($this->id);
     }
 

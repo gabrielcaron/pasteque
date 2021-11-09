@@ -18,6 +18,7 @@
 
         <main @yield('classeMain')>
             @yield('contenu')
+            @include('fragments.panier')
             <section class="socialMedia">
             @include('fragments.infolettre')
             </section>

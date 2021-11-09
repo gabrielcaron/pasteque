@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace App;
 use App\Controleurs\ControleurAuteur;
+use App\Controleurs\ControleurCompte;
 use App\Controleurs\ControleurLivre;
 use App\Controleurs\ControleurSite;
 use eftec\bladeone\BladeOne;
@@ -104,7 +105,24 @@ class App
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
             }
-        } else if ($controleur === 'site'){
+        }
+
+        else if ($controleur === 'compte'){
+            $this->monControleur = new ControleurCompte();
+            switch ($action) {
+                case 'creation':
+                    $this->monControleur->creation();
+                    break;
+                case 'connexion':
+                    $this->monControleur->connexion();
+                    break;
+                default:
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
+            }
+        }
+
+        else if ($controleur === 'site'){
             $this->monControleur = new ControleurSite();
             switch ($action) {
                 case 'accueil':

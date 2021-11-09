@@ -8,6 +8,7 @@
         <title>La Pastèque</title>
         <link href="liaisons/css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="liaisons/images/faviconPasteque.png" type="image/x-icon">
 
     </head>
     <body class="js">

@@ -21,7 +21,7 @@
                 <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien">Mon compte</a>
             </li>
             <li class="menuTop__listeItem">
-                <a href="index.php?controleur=site&action=accueil" class="menuTop__lien"><i
+                <a href="#panier" class="menuTop__lien"><i
                             class="fa fa-shopping-cart"></i></a>
             </li>
             <li id="search">

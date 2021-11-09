@@ -101,15 +101,15 @@
     }
   }
 }
-.auteur {
+.artiste {
 
-  &.auteurConteneurGrille {
+  &.conteneurGrille {
 
     @include rangeeGrid12col($pointRupture: 500px);
 
   }
 
-  &__lienAuteur {
+  &__lien {
 
     @media screen and (min-width: 500px) {
       grid-column: span 6;

@@ -4,6 +4,7 @@ namespace App;
 use App\Controleurs\ControleurAuteur;
 use App\Controleurs\ControleurCompte;
 use App\Controleurs\ControleurLivre;
+use App\Controleurs\ControleurPanier;
 use App\Controleurs\ControleurSite;
 use eftec\bladeone\BladeOne;
 use \PDO;
@@ -92,6 +93,16 @@ class App
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
             }
+        } else if ($controleur === 'panier') {
+            $this->monControleur = new ControleurPanier();
+            switch ($action) {
+                case 'panier':
+                    $this->monControleur->panier();
+                    break;
+                default:
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
+            }
         } else if ($controleur === 'auteur'){
             $this->monControleur = new ControleurAuteur();
             switch ($action) {
@@ -105,9 +116,7 @@ class App
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
             }
-        }
-
-        else if ($controleur === 'compte'){
+        } else if ($controleur === 'compte'){
             $this->monControleur = new ControleurCompte();
             switch ($action) {
                 case 'creation':
@@ -120,9 +129,7 @@ class App
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
             }
-        }
-
-        else if ($controleur === 'site'){
+        } else if ($controleur === 'site'){
             $this->monControleur = new ControleurSite();
             switch ($action) {
                 case 'accueil':

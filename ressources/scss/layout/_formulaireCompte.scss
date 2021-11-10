@@ -1,243 +1,274 @@
-/**
-* @author Gabriel Caron <gabriel.caron@gmail.com>
-* @version 2021.3
-*
-* ------------------
-* TABLE DES MATIERES
-* ------------------
-* Formulaire
-*/
+button {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+  padding: 12px 14px;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  border-radius: 4px;
+  color: var(--couleur-interactivite);
+  border: 1px solid var(--couleur-interactivite);
+  background: none;
+}
 
-// Temporaire, juste pour valider si l'étape initiale s'affiche correctement avec de passer au JS
+button:not(:disabled) {
+  cursor: pointer;
+  outline: none;
+}
 
-.formulaire {
+button[type='submit'] {
+  background: var(--couleur-interactivite);
+  color: #fff;
+}
 
-  // Styles généraux
+button:hover:not(:active):not(:focus) {
+  color: #000;
+}
 
-  &__sectionLegende {
-    padding: 2rem 0;
+button:hover:not(:active),
+button:focus:not(:active) {
+  background: var(--couleur-interactivite-pale);
+  color: #000;
+}
+
+button:focus:not(:active) {
+  box-shadow: 0 0 0px 2px var(--couleur-interactivite);
+}
+
+p {
+  margin: 16px 0 0;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px 16px;
+  outline: none;
+}
+
+.form-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 16px;
+  width: 100%;
+  align-items: baseline;
+}
+
+.form__message-erreur-general {
+  position: relative;
+  display: none;
+  background: #fff0f4;
+  padding: 1.8rem;
+  border-radius: 8px;
+  outline: none;
+}
+
+.form__message-erreur-general::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-30%, -30%);
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-image: url('../assets/svg/erreur.svg');
+}
+
+.form__message-erreur-general h2 {
+  margin: 0;
+  color: var(--couleur-erreur);
+}
+
+.form__message-erreur-general p {
+  margin: 8px 0 0 0;
+}
+
+.form__message-erreur-general ul {
+  margin: 8px 0 0 0;
+}
+
+.form__etape {
+  display: flex;
+  flex-direction: column;
+  gap: 24px 16px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+.form__etape p {
+  margin: 0;
+}
+
+.form__titre-etape {
+  padding: 0;
+  margin: 0;
+}
+
+.champ {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.champ--md {
+  max-width: 177px;
+}
+
+.champ--lg {
+  max-width: 370px;
+}
+
+.champ--erreur .champ__boite {
+  border-color: var(--couleur-erreur);
+}
+
+.champ--erreur .champ__etiquette {
+  color: var(--couleur-erreur);
+}
+
+.champ {
+  margin: 0;
+}
+
+.champ__boite {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: inline-flex;
+  flex: auto;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgb(95, 95, 95);
+  color: rgb(95, 95, 95);
+  padding: 0;
+  margin: 0.4rem 0 0;
+}
+
+.champ:not(.champ--erreur) .champ__boite:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.champ:not(.champ--erreur):focus-within .champ__boite {
+  border-color: var(--couleur-interactivite);
+  box-shadow: 0 0 0px 2px var(--couleur-interactivite);
+}
+
+.champ:focus-within .champ__boite {
+  box-shadow: 0 0 0px 2px var(--couleur-erreur);
+}
+
+.champ__etiquette {
+  transition: color 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 8px;
+  transform: translate(0, -50%);
+  background: #fff;
+  padding: 0 4px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.champ:not(.champ--erreur):focus-within .champ__etiquette {
+  color: var(--couleur-interactivite);
+}
+
+.champ__input {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+  color: #000;
+  font-family: inherit;
+  font-weight: inherit;
+  background: rgba(255, 255, 255, 0);
+}
+
+.champ__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.champ__message-aide,
+.champ__message-erreur {
+  margin: 0;
+}
+
+.champ__message-aide {
+  color: rgb(82, 82, 82);
+}
+
+.champ__message-erreur {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  color: var(--couleur-erreur);
+}
+
+.champ__message-erreur::before {
+  content: '';
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 14px;
+  height: 14px;
+  background-image: url('../assets/svg/erreur.svg');
+}
+
+@media (min-width: 852px) {
+  body {
+    --page-max-width: 820px;
+
+    background: rgb(245, 245, 245);
   }
 
-  &__liste {
-    padding: 0;
-    margin: 0;
-    width: 100%;
+  header {
+    margin: 32px auto 0 auto;
+    border-radius: 8px 8px 0 0;
+  }
+
+  main {
+    margin: 0 auto 32px auto;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (min-width: 425px) {
+  header,
+  main {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (min-width: 800px) {
+  .emailflex{
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    list-style-type: none;
-
-    @include rangeeGrid12col();
-    @media screen and (min-width: $mobile600px) {
-      & > * {
-        grid-column: span 4;
-      }
-
-    }
-
-  }
-
-  .bloc {
-
-    & .surtitre {
-      display: block;
-      background-color: $bleuRoyal;
-      color: $blanc;
-      font-family: $RobotoBold;
-      font-size: 1.6rem;
-      text-transform: uppercase;
-      border-radius: 0.75rem 0.75rem 0 0;
-      padding: 1rem 0.5rem;
-      margin: -3rem -1rem 1rem -1rem;
-    }
-
-    .radio {
-      width: 2.5rem;
-      height: 2.5rem;
-      vertical-align: middle;
-
-      & + .libelle {
-        display: initial;
-        padding-left: 0.5rem;
-      }
-    }
-
-    .cocher {
-      width: 2.5rem;
-      height: 2.5rem;
-      & + .libelle {
-        display: initial;
-        padding-left: 0.5rem;
-        vertical-align: text-bottom;
-      }
-    }
-
-    input[type=text], input[type=number] {
-      width: calc(100% - 8px);
-      height: 4.4rem;
-
-      &.montantDonPersonnalise {
-        width: 10rem;
-        font-family: $RobotoMedium;
-        font-style: normal;
-        font-size: 3rem;
-        line-height: 100%;
-        border: 5px solid $bleuRoyal;
-        border-radius: 1.5rem;
-        text-align: center;
-        padding: 1rem;
-      }
-    }
-
-    // Sinon, les libellés prennent 100% de la largeur par défaut
-    .libelle {
-      display: block;
-      font-size: 2rem;
-      vertical-align: middle;
-      padding: 0.5rem 0;
-
-      &.modifierMontantDon {
-        display: inline-block;
-        font-family: $RobotoBold;
-        font-size: 2.2rem;
-        padding-right: 2rem;
-        vertical-align: baseline;
-      }
-    }
-
-    select {
-      width: 100%;
-      height: 5rem;
-      padding: 0.75rem;
-    }
-
-    textarea {
-      width: calc(100% - 6px);
-      height: 25rem;
-    }
-
-  }
-
-  &__champEnveloppe {
-    font-family: $RobotoMedium;
-    font-style: normal;
-    font-size: 2rem;
-    line-height: 100%;
-    text-align: center;
-    padding: 1rem 1rem;
-    &Rangee {
-      border: 5px solid $bleuRoyal;
-      border-radius: 1.5rem;
-
-    }
-  }
-
-
-  // Styles spéciques dans les fieldsets
-
-  &__groupeChamps {
-    border: none;
-    margin: 0;
-    padding: 0;
-
-    &.rangeeReduite, & .rangee {
-      @include rangeeGrid12col();
-      & > * {
-        grid-column: 1 / 13;
-      }
-      & .bloc {
-        grid-column: 1 / 9;
-        margin: 1rem 0;
-        &.demi {
-          grid-column: 1 / 6;
-        }
-      }
-    }
-
-    &Rangee{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      @media(min-width: 600px) {
-        flex-direction: row;
-      }
-    }
-
-    &.tuiles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-
-      & .formulaire__conteneur3colonnes {
-        display: flex;
-        gap: 2rem;
-        width: 100%;
-        padding-left: 0;
-        margin: 0;
-
-        & .bloc {
-          width: calc(50% - 2rem);
-        }
-      }
-
-
-      & .bloc {
-        display: flex;
-        margin: 0;
-        @media screen and (max-width: $mobile600px) {
-          width: calc(50% - 1rem);
-        }
-
-        & .libelle {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-
-
-      // Seul le libellé est visible, la case à cocher est masquée
-      & .libelle, & .suggere {
-        width: 100%;
-        font-family: $RobotoMedium;
-        font-style: normal;
-        font-size: 2rem;
-        line-height: 100%;
-        border: 5px solid $bleuRoyal;
-        border-radius: 1.5rem;
-        text-align: center;
-        padding: 1rem 1rem;
-      }
-
-      // Change la couleur de la tuile (label) lorsque cochée
-      & .cocher:checked + .libelle, & .radio:checked + .libelle {
-        background-color: $bleuRoyal;
-        color: $blanc;
-      }
-
-      // Grandes tuiles
-      &.grandes {
-        & .libelle, & .suggere {
-          font-family: $RobotoBold;
-          font-size: 4rem;
-        }
-      }
-    }
-  }
-
-  // Icônes du formulaire (pourrait être déplacé dans un module éventuellement)
-
-  &__securise {
-
-    &::before {
-      content: "";
-      display: inline-block;
-      width: 3rem;
-      height: 2.5rem;
-      vertical-align: top;
-      background-repeat: no-repeat;
-      transition: all, 0.1s ease-in-out;
-      background-image: url(../images/icones/connexionssl.svg);
-    }
+    justify-content: space-between;
   }
 }

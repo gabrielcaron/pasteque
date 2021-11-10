@@ -1,6 +1,15 @@
 @extends('gabarit')
+
+@section('classeBody')
+    livresIndex
+@endsection
+
 @section('contenu')
-    <section class="indexLivres livres @if($choixVue==='liste') modeliste @endif">
+    @if($choixVue==='liste')
+    <section class="indexLivres livres modeliste">
+    @else
+    <section class="indexLivres livres">
+    @endif
         <section class="enveloppe">
             <section class="filAriane">
                 <span><a href="index.php">Accueil</a> / Livres</span>
@@ -70,7 +79,7 @@
             </form>
         </section>
         <section>
-            <h1 class="enveloppe__">Livres</h1>
+            <h1 class="livres__titre">Livres</h1>
             <!-- un titre display none? -->
             <div class="livre conteneurGrille">
                 <!-- Foreach Nouveautés -->

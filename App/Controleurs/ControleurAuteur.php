@@ -34,7 +34,7 @@ class ControleurAuteur
 
         $auteurs = Auteur::trouverTout($trierPar, intval($enregistrementDepart), intval($nbAuteursParPage));
 
-        $tDonnees = array("titrePage"=>"Les auteurs", "action"=>"index", "auteurs"=>$auteurs, "nombreAuteurs"=>$nombreAuteurs,
+        $tDonnees = array("titrePage"=>"Artistes", "classeBody"=>"artistes", "action"=>"index", "auteurs"=>$auteurs, "nombreAuteurs"=>$nombreAuteurs,
             "nombreTotalPages"=>$nombrePage, "choixVue"=>$choixVue, "urlPagination"=>$urlAuteur, "numeroPage"=>$strIdPage,
             "nbAuteursParPage"=>$nbAuteursParPage, "trierPar"=>$trierPar);
         echo App::getBlade()->run("auteurs.index",$tDonnees);
@@ -44,7 +44,7 @@ class ControleurAuteur
     public function fiche($auteurChoisi):void
     {
         $auteur = Auteur::trouverParId($auteurChoisi);
-        $tDonnees = array("titrePage"=>"Auteur", "classeMain"=>"artiste", "action"=>"fiche", "auteur"=>$auteur);
+        $tDonnees = array("titrePage"=>"Auteur", "classeBody"=>"artiste", "action"=>"fiche", "auteur"=>$auteur);
         echo App::getBlade()->run("auteurs.fiche",$tDonnees);
     }
 

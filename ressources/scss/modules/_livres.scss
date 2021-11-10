@@ -9,6 +9,16 @@
 * Styles généraux
 */
 
+// Styles généraux dans la section Livres
+
+.livresIndex {
+  & .livres {
+	&__titre {
+	  margin: 8rem 0 3rem 0;
+	}
+  }
+}
+
 // Par défaut, le mode d'affichage est en vignettes
 
 // Rangée de livres
@@ -102,7 +112,7 @@
 	  top: 0;
 
 	  @media screen and (min-width: 500px) {
-		height: 37rem;
+		height: 35rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: end;
@@ -110,11 +120,11 @@
 	  }
 
 	  @media screen and (min-width: 600px) {
-		height: 40rem;
+		height: 42rem;
 	  }
 
 	  @media screen and (min-width: $tablet900px) {
-		height: 45rem;
+		height: 43rem;
 	  }
 
 	  @media screen and (min-width: 1100px) {
@@ -126,7 +136,7 @@
 	  }
 
 	  @media screen and (min-width: $desktop1400px) {
-		height: 63rem;
+		height: 70rem;
 	  }
 	}
 

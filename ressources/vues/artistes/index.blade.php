@@ -1,5 +1,9 @@
 @extends('gabarit')
 
+@section('classeBody')
+    artistes
+@endsection
+
 @section('contenu')
     <section class="indexLivres livres @if($choixVue==='liste') modeliste @endif">
         <section class="filAriane">

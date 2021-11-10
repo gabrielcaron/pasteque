@@ -1,7 +1,9 @@
 @extends('gabarit')
-@section('classeMain')
-    class="artiste"
+
+@section('classeBody')
+    artiste
 @endsection
+
 @section('contenu')
     <section class="filAriane">
         <span><a href="index.php">Accueil</a><a

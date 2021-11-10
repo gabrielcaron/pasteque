@@ -1,7 +1,7 @@
 @extends('gabarit')
 
-@section('classeMain')
-    {{--    class="accueil"--}}
+@section('classeBody')
+        accueil
 @endsection
 
 @section('contenu')

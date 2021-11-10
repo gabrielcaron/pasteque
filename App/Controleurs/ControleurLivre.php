@@ -41,7 +41,7 @@ class ControleurLivre
         $livres = $intIdCategorie === [] ? Livre::trouverToutSansCategories($trierPar, intval($enregistrementDepart), intval($intNbLivreParPage)) : Livre::trouverLivresParCategories($intIdCategorie, $trierPar, intval($enregistrementDepart), intval($intNbLivreParPage));
 
         //Tableau des données à passer à la vue
-        $tDonnees = array("titrePage"=>"Les livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre,
+        $tDonnees = array("titrePage"=>"Livres", "classeBody"=>"livres", "action"=>"index", "livres"=>$livres, "nombreLivre"=>$nombreLivre,
             "categories"=>$categories, "numeroPage"=>$strIdPage, "nombreTotalPages"=>$nombrePage, "urlPagination"=>$urlLivre,
             "categoriesSelectionner"=>$intIdCategorie, "choixVue"=>$choixVue, "intNbLivreParPage"=>$intNbLivreParPage, "trierPar"=>$trierPar);
         echo App::getBlade()->run("livres.index",$tDonnees);
@@ -52,7 +52,7 @@ class ControleurLivre
     {
         $livre = Livre::trouverParId($livreChoisi);
         $tableauImage = [];
-        $tDonnees = array("titrePage"=>"Livre", "action"=>"fiche", "livre"=>$livre);
+        $tDonnees = array("titrePage"=>"Livre", "classeBody"=>"livres", "action"=>"fiche", "livre"=>$livre);
         echo App::getBlade()->run("livres.fiche",$tDonnees);
     }
 

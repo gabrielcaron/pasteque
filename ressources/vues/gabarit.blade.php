@@ -11,12 +11,12 @@
         <link rel="shortcut icon" href="liaisons/images/faviconPasteque.png" type="image/x-icon">
 
     </head>
-    <body class="js">
+    <body class="@yield('classeBody') js">
         <header class="entete">
             @include('fragments.entete')
         </header>
 
-        <main @yield('classeMain')>
+        <main>
             @yield('contenu')
             @include('fragments.panier')
             <section class="socialMedia">

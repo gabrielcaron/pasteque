@@ -15,14 +15,14 @@ class ControleurCompte
     //Creation de compte
     public function creation(): void
     {
-        $tDonnees = array("titrePage"=>"creation", "action"=>"creation");
+        $tDonnees = array("titrePage"=>"creation", "classeBody"=>"creation", "action"=>"creation");
         echo App::getBlade()->run("comptes.compte",$tDonnees);
     }
 
     //Connexion au compte
     public function connexion():void
     {
-        $tDonnees = array("titrePage"=>"connexion", "action"=>"connexion");
+        $tDonnees = array("titrePage"=>"connexion", "classeBody"=>"connexion", "action"=>"connexion");
         echo App::getBlade()->run("comptes.compte",$tDonnees);
     }
 

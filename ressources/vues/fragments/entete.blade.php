@@ -37,7 +37,7 @@
                     </li>
                     <form class="formRecherche" action="" method="get">
                         <input type="text" name="search_text" id="search_text" placeholder="Recherche"/>
-                        <input type="button" name="search_button" id="search_button"></a>
+                        <input type="button" name="search_button" id="search_button">
                     </form>
                 </ul>
             </li>

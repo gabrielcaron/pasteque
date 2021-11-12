@@ -1,3 +1,14 @@
+.creation{
+
+}
+.compte{
+  max-width: 800px;
+  margin: 0 auto;
+}
+#btnReset{
+  color: $bleuRoyal;
+  border: 1px solid $bleuRoyal;
+}
 button {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   appearance: none;
@@ -6,8 +17,8 @@ button {
   color: inherit;
   border: none;
   border-radius: 4px;
-  color: var(--couleur-interactivite);
-  border: 1px solid var(--couleur-interactivite);
+  color: white;
+  border: 1px solid white;
   background: none;
 }
 
@@ -17,26 +28,22 @@ button:not(:disabled) {
 }
 
 button[type='submit'] {
-  background: var(--couleur-interactivite);
+  background: $bleuRoyal;
   color: #fff;
 }
 
 button:hover:not(:active):not(:focus) {
-  color: #000;
+  color: white;
 }
 
 button:hover:not(:active),
 button:focus:not(:active) {
-  background: var(--couleur-interactivite-pale);
-  color: #000;
+  background: $bleuRoyal;
+  color: white;
 }
 
 button:focus:not(:active) {
-  box-shadow: 0 0 0px 2px var(--couleur-interactivite);
-}
-
-p {
-  margin: 16px 0 0;
+  box-shadow: 0 0 0px 2px $bleuRoyal;
 }
 
 .visually-hidden {
@@ -180,7 +187,7 @@ p {
   top: 0;
   left: 8px;
   transform: translate(0, -50%);
-  background: #fff;
+  background: #F7F7F7;
   padding: 0 4px;
   color: inherit;
   cursor: pointer;
@@ -238,37 +245,42 @@ p {
   height: 14px;
   background-image: url('../assets/svg/erreur.svg');
 }
-
-@media (min-width: 852px) {
-  body {
-    --page-max-width: 820px;
-
-    background: rgb(245, 245, 245);
+.creation {
+  & .tabSection__menuLink{
+    width: calc(100% / 2);
   }
 
-  header {
-    margin: 32px auto 0 auto;
-    border-radius: 8px 8px 0 0;
+  & #mdpOublie{
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid black;
   }
-
-  main {
-    margin: 0 auto 32px auto;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-  }
-}
-
-@media (min-width: 425px) {
-  header,
-  main {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-
-@media (min-width: 800px) {
-  .emailflex{
+  & .infosSupplementaire{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+  }
+  & .bloc{
+    width: 20%;
+  }
+  & .choixAvatar{
+
+    &__liste{
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+  & .compte{
+
+    &__flex{
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 800px) {
+        margin: 0 auto;
+        display: block !important;
+        justify-content: center!important;
+      }
+    }
+
   }
 }

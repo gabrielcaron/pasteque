@@ -27,6 +27,7 @@ $color-red-light: #fa5757;
     width: 100%;
     height: auto;
     padding-top: 4rem;
+  background: #F7F7F7;
 
   &__paragraph {
     font-family: inherit;
@@ -66,7 +67,6 @@ $color-red-light: #fa5757;
         display: grid;
         border-bottom: 2.5px solid transparent;
         color: #9194a1;
-        background: #ffffff;
         transition: all 0.3s ease;
 
         @media (max-width: 900px) {
@@ -109,7 +109,6 @@ $color-red-light: #fa5757;
     &__bar {
       padding: 2.5rem 0;
       overflow: hidden;
-      background: $color-white;
 
       &Content {
         display: none;
@@ -123,3 +122,4 @@ $color-red-light: #fa5757;
       }
     }
   }
+

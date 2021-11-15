@@ -24,14 +24,16 @@
                         @endif
                     </div>
                     <ul class="ficheLivre__imageList">
-                        <li class="ficheLivre__imageItem"><img class="ficheLivre__active" src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
-                        </li>
-                        @for($i=1;$i < 4;$i++)
-                            @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_00{$i}-940.jpg"))
-                                <li class="ficheLivre__imageItem"><img src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg">
-                                </li>
-                            @endif
-                        @endfor
+                        @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_002-940.jpg"))
+                            <li class="ficheLivre__imageItem"><img class="ficheLivre__active" src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
+                            </li>
+                            @for($i=1;$i < 4; $i++)
+                                @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_00{$i}-940.jpg"))
+                                    <li class="ficheLivre__imageItem"><img src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg">
+                                    </li>
+                                @endif
+                            @endfor
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -47,7 +49,8 @@
                 <br>
             @endforeach
             <br><span class="ficheLivre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</span>
-            <br><br><p class="ficheLivre__argument">{{$livre->getArgumentsCommerciaux()}}</p>
+            <br><br>
+            <p class="ficheLivre__argument">{{$livre->getArgumentsCommerciaux()}}</p>
             <div class="tabSection">
                 <div class="tabSection__menu">
                     <button class="tabSection__menuLink active" data-content="first">

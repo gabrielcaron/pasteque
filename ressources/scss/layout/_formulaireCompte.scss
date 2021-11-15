@@ -1,0 +1,340 @@
+.creation{
+
+}
+.compte{
+  max-width: 800px;
+  margin: 0 auto;
+}
+#btnReset{
+  color: $bleuRoyal;
+  border: 1px solid $bleuRoyal;
+
+  &:hover{
+    color: white;
+  }
+}
+button {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+  padding: 12px 14px;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  border: 1px solid white;
+  background: none;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+  outline: none;
+}
+
+button[type='submit'] {
+  background: $bleuRoyal;
+  color: #fff;
+}
+
+button:hover:not(:active):not(:focus) {
+  color: white;
+}
+
+button:hover:not(:active),
+button:focus:not(:active) {
+  background: $bleuRoyal;
+  color: white;
+}
+
+button:focus:not(:active) {
+  box-shadow: 0 0 0px 2px $bleuRoyal;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  gap: 15px 15px;
+}
+
+.form-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 16px;
+  width: 100%;
+  align-items: baseline;
+
+  @media (max-width: 800px) {
+    justify-content: center;
+  }
+}
+
+.form__message-erreur-general {
+  position: relative;
+  display: none;
+  background: #fff0f4;
+  padding: 1.8rem;
+  border-radius: 8px;
+  outline: none;
+}
+
+.form__message-erreur-general::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-30%, -30%);
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-image: url('../assets/svg/erreur.svg');
+}
+
+.form__message-erreur-general h2 {
+  margin: 0;
+  color: var(--couleur-erreur);
+}
+
+.form__message-erreur-general p {
+  margin: 8px 0 0 0;
+}
+
+.form__message-erreur-general ul {
+  margin: 8px 0 0 0;
+}
+
+.form__etape {
+  display: flex;
+  flex-direction: column;
+  gap: 24px 16px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+.form__etape p {
+  margin: 0;
+}
+
+.form__titre-etape {
+  padding: 0;
+  margin: 0;
+}
+
+.champ {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.champ--md {
+  max-width: 177px;
+}
+
+.champ--lg {
+  max-width: 370px;
+}
+
+.champ--erreur .champ__boite {
+  border-color: var(--couleur-erreur);
+}
+
+.champ--erreur .champ__etiquette {
+  color: var(--couleur-erreur);
+}
+
+.champ {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+min-width: 300px;
+  @media (max-width: 400px) {
+    min-width: 150px;
+  }
+
+}
+
+.champ__boite {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: inline-flex;
+  flex: auto;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgb(95, 95, 95);
+  color: rgb(95, 95, 95);
+  padding: 0;
+  margin: 0.4rem 0 0;
+}
+
+.champ:not(.champ--erreur) .champ__boite:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.champ:not(.champ--erreur):focus-within .champ__boite {
+  border-color: var(--couleur-interactivite);
+  box-shadow: 0 0 0px 2px var(--couleur-interactivite);
+}
+
+.champ:focus-within .champ__boite {
+  box-shadow: 0 0 0px 2px var(--couleur-erreur);
+}
+
+.champ__etiquette {
+  transition: color 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 8px;
+  transform: translate(0, -50%);
+  background: #F7F7F7;
+  padding: 0 4px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.champ:not(.champ--erreur):focus-within .champ__etiquette {
+  color: var(--couleur-interactivite);
+}
+
+.champ__input {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+  color: #000;
+  font-family: inherit;
+  font-weight: inherit;
+  background: rgba(255, 255, 255, 0);
+}
+
+.champ__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (max-width: 800px) {
+    max-width: 300px;
+    margin-bottom: 2rem;
+  }
+}
+
+.champ__message-aide,
+.champ__message-erreur {
+  margin: 0;
+  font-size: 12px;
+}
+
+.champ__message-aide {
+  color: rgb(82, 82, 82);
+}
+
+.champ__message-erreur {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  color: var(--couleur-erreur);
+}
+
+.champ__message-erreur::before {
+  content: '';
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 14px;
+  height: 14px;
+  background-image: url('../assets/svg/erreur.svg');
+}
+.creation {
+  & .tabSection__menuLink{
+    width: calc(100% / 2);
+  }
+
+  & #mdpOublie{
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid black;
+  }
+  & .infosSupplementaire{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  & .bloc{
+    width: 20%;
+
+    @media (max-width: 800px) {
+      width: 60%;
+    }
+  }
+  & .choixAvatar{
+
+    &__liste{
+      display: flex;
+      justify-content: space-evenly;
+
+      @media (max-width: 800px) {
+        display: grid;
+        /* justify-content: space-evenly; */
+        column-count: 2;
+        justify-items: center;
+        margin: 0 auto;
+        /* grid-column: 2; */
+        grid-template-columns: auto auto;
+        width: 50%;
+      }
+      @media (max-width: 430px){
+        width: 90%;
+      }
+    }
+  }
+  & .compte{
+
+    &__flex{
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 800px) {
+        margin: 0 auto;
+        display: block !important;
+        justify-content: center!important;
+      }
+    }
+    &__mdp{
+      @media (max-width: 800px) {
+        margin: 0 auto;
+        display: contents !important;
+        justify-content: center!important;
+      }
+    }
+
+  }
+}
+.btnConnecter, #btnInscrire, #btnReset{
+  transition: all .3s ease-out;
+  &:hover{
+    opacity: 0.8;
+    transform: translate(0, -5px);
+  }
+}

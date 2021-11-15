@@ -18,7 +18,7 @@
         </a>
         <ul class="nav topNavLink">
             <li class="menuTop__listeItem">
-                <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien">Mon compte</a>
+                <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien user"><img src="liaisons/images/user.svg"></a>
             </li>
             <li class="menuTop__listeItem">
                 <a href="#panier" class="menuTop__lien"><i
@@ -37,7 +37,7 @@
                     </li>
                     <form class="formRecherche" action="" method="get">
                         <input type="text" name="search_text" id="search_text" placeholder="Recherche"/>
-                        <input type="button" name="search_button" id="search_button"></a>
+                        <input type="button" name="search_button" id="search_button">
                     </form>
                 </ul>
             </li>

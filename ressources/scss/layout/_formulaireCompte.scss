@@ -331,7 +331,10 @@ min-width: 300px;
 
   }
 }
-#password + .glyphicon {
-  cursor: pointer;
-  pointer-events: all;
+.btnConnecter, #btnInscrire, #btnReset{
+  transition: all .3s ease-out;
+  &:hover{
+    opacity: 0.8;
+    transform: translate(0, -5px);
+  }
 }

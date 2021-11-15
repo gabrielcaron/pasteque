@@ -55,7 +55,7 @@
                                 <a href="#">Politique de confidentalité</a>
                             </div>
                             <div class="form-wrap">
-                                <button type="submit">Se connecter</button>
+                                <button type="submit" class="btnConnecter">Se connecter</button>
                             </div>
 
                         </form>

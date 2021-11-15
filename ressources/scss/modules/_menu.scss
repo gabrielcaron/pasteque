@@ -155,6 +155,7 @@
 	padding: 1rem 2rem 0.3em 2rem;
 	width: 100%;
 	border-bottom: 5px solid transparent;
+	  transition: all .3s ease-out;
 
 	@media screen and (min-width: $mobile600px) {
 	  margin-right: 3rem;
@@ -183,6 +184,7 @@
 	&:active {
 	  background-color: $bleuRoyal;
 	  color: $blanc;
+		transform: translate(0, -5px);
 
 	  @media screen and (min-width: $desktop1000px) {
 		border-bottom: 5px solid $bleuRoyal;
@@ -269,6 +271,13 @@ header {
 }
 .user{
 	display: flex!important;
+}
+.fa-shopping-cart, .user{
+	transition: all .3s ease-out;
+	&:hover{
+		transform: translate(0, -5px);
+		opacity: 0.5;
+	}
 }
 
 /* Si le javascript est activé */

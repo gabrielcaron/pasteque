@@ -33,7 +33,7 @@
                 </fieldset>
                 <fieldset class="formulaire__groupeChamps tuiles">
                     <legend class="formulaire__sectionLegende">
-                        <h3 class="formulaire__sectionTitre">Type de vue:</h3>
+                        <h3 class="formulaire__sectionTitre" id="testRequest">Type de vue:</h3>
                     </legend>
                     <ul class="formulaire__liste">
                         <li class="bloc">

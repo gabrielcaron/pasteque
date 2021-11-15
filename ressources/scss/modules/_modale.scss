@@ -1,33 +1,152 @@
 //Exemple de fenêtre modale
 
-.modal {
+// Modale contient le conteneur qui prend 100% de la hauteur et de la largeur
+.modale {
   visibility: hidden;
   opacity: 0;
-  position: absolute;
-  top: 0; right: 0;
-  bottom: 0; left: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  background: rgba(77, 77, 77, .7);
+  background: rgba(77, 77, 77, 0);
   transition: all .4s;
-  &_content {
-    border-radius: 4px;
-    position: relative;
-    width: 500px;
-    max-width: 90%;
-    background: white;
-    padding: 1.5em 2em;
+
+  &:target {
+	visibility: visible;
+	opacity: 1;
   }
-  &_close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: grey;
-    text-decoration: none;
+
+  &__conteneurBleed {
+	width: 100%;
+	background-color: $gris97;
+
+	&Titre {
+	  background-color: $bleuRoyal;
+	}
   }
-}
-.modal:target {
-  visibility: visible;
-  opacity: 1;
+
+  &__conteneurGrille {
+	@include paddingConteneur;
+	@include conteneur1400px();
+	display: block;
+	border-radius: 4px;
+	position: relative;
+	width: 100%;
+	color: $noir;
+
+	&.infos {
+	  padding-top: 4rem;
+	  padding-bottom: 4rem;
+	}
+  }
+
+  &__conteneurRangee {
+	// Mobile
+	@include rangeeFlex;
+	flex-wrap: wrap;
+	gap: 20px;
+
+	// Tablette et table
+	@include rangeeGrid12col();
+  }
+
+  &__titreH2 {
+	@media screen and (max-width: $mobile600px) {
+	  font-size: 2.5rem;
+	}
+
+	font-size: 3.5rem;
+	padding: 1.5rem 0;
+	color: $blanc;
+
+	&::before {
+	  display: inline-block;
+	  width: 3.2rem;
+	  height: 3.2rem;
+	  margin-right: 1rem;
+	  vertical-align: sub;
+	  content: "";
+	  background-image: url(../images/icone-complete-renv.svg);
+
+	  @media screen and (min-width: $mobile600px) {
+		width: 4.5rem;
+		height: 4.5rem;
+	  }
+	}
+  }
+
+  & .livre {
+
+	&__picture {
+	  width: 10rem;
+	}
+
+	@media screen and (min-width: $mobile600px) {
+	  &__picture {
+		width: initial;
+		grid-column: span 2;
+	  }
+	}
+
+	@media screen and (min-width: $desktop1200px) {
+	  &__picture {
+		grid-column: span 1;
+	  }
+	}
+
+	&__categorie {
+	  font-size: 1.6rem;
+	}
+  }
+
+  &__titreLivre {
+	@media screen and (max-width: $mobile600px) {
+	  font-size: 3rem;
+	}
+  }
+
+  &__infos {
+	flex-basis: calc(100% - 12rem);
+
+	@media screen and (min-width: $mobile600px) {
+	  flex-basis: initial;
+	  grid-column: 3 / 13;
+	}
+
+	@media screen and (min-width: $desktop1200px) {
+	  grid-column: 2 / 13;
+	  &__picture {
+		grid-column: 2 / 13;
+	  }
+	}
+  }
+
+  &__bouton {
+	grid-column: span 4;
+  }
+
+  &__fermer {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: $blanc;
+	text-decoration: none;
+
+	& .icone-fermer {
+	  display: inline-block;
+	  height: 3rem;
+	  width: 3rem;
+	  padding-top: 0.5rem;
+	  vertical-align: text-top;
+
+	  @media screen and (min-width: $mobile600px) {
+		height: 4.5rem;
+		width: 4.5rem;
+		margin-right: 1rem;
+	  }
+	}
+  }
 }

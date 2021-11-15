@@ -20,21 +20,6 @@ img {
   max-width: 100%;
 }
 
-.bouton {
-  display: inline-block;
-  background: #EB5F00;
-  border-radius: 5px;
-  border: none;
-  font-family: $RobotoBold;
-  color: $blanc;
-  text-decoration: none;
-  padding: 1.5rem 0;
-  margin: 2rem 0;
-
-  @media screen and (min-width: $mobile600px) {
-    padding: 1.5rem 4rem;
-  }
-}
 
 .navigation {
   & .bouton {

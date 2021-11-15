@@ -1,38 +1,23 @@
+
+
+// Bouton texte par défaut
+
 .bouton {
-  border-radius: 4px;
+  font-family: $RobotoMedium;
+  font-size: 2rem;
+  text-transform: uppercase;
   color: $bleuRoyal;
-  border: solid 3px $bleuRoyal;
-  padding: 0.5em 3em;
-  text-decoration: none;
-  font-size: 12px;
-  background-color: white;
-}
+  
+  &:hover {
+    text-decoration: underline;
+  }
 
-
-
-.bouton--hover {
-
-  //background-color: $rouge_2;
+  & .secondaire {
+    border-radius: 4px;
+    border: solid 3px $bleuRoyal;
+    padding: 0.5em 3em;
+    text-decoration: none;
+    font-size: 12px;
+    background-color: white;
+  }
 }
-.bouton--active {
-  background-color: $bleuRoyal;
-  border-radius: 4px;
-  color: white;
-  padding: 0.5em 3em;
-  text-decoration: none;
-  font-size: 12px;
-}
-/*.bouton--inverse {
-  background-color: white;
-  color: $orange;
-
-  border: 2px solid $orange;
-}
-.bouton--inverse--hover {
-  color: $rouge_2;
-  border-color: $rouge_2;
-}
-.bouton--inverse--active {
-  color: $rouge_3;
-  border-color: $rouge_3;
-}*/

@@ -8,6 +8,10 @@
 #btnReset{
   color: $bleuRoyal;
   border: 1px solid $bleuRoyal;
+
+  &:hover{
+    color: white;
+  }
 }
 button {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -59,8 +63,8 @@ button:focus:not(:active) {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 32px 16px;
   outline: none;
+  gap: 15px 15px;
 }
 
 .form-wrap {
@@ -69,6 +73,10 @@ button:focus:not(:active) {
   gap: 24px 16px;
   width: 100%;
   align-items: baseline;
+
+  @media (max-width: 800px) {
+    justify-content: center;
+  }
 }
 
 .form__message-erreur-general {
@@ -152,6 +160,14 @@ button:focus:not(:active) {
 
 .champ {
   margin: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+min-width: 300px;
+  @media (max-width: 400px) {
+    min-width: 150px;
+  }
+
 }
 
 .champ__boite {
@@ -215,11 +231,17 @@ button:focus:not(:active) {
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media (max-width: 800px) {
+    max-width: 300px;
+    margin-bottom: 2rem;
+  }
 }
 
 .champ__message-aide,
 .champ__message-erreur {
   margin: 0;
+  font-size: 12px;
 }
 
 .champ__message-aide {
@@ -261,12 +283,30 @@ button:focus:not(:active) {
   }
   & .bloc{
     width: 20%;
+
+    @media (max-width: 800px) {
+      width: 60%;
+    }
   }
   & .choixAvatar{
 
     &__liste{
       display: flex;
       justify-content: space-evenly;
+
+      @media (max-width: 800px) {
+        display: grid;
+        /* justify-content: space-evenly; */
+        column-count: 2;
+        justify-items: center;
+        margin: 0 auto;
+        /* grid-column: 2; */
+        grid-template-columns: auto auto;
+        width: 50%;
+      }
+      @media (max-width: 430px){
+        width: 90%;
+      }
     }
   }
   & .compte{
@@ -281,6 +321,20 @@ button:focus:not(:active) {
         justify-content: center!important;
       }
     }
+    &__mdp{
+      @media (max-width: 800px) {
+        margin: 0 auto;
+        display: contents !important;
+        justify-content: center!important;
+      }
+    }
 
+  }
+}
+.btnConnecter, #btnInscrire, #btnReset{
+  transition: all .3s ease-out;
+  &:hover{
+    opacity: 0.8;
+    transform: translate(0, -5px);
   }
 }

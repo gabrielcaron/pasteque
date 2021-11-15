@@ -63,6 +63,9 @@
 	&Logo {
 	  display: inline-block;
 	  width: 25rem;
+		@media (max-width: 350px) {
+			width: 60%;
+		}
 
 	  @media screen and (min-width: $mobile600px) {
 		width: 30rem;
@@ -97,7 +100,9 @@
 	}
 
 	&:focus {
-	  outline-offset: -5px;
+	  	outline-offset: -5px;
+		background: none!important;
+		border: none!important;
 	}
   }
 
@@ -150,6 +155,7 @@
 	padding: 1rem 2rem 0.3em 2rem;
 	width: 100%;
 	border-bottom: 5px solid transparent;
+	  transition: all .3s ease-out;
 
 	@media screen and (min-width: $mobile600px) {
 	  margin-right: 3rem;
@@ -178,6 +184,7 @@
 	&:active {
 	  background-color: $bleuRoyal;
 	  color: $blanc;
+		transform: translate(0, -5px);
 
 	  @media screen and (min-width: $desktop1000px) {
 		border-bottom: 5px solid $bleuRoyal;
@@ -225,6 +232,20 @@ header {
   list-style: none;
   gap: 2rem;
 
+	@media (max-width: 350px) {
+		display: flex;
+		justify-content: end;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-bottom: 3rem;
+		margin-top: 6rem;
+		flex-basis: 100%;
+		list-style: none;
+		gap: 2rem;
+	}
+	@media (max-width: 1000px) {
+		margin-top: 2rem;
+	}
   @media screen and (min-width: $desktop1000px) {
 	flex-basis: initial;
   }
@@ -247,6 +268,16 @@ header {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.user{
+	display: flex!important;
+}
+.fa-shopping-cart, .user{
+	transition: all .3s ease-out;
+	&:hover{
+		transform: translate(0, -5px);
+		opacity: 0.5;
+	}
 }
 
 /* Si le javascript est activé */

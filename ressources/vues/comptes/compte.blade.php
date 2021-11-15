@@ -55,7 +55,7 @@
                                 <a href="#">Politique de confidentalité</a>
                             </div>
                             <div class="form-wrap">
-                                <button type="submit">Se connecter</button>
+                                <button type="submit" class="btnConnecter">Se connecter</button>
                             </div>
 
                         </form>
@@ -150,7 +150,12 @@
                                         </div>
                                         <div id="messagesPassword" class="champ__messages">
                                             <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
-
+                                            <p class="champ__message-aide">
+                                                Le&nbsp;mot&nbsp;de&nbsp;passe&nbsp;doit&nbsp;contenir&nbsp;au&nbsp;moins&nbsp;huit&nbsp;caractères,
+                                                dont&nbsp;au&nbsp;moins&nbsp;un&nbsp;chiffre&nbsp;et&nbsp;comprend&nbsp;les&nbsp;lettres
+                                                majuscules&nbsp;et&nbsp;minuscules&nbsp;et&nbsp;des&nbsp;caractères&nbsp;spéciaux,
+                                                par&nbsp;exemple&nbsp;#,&nbsp;?,&nbsp;!.
+                                            </p>
                                         </div>
                                     </div>
                                     <div id="champMdpConfirmation" class="champ champ--lg">
@@ -168,12 +173,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="champ__message-aide">
-                                    Le&nbsp;mot&nbsp;de&nbsp;passe&nbsp;doit&nbsp;contenir&nbsp;au&nbsp;moins&nbsp;huit&nbsp;caractères,
-                                    dont&nbsp;au&nbsp;moins&nbsp;un&nbsp;chiffre&nbsp;et&nbsp;comprend&nbsp;les&nbsp;lettres
-                                    majuscules&nbsp;et&nbsp;minuscules&nbsp;et&nbsp;des&nbsp;caractères&nbsp;spéciaux,
-                                    par&nbsp;exemple&nbsp;#,&nbsp;?,&nbsp;!.
-                                </p>
+
                             </section>
                             <section class="form__etape" data-etape="confirmation" style="display: none" tabindex="-1"
                                      aria-labelledby="titreConfirmation">

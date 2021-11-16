@@ -200,3 +200,4 @@
     </section>
 @endsection
 
+@include('livres.fragments.panier')

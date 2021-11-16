@@ -26,11 +26,24 @@
                         @foreach($categories as $categorie)
                             <li class="bloc">
                                 <input onchange="document.getElementById('formTri').submit()" class="cocher screen-reader-only" value="{{$categorie->getId()}}" type="checkbox" id="enveloppe__liste--input--{{$categorie->getId()}}" name="categoriesSelectionner{{$categorie->getId()}}" @if(array_search($categorie->getId(), $categoriesSelectionner)) checked @endIf>
-                                <label class="libelle" for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
+                                <label class="bouton libelle" for="enveloppe__liste--input--{{$categorie->getId()}}" id="enveloppe__liste--label--{{$categorie->getId()}}">{{$categorie->getNom()}}</label>
                             </li>
                         @endforeach
                     </ul>
                 </fieldset>
+                <svg class="livre__tablette" fill="none" viewBox="0 0 1398 100" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="699" x2="699" y1=".130859" y2="22.7499">
+                        <stop offset="0" stop-color="#fcfcfc"/>
+                        <stop offset="1" stop-color="#f2f2ee"/>
+                    </linearGradient>
+                    <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="699" x2="699" y1="22.7499" y2="47.954">
+                        <stop offset="0"/>
+                        <stop offset="1" stop-color="#fff"/>
+                    </linearGradient>
+                    <rect fill="url(#a)" height="21.619" rx="3.5" stroke="#f0f0f0" width="1397" x=".5" y=".630859"/>
+                    <path d="m0 22.7499h1398l-355 76.9048h-720z" fill="url(#b)" fill-opacity=".04"/>
+                </svg>
                 <fieldset class="formulaire__groupeChamps tuiles">
                     <legend class="formulaire__sectionLegende">
                         <h3 class="formulaire__sectionTitre" id="testRequest">Type de vue:</h3>
@@ -38,11 +51,11 @@
                     <ul class="formulaire__liste">
                         <li class="bloc">
                             <input onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue" type="radio" @if($choixVue === 'vignette') checked @endIf>
-                            <label  class="libelle" for="vignette">Changer pour une vue en vignette</label>
+                            <label  class="bouton libelle" for="vignette">Changer pour une vue en vignette</label>
                         </li>
                         <li class="bloc">
                             <input onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="liste" value="liste" name="choixVue" type="radio" @if($choixVue === 'liste') checked @endIf>
-                            <label class="libelle" for="liste">Changer pour une vue en liste</label>
+                            <label class="bouton libelle" for="liste">Changer pour une vue en liste</label>
                         </li>
                     </ul>
                 </fieldset>

@@ -37,22 +37,22 @@
         <h2 class="livres__titre">Découvrez ses livres</h2>
         <div class="livre conteneurGrille">
             @foreach($auteur->getLivresAssocies() as $livre)
-                <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getIdLivre()}}">
-{{--                    <article class="livre__article">--}}
-{{--                        <div class="livre__conteneurVignette">--}}
-{{--                            <picture class="livre__picture">--}}
-{{--                                <!-- Image pour mobile, tablette et poste de table -->--}}
-{{--                                <img class="livre__image etiquette"--}}
-{{--                                     src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg"--}}
-{{--                                     srcset="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg 1x, ../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg 2x"--}}
-{{--                                     alt="">--}}
-{{--                            </picture>--}}
-{{--                            <p class="livre__etiquette">À paraître</p>--}}
-{{--                        </div>--}}
-{{--                        <div class="livre__conteneurTitreInfos">--}}
-{{--                            <h3 class="livre__titre">{{$livre->getTitre()}}</h3>--}}
-{{--                        </div>--}}
-{{--                    </article>--}}
+                <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
+                    <article class="livre__article">
+                        <div class="livre__conteneurVignette">
+                            <picture class="livre__picture">
+                                <!-- Image pour mobile, tablette et poste de table -->
+                                <img class="livre__image etiquette"
+                                     src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg"
+                                     srcset="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg 1x, ../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg 2x"
+                                     alt="">
+                            </picture>
+                            <p class="livre__etiquette">À paraître</p>
+                        </div>
+                        <div class="livre__conteneurTitreInfos">
+                            <h3 class="livre__titre">{{$livre->getTitre()}}</h3>
+                        </div>
+                    </article>
                 </a>
             @endforeach
         </div>

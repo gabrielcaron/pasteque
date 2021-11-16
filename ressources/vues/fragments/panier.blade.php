@@ -3,9 +3,12 @@
         <div class="modale__conteneurBleedTitre">
             <div class="modale__conteneurGrille">
                 <h2 class="modale__titreH2">Livre ajouté au panier</h2>
-                <a id="fermerModale" href="#" class="modale__fermer" aria-label="Masquer le panier"><svg class="icone-fermer" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M45 4.53214L40.4679 0L22.5 17.9679L4.53214 0L0 4.53214L17.9679 22.5L0 40.4679L4.53214 45L22.5 27.0321L40.4679 45L45 40.4679L27.0321 22.5L45 4.53214Z" fill="white"/>
-                    </svg></a>
+                <a id="fermerModale" href="#" class="modale__fermer" aria-label="Masquer le panier">
+                    <svg class="icone-fermer" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M45 4.53214L40.4679 0L22.5 17.9679L4.53214 0L0 4.53214L17.9679 22.5L0 40.4679L4.53214 45L22.5 27.0321L40.4679 45L45 40.4679L27.0321 22.5L45 4.53214Z"
+                              fill="white"/>
+                    </svg>
+                </a>
             </div>
         </div>
         <div class="modale__conteneurBleed">

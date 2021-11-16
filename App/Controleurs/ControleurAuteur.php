@@ -44,7 +44,7 @@ class ControleurAuteur
     public function fiche($auteurChoisi):void
     {
         $auteur = Auteur::trouverParId($auteurChoisi);
-        var_dump($auteur->getLivresAssocies());
+       /* var_dump($auteur->getLivresAssocies());*/
         $tDonnees = array("titrePage"=>"Artistes", "classeBody"=>"artiste", "action"=>"fiche", "auteur"=>$auteur);
         echo App::getBlade()->run("artistes.fiche",$tDonnees);
     }

@@ -31,7 +31,7 @@
         <script src="liaisons/js/livres.ts"></script>
         <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>
         <script src="liaisons/js/productPage.js" type="text/javascript"></script>
-        {{--<script src="liaisons/js/fetchRequest.ts" ></script>--}}
+        <script src="liaisons/js/fetchRequest.ts" ></script>
         <script>
             document.body.classList.add('js');
         </script>

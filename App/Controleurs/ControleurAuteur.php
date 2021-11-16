@@ -48,6 +48,5 @@ class ControleurAuteur
         $tDonnees = array("titrePage"=>"Artistes", "classeBody"=>"artiste", "action"=>"fiche", "auteur"=>$auteur);
         echo App::getBlade()->run("artistes.fiche",$tDonnees);
     }
-
 }
 

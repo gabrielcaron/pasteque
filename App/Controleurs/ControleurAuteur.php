@@ -37,15 +37,16 @@ class ControleurAuteur
         $tDonnees = array("titrePage"=>"Artistes", "classeBody"=>"artistes", "action"=>"index", "auteurs"=>$auteurs, "nombreAuteurs"=>$nombreAuteurs,
             "nombreTotalPages"=>$nombrePage, "choixVue"=>$choixVue, "urlPagination"=>$urlAuteur, "numeroPage"=>$strIdPage,
             "nbAuteursParPage"=>$nbAuteursParPage, "trierPar"=>$trierPar);
-        echo App::getBlade()->run("auteurs.index",$tDonnees);
+        echo App::getBlade()->run("artistes.index",$tDonnees);
     }
 
     //Fiche des auteurs
     public function fiche($auteurChoisi):void
     {
         $auteur = Auteur::trouverParId($auteurChoisi);
-        $tDonnees = array("titrePage"=>"Auteur", "classeBody"=>"artiste", "action"=>"fiche", "auteur"=>$auteur);
-        echo App::getBlade()->run("auteurs.fiche",$tDonnees);
+        var_dump($auteur->getLivresAssocies());
+        $tDonnees = array("titrePage"=>"Artistes", "classeBody"=>"artiste", "action"=>"fiche", "auteur"=>$auteur);
+        echo App::getBlade()->run("artistes.fiche",$tDonnees);
     }
 
 }

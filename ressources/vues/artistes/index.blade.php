@@ -85,7 +85,7 @@
         </section>
         @if($nbAuteursParPage === '9' || $nbAuteursParPage === '15' ||  $nbAuteursParPage === '30')
             <section>
-                @include('auteurs.fragments.pagination')
+                @include('artistes.fragments.pagination')
             </section>
         @endif
     </section>

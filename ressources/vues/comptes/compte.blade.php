@@ -16,7 +16,7 @@
             <div class="tabSection__bar">
                 <div class="tabSection__barContent active" id="first">
                     <div class="tabSection__texts">
-                        <form id="form" name="inscription" class="form" method="POST" action="#">
+                        <form id="form" name="inscription" class="form" method="POST" action="#" novalidate>
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert"></div>
                             <section class="compte__flex">
@@ -50,10 +50,6 @@
                                 </label>
                             </div>
                             <a id="mdpOublie" href="#">Mot de passe oublié?</a>
-                            <div class="infosSupplementaire">
-                                <a href="#">Modalité d'utilisation du site</a>
-                                <a href="#">Politique de confidentalité</a>
-                            </div>
                             <div class="form-wrap">
                                 <button type="submit" class="btnConnecter">Se connecter</button>
                             </div>
@@ -64,10 +60,10 @@
 
                 <div class="tabSection__barContent" id="second">
                     <div class="tabSection__texts">
-                        <form id="form" name="inscription" class="form" method="POST" action="#">
+                        <form id="form" name="inscription" class="form" method="POST" action="#" novalidate>
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert"></div>
-                            <div class="choixAvatar">
+                            {{--<div class="choixAvatar">
                                 <label class="libelle" for="vignette">Choisir mon avatar</label>
                                 <ul class="choixAvatar__liste">
 
@@ -80,7 +76,7 @@
                                         </li>
                                     @endfor
                                 </ul>
-                            </div>
+                            </div>--}}
                             <section class="compte__prenomNom  compte__flex">
                                 <div id="champPrenom" class="champ champ--lg">
                                     <div class="champ__boite">
@@ -120,22 +116,6 @@
                                             <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
                                         </div>
                                     </div>
-                                <div id="champTelephone" class="champ champ--lg">
-                                    <div class="champ__boite">
-                                        <label for="telephone" class="champ__etiquette">Téléphone</label>
-                                        <input class="champ__input" id="telephone" name="telephone" type="text"
-                                               autocomplete="telephone"
-                                               required="required" aria-labelledby="messagesTelephone"
-                                               pattern="^\d{3} \d{3}-\d{4}$"
-                                        />
-                                    </div>
-                                    <div id="messagesTelephone" class="champ__messages">
-                                        <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
-                                        <p class="champ__message-aide">
-                                            Exemple&nbsp;:&nbsp;123 456-7890
-                                        </p>
-                                    </div>
-                                </div>
                             </section>
                             <section class="compte__mdp">
                                 <div class="compte__flex">
@@ -158,22 +138,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div id="champMdpConfirmation" class="champ champ--lg">
-                                        <div class="champ__boite">
-                                            <label for="mdpConfirmation" class="champ__etiquette">Veuillez confirmer
-                                                votre
-                                                mot de passe</label>
-                                            <input class="champ__input" id="mdpConfirmation" name="mdpConfirmation"
-                                                   type="password" autocomplete="current-password"
-                                                   required="required" aria-labelledby="messagesPassword"
-                                                   à/>
-                                        </div>
-                                        <div id="messagesEmailConfirmation" class="champ__messages">
-                                            <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
-                                        </div>
-                                    </div>
                                 </div>
-
                             </section>
                             <section class="form__etape" data-etape="confirmation" style="display: none" tabindex="-1"
                                      aria-labelledby="titreConfirmation">

@@ -45,26 +45,26 @@
     </section>
     <nav class="menu menu--ferme ">
         <ul class="menu__liste" id="menu__liste">
-            <li class="menu__listeItem" id="accueil">
-                <a href="index.php?controleur=site&action=accueil" class="menu__lien">Accueil</a>
+            <li class="menu__listeItem" >
+                <a href="index.php?controleur=site&action=accueil" id="accueil" class="menu__lien">Accueil</a>
             </li>
-            <li class="menu__listeItem" id="livre">
-                <a href="index.php?controleur=livre&action=index" class="menu__lien">Livres</a>
+            <li class="menu__listeItem" >
+                <a href="index.php?controleur=livre&action=index" id="livre" class="menu__lien">Livres</a>
             </li>
-            <li class="menu__listeItem" id="auteur">
-                <a href="index.php?controleur=auteur&action=index" class="menu__lien">Artistes</a>
+            <li class="menu__listeItem" >
+                <a href="index.php?controleur=auteur&action=index" id="auteur" class="menu__lien">Artistes</a>
             </li>
-            <li class="menu__listeItem" id="galerie">
-                <a href="" class="menu__lien">Galerie-boutique</a>
+            <li class="menu__listeItem" >
+                <a href="" id="galerie" class="menu__lien">Galerie-boutique</a>
             </li>
-            <li class="menu__listeItem" id="production">
-                <a href="" class="menu__lien">Production La Pastèque</a>
+            <li class="menu__listeItem" >
+                <a href="" id="production" class="menu__lien">Production La Pastèque</a>
             </li>
             <li class="menu__listeItem">
                 <a href="#" class="menu__lien" id="apropos">À propos</a>
             </li>
-            <li class="menu__listeItem" id="contact">
-                <a href="" class="menu__lien">Contact</a>
+            <li class="menu__listeItem" >
+                <a href="" id="contact" class="menu__lien">Contact</a>
             </li>
         </ul>
     </nav>

@@ -11,7 +11,7 @@
     </section>
     <section class="auteur">
         <div class="auteur__conteneur1">
-            @if(file_exists("liaisons/images/extraits/{$auteur->getId()}-1140.jpg"))
+            @if(file_exists("liaisons/images/auteurs/{$auteur->getId()}-1140.jpg"))
                 <img class="auteur__conteneurImg" src="../public/liaisons/images/auteurs/{{$auteur->getId()}}-1140.jpg"
                      alt="{{$auteur->getPrenom()}} {{$auteur->getNom()}}" width="20%">
             @else

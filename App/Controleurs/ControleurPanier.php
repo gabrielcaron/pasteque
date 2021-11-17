@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controleurs;
 use App\App;
 use App\Modeles\Article;
+use App\Modeles\Panier;
 
 class ControleurPanier
 {
@@ -16,7 +17,19 @@ class ControleurPanier
     //Connexion au compte
     public function panier():void
     {
-        $tDonnees = array("titrePage"=>"Mon panier", "action"=>"panier");
+        $prixTotal = 0;
+        $nombreArticles = 0;
+
+        $panier = Panier::trouverParIdSession(session_id());
+        $articles = $panier->getArticlesAssocies();
+
+        foreach ($articles as $article) {
+            $nombreArticles += $article->getQuantite();
+            $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
+        }
+
+
+        $tDonnees = array("titrePage"=>"Mon panier", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
         echo App::getBlade()->run("paniers.panier",$tDonnees);
     }
 

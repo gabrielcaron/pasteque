@@ -6,6 +6,7 @@ use App\Controleurs\ControleurCompte;
 use App\Controleurs\ControleurLivre;
 use App\Controleurs\ControleurPanier;
 use App\Controleurs\ControleurSite;
+use App\Modeles\Panier;
 use eftec\bladeone\BladeOne;
 use \PDO;
 
@@ -20,7 +21,17 @@ class App
     {
         error_reporting(E_ALL | E_STRICT);
         date_default_timezone_set('America/Montreal');
+        $this->demarrerSession();
         $this->routerRequete();
+    }
+
+    private function demarrerSession()
+    {
+        session_start();
+        $nouveauProduit =  !Panier::trouverParIdSession(session_id()) ? new Panier : Panier::trouverParIdSession(session_id());
+        if (!Panier::trouverParIdSession(session_id())) $nouveauProduit->setIdSession(session_id());
+        $nouveauProduit->setDateUnix(time());
+        !Panier::trouverParIdSession(session_id()) ? $nouveauProduit->inserer() : $nouveauProduit->mettreAJour();
     }
 
     /**

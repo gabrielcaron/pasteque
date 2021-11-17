@@ -110,6 +110,12 @@ class App
                 case 'panier':
                     $this->monControleur->panier();
                     break;
+                case 'modifier':
+                    $this->monControleur->modifier();
+                    break;
+                case 'supprimer':
+                    $this->monControleur->supprimer();
+                    break;
                 default:
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();

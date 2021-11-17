@@ -71,7 +71,7 @@ class Article
     //Trouver tout dans la table articles
     public static function trouverParIdProduitIdPanier(int $panierId, int $livreId):Article|false  {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT * FROM articles WHERE panier_id = :livre_id AND produit_id = :livre_id';
+        $chaineSQL = 'SELECT * FROM articles WHERE panier_id = :panier_id AND livre_id = :livre_id';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
@@ -135,7 +135,7 @@ class Article
     public function mettreAJour():void {
 
         // Définir la chaine SQL
-        $chaineSQL = 'UPDATE articles SET produit_id=:produit_id, quantite=:quantite, panier_id=:panier_id WHERE livre_id=:livre_id AND panier_id=:panier_id';
+        $chaineSQL = 'UPDATE articles SET livre_id=:livre_id, quantite=:quantite, panier_id=:panier_id WHERE livre_id=:livre_id AND panier_id=:panier_id';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête

@@ -16,7 +16,7 @@
             <div class="tabSection__bar">
                 <div class="tabSection__barContent active" id="first">
                     <div class="tabSection__texts">
-                        <form id="form" name="inscription" class="form" method="POST" action="#" novalidate>
+                        <form id="connexionForm" name="inscription" class="form" method="POST" action="#" novalidate>
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert"></div>
                             <section class="compte__flex">
@@ -60,14 +60,14 @@
 
                 <div class="tabSection__barContent" id="second">
                     <div class="tabSection__texts">
-                        <form id="form" name="inscription" class="form" method="POST" action="#" novalidate>
+                        <form id="inscriptionForm" name="inscription" class="form" method="POST" action="#" novalidate onsubmit="return formulaire.validerFormulaire()">
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert"></div>
                             <section class="compte__prenomNom  compte__flex">
                                 <div id="champPrenom" class="champ champ--lg">
                                     <div class="champ__boite">
                                         <label for="prenom" class="champ__etiquette">Prénom</label>
-                                        <input class="champ__input" id="prenom" name="prenom" type="text"
+                                        <input  class="champ__input" id="prenom" name="prenom" type="text"
                                                autocomplete="prenom"
                                                required="required" aria-labelledby="messagesPrenom"/>
                                     </div>
@@ -75,7 +75,6 @@
                                         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
                                     </div>
                                 </div>
-
                                 <div id="champNom" class="champ champ--lg">
                                     <div class="champ__boite">
                                         <label for="nom" class="champ__etiquette">Nom</label>
@@ -134,7 +133,7 @@
                                 <p>Votre compte à bien été créé.</p>
                             </section>
                             <div class="form-wrap">
-                                <button id="btnInscrire" type="submit">S'inscrire</button>
+                                <button id="btnInscrire" type="submit" value="Submit">S'inscrire</button>
                                 <button id="btnReset" type="reset">Réinitialiser</button>
                             </div>
                         </form>

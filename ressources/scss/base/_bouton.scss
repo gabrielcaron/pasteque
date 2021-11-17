@@ -30,3 +30,31 @@
     }
   }
 }
+
+
+.selecteur {
+  border-radius: 15px;
+  border: solid 5px $bleuRoyal;
+
+  &__enfant {
+    font-family: $RobotoMedium;
+    font-size: 2rem;
+  }
+
+  & .cocher:checked + .libelle, & .radio:checked + .libelle {
+    background-color: $bleuRoyal;
+    color: $blanc;
+    padding: 0.5rem;
+
+    &::before {
+      content: "";
+      background-image: url(../images/icones/vignettes--actif.svg);
+      background-repeat: no-repeat;
+      height: 2.5rem;
+      width: 2.5rem;
+      display: inline-block;
+      margin-right: 1rem;
+      vertical-align: top;
+    }
+  }
+}

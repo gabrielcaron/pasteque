@@ -10,13 +10,13 @@
     @else
     <section class="indexLivres livres">
     @endif
-        <section class="enveloppe">
+        <section>
             <section class="filAriane">
                 <span><a href="index.php">Accueil</a> / Livres</span>
             </section>
             <!-- Éventuellement être caché en mobile
             <button class="enveloppe__">Filtres</button> -->
-            <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=livre&action=index" method="POST">
+            <form id="formTri" class="formulaire" action="index.php?controleur=livre&action=index" method="POST">
                 <fieldset class="formulaire__groupeChamps tuiles">
                     <legend class="formulaire__sectionLegende">
                         <h3 class="formulaire__sectionTitre screen-reader-only">Trier par:</h3>
@@ -44,50 +44,82 @@
                     <rect fill="url(#a)" height="21.619" rx="3.5" stroke="#f0f0f0" width="1397" x=".5" y=".630859"/>
                     <path d="m0 22.7499h1398l-355 76.9048h-720z" fill="url(#b)" fill-opacity=".04"/>
                 </svg>
-                <fieldset class="formulaire__groupeChamps tuiles">
-                    <legend class="formulaire__sectionLegende">
-                        <h3 class="formulaire__sectionTitre" id="testRequest">Type de vue:</h3>
-                    </legend>
-                    <ul class="formulaire__liste">
-                        <li class="bloc">
-                            <input onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue" type="radio" @if($choixVue === 'vignette') checked @endIf>
-                            <label  class="bouton libelle" for="vignette">Changer pour une vue en vignette</label>
-                        </li>
-                        <li class="bloc">
-                            <input onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="liste" value="liste" name="choixVue" type="radio" @if($choixVue === 'liste') checked @endIf>
-                            <label class="bouton libelle" for="liste">Changer pour une vue en liste</label>
-                        </li>
-                    </ul>
-                </fieldset>
-                <fieldset class="formulaire__groupeChamps formulaire__groupeChampsRangee">
-                    <legend class="formulaire__sectionLegende">
-                        <h3 class="formulaire__sectionTitre screen-reader-only">Nombre de livre par page :</h3>
-                    </legend>
-                    <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
-                        {{--<label class="" for="nbAuteursParPage"> </label>--}}
-                        <label class="screen-reader-only" for="nbLivreParPage">Nombre de livre par page :</label>
-                        <select onchange="document.getElementById('formTri').submit()" name="nbLivreParPage" id="nbLivreParPage" class="">
-                            <option value="9" @if($intNbLivreParPage === '9') selected @endIf>9 livres par page</option>
-                            <option value="15" @if($intNbLivreParPage === '15') selected @endIf>15 livres par page</option>
-                            <option value="30" @if($intNbLivreParPage === '30') selected @endIf>30 livres par page</option>
-                            <option value="tous" @if($intNbLivreParPage !== '9' && $intNbLivreParPage !== '15' &&  $intNbLivreParPage !== '30') selected @endIf>tout livres par page</option>
-                        </select>
-                    </p>
-                    <p class="formulaire__champEnveloppe"><strong>{{$intNbLivreParPage}} résultats affichés</strong> de {{$nombreLivre}}</p>
-                    <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
-                        <label class="screen-reader-only" for="trierPar">Trier par : </label>
-                        <select onchange="document.getElementById('formTri').submit()" name="trierPar" id="trierPar" class="">
-                            <option value="categories.nomA" @if($trierPar === 'categories.nomA') selected @endIf>Categories A-Z</option>
-                            <option value="categories.nomD" @if($trierPar === 'categories.nomD') selected @endIf>Categories Z-A</option>
-                            <option value="livres.titreA" @if($trierPar === 'livres.titreA') selected @endIf>Livres A-Z</option>
-                            <option value="livres.titreD" @if($trierPar === 'livres.titreD') selected @endIf>Livres Z-A</option>
-                            <option value="auteurs.nomA" @if($trierPar === 'auteurs.nomA') selected @endIf>Auteurs A-Z</option>
-                            <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs Z-A</option>
-                            <option value="statutD" @if($trierPar === 'statutD') selected @endIf>Plus récents au plus anciens</option>
-                            <option value="statutA" @if($trierPar === 'statutA') selected @endIf>Plus anciens au plus récents</option>
-                        </select>
-                    </p>
-                </fieldset>
+                <div class="formulaire__conteneursInlineFlex">
+                    <fieldset class="formulaire__groupeChamps modeAffichage">
+                        <legend class="formulaire__sectionLegende">
+                            <h3 class="formulaire__sectionTitre screen-reader-only" id="testRequest">Mode
+                                d'affichage</h3>
+                        </legend>
+                        <ul class="formulaire__listeModes selecteur">
+                            <li class="bloc">
+                                <input onchange="document.getElementById('formTri').submit()"
+                                       class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue"
+                                       type="radio" @if($choixVue === 'vignette') checked @endIf>
+                                <label class="libelle selecteur__enfant" for="vignette">Vignettes</label>
+                            </li>
+                            <li class="bloc">
+                                <input onchange="document.getElementById('formTri').submit()"
+                                       class="radio screen-reader-only" id="liste" value="liste" name="choixVue"
+                                       type="radio" @if($choixVue === 'liste') checked @endIf>
+                                <label class="libelle selecteur__enfant" for="liste">Liste</label>
+                            </li>
+                        </ul>
+                        <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
+                            {{--<label class="" for="nbAuteursParPage"> </label>--}}
+                            <label class="screen-reader-only" for="nbLivreParPage">Nombre de livre par page :</label>
+                            <select onchange="document.getElementById('formTri').submit()" name="nbLivreParPage"
+                                    id="nbLivreParPage" class="">
+                                <option value="9" @if($intNbLivreParPage === '9') selected @endIf>9 livres par page
+                                </option>
+                                <option value="15" @if($intNbLivreParPage === '15') selected @endIf>15 livres par page
+                                </option>
+                                <option value="30" @if($intNbLivreParPage === '30') selected @endIf>30 livres par page
+                                </option>
+                                <option value="tous"
+                                        @if($intNbLivreParPage !== '9' && $intNbLivreParPage !== '15' &&  $intNbLivreParPage !== '30') selected @endIf>
+                                    tout livres par page
+                                </option>
+                            </select>
+                        </p>
+                        <p class="formulaire__champEnveloppe"><strong>{{$intNbLivreParPage}} résultats affichés</strong>
+                            de {{$nombreLivre}}</p>
+                    </fieldset>
+                    <fieldset class="formulaire__groupeChamps tris">
+                        <legend class="formulaire__sectionLegende">
+                            <h3 class="formulaire__sectionTitre screen-reader-only">Nombre de livre par page :</h3>
+                        </legend>
+                        <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
+                            <label class="screen-reader-only" for="trierPar">Trier par : </label>
+                            <select onchange="document.getElementById('formTri').submit()" name="trierPar" id="trierPar"
+                                    class="">
+                                <option value="categories.nomA" @if($trierPar === 'categories.nomA') selected @endIf>
+                                    Categories A-Z
+                                </option>
+                                <option value="categories.nomD" @if($trierPar === 'categories.nomD') selected @endIf>
+                                    Categories Z-A
+                                </option>
+                                <option value="livres.titreA" @if($trierPar === 'livres.titreA') selected @endIf>Livres
+                                    A-Z
+                                </option>
+                                <option value="livres.titreD" @if($trierPar === 'livres.titreD') selected @endIf>Livres
+                                    Z-A
+                                </option>
+                                <option value="auteurs.nomA" @if($trierPar === 'auteurs.nomA') selected @endIf>Auteurs
+                                    A-Z
+                                </option>
+                                <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs
+                                    Z-A
+                                </option>
+                                <option value="statutD" @if($trierPar === 'statutD') selected @endIf>Plus récents au
+                                    plus anciens
+                                </option>
+                                <option value="statutA" @if($trierPar === 'statutA') selected @endIf>Plus anciens au
+                                    plus récents
+                                </option>
+                            </select>
+                        </p>
+                    </fieldset>
+                </div>
                 <input style="display: none" class="" type="submit" id="livresTrie">
             </form>
         </section>

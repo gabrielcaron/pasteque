@@ -13,199 +13,176 @@
 
   & .formulaire {
 
-    // Styles généraux
+	// Styles généraux
 
-    //&__sectionLegende {
-    //  padding: 2rem 0;
-    //}
+    @include conteneur1400px($flex: true);
+    flex-wrap: wrap;
 
-    &__liste {
-      padding: 2rem 0;
-      margin: 0;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      list-style-type: none;
+	&__liste {
+	  padding: 2rem 0;
+	  margin: 0;
+	  width: 100%;
+	  display: flex;
+	  flex-wrap: wrap;
+	  gap: 2rem;
+	  list-style-type: none;
 
-      @include rangeeGrid12col();
-      @media screen and (min-width: $tablet900px) {
-        & > * {
-          grid-column: span 2;
-        }
-      }
+	  @include rangeeGrid12col();
+	  @media screen and (min-width: $tablet900px) {
+		& > * {
+		  grid-column: span 2;
+		}
+	  }
+	}
+
+	&__listeModes {
+	  @include rangeeFlex;
+	  padding: 0.65rem 1rem;
+	}
+
+    &__conteneursInlineFlex {
+      display: inline-flex;
+	  flex-basis: 100%;
+	  justify-content: space-between;
     }
 
-    .bloc {
+	.bloc {
 
-      & .surtitre {
-        display: block;
-        background-color: $bleuRoyal;
-        color: $blanc;
-        font-family: $RobotoBold;
-        font-size: 1.6rem;
-        text-transform: uppercase;
-        border-radius: 0.75rem 0.75rem 0 0;
-        padding: 1rem 0.5rem;
-        margin: -3rem -1rem 1rem -1rem;
-      }
+	  & .surtitre {
+		display: block;
+		background-color: $bleuRoyal;
+		color: $blanc;
+		font-family: $RobotoBold;
+		font-size: 1.6rem;
+		text-transform: uppercase;
+		border-radius: 0.75rem 0.75rem 0 0;
+		padding: 1rem 0.5rem;
+		margin: -3rem -1rem 1rem -1rem;
+	  }
 
-      .radio {
-        width: 2.5rem;
-        height: 2.5rem;
-        vertical-align: middle;
+	  .radio {
+		width: 2.5rem;
+		height: 2.5rem;
+		vertical-align: middle;
 
-        & + .libelle {
-          display: initial;
-          padding-left: 0.5rem;
-        }
-      }
+		& + .libelle {
+		  display: initial;
+		  padding-left: 0.5rem;
+		}
+	  }
 
-      //.cocher {
-      //  width: 2.5rem;
-      //  height: 2.5rem;
-      //  & + .libelle {
-      //    display: initial;
-      //    padding-left: 0.5rem;
-      //    vertical-align: text-bottom;
-      //  }
-      //}
+	  input[type=text], input[type=number] {
+		width: calc(100% - 8px);
+		height: 4.4rem;
+	  }
 
-      input[type=text], input[type=number] {
-        width: calc(100% - 8px);
-        height: 4.4rem;
-      }
+	  // Sinon, les libellés prennent 100% de la largeur par défaut
+	  .libelle {
+		display: block;
+		font-size: 2rem;
+		vertical-align: middle;
+		padding: 0.5rem 0;
+	  }
 
-      // Sinon, les libellés prennent 100% de la largeur par défaut
-      .libelle {
-        display: block;
-        font-size: 2rem;
-        vertical-align: middle;
-        padding: 0.5rem 0;
-      }
+	  select {
+		width: 100%;
+		height: 5rem;
+		padding: 0.75rem;
+	  }
 
-      select {
-        width: 100%;
-        height: 5rem;
-        padding: 0.75rem;
-      }
+	  textarea {
+		width: calc(100% - 6px);
+		height: 25rem;
+	  }
 
-      textarea {
-        width: calc(100% - 6px);
-        height: 25rem;
-      }
+	}
 
-    }
+	&__champEnveloppe {
+	  font-family: $RobotoMedium;
+	  font-style: normal;
+	  font-size: 2rem;
+	  line-height: 100%;
+	  text-align: center;
+	  padding: 1rem;
 
-    &__champEnveloppe {
-      font-family: $RobotoMedium;
-      font-style: normal;
-      font-size: 2rem;
-      line-height: 100%;
-      text-align: center;
-      padding: 1rem 1rem;
-      &Rangee {
-        border: 5px solid $bleuRoyal;
-        border-radius: 1.5rem;
+	  &Rangee {
+		border: 5px solid $bleuRoyal;
+		border-radius: 1.5rem;
+	  }
+	}
 
-      }
-    }
+	// Styles spéciques dans les fieldsets
 
+	&__groupeChamps {
+	  border: none;
+	  margin: 0;
+	  padding: 0;
+      //width: 100%;
 
-    // Styles spéciques dans les fieldsets
+	  &.modeAffichage {
+		@include rangeeFlex;
+		flex-wrap: initial;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 2rem;
+	  }
 
-    &__groupeChamps {
-      border: none;
-      margin: 0;
-      padding: 0;
+	  &.tris {
+		@include rangeeFlex;
+		justify-content: flex-end;
+	  }
 
-      //&.rangeeReduite, & .rangee {
-      //  @include rangeeGrid12col();
-      //  & > * {
-      //    grid-column: 1 / 13;
-      //  }
-      //  & .bloc {
-      //    grid-column: 1 / 9;
-      //    margin: 1rem 0;
-      //    &.demi {
-      //      grid-column: 1 / 6;
-      //    }
-      //  }
-      //}
+	  &.tuiles {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
 
-      &Rangee{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        @media(min-width: 600px) {
-          flex-direction: row;
-        }
-      }
+		& .bloc {
+		  display: flex;
+		  margin: 0;
+		  @media screen and (max-width: $mobile600px) {
+			width: calc(50% - 1rem);
+		  }
 
-      &.tuiles {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-
-        & .formulaire__conteneur3colonnes {
-          display: flex;
-          gap: 2rem;
-          width: 100%;
-          padding-left: 0;
-          margin: 0;
-
-          & .bloc {
-            width: calc(50% - 2rem);
-          }
-        }
+		  & .libelle {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		  }
+		}
 
 
-        & .bloc {
-          display: flex;
-          margin: 0;
-          @media screen and (max-width: $mobile600px) {
-            width: calc(50% - 1rem);
-          }
+		// Seul le libellé est visible, la case à cocher est masquée
+		& .libelle {
+		  width: 100%;
+		  font-size: 2rem;
+		  line-height: 100%;
+		  padding: 2.75rem 1rem;
+		}
 
-          & .libelle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        }
+		// Change la couleur de la tuile (label) lorsque cochée
+		& .cocher:checked + .libelle, & .radio:checked + .libelle {
+		  background-color: $bleuRoyal;
+		  color: $blanc;
 
+		  &::before {
+			content: "";
+			background-image: url(../images/icones/crochet.svg);
+			background-repeat: no-repeat;
+			height: 2.5rem;
+			width: 2.5rem;
+			margin-right: 1rem;
+		  }
+		}
 
-        // Seul le libellé est visible, la case à cocher est masquée
-        & .libelle {
-          width: 100%;
-          font-size: 2rem;
-          line-height: 100%;
-          padding: 2rem;
-        }
-
-        // Change la couleur de la tuile (label) lorsque cochée
-        & .cocher:checked + .libelle, & .radio:checked + .libelle {
-          background-color: $bleuRoyal;
-          color: $blanc;
-
-          &::before {
-            content: "";
-            background-image: url(../images/icones/crochet.svg);
-            background-repeat: no-repeat;
-            height: 2.5rem;
-            width: 2.5rem;
-            margin-right: 1rem;
-          }
-        }
-
-        // Grandes tuiles
-        &.grandes {
-          & .libelle {
-            font-family: $RobotoBold;
-            font-size: 4rem;
-          }
-        }
-      }
-    }
+		// Grandes tuiles
+		&.grandes {
+		  & .libelle {
+			font-family: $RobotoBold;
+			font-size: 4rem;
+		  }
+		}
+	  }
+	}
   }
 }

@@ -76,6 +76,7 @@ class Panier
     }
 
     //Trouver dans la table paniers par le id d'une categorie
+    // TODO Panier|false n'est pas une syntaxe permise en PHP, utiliser plutôt ?Panier
     public static function trouverParIdSession(string $sessionChoisi):Panier|false {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM paniers  WHERE id_session = :sessionChoisi';

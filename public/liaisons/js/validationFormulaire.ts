@@ -12,6 +12,7 @@ let formulaire = {
         if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
             this.refErreur = `Le champ ${id} est obligatoire.`;
             document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
+            document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;
             console.log('erreur');
         } else if (this.refInput.hasAttribute('pattern')) {
             let bool = this.validerAttributPattern(this.refInput.pattern, this.refInput.value)
@@ -27,7 +28,7 @@ let formulaire = {
 //*******************
 // Écouteurs d'événements
 //*******************
-document.getElementById('testRequest').addEventListener('load', function () {
+window.addEventListener('load', function () {
     formulaire.initialiser()
 });
 

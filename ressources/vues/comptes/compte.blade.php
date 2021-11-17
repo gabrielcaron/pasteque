@@ -20,23 +20,23 @@
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert"></div>
                             <section class="compte__flex">
-                            <div id="champEmail" class="champ champ--lg">
+                            <div id="champConnexionEmail" class="champ champ--lg">
                                 <div class="champ__boite">
-                                    <label for="email" class="champ__etiquette">Entrez votre courriel</label>
-                                    <input class="champ__input" id="email" name="email" type="email"
+                                    <label for="connexionEmail" class="champ__etiquette">Entrez votre courriel</label>
+                                    <input class="champ__input" id="connexionEmail" name="email" type="email"
                                            autocomplete="email"
                                            required="required" aria-labelledby="messagesEmail"
                                            pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}$"
                                     />
                                 </div>
-                                <div id="messagesEmail" class="champ__messages">
+                                <div id="messagesConnexionEmail" class="champ__messages">
                                     <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
                                 </div>
                             </div>
                             <div id="champPassword" class="champ champ--lg">
                                 <div class="champ__boite">
-                                    <label for="password" class="champ__etiquette">Entrez votre mot de passe</label>
-                                    <input class="champ__input" id="password" name="password" type="password"
+                                    <label for="connexionPassword" class="champ__etiquette">Entrez votre mot de passe</label>
+                                    <input class="champ__input" id="connexionPassword" name="password" type="password"
                                            autocomplete="current-password"
                                            required="required" aria-labelledby="messagesPassword"
                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}" min="8"/>
@@ -63,20 +63,6 @@
                         <form id="form" name="inscription" class="form" method="POST" action="#" novalidate>
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert"></div>
-                            {{--<div class="choixAvatar">
-                                <label class="libelle" for="vignette">Choisir mon avatar</label>
-                                <ul class="choixAvatar__liste">
-
-                                    @for ($i = 1; $i <= 4; $i++)
-                                        <li class="bloc">
-                                            <input class="radio screen-reader-only" id="avatar{{$i}}" value="vignette"
-                                                   name="choixAvatar" type="radio">
-                                            <label class="libelle" for="vignette"><img class="choixAvatarImg"
-                                                                                       src="liaisons/images/avatars/avatar{{$i}}.png"></label>
-                                        </li>
-                                    @endfor
-                                </ul>
-                            </div>--}}
                             <section class="compte__prenomNom  compte__flex">
                                 <div id="champPrenom" class="champ champ--lg">
                                     <div class="champ__boite">

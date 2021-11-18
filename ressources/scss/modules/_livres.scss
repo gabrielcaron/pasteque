@@ -102,6 +102,7 @@
 	  background-color: $bleuRoyal;
 	  margin: 0;
 	  padding: 1rem;
+	  font-size: 1.6rem;
 	  text-align: center;
 	  color: $blanc;
 	  border-radius: 0 0 $arrondiDecoratif $arrondiDecoratif;
@@ -201,7 +202,7 @@
 	  grid-column: span 4;
 
 	  @media screen and (min-width: $tablet900px) {
-		grid-column: span 2;
+		grid-column: span 1;
 	  }
 	}
 

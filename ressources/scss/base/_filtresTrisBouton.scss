@@ -37,7 +37,16 @@
 
 	&__listeModes {
 	  @include rangeeFlex;
-	  padding: 0.65rem 1rem;
+	  padding: 0.788rem 0.5rem;
+	}
+
+	& #modesAffichage {
+	  & .selecteur {
+		&__enfant {
+			  border-radius: 7px;
+			  padding: 0.7rem 1rem;
+		}
+	  }
 	}
 
     &__conteneursInlineFlex {
@@ -81,7 +90,6 @@
 		display: block;
 		font-size: 2rem;
 		vertical-align: middle;
-		padding: 0.5rem 0;
 	  }
 
 	  select {
@@ -136,6 +144,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2rem;
+		width: 100%;
 
 		& .bloc {
 		  display: flex;

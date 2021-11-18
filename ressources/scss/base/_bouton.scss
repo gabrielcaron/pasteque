@@ -39,6 +39,34 @@
   &__enfant {
     font-family: $RobotoMedium;
     font-size: 2rem;
+    border-radius: 7px;
+    padding: 0.7rem 1rem;
+
+
+  }
+
+  & .cocher + .libelle, & .radio + .libelle {
+    &.vignettes::before {
+      content: "";
+      background-image: url(../images/icones/vignettes.svg);
+      background-repeat: no-repeat;
+      height: 2rem;
+      width: 2rem;
+      display: inline-block;
+      margin: 0 0.5rem 0.4rem 0.3rem;
+      vertical-align: middle;
+    }
+
+    &.liste::before {
+      content: "";
+      background-image: url(../images/icones/liste.svg);
+      background-repeat: no-repeat;
+      height: 2rem;
+      width: 2rem;
+      display: inline-block;
+      margin: 0 0.5rem 0.4rem 0.3rem;
+      vertical-align: middle;
+    }
   }
 
   & .cocher:checked + .libelle, & .radio:checked + .libelle {
@@ -46,15 +74,26 @@
     color: $blanc;
     padding: 0.5rem;
 
-    &::before {
+    &.vignettes::before {
       content: "";
       background-image: url(../images/icones/vignettes--actif.svg);
       background-repeat: no-repeat;
-      height: 2.5rem;
-      width: 2.5rem;
+      height: 2rem;
+      width: 2rem;
       display: inline-block;
-      margin-right: 1rem;
-      vertical-align: top;
+      margin: 0 0.5rem 0.4rem 0.3rem;
+      vertical-align: middle;
+    }
+
+    &.liste::before {
+      content: "";
+      background-image: url(../images/icones/liste--actif.svg);
+      background-repeat: no-repeat;
+      height: 2rem;
+      width: 2rem;
+      display: inline-block;
+      margin: 0 0.5rem 0.4rem 0.3rem;
+      vertical-align: middle;
     }
   }
 }

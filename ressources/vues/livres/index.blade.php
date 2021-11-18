@@ -50,18 +50,18 @@
                             <h3 class="formulaire__sectionTitre screen-reader-only" id="testRequest">Mode
                                 d'affichage</h3>
                         </legend>
-                        <ul class="formulaire__listeModes selecteur">
+                        <ul class="formulaire__listeModes selecteur" id="modesAffichage">
                             <li class="bloc">
                                 <input onchange="document.getElementById('formTri').submit()"
                                        class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue"
                                        type="radio" @if($choixVue === 'vignette') checked @endIf>
-                                <label class="libelle selecteur__enfant" for="vignette">Vignettes</label>
+                                <label class="libelle selecteur__enfant vignettes" for="vignette">Vignettes</label>
                             </li>
                             <li class="bloc">
                                 <input onchange="document.getElementById('formTri').submit()"
                                        class="radio screen-reader-only" id="liste" value="liste" name="choixVue"
                                        type="radio" @if($choixVue === 'liste') checked @endIf>
-                                <label class="libelle selecteur__enfant" for="liste">Liste</label>
+                                <label class="libelle selecteur__enfant liste" for="liste">Liste</label>
                             </li>
                         </ul>
                         <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
@@ -143,7 +143,7 @@
                                 @if ($livre->getStatut() === 2)
                                     <p class="livre__etiquette">Nouveauté</p>
                                 @elseif($livre->getStatut() === 3)
-                                    <p class="livre__etiquette">À paraitre</p>
+                                    <p class="livre__etiquette">À&nbsp;paraitre</p>
                                 @endif
                             </div>
                             <div class="livre__conteneurTitreInfos">

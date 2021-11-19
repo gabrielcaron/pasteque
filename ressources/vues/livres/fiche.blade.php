@@ -4,6 +4,10 @@
     livreFiche
 @endsection
 
+@section('classeMain')
+    class="contenu"
+@endsection
+
 @section('contenu')
     <section class="filAriane">
         <span><a href="index.php">Accueil</a> / <a href="index.php?controleur=livre&action=index">Livres</a> / {{$livre->getTitre()}}</span>

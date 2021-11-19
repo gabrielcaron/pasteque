@@ -9,14 +9,18 @@
 * Styles généraux
 */
 
+/* Conteneur pour le main */
+
+.livreFiche {
+  & .contenu {
+    @include conteneur1400px();
+  }
+}
+
 .filAriane{
-  max-width: 1400px;
-  margin: 0 auto;
   padding-top: 2rem;
 }
 .ficheLivre {
-  max-width: 1400px;
-  margin: 0 auto;
   display: flex;
   margin-top: 5rem;
 
@@ -184,8 +188,6 @@
 }
 
 .informations{
-  max-width: 1400px;
-  margin: 0 auto;
   margin-top: 5rem;
   margin-bottom: 5rem;
 

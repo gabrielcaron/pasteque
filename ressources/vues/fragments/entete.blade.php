@@ -21,7 +21,7 @@
                 <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien user"><img src="liaisons/images/user.svg"></a>
             </li>
             <li class="menuTop__listeItem">
-                <a href="#panier" class="menuTop__lien"><i
+                <a href="index.php?controleur=panier&action=panier" class="menuTop__lien"><i
                             class="fa fa-shopping-cart"></i></a>
             </li>
             <li id="search">

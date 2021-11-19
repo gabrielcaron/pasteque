@@ -24,7 +24,6 @@ if ($controleur === 'livre'){
     if ($action === 'trouverTout') {
         $model = new Livre();
         $retournerContenu = $model->trouverTout();
-        var_dump($retournerContenu);
         $contenuJson = null;
         foreach ($retournerContenu as $contenu) {
            $contenuJson =  json_encode($contenu);

@@ -11,7 +11,7 @@ class Article
 {
     private int $id;
     private int $quantite;
-    private int $produit_id;
+    private int $livre_id;
     private int $panier_id;
 
     public function __construct() {
@@ -35,11 +35,11 @@ class Article
     }
 
     // $produit_id : Getter et setter
-    public function getProduitId():int {
-        return $this->produit_id;
+    public function getLivreId():int {
+        return $this->livre_id;
     }
-    public function setProduitId(int $unProduitId):void {
-        $this->produit_id = $unProduitId;
+    public function setLivreId(int $unLivreId):void {
+        $this->livre_id = $unLivreId;
     }
 
     // $panier_id : Getter et setter
@@ -50,8 +50,8 @@ class Article
         $this->panier_id = $unPanierId;
     }
 
-    public function getProduitAssocie():Produit {
-        return Produit::trouverParId($this->produit_id);
+    public function getLivreAssocie():Livre {
+        return Livre::trouverParId($this->livre_id);
     }
 
     //Trouver tout dans la table articles
@@ -69,14 +69,14 @@ class Article
     }
 
     //Trouver tout dans la table articles
-    public static function trouverParIdProduitIdPanier(int $panierId, int $produitId):Article|false  {
+    public static function trouverParIdProduitIdPanier(int $panierId, int $livreId):Article|false  {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT * FROM articles WHERE panier_id = :panier_id AND produit_id = :produit_id';
+        $chaineSQL = 'SELECT * FROM articles WHERE panier_id = :panier_id AND livre_id = :livre_id';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
         $requetePreparee->bindParam(':panier_id', $panierId, PDO::PARAM_INT);
-        $requetePreparee->bindParam(':produit_id', $produitId, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':livre_id', $livreId, PDO::PARAM_INT);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Article');
         // Exécuter la requête
@@ -120,11 +120,11 @@ class Article
     //Inserer dans la table articles un nouvel article
     public function inserer():void {
         // Définir la chaine SQL
-        $chaineSQL = 'INSERT INTO articles (produit_id, quantite, panier_id) VALUES (:produit_id, :quantite, :panier_id)';
+        $chaineSQL = 'INSERT INTO articles (livre_id, quantite, panier_id) VALUES (:livre_id, :quantite, :panier_id)';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
-        $requetePreparee->bindParam(':produit_id', $this->produit_id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':livre_id', $this->livre_id, PDO::PARAM_INT);
         $requetePreparee->bindParam(':quantite', $this->quantite, PDO::PARAM_INT);
         $requetePreparee->bindParam(':panier_id', $this->panier_id, PDO::PARAM_INT);
         // Exécuter la requête
@@ -135,11 +135,11 @@ class Article
     public function mettreAJour():void {
 
         // Définir la chaine SQL
-        $chaineSQL = 'UPDATE articles SET produit_id=:produit_id, quantite=:quantite, panier_id=:panier_id WHERE produit_id=:produit_id AND panier_id=:panier_id';
+        $chaineSQL = 'UPDATE articles SET livre_id=:livre_id, quantite=:quantite, panier_id=:panier_id WHERE livre_id=:livre_id AND panier_id=:panier_id';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
-        $requetePreparee->bindParam(':produit_id', $this->produit_id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':livre_id', $this->livre_id, PDO::PARAM_INT);
         $requetePreparee->bindParam(':quantite', $this->quantite, PDO::PARAM_INT);
         $requetePreparee->bindParam(':panier_id', $this->panier_id, PDO::PARAM_INT);
         // Exécuter la requête

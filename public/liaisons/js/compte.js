@@ -1,13 +1,4 @@
-var request = {
-    trouverToutLivre: function (controleur, action, id) {
-        var test = null;
-        this.fetchRequest(controleur, action, id).then(function (result) {
-            console.log('avant');
-            test = result;
-            console.log('apres');
-        });
-        console.log(test);
-    },
+var compte = {
     trouverToutCompte: function (controleur, action, id) {
         console.log('heyyyyyyyyyyyyyyy');
         var test = null;
@@ -31,5 +22,5 @@ var request = {
 //*******************
 // Écouteurs d'événements
 //*******************
-//document.getElementById('courriel').addEventListener('focusout', function () {request.trouverToutCompte('compte', 'trouverTout', '')});
-document.getElementById('testRequest').addEventListener('click', function () { request.trouverToutLivre('livre', 'trouverTout', ''); });
+document.getElementById('courriel').addEventListener('focusout', function () { compte.trouverToutCompte('compte', 'trouverTout', ''); });
+//document.getElementById('testRequest').addEventListener('click', function () {request.trouverToutLivre('livre', 'trouverTout', '')});

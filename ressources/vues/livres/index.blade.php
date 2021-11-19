@@ -47,7 +47,7 @@
                 <div class="formulaire__conteneursInlineFlex">
                     <fieldset class="formulaire__groupeChamps modeAffichage">
                         <legend class="formulaire__sectionLegende">
-                            <h3 class="formulaire__sectionTitre screen-reader-only" id="testRequest">Mode
+                            <h3 class="formulaire__sectionTitre" id="testRequest">Mode
                                 d'affichage</h3>
                         </legend>
                         <ul class="formulaire__listeModes selecteur" id="modesAffichage">

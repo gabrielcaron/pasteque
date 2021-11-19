@@ -98,4 +98,3 @@ document.getElementById('btnReset').addEventListener('reset', function () {
     formulaire.reinitialiserChamp()
 });
 
-

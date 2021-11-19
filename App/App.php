@@ -142,6 +142,9 @@ class App
                 case 'connexion':
                     $this->monControleur->connexion();
                     break;
+                case 'inserer':
+                    $this->monControleur->inserer();
+                    break;
                 default:
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();

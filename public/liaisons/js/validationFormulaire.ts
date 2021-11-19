@@ -3,10 +3,11 @@ let formulaire = {
     refInput: null,
     refErreur: '',
     refChampErreur: null,
-    refTableauChamp: ['prenom', 'nom', 'email'],
+    refTableauChamp: ['prenom', 'nom', 'courriel', 'mot_de_passe'],
 
     validerInput(id) {
-
+console.log('hey');
+console.log(id)
         this.refInput = document.getElementById(id).querySelector('input');
         this.refChampErreur = document.getElementById(id).querySelector('.champ__message-erreur');
 
@@ -47,14 +48,14 @@ let formulaire = {
             }
 
         }
-        alert(tabErreur);
+        //alert(tabErreur);
         console.log(tabErreur.indexOf(true));
 
         if (tabErreur.indexOf(true) == -1){
             for (let i = 0; i < this.refTableauChamp.length; i++) {
                 formErreur = true;
+                console.log(formulaire.validerInput(document.getElementById(this.refTableauChamp[i])));
 
-                formulaire.validerInput(document.getElementById(this.refTableauChamp[i]));
             }
         }
         console.log(tabErreur);
@@ -78,11 +79,22 @@ let formulaire = {
 document.getElementById('prenom').addEventListener('change', function () {
     formulaire.validerInput('champPrenom')
 });
+document.getElementById('connexionEmail').addEventListener('change', function () {
+    formulaire.validerInput('champConnexionEmail')
+});
+document.getElementById('connexionPassword').addEventListener('change', function () {
+    formulaire.validerInput('champPassword')
+});
 document.getElementById('nom').addEventListener('change', function () {
     formulaire.validerInput('champNom')
+});
+document.getElementById('courriel').addEventListener('change', function () {
+    formulaire.validerInput('champEmail')
+});
+document.getElementById('mot_de_passe').addEventListener('change', function () {
+    formulaire.validerInput('champPassword')
 });
 document.getElementById('btnReset').addEventListener('reset', function () {
     formulaire.reinitialiserChamp()
 });
-
 

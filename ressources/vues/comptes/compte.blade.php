@@ -60,9 +60,15 @@
 
                 <div class="tabSection__barContent" id="second">
                     <div class="tabSection__texts">
-                        <form id="inscriptionForm" name="inscription" class="form" method="POST" action="#" novalidate onsubmit="return formulaire.validerFormulaire()">
-                            <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
-                                 role="alert"></div>
+                        <form id="inscriptionForm" name="inscription" class="form" action="index.php?controleur=compte&action=inserer" method="POST" novalidate onsubmit="return formulaire.validerFormulaire()">
+
+                                <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
+                                 role="alert">
+                                    @if($erreur === 'exist')
+                                        Désolé, ce courriel est déjà associer à un compte!
+                                    @endif
+                                </div>
+
                             <section class="compte__prenomNom  compte__flex">
                                 <div id="champPrenom" class="champ champ--lg">
                                     <div class="champ__boite">
@@ -90,8 +96,8 @@
                             <section class="compte__telEmail compte__flex">
                                     <div id="champEmail" class="champ champ--lg">
                                         <div class="champ__boite">
-                                            <label for="email" class="champ__etiquette">Courriel</label>
-                                            <input class="champ__input" id="email" name="email" type="email"
+                                            <label for="courriel" class="champ__etiquette">Courriel</label>
+                                            <input class="champ__input" id="courriel" name="courriel" type="email"
                                                    autocomplete="email"
                                                    required="required" aria-labelledby="messagesEmail"
                                                    pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}$"
@@ -106,8 +112,8 @@
                                 <div class="compte__flex">
                                     <div id="champPassword" class="champ champ--lg">
                                         <div class="champ__boite">
-                                            <label for="password" class="champ__etiquette">Créer un mot de passe</label>
-                                            <input class="champ__input" id="password" name="password" type="password"
+                                            <label for="mot_de_passe" class="champ__etiquette">Créer un mot de passe</label>
+                                            <input class="champ__input" id="mot_de_passe" name="mot_de_passe" type="password"
                                                    autocomplete="current-password"
                                                    required="required" aria-labelledby="messagesPassword"
                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}"

@@ -45,5 +45,4 @@ class ControleurPanier
         $ancienArticle->supprimer();
         header('Location: index.php?controleur=panier&action=panier');
     }
-
 }

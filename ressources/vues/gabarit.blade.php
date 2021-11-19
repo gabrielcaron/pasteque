@@ -32,7 +32,9 @@
         <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>
         <script src="liaisons/js/productPage.js" type="text/javascript"></script>
         <script src="liaisons/js/validationFormulaire.js" type="text/javascript"></script>
-        <script src="liaisons/js/fetchRequest.ts" ></script>
+
+        <script src="liaisons/js/fetchRequest.js" ></script>
+        <script src="liaisons/js/compte.js" ></script>
         <script>
             document.body.classList.add('js');
         </script>

@@ -1,13 +1,5 @@
-let request = {
-    trouverToutLivre(controleur, action, id) {
-        let test = null;
-        this.fetchRequest(controleur, action, id).then(function (result){
-            console.log('avant');
-            test = result;
-            console.log('apres');
-        });
-        console.log(test)
-    },
+let compte = {
+
     trouverToutCompte(controleur, action, id) {
         console.log('heyyyyyyyyyyyyyyy')
         let test = null;
@@ -32,6 +24,8 @@ let request = {
 //*******************
 // Écouteurs d'événements
 //*******************
-//document.getElementById('courriel').addEventListener('focusout', function () {request.trouverToutCompte('compte', 'trouverTout', '')});
+document.getElementById('courriel').addEventListener('focusout', function () {compte.trouverToutCompte('compte', 'trouverTout', '')});
 
-document.getElementById('testRequest').addEventListener('click', function () {request.trouverToutLivre('livre', 'trouverTout', '')});
+//document.getElementById('testRequest').addEventListener('click', function () {request.trouverToutLivre('livre', 'trouverTout', '')});
+
+

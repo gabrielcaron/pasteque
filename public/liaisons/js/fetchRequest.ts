@@ -4,7 +4,7 @@ let request = {
         this.fetchRequest(controleur, action, id).then(function (result){
             console.log('avant');
             test = result;
-            console.log('apres');
+            console.log(test);
         });
         console.log(test)
     },

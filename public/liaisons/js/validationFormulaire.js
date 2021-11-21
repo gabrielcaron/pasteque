@@ -46,7 +46,7 @@ var formulaire = {
                 switch (_a.label) {
                     case 0:
                         console.log(courriel);
-                        return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=index&courriel=" + courriel)
+                        return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=index&courriel=".concat(courriel))
                                 .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
@@ -68,7 +68,7 @@ var formulaire = {
         this.refChampErreur = document.getElementById(id).querySelector('.champ__message-erreur');
         for (var i = 0; i < this.refTableauChamp.length; i++) {
             if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
-                this.refErreur = "Le champ " + id + " est obligatoire.";
+                this.refErreur = "Le champ ".concat(id, " est obligatoire.");
                 this.refChampErreur.style = 'display:block;';
                 document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
                 //document.getElementById(id).querySelector('.champ__message-erreur');
@@ -79,7 +79,7 @@ var formulaire = {
             else if (this.refInput.hasAttribute('pattern')) {
                 var bool = this.validerAttributPattern(this.refInput.pattern, this.refInput.value);
                 if (bool === false) {
-                    this.refErreur = "Veuillez verifier que la valeur du champ " + id + " correspond aux crit\u00E8res demand\u00E9s.";
+                    this.refErreur = "Veuillez verifier que la valeur du champ ".concat(id, " correspond aux crit\u00E8res demand\u00E9s.");
                 }
             }
         }

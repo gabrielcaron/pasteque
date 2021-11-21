@@ -3,6 +3,8 @@
     class="panier"
 @endsection
 @section('contenu')
+    <?php var_dump($panier);
+    var_dump($panier->getArticlesAssocies()); ?>
     <h1>Panier</h1>
     <section class="panier__sectionResume">
         <p class="panier__sectionResumeSousTotal">Sous-total ({{$nombreArticles}} articles) : {{number_format($prixTotal, 2)}}$</p>

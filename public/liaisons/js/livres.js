@@ -9,7 +9,7 @@ var page = {
     }
 };
 function envoyerFormulaire(numeroPage) {
-    console.log('entre');
+    console.log('sort');
     //document.getElementById('id_page').value = numeroPage;
 }
 //*******************

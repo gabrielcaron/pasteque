@@ -13,7 +13,7 @@ class Livre
     private string $isbn_papier;
     private string $isbn_pdf;
     private string $isbn_epub;
-    private string $url_Audio;
+    private ?string $url_audio;
     private string $titre;
     private string $le_livre;
     private string $arguments_commerciaux;
@@ -29,6 +29,7 @@ class Livre
     private int $categorie_id;
     private ?int $type_impression_id;
     private ?int $type_couverture_id;
+    private string $langue;
 
     public function __construct()
     {
@@ -91,15 +92,15 @@ class Livre
         $this->isbn_epub = $isbn;
     }
 
-    // $url_Audio : Getter et setter
+    // $url_audio : Getter et setter
     public function getUrlAudio(): string
     {
-        return $this->url_Audio;
+        return $this->url_audio;
     }
 
     public function setUrlAudio(string $unUrl): void
     {
-        $this->url_Audio = $unUrl;
+        $this->url_audio = $unUrl;
     }
 
     // $titre : Getter et setter
@@ -265,6 +266,17 @@ class Livre
     public function setTypeCouvertureId(int $unTypeCouvertureId): void
     {
         $this->type_couverture_id = $unTypeCouvertureId;
+    }
+
+    // $langue : Getter et setter
+    public function getLangue(): string
+    {
+        return $this->langue;
+    }
+
+    public function setLangue(string $unLangue): void
+    {
+        $this->langue = $unLangue;
     }
 
 

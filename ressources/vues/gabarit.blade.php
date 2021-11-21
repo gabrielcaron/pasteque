@@ -18,12 +18,10 @@
 
         <main @yield('classeMain')>
             @yield('contenu')
-            <section class="socialMedia">
-            @include('fragments.infolettre')
-            </section>
         </main>
 
         <footer class="footer">
+            @include('fragments.infolettre')
             @include('fragments.pieddepage')
         </footer>
         <script src="liaisons/js/_menu.js"></script>

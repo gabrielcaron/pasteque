@@ -5,6 +5,7 @@ namespace App\Controleurs;
 use App\App;
 use App\Modeles\Categorie;
 use App\Modeles\Livre;
+use App\Modeles\Panier;
 
 class ControleurLivre
 {
@@ -51,8 +52,11 @@ class ControleurLivre
     public function fiche($livreChoisi):void
     {
         $livre = Livre::trouverParId($livreChoisi);
+        $panier = Panier::trouverParIdSession(session_id());
+
+        var_dump($panier);
         $tableauImage = [];
-        $tDonnees = array("titrePage"=>"Livre", "action"=>"fiche", "livre"=>$livre);
+        $tDonnees = array("titrePage"=>"Livre", "action"=>"fiche", "livre"=>$livre, "panier"=>$panier);
         echo App::getBlade()->run("livres.fiche",$tDonnees);
     }
 

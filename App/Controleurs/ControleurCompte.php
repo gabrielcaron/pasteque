@@ -66,8 +66,6 @@ class ControleurCompte
         }
 
         header('Location: index.php?controleur=compte&action=creation&erreur=exist');
-
-
     }
 
 }

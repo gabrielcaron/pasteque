@@ -98,7 +98,7 @@
                 </div>
             </div>
             <section class="ficheLivre__format">
-                <form id="formTri" class="enveloppe__Tris" action="" method="POST">
+                <form id="formTri" class="formulaire enveloppe__Tris" action="" method="POST">
                     <fieldset class="formulaire__groupeChamps tuiles">
                         <ul class="formulaire__liste">
                             @if($livre->getIsbnPapier()!== '')
@@ -133,7 +133,7 @@
                     <input class="ficheLivre__ajoutInput" type="text" name="name" value="1">
                     <button class="plus-btn btnQuantite" type="button" name="button">+</button>
                 </div>
-                    <a class="ficheLivre__ajoutPanierBtn" href="#panier">
+                    <a class="bouton action ajoutPanier" href="#panier">
                         Ajouter au panier
                     </a>
             </div>

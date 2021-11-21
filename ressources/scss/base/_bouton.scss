@@ -1,11 +1,14 @@
 
 
-// Bouton secondaire avec contour par défaut
+
 
 .bouton {
+
+  /* Bouton secondaire avec contour par défaut */
+
   border-radius: 15px;
   border: solid 5px $bleuRoyal;
-  padding: 0.5em 3em;
+  padding: 1rem 3rem;
   text-decoration: none;
   font-family: $RobotoMedium;
   font-size: 1.8rem;
@@ -18,6 +21,42 @@
     background-color: $bleuRoyal;
     text-decoration: none;
   }
+
+  /* Boutons d'action */
+
+  &.action {
+    background-color: $bleuRoyal;
+    font-family: $RobotoMedium;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $blanc;
+
+    &:hover {
+      color: $blanc;
+      border: solid 5px $bleuSurvol;
+      background-color: $bleuSurvol;
+      text-decoration: none;
+    }
+
+    /* Ajout au panier */
+
+    &.ajoutPanier {
+      display: inline-block;
+
+      &::before {
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 1rem;
+        vertical-align: bottom;
+        content: "";
+        background-image: url(../images/icones/ajouterPanier.svg);
+      }
+    }
+  }
+
+  /* Bouton texte seulement */
 
   &.texte {
     border: none;
@@ -34,6 +73,7 @@
   }
 }
 
+/* Sélecteur (mode d'affichage) */
 
 .selecteur {
   border-radius: 15px;

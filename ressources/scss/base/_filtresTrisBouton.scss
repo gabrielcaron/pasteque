@@ -8,15 +8,16 @@
 * Filtres et tris
 */
 
+/* Styles communs à la liste des livres et aux fiches des livres */
 
-.livresIndex {
+.livresIndex, .ficheLivre {
 
   & .formulaire {
 
-	// Styles généraux
+	// Styles généraux communs
 
-    @include conteneur1400px($flex: true);
-    flex-wrap: wrap;
+	@include conteneur1400px($flex: true);
+	flex-wrap: wrap;
 
 	&__liste {
 	  padding: 2rem 0;
@@ -26,13 +27,6 @@
 	  flex-wrap: wrap;
 	  gap: 2rem;
 	  list-style-type: none;
-
-	  @include rangeeGrid12col();
-	  @media screen and (min-width: $tablet900px) {
-		& > * {
-		  grid-column: span 2;
-		}
-	  }
 	}
 
 	&__listeModes {
@@ -48,18 +42,18 @@
 	& #modesAffichage {
 	  & .selecteur {
 		&__enfant {
-			  border-radius: 7px;
-			  padding: 0.7rem 1rem;
+		  border-radius: 7px;
+		  padding: 0.7rem 1rem;
 		}
 	  }
 	}
 
-    &__conteneursInlineFlex {
-      display: inline-flex;
+	&__conteneursInlineFlex {
+	  display: inline-flex;
 	  flex-wrap: wrap;
 	  flex-basis: 100%;
 	  justify-content: space-between;
-    }
+	}
 
 	.bloc {
 
@@ -82,7 +76,6 @@
 
 		& + .libelle {
 		  display: initial;
-		  padding-left: 0.5rem;
 		}
 	  }
 
@@ -131,7 +124,6 @@
 	  border: none;
 	  margin: 0;
 	  padding: 0;
-      //width: 100%;
 
 	  &.modeAffichage {
 		@include rangeeFlex;
@@ -172,7 +164,6 @@
 		  width: 100%;
 		  font-size: 2rem;
 		  line-height: 100%;
-		  padding: 2.75rem 1rem;
 		}
 
 		// Change la couleur de la tuile (label) lorsque cochée
@@ -189,23 +180,54 @@
 			margin-right: 1rem;
 		  }
 		}
+	  }
+	}
+  }
+}
 
-		// Grandes tuiles
-		&.grandes {
-		  & .libelle {
-			font-family: $RobotoBold;
-			font-size: 4rem;
-		  }
+/* Styles spécifiques à la liste des livres */
+
+.indexLivres {
+
+  & .formulaire {
+
+	&__liste {
+	  @include rangeeGrid12col();
+	  @media screen and (min-width: $tablet900px) {
+		& > * {
+		  grid-column: span 2;
+		}
+	  }
+	}
+
+	// Styles spéciques dans les fieldsets
+
+	&__groupeChamps {
+
+	  &.tuiles {
+
+		& .libelle {
+		  padding: 2.75rem 1rem;
 		}
 	  }
 	}
   }
 }
 
-.livreFiche {
+/* Styles spécifiques aux fiches des livres */
+
+.ficheLivre {
+
   & .formulaire {
+
 	&__groupeChamps {
-	  border: none;
+
+	  &.tuiles {
+
+		& .libelle {
+		  padding: 1.25rem 2rem;
+		}
+	  }
 	}
   }
 }

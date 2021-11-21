@@ -27,7 +27,7 @@
                             @foreach($livre->getAuteurAssocie() as $auteur)
                                 <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                             @endforeach
-                            <li class="livre__item livre__categorie">{{$livre->getCategorieAssocie()->getNom()}}</li>
+                            <li class="livre__item livre__categorie">Quantité : 1</li>
                         </ul>
                     </section>
 {{--                    <a class="modale__bouton bouton" href=../public/index.php?controleur=panier&action=panier>Voir le panier</a>--}}

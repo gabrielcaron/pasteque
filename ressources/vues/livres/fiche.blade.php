@@ -105,7 +105,7 @@
                                 <li class="bloc">
                                     <input class="radio screen-reader-only" id="papier" value="papier" name="version"
                                            type="radio" checked>
-                                    <label class="libelle" for="papier">Version papier</label>
+                                    <label class="libelle bouton" for="papier">Version papier</label>
                                 </li>
                             @endif
                             @if($livre->getIsbnEpub()!== '')
@@ -113,14 +113,14 @@
                                     <input class="radio screen-reader-only" id="numerique" value="numerique"
                                            name="version"
                                            type="radio">
-                                    <label class="libelle" for="numerique">Version numérique</label>
+                                    <label class="libelle bouton" for="numerique">Version numérique</label>
                                 </li>
                             @endif
                             @if($livre->getIsbnPdf()!== '')
                                 <li class="bloc">
                                     <input class="radio screen-reader-only" id="pdf" value="pdf" name="version"
                                            type="radio">
-                                    <label class="libelle" for="pdf">Version PDF</label>
+                                    <label class="libelle bouton" for="pdf">Version PDF</label>
                                 </li>
                             @endif
                         </ul>

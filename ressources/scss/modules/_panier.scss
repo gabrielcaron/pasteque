@@ -1,0 +1,95 @@
+/**
+* @author Michelle Veillette
+* @version 1.0
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* PANIER
+*
+*
+*/
+
+
+/* Conteneurs généraux des grilles */
+
+.panier {
+  @include paddingConteneur();
+  @include conteneur1400px();
+
+  /* Section du résumé */
+
+  &__sectionResume {
+	@include rangeeGrid12col();
+
+
+	&SousTotal {
+	  background-color: $bleuPoudre;
+	  grid-column: 4 / 10;
+	  padding: 3rem 3rem 1rem 3rem;
+	}
+
+	&Livraison {
+	  background-color: $bleuPoudre;
+	  grid-column: 4 / 10;
+	  padding: 0 3rem 3rem 3rem;
+	}
+
+  }
+
+  /* Section des articles (livres) */
+
+  &__sectionArticles {
+	@include rangeeGrid12col();
+  }
+
+  &__article {
+	grid-column: span 13;
+	@include rangeeGrid12col();
+	padding: 3rem 0;
+
+	& .livre {
+	  &__picture {
+		grid-column: 2 / 3;
+	  }
+	}
+
+	&Infos {
+	  grid-column: 3 / 7;
+
+	  &Titre {
+		font-size: 4rem;
+	  }
+	}
+
+	&Quantite {
+	  grid-column: 7 / 12;
+	  @include rangeeFlex;
+	}
+
+	&Retirer {
+	  grid-column: 2 / 5;
+	  margin: 2rem 0;
+	}
+  }
+
+  /* Section du sous-total */
+
+  &__tableauSousTotal {
+	grid-column: 9 / 13;
+  }
+
+  &__continuerAchats {
+	grid-column: 6 / 9;
+	align-self: center;
+  }
+
+  &__passerCommande {
+	grid-column: 9 / 12;
+  }
+
+}
+
+
+
+

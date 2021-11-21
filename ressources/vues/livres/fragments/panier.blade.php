@@ -32,7 +32,7 @@
                     </section>
 {{--                    <a class="modale__bouton bouton" href=../public/index.php?controleur=panier&action=panier>Voir le panier</a>--}}
 {{--                    Solution temporaire --}}
-                    <form action="../public/index.php?controleur=article&action=inserer" method="POST">
+                    <form class="modale__bouton" action="../public/index.php?controleur=article&action=inserer" method="POST">
                         <input id="produit_id" type="text" name="produit_id" value="{{$livre->getId()}}" hidden>
                         <input id="panier_id" type="text" name="panier_id" value="{{$panier->getId()}}" hidden>
                         <input id="quantite" type="text" name="quantite" value="1" hidden>

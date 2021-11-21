@@ -24,6 +24,7 @@
   &__conteneurBleed {
 	width: 100%;
 	background-color: $gris97;
+	filter: drop-shadow(-10px -10px 30px rgba(0, 0, 0, 0.15));
 
 	&Titre {
 	  background-color: $bleuRoyal;
@@ -46,6 +47,7 @@
   }
 
   &__conteneurRangee {
+
 	// Mobile
 	@include rangeeFlex;
 	flex-wrap: wrap;
@@ -126,8 +128,12 @@
 	}
   }
 
-  &__bouton {
-	grid-column: span 4;
+  &__boutonContinuer {
+	margin-right: 2rem;
+  }
+
+  &__formulaireAjout {
+	grid-column: span 6;
   }
 
   &__fermer {

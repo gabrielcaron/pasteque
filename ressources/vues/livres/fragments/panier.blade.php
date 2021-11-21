@@ -27,12 +27,14 @@
                             @foreach($livre->getAuteurAssocie() as $auteur)
                                 <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                             @endforeach
+                            <li class="livre__item livre__categorie">{{$livre->getPrixCan()}} $</li>
                             <li class="livre__item livre__categorie">Quantité : 1</li>
                         </ul>
                     </section>
 {{--                    <a class="modale__bouton bouton" href=../public/index.php?controleur=panier&action=panier>Voir le panier</a>--}}
 {{--                    Solution temporaire --}}
-                    <form class="modale__bouton" action="../public/index.php?controleur=article&action=inserer" method="POST">
+                    <form class="modale__formulaireAjout" action="../public/index.php?controleur=article&action=inserer" method="POST">
+                        <a class="modale__boutonContinuer bouton texte" href="index.php?controleur=livre&action=index">Continuer à magasiner</a>
                         <input id="produit_id" type="text" name="produit_id" value="{{$livre->getId()}}" hidden>
                         <input id="panier_id" type="text" name="panier_id" value="{{$panier->getId()}}" hidden>
                         <input id="quantite" type="text" name="quantite" value="1" hidden>

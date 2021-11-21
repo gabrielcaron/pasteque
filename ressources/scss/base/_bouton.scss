@@ -64,7 +64,9 @@
     background-color: transparent;
     font-family: $RobotoMedium;
     font-size: 2rem;
+    text-align: left;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: $bleuRoyal;
 
     &:hover {

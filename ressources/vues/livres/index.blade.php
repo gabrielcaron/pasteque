@@ -47,7 +47,7 @@
                 <div class="formulaire__conteneursInlineFlex">
                     <fieldset class="formulaire__groupeChamps modeAffichage">
                         <legend class="formulaire__sectionLegende">
-                            <h3 class="formulaire__sectionTitre" id="testRequest">Mode
+                            <h3 class="formulaire__sectionTitre screen-reader-only" id="testRequest">Mode
                                 d'affichage</h3>
                         </legend>
                         <ul class="formulaire__listeModes selecteur" id="modesAffichage">
@@ -125,10 +125,7 @@
         </section>
         <section>
             <h1 class="livres__titre">Livres</h1>
-            <!-- un titre display none? -->
             <div class="livre conteneurGrille">
-                <!-- Foreach Nouveautés -->
-                {{--            Faire un modulo, s'il se divise par 3, c'est une rangée--}}
                 @foreach($livres as $livre)
                     <a class="livre__lien" href="index.php?controleur=livre&action=fiche&id={{$livre->getId()}}">
                         <article class="livre__article">

@@ -20,6 +20,9 @@
   }
 
   &.texte {
+    border: none;
+    padding: 0;
+    background-color: transparent;
     font-family: $RobotoMedium;
     font-size: 2rem;
     text-transform: uppercase;

@@ -35,11 +35,11 @@ class Article
     }
 
     // $produit_id : Getter et setter
-    public function getLivreId():int {
+    public function getProduitId():int {
         return $this->produit_id;
     }
-    public function setLivreId(int $unLivreId):void {
-        $this->produit_id = $unLivreId;
+    public function setProduitId(int $unIdProduit):void {
+        $this->produit_id = $unIdProduit;
     }
 
     // $panier_id : Getter et setter
@@ -127,6 +127,8 @@ class Article
         $requetePreparee->bindParam(':produit_id', $this->produit_id, PDO::PARAM_INT);
         $requetePreparee->bindParam(':quantite', $this->quantite, PDO::PARAM_INT);
         $requetePreparee->bindParam(':panier_id', $this->panier_id, PDO::PARAM_INT);
+
+        var_dump($requetePreparee);
         // Exécuter la requête
         $requetePreparee->execute();
     }

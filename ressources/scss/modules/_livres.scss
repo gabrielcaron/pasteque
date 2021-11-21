@@ -113,7 +113,7 @@
 	  top: 0;
 
 	  @media screen and (min-width: 500px) {
-		height: 35rem;
+		height: 40rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: end;
@@ -121,23 +121,23 @@
 	  }
 
 	  @media screen and (min-width: 600px) {
-		height: 42rem;
+		height: 46rem;
 	  }
 
 	  @media screen and (min-width: $tablet900px) {
-		height: 43rem;
+		height: 48rem;
 	  }
 
 	  @media screen and (min-width: 1100px) {
-		height: 53rem;
+		height: 57rem;
 	  }
 
 	  @media screen and (min-width: 1200px) {
-		height: 58rem;
+		height: 62rem;
 	  }
 
 	  @media screen and (min-width: $desktop1400px) {
-		height: 70rem;
+		height: 75rem;
 	  }
 	}
 

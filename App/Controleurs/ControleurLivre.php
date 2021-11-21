@@ -53,8 +53,6 @@ class ControleurLivre
     {
         $livre = Livre::trouverParId($livreChoisi);
         $panier = Panier::trouverParIdSession(session_id());
-
-        var_dump($panier);
         $tableauImage = [];
         $tDonnees = array("titrePage"=>"Livre", "action"=>"fiche", "livre"=>$livre, "panier"=>$panier);
         echo App::getBlade()->run("livres.fiche",$tDonnees);

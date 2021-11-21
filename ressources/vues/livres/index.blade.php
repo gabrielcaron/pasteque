@@ -12,7 +12,7 @@
     @endif
         <section>
             <section class="filAriane">
-                <span><a href="index.php">Accueil</a> / Livres</span>
+                <span id="testRequest"><a href="index.php">Accueil</a> / Livres</span>
             </section>
             <!-- Éventuellement être caché en mobile
             <button class="enveloppe__">Filtres</button> -->
@@ -47,7 +47,7 @@
                 <div class="formulaire__conteneursInlineFlex">
                     <fieldset class="formulaire__groupeChamps modeAffichage">
                         <legend class="formulaire__sectionLegende">
-                            <h3 class="formulaire__sectionTitre screen-reader-only" id="testRequest">Mode
+                            <h3 class="formulaire__sectionTitre screen-reader-only">Mode
                                 d'affichage</h3>
                         </legend>
                         <ul class="formulaire__listeModes selecteur" id="modesAffichage">

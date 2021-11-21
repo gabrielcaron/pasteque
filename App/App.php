@@ -6,6 +6,7 @@ use App\Controleurs\ControleurAuteur;
 use App\Controleurs\ControleurCompte;
 use App\Controleurs\ControleurLivre;
 use App\Controleurs\ControleurPanier;
+use App\Controleurs\ControleurRequete;
 use App\Controleurs\ControleurSite;
 use App\Controleurs\ControleurValiderCourriel;
 use App\Modeles\Panier;
@@ -80,6 +81,7 @@ class App
         $controleur = null;
         $action = null;
         $id = null;
+        $classe = null;
 
         // Déterminer le controleur responsable de traiter la requête
         $controleur = $_GET['controleur'] ?? 'site';
@@ -90,6 +92,11 @@ class App
         // Déterminer l'id
         if (isset($_GET['id'])){
             $id = (int)$_GET['id'];
+        }
+
+        // Déterminer la classe si requete
+        if (isset($_GET['classe'])){
+            $classe = $_GET['classe'];
         }
 
         // Instantier le bon controleur selon la page demandée
@@ -151,6 +158,19 @@ class App
             switch ($action) {
                 case 'index':
                     $this->monControleur->index();
+                    break;
+                default:
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
+            }
+        }
+        else if ($controleur === 'requete'){
+            $this->monControleur = new ControleurRequete();
+            switch ($classe) {
+                case 'livre':
+                    if ($action === 'trouverTout') {
+                        $this->monControleur->trouverToutLivre();
+                    }
                     break;
                 default:
                     $this->monControleur=new ControleurSite();

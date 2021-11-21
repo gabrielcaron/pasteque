@@ -71,7 +71,7 @@ class Article
     //Trouver tout dans la table articles
     public static function trouverParIdProduitIdPanier(int $panierId, int $produitId): ?Article  {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT * FROM articles WHERE panier_id = :panier_id AND produit_id = :produit_id';
+        $chaineSQL = 'SELECT articles.* FROM articles WHERE panier_id = :panier_id AND produit_id = :produit_id';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
@@ -82,7 +82,8 @@ class Article
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        return $requetePreparee->fetch() === false ? null : $requetePreparee->fetch();
+        $request = $requetePreparee->fetch();
+        return $request === false ? null : $request;
     }
 
     //Trouver dans la table articles par le id d'un article

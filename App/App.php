@@ -7,6 +7,7 @@ use App\Controleurs\ControleurCompte;
 use App\Controleurs\ControleurLivre;
 use App\Controleurs\ControleurPanier;
 use App\Controleurs\ControleurSite;
+use App\Controleurs\ControleurValiderCourriel;
 use App\Modeles\Panier;
 use eftec\bladeone\BladeOne;
 use \PDO;
@@ -144,7 +145,19 @@ class App
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
             }
-        } else if ($controleur === 'compte'){
+        }
+        else if ($controleur === 'validercourriel'){
+            $this->monControleur = new ControleurValiderCourriel();
+            switch ($action) {
+                case 'index':
+                    $this->monControleur->index();
+                    break;
+                default:
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
+            }
+        }
+        else if ($controleur === 'compte'){
             $this->monControleur = new ControleurCompte();
             switch ($action) {
                 case 'creation':

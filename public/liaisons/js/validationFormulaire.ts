@@ -5,6 +5,20 @@ let formulaire = {
     refChampErreur: null,
     refTableauChamp: ['prenom', 'nom', 'courriel', 'mot_de_passe'],
 
+
+    async validerCourriel(courriel) {
+        console.log(courriel);
+        let response = await fetch(`index.php?controleur=validercourriel&action=index&courriel=${courriel}`)
+                                .then(response=>response.json());
+        if(response.isValidEmail == false){
+            let courrielExisteDeja = document.getElementById('champEmail').querySelector('.champ__message-erreur').innerHTML = 'Le courriel entré existe déjà!';
+            console.log(courrielExisteDeja);
+            return courrielExisteDeja;
+        }
+        console.log(response.isValidEmail);
+        return response.isValidEmail;
+    },
+
     validerInput(id) {
 console.log('hey');
 console.log(id)
@@ -98,3 +112,6 @@ document.getElementById('btnReset').addEventListener('reset', function () {
     formulaire.reinitialiserChamp()
 });
 
+document.getElementById('courriel').addEventListener('blur', function (evt) {
+    formulaire.validerCourriel(evt.target.value);
+});

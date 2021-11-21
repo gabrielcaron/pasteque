@@ -132,13 +132,10 @@
                     <button class="minus-btn btnQuantite" type="button" name="button">-</button>
                     <input class="ficheLivre__ajoutInput" type="text" name="name" value="1">
                     <button class="plus-btn btnQuantite" type="button" name="button">+</button>
-
                 </div>
-                <div class="ficheLivre__ajoutPanier">
-                    <button class="ficheLivre__ajoutPanierBtn"><span class="ficheLivre__panierImg"></span>
-                        AJOUTER AU PANIER
-                    </button>
-                </div>
+                    <a class="ficheLivre__ajoutPanierBtn" href="#panier">
+                        Ajouter au panier
+                    </a>
             </div>
         </div>
     </section>

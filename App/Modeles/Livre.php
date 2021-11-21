@@ -283,6 +283,11 @@ class Livre
         return Reconnaissance::trouverParId($this->id);
     }
 
+    public function getArticlePanierAssocie($unIdPanier): Article
+    {
+        return Article::trouverParIdProduitIdPanier($unIdPanier, $this->id);
+    }
+
     /** Méthode pour trouver tous les livres
      * @return array - Tableau des livres
      */

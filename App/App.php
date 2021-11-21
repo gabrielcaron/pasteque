@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace App;
+use App\Controleurs\ControleurArticle;
 use App\Controleurs\ControleurAuteur;
 use App\Controleurs\ControleurCompte;
 use App\Controleurs\ControleurLivre;
@@ -99,6 +100,16 @@ class App
                     break;
                 case 'fiche':
                     $this->monControleur->fiche($id);
+                    break;
+                default:
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
+            }
+        } else if ($controleur === 'article') {
+            $this->monControleur = new ControleurArticle();
+            switch ($action) {
+                case 'inserer':
+                    $this->monControleur->inserer();
                     break;
                 default:
                     $this->monControleur=new ControleurSite();

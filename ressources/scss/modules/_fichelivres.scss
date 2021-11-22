@@ -1,6 +1,6 @@
 /**
 * @author Nicolas Thibault
-* @version 1.0
+* @version 2.0
 *
 * ------------------
 * TABLE DES MATIERES
@@ -22,30 +22,11 @@
 }
 
 .ficheLivre {
-  display: flex;
+  @include rangeeGrid12col();
   margin-top: 5rem;
 
   @media (max-width: 900px) {
 	display: block;
-  }
-
-  &__btnFormatActive {
-	background: $bleuRoyal !important;
-	color: white;
-  }
-
-  &__btnFormat {
-	border-radius: 1rem;
-	padding: 1rem;
-	background: none;
-	border: 3px solid $bleuRoyal;
-	width: 32%;
-  }
-
-
-  &__auteur {
-	color: $bleuRoyal !important;
-	font-size: 20px !important;
   }
 
   &__categorie {
@@ -72,14 +53,8 @@
 	font-size: 2.5rem;
   }
 
-  &__conteneur1 {
-	width: 45%;
-	max-width: 550px;
-
-	@media (min-width: 1000px) {
-	  margin-right: 5rem;
-	}
-
+  &__conteneurVignette {
+	grid-column: span 5;
 
 	img {
 	  width: 100%;
@@ -88,9 +63,7 @@
 	  @media (max-width: 900px) {
 		height: 50%;
 		object-fit: cover;
-
 	  }
-
 	}
 
 	@media (max-width: 900px) {
@@ -99,17 +72,8 @@
 	}
   }
 
-  &__conteneur2 {
-	width: 60%;
-
-	@media (max-width: 900px) {
-	  width: 80%;
-	  margin: 0 auto;
-	}
-  }
-
-  &__title {
-	margin: 0 !important;
+  &__conteneurInfos {
+	grid-column: span 7;
   }
 
   &__prixCan {
@@ -183,6 +147,10 @@
   margin-top: 5rem;
   margin-bottom: 5rem;
 
+  &__titre {
+	margin: 3rem 0 2rem 0;
+  }
+
   &__table {
 	width: 100%;
 	text-align: left;
@@ -212,7 +180,7 @@
   }
 
   &__productImage {
-	display: block;
+	display: flex;
 
 	img {
 	  height: 100%;
@@ -229,7 +197,7 @@
 
   &__imageList {
 	display: flex;
-	overflow: hidden;
+	margin-top: 2rem;
 
 	li {
 	  margin: 0 0.75rem 0 0;

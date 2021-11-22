@@ -16,7 +16,7 @@
 
 	// Styles généraux communs
 
-	@include conteneur1400px($flex: true);
+	@include conteneur1400px($conteneurBleed: true, $flex: true);
 	flex-wrap: wrap;
 
 	&__liste {

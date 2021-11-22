@@ -159,6 +159,9 @@ class App
                 case 'index':
                     $this->monControleur->index();
                     break;
+                case 'connexion':
+                    $this->monControleur->connexion();
+                    break;
                 default:
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();

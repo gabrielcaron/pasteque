@@ -49,8 +49,8 @@ class ControleurCompte
         // NE JAMAIS FAIRE CONFIANCE AUX DONNEES PROVENANT DU CLIENT
         // PAS LE TEMPS DE FAIRE LA VALIDATION DANS LE COURS MAIS IMPORTANT!!!!!!!!
         $panier = Panier::trouverParIdSession(session_id());
-        $compte = Compte::trouverParIdSession(session_id());
-        if($compte === false){
+        //$compte = Compte::trouverParIdSession(session_id());
+        //if($compte === false){
         $monNouveauCompte = new Compte();
         // 3) Creer un objet de region a partir du model
         $monNouveauCompte->setNom($_POST['nom']);
@@ -63,9 +63,8 @@ class ControleurCompte
 
         // Rediriger
         header('Location: index.php?controleur=site&action=accueil');
-        }
+        //}
 
-        header('Location: index.php?controleur=compte&action=creation&erreur=exist');
     }
 
 }

@@ -114,6 +114,22 @@ class Compte
         // Récupérer une seule occurrence à la fois
         return $requetePreparee->fetchAll();
     }
+    public static function trouverParCourriel($courriel):Compte
+    {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT * FROM `comptes` WHERE courriel = :courriel';
+        // Préparer la requête (optimisation)
+
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        $requetePreparee->bindParam(':courriel', $courriel, PDO::PARAM_STR); // validation => Sécurité
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Compte');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        return $requetePreparee->fetch();
+    }
+
     public static function courrielValide($courriel): bool
     {
         // Définir la chaine SQL

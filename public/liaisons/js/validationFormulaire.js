@@ -38,86 +38,132 @@ var formulaire = {
     refInput: null,
     refErreur: '',
     refChampErreur: null,
-    refTableauChamp: ['prenom', 'nom', 'courriel', 'mot_de_passe'],
+    refTableauChamp: ['prenom', 'nom', 'courriel'],
+    refTableauChampGlobal: ['champPrenom', 'champNom', 'champEmail'],
+    courrielValid: false,
+    nombreErreur: 0,
     validerCourriel: function (courriel) {
         return __awaiter(this, void 0, void 0, function () {
-            var response, courrielExisteDeja;
+            var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log(courriel);
-                        return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=index&courriel=".concat(courriel))
-                                .then(function (response) { return response.json(); })];
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=index&courriel=".concat(courriel))
+                            .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
-                        if (response.isValidEmail == false) {
-                            courrielExisteDeja = document.getElementById('champEmail').querySelector('.champ__message-erreur').innerHTML = 'Le courriel entré existe déjà!';
-                            console.log(courrielExisteDeja);
-                            return [2 /*return*/, courrielExisteDeja];
-                        }
-                        console.log(response.isValidEmail);
                         return [2 /*return*/, response.isValidEmail];
                 }
             });
         });
     },
+    validerConnexionCourriel: function (courriel) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=connexion&courriel=".concat(courriel))
+                            .then(function (response) { return response.json(); })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    },
+    validerConnexion: function () {
+        var _this = this;
+        var formulaire = true;
+        this.refInput = document.getElementById('champConnexionEmail').querySelector('input');
+        this.refChampErreur = document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur');
+        this.refChampErreur.style = 'display:none;';
+        document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.remove('erreur');
+        document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = '';
+        this.validerCourriel(this.refInput.value).then(function (response) {
+            if (response === true) {
+                _this.refErreur = "Le courriel n'existe pas dans nos serveurs.";
+                _this.refChampErreur.style = 'display:block;';
+                document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.add('erreur');
+                document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
+                formulaire = false;
+            }
+            else {
+                _this.validerConnexionCourriel(_this.refInput.value).then(function (rep) {
+                    _this.refInput = document.getElementById('champPasswordConnexion').querySelector('input');
+                    _this.refChampErreur = document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur');
+                    _this.refChampErreur.style = 'display:none;';
+                    document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.remove('erreur');
+                    document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = '';
+                    if (rep[0].motDePasse !== _this.refInput.value) {
+                        _this.refErreur = "Le mot de passe n'est pas bon";
+                        _this.refChampErreur.style = 'display:block;';
+                        _this.refInput.innerHTML = '';
+                        document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.add('erreur');
+                        document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
+                        formulaire = false;
+                    }
+                });
+            }
+        });
+        return formulaire;
+    },
     validerInput: function (id) {
-        console.log('hey');
-        console.log(id);
+        var _this = this;
         this.refInput = document.getElementById(id).querySelector('input');
         this.refChampErreur = document.getElementById(id).querySelector('.champ__message-erreur');
-        for (var i = 0; i < this.refTableauChamp.length; i++) {
-            if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
-                this.refErreur = "Le champ ".concat(id, " est obligatoire.");
+        this.refChampErreur.style = 'display:none;';
+        document.getElementById(id).querySelector('.champ__message-erreur').classList.remove('erreur');
+        document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = '';
+        if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
+            this.refErreur = "Le champ ".concat(id, " est obligatoire.");
+            this.refChampErreur.style = 'display:block;';
+            document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
+            document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;
+        }
+        else if (this.refInput.hasAttribute('pattern') && this.validerAttributPattern(this.refInput.pattern, this.refInput.value) === false) {
+            var bool = this.validerAttributPattern(this.refInput.pattern, this.refInput.value);
+            if (bool === false) {
+                this.refErreur = "Veuillez verifier que la valeur du champ ".concat(id, " correspond aux crit\u00E8res demand\u00E9s.");
                 this.refChampErreur.style = 'display:block;';
                 document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
-                //document.getElementById(id).querySelector('.champ__message-erreur');
-                this.refErreur.display = 'block';
                 document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;
-                console.log('erreur');
             }
-            else if (this.refInput.hasAttribute('pattern')) {
-                var bool = this.validerAttributPattern(this.refInput.pattern, this.refInput.value);
-                if (bool === false) {
-                    this.refErreur = "Veuillez verifier que la valeur du champ ".concat(id, " correspond aux crit\u00E8res demand\u00E9s.");
+        }
+        else if (id === 'champEmail') {
+            this.validerCourriel(this.refInput.value).then(function (response) {
+                if (response === false) {
+                    _this.courrielValid = false;
+                    _this.refErreur = "Le courriel existe d\u00E9j\u00E0, veuillez en choisir un autre.";
+                    _this.refChampErreur.style = 'display:block;';
+                    document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
+                    document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
                 }
-            }
+                else {
+                    _this.courrielValid = true;
+                }
+            });
         }
     },
     validerFormulaire: function () {
-        console.log('ca marche');
-        var formErreur = false;
         var tabErreur = [];
-        for (var i = 0; i < this.refTableauChamp.length; i++) {
-            console.log(this.refTableauChamp);
-            //this.refChampErreur = document.getElementById(this.refTableauChamp[i]).value;
-            //if (this.refChampErreur.value === '') {
-            if (document.getElementById(this.refTableauChamp[i]).value === '') {
-                tabErreur.push(true);
-                //formulaire.validerInput(document.getElementById(this.refTableauChamp[i]));
+        for (var i = 0; i < this.refTableauChampGlobal.length; i++) {
+            this.validerInput(this.refTableauChampGlobal[i]);
+            if (document.getElementById(this.refTableauChampGlobal[i]).querySelector('.champ__message-erreur').innerHTML === '') {
+                if (this.refTableauChampGlobal[i] === 'champEmail' && this.courrielValid === false) {
+                    tabErreur.push(false);
+                }
+                else {
+                    tabErreur.push(true);
+                }
             }
             else {
                 tabErreur.push(false);
             }
         }
-        //alert(tabErreur);
-        console.log(tabErreur.indexOf(true));
-        if (tabErreur.indexOf(true) == -1) {
-            for (var i = 0; i < this.refTableauChamp.length; i++) {
-                formErreur = true;
-                console.log(formulaire.validerInput(document.getElementById(this.refTableauChamp[i])));
-            }
-        }
-        console.log(tabErreur);
-        return formErreur;
+        return tabErreur.indexOf(true) !== -1;
     },
     validerAttributPattern: function (pattern, value) {
         return new RegExp(pattern).test(value);
     },
     reinitialiserChamp: function () {
         for (var i = 0; i < this.refTableauChamp.length; i++) {
-            console.log(this.refTableauChamp);
-            document.getElementById(this.refTableauChamp[i]).value === '';
+            document.getElementById(this.refTableauChamp[i]).innerHTML === '';
         }
     },
 };
@@ -127,24 +173,15 @@ var formulaire = {
 document.getElementById('prenom').addEventListener('change', function () {
     formulaire.validerInput('champPrenom');
 });
-document.getElementById('connexionEmail').addEventListener('change', function () {
-    formulaire.validerInput('champConnexionEmail');
-});
-document.getElementById('connexionPassword').addEventListener('change', function () {
-    formulaire.validerInput('champPassword');
-});
 document.getElementById('nom').addEventListener('change', function () {
     formulaire.validerInput('champNom');
 });
 document.getElementById('courriel').addEventListener('change', function () {
     formulaire.validerInput('champEmail');
 });
-document.getElementById('mot_de_passe').addEventListener('change', function () {
-    formulaire.validerInput('champPassword');
-});
+/*document.getElementById('mot_de_passe').addEventListener('change', function () {
+    formulaire.validerInput('champPassword')
+});*/
 document.getElementById('btnReset').addEventListener('reset', function () {
     formulaire.reinitialiserChamp();
-});
-document.getElementById('courriel').addEventListener('blur', function (evt) {
-    formulaire.validerCourriel(evt.target.value);
 });

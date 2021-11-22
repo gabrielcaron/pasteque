@@ -7,6 +7,7 @@ let formulaire = {
     refTableauChampGlobal: ['champPrenom', 'champNom', 'champEmail'],
     courrielValid: false,
     nombreErreur: 0,
+    formulaireConnexionValide: false,
 
 
     async validerCourriel(courriel) {
@@ -27,7 +28,6 @@ let formulaire = {
     },
 
     validerConnexion() {
-        let formulaire = true;
         this.refInput = document.getElementById('champConnexionEmail').querySelector('input');
         this.refChampErreur = document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur');
         this.refChampErreur.style = 'display:none;';
@@ -39,7 +39,7 @@ let formulaire = {
                 this.refChampErreur.style = 'display:block;';
                 document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.add('erreur');
                 document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = this.refErreur;
-                formulaire = false;
+                this.formulaireConnexionValide = false;
             }
             else {
                 this.validerConnexionCourriel(this.refInput.value).then(rep => {
@@ -54,16 +54,18 @@ let formulaire = {
                         this.refInput.innerHTML = '';
                         document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.add('erreur');
                         document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = this.refErreur;
-                        formulaire = false;
+                        this.formulaireConnexionValide = false;
+                    }
+                    else {
+                        this.formulaireConnexionValide = true;
                     }
                 });
             }
         });
-        return false;
+        return this.formulaireConnexionValide;
     },
 
     validerInput(id) {
-        /*alert('hey');*/
         this.refInput = document.getElementById(id).querySelector('input');
         this.refChampErreur = document.getElementById(id).querySelector('.champ__message-erreur');
 
@@ -117,8 +119,12 @@ let formulaire = {
                 tabErreur.push(false);
             }
         }
-        //tabErreur.indexOf(true) !== -1
-        return false;
+        console.log(tabErreur);
+
+        return tabErreur.indexOf(false) === -1;
+/*
+        return tabErreur.indexOf(true) !== -1;
+*/
     },
     validerAttributPattern(pattern, value): boolean {
         return new RegExp(pattern).test(value);
@@ -147,5 +153,3 @@ document.getElementById('courriel').addEventListener('change', function () {
 document.getElementById('btnReset').addEventListener('reset', function () {
     formulaire.reinitialiserChamp()
 });
-
-

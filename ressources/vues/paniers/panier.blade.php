@@ -31,20 +31,22 @@
                 </section>
                 <section class="panier__articleQuantite">
                     <h4 class="screen-reader-only">Quantité</h4>
-                    <form action="index.php?controleur=panier&action=modifier" method="POST">
+                    <form id="modifierQuantite{{$article->getId()}}" action="index.php?controleur=panier&action=modifier" method="POST">
                         <legend class="visually-hidden">Formulaire de mise a jour de la quantité</legend>
                         <label for="livre_id" style="display: none">Id</label>
                         <input id="livre_id" type="hidden" name="livre_id" value="{{$article->getProduitId()}}">
                         <label for="panier_id" style="display: none">Id</label>
                         <input id="panier_id" type="hidden" name="panier_id" value="{{$article->getPanierId()}}">
                         <label for="quantite">Quantité :</label>
-                        <select id="quantite" name="quantite">
+                        <select id="quantite" name="quantite" onchange="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">
                             @for($i=0;$i <=10;$i++)
                                 <option value="{{$i}}"
                                         @if($article->getQuantite() === $i) selected @endif>{{$i}}</option>
                             @endfor
                         </select>
-                        <input class="bouton texte" type="submit" value="Mettre à jour le panier">
+{{--
+                        <input  class="bouton texte" type="submit" value="Mettre à jour le panier">
+--}}
                     </form>
                     <p aria-label="Sous-total de l'article {{$article->getLivreAssocie()->getTitre()}}">{{number_format($article->getLivreAssocie()->getPrixCan() * $article->getQuantite(), 2)}}$</p>
                 </section>

@@ -42,6 +42,7 @@ var formulaire = {
     refTableauChampGlobal: ['champPrenom', 'champNom', 'champEmail'],
     courrielValid: false,
     nombreErreur: 0,
+    formulaireConnexionValide: false,
     validerCourriel: function (courriel) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
@@ -77,7 +78,6 @@ var formulaire = {
     },
     validerConnexion: function () {
         var _this = this;
-        var formulaire = true;
         this.refInput = document.getElementById('champConnexionEmail').querySelector('input');
         this.refChampErreur = document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur');
         this.refChampErreur.style = 'display:none;';
@@ -89,7 +89,7 @@ var formulaire = {
                 _this.refChampErreur.style = 'display:block;';
                 document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.add('erreur');
                 document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
-                formulaire = false;
+                _this.formulaireConnexionValide = false;
             }
             else {
                 _this.validerConnexionCourriel(_this.refInput.value).then(function (rep) {
@@ -104,16 +104,18 @@ var formulaire = {
                         _this.refInput.innerHTML = '';
                         document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.add('erreur');
                         document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
-                        formulaire = false;
+                        _this.formulaireConnexionValide = false;
+                    }
+                    else {
+                        _this.formulaireConnexionValide = true;
                     }
                 });
             }
         });
-        return false;
+        return this.formulaireConnexionValide;
     },
     validerInput: function (id) {
         var _this = this;
-        /*alert('hey');*/
         this.refInput = document.getElementById(id).querySelector('input');
         this.refChampErreur = document.getElementById(id).querySelector('.champ__message-erreur');
         this.refChampErreur.style = 'display:none;';
@@ -165,8 +167,11 @@ var formulaire = {
                 tabErreur.push(false);
             }
         }
-        //tabErreur.indexOf(true) !== -1
-        return false;
+        console.log(tabErreur);
+        return tabErreur.indexOf(false) === -1;
+        /*
+                return tabErreur.indexOf(true) !== -1;
+        */
     },
     validerAttributPattern: function (pattern, value) {
         return new RegExp(pattern).test(value);

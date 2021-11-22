@@ -22,7 +22,7 @@
                             <section class="compte__flex">
                             <div id="champConnexionEmail" class="champ champ--lg">
                                 <div class="champ__boite">
-                                    <label for="connexionEmail" class="champ__etiquette">Entrez votre courriel</label>
+                                    <label for="connexionEmail" class="champ__etiquette">Entrez votre courriel *</label>
                                     <input class="champ__input" id="connexionEmail" name="email" type="email"
                                            autocomplete="email"
                                            required="required" aria-labelledby="messagesEmail"
@@ -35,7 +35,7 @@
                             </div>
                             <div id="champPasswordConnexion" class="champ champ--lg">
                                 <div class="champ__boite">
-                                    <label for="connexionPassword" class="champ__etiquette">Entrez votre mot de passe</label>
+                                    <label for="connexionPassword" class="champ__etiquette">Entrez votre mot de passe *</label>
                                     <input class="champ__input" id="connexionPassword" name="password" type="password"
                                            autocomplete="current-password"
                                            required="required" aria-labelledby="messagesPassword"
@@ -76,7 +76,7 @@
                             <section class="compte__prenomNom  compte__flex">
                                 <div id="champPrenom" class="champ champ--lg">
                                     <div class="champ__boite">
-                                        <label for="prenom" class="champ__etiquette">Prénom</label>
+                                        <label for="prenom" class="champ__etiquette">Prénom *</label>
                                         <input  class="champ__input" id="prenom" name="prenom" type="text"
                                                autocomplete="prenom"
                                                required="required" aria-labelledby="messagesPrenom"/>
@@ -87,7 +87,7 @@
                                 </div>
                                 <div id="champNom" class="champ champ--lg">
                                     <div class="champ__boite">
-                                        <label for="nom" class="champ__etiquette">Nom</label>
+                                        <label for="nom" class="champ__etiquette">Nom *</label>
                                         <input class="champ__input" id="nom" name="nom" type="text"
                                                autocomplete="family-name"
                                                required="required" aria-labelledby="messagesNom"/>
@@ -100,7 +100,7 @@
                             <section class="compte__telEmail compte__flex">
                                     <div id="champEmail" class="champ champ--lg">
                                         <div class="champ__boite">
-                                            <label for="courriel" class="champ__etiquette">Courriel</label>
+                                            <label for="courriel" class="champ__etiquette">Courriel *</label>
                                             <input class="champ__input" id="courriel" name="courriel" type="email"
                                                    autocomplete="email"
                                                    required="required" aria-labelledby="messagesEmail"
@@ -115,12 +115,13 @@
                             <section class="compte__mdp compte__flex">
                                     <div id="champPassword" class="champ champ--lg">
                                         <div class="champ__boite">
-                                            <label for="mot_de_passe" class="champ__etiquette">Créer un mot de passe</label>
+                                            <label for="mot_de_passe" class="champ__etiquette">Créer un mot de passe *</label>
                                             <input class="champ__input" id="mot_de_passe" name="mot_de_passe" type="password"
                                                    autocomplete="current-password"
                                                    required="required" aria-labelledby="messagesPassword"
                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}"
                                                    min="8"/>
+                                            <i class="far fa-eye" id="togglePasswordCreation" style="margin-left: -30px; cursor: pointer; margin-top: 10px"></i>
                                         </div>
                                         <div id="messagesPassword" class="champ__messages">
                                             <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>

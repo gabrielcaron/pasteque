@@ -13,36 +13,34 @@
         <span><a href="index.php">Accueil</a> / <a href="index.php?controleur=livre&action=index">Livres</a> / {{$livre->getTitre()}}</span>
     </section>
     <section class="ficheLivre">
-        <div class="ficheLivre__conteneur1">
-            <div class="ficheLivre__product">
-                <div class="ficheLivre__productGallery">
-                    <div class="ficheLivre__productImage">
-                        <img class="ficheLivre__active"
-                             src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
-                        @if($livre->getStatut()===3)
-                            <p class="ficheLivre__statut">À paraitre</p>
-                        @elseif($livre->getStatut()===2)
-                            <p class="ficheLivre__statut">Nouveauté</p>
-                        @else
-                            <p class="ficheLivre__statut"></p>
-                        @endif
-                    </div>
-                    <ul class="ficheLivre__imageList">
-                        @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_002-940.jpg"))
-                            <li class="ficheLivre__imageItem"><img class="ficheLivre__active" src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
-                            </li>
-                            @for($i=1;$i < 4; $i++)
-                                @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_00{$i}-940.jpg"))
-                                    <li class="ficheLivre__imageItem"><img src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg">
-                                    </li>
-                                @endif
-                            @endfor
-                        @endif
-                    </ul>
-                </div>
+        <div class="ficheLivre__conteneurVignette">
+            <div class="ficheLivre__productImage">
+                <img class="ficheLivre__active"
+                     src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
+                @if($livre->getStatut()===3)
+                    <p class="ficheLivre__statut">À paraitre</p>
+                @elseif($livre->getStatut()===2)
+                    <p class="ficheLivre__statut">Nouveauté</p>
+                @else
+                    <p class="ficheLivre__statut"></p>
+                @endif
             </div>
+            <ul class="ficheLivre__imageList">
+                @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_002-940.jpg"))
+                    <li class="ficheLivre__imageItem"><img class="ficheLivre__active"
+                                                           src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
+                    </li>
+                    @for($i=1;$i < 4; $i++)
+                        @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_00{$i}-940.jpg"))
+                            <li class="ficheLivre__imageItem"><img
+                                        src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg">
+                            </li>
+                        @endif
+                    @endfor
+                @endif
+            </ul>
         </div>
-        <div class="ficheLivre__conteneur2">
+        <div class="ficheLivre__conteneurInfos">
             <div class="ficheLivre__flexNomPrix">
                 <h1 class="ficheLivre__title">{{$livre->getTitre()}}</h1>
             </div>
@@ -133,9 +131,9 @@
                     <input class="ficheLivre__ajoutInput" type="text" name="name" value="1">
                     <button class="plus-btn btnQuantite" type="button" name="button">+</button>
                 </div>
-                    <a class="bouton action ajoutPanier" href="#panier">
-                        Ajouter au panier
-                    </a>
+                <a class="bouton action ajoutPanier" href="#panier">
+                    Ajouter au panier
+                </a>
             </div>
         </div>
     </section>

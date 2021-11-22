@@ -72,16 +72,12 @@
 
 	  &:hover {
 		@media screen and (min-width: $tablet900px) {
-		  .livre__conteneurVignette {
-			position: relative; // pour les besoins du hover
-			top: -2rem;
+		  .livre {
+			&__conteneurVignette {
+			  position: relative; // pour les besoins du hover
+			  top: -2rem;
+			}
 		  }
-		}
-
-		.livre__categorie {
-		  background-color: $bleuRoyal;
-		  color: $blanc;
-		  border: 2px solid $bleuRoyal;
 		}
 	  }
 	}
@@ -166,6 +162,12 @@
 	  padding: 0.9rem;
 	  margin-top: 1rem;
 	  display: inline-block;
+
+	  &:hover {
+		  background-color: $bleuRoyal;
+		  color: $blanc;
+		  border: 2px solid $bleuRoyal;
+	  }
 	}
   }
 }
@@ -195,6 +197,7 @@
 
 	&__article {
 	  @include rangeeGrid12col();
+	  margin-bottom: 3rem;
 	}
 
 	&__conteneurVignette {
@@ -215,8 +218,16 @@
 	}
 
 	&__titre {
-	  font-size: 4rem;
+	  font-size: 3rem;
 	  margin-top: initial;
+	}
+
+	&__auteur {
+	  font-size: 1.6rem;
+	}
+
+	&__categorie {
+	  display: none;
 	}
   }
 }

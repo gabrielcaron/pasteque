@@ -51,6 +51,11 @@ var formulaire = {
                             .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
+                        console.log(response);
+                        if (response.isValidEmail === false) {
+                            this.refChampErreur = document.getElementById('champEmail').querySelector('.champ__message-erreur');
+                            this.refChampErreur.display = 'block';
+                        }
                         return [2 /*return*/, response.isValidEmail];
                 }
             });
@@ -58,11 +63,14 @@ var formulaire = {
     },
     validerConnexionCourriel: function (courriel) {
         return __awaiter(this, void 0, void 0, function () {
+            var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=connexion&courriel=".concat(courriel))
                             .then(function (response) { return response.json(); })];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response];
                 }
             });
         });
@@ -101,10 +109,11 @@ var formulaire = {
                 });
             }
         });
-        return formulaire;
+        return false;
     },
     validerInput: function (id) {
         var _this = this;
+        /*alert('hey');*/
         this.refInput = document.getElementById(id).querySelector('input');
         this.refChampErreur = document.getElementById(id).querySelector('.champ__message-erreur');
         this.refChampErreur.style = 'display:none;';
@@ -156,7 +165,8 @@ var formulaire = {
                 tabErreur.push(false);
             }
         }
-        return tabErreur.indexOf(true) !== -1;
+        //tabErreur.indexOf(true) !== -1
+        return false;
     },
     validerAttributPattern: function (pattern, value) {
         return new RegExp(pattern).test(value);

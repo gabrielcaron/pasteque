@@ -40,6 +40,7 @@
                                            autocomplete="current-password"
                                            required="required" aria-labelledby="messagesPassword"
                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}" min="8"/>
+                                    <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer; margin-top: 10px"></i>
                                 </div>
                                 <div id="messagesConnexionPassword" class="champ__messages">
                                     <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>

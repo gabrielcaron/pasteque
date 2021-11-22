@@ -31,10 +31,10 @@ class App
     private function demarrerSession()
     {
         session_start();
-        $nouveauProduit =  !Panier::trouverParIdSession(session_id()) ? new Panier : Panier::trouverParIdSession(session_id());
-        if (!Panier::trouverParIdSession(session_id())) $nouveauProduit->setIdSession(session_id());
+        $nouveauProduit =  Panier::trouverParIdSession(session_id()) === null ? new Panier : Panier::trouverParIdSession(session_id());
+        if (Panier::trouverParIdSession(session_id())===null) $nouveauProduit->setIdSession(session_id());
         $nouveauProduit->setDateUnix(time());
-        !Panier::trouverParIdSession(session_id()) ? $nouveauProduit->inserer() : $nouveauProduit->mettreAJour();
+        Panier::trouverParIdSession(session_id()) === null ? $nouveauProduit->inserer() : $nouveauProduit->mettreAJour();
     }
 
     /**

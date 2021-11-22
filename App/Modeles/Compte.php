@@ -83,7 +83,7 @@ class Compte
         $this->panier_id = $unPanierId;
     }
 
-    public static function trouverParIdSession(string $sessionChoisi):Compte|false {
+    public static function trouverParIdSession(string $sessionChoisi):?Compte {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM comptes INNER JOIN paniers ON comptes.panier_id = paniers.id WHERE paniers.id_session = :sessionChoisi';
         // Préparer la requête (optimisation)
@@ -95,7 +95,8 @@ class Compte
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        return $requetePreparee->fetch();
+        $result= $requetePreparee->fetch();
+        return $result === false ? null : $result;
     }
 
     /** Méthode pour trouver tous les champs du compte

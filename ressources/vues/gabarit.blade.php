@@ -9,7 +9,7 @@
         <link href="liaisons/css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="shortcut icon" href="liaisons/images/faviconPasteque.png" type="image/x-icon">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     </head>
     <body class="@yield('classeBody') js">
         <header class="entete">
@@ -30,9 +30,9 @@
         <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>
         <script src="liaisons/js/productPage.js" type="text/javascript"></script>
         <script src="liaisons/js/validationFormulaire.js" type="text/javascript"></script>
-
         <script src="liaisons/js/fetchRequest.js" ></script>
         <script src="liaisons/js/compte.js" ></script>
+        <script src="liaisons/js/password.js" ></script>
         <script>
             document.body.classList.add('js');
         </script>

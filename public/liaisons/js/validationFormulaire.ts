@@ -12,12 +12,18 @@ let formulaire = {
     async validerCourriel(courriel) {
         let response = await fetch(`index.php?controleur=validercourriel&action=index&courriel=${courriel}`)
                                 .then(response=>response.json());
+        console.log(response);
+        if(response.isValidEmail === false){
+            this.refChampErreur = document.getElementById('champEmail').querySelector('.champ__message-erreur');
+            this.refChampErreur.display = 'block';
+        }
         return response.isValidEmail
     },
 
     async validerConnexionCourriel(courriel) {
-        return await fetch(`index.php?controleur=validercourriel&action=connexion&courriel=${courriel}`)
+        let response = await fetch(`index.php?controleur=validercourriel&action=connexion&courriel=${courriel}`)
             .then(response => response.json())
+        return response;
     },
 
     validerConnexion() {
@@ -27,7 +33,6 @@ let formulaire = {
         this.refChampErreur.style = 'display:none;';
         document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.remove('erreur');
         document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = '';
-
         this.validerCourriel(this.refInput.value).then(response => {
             if (response === true) {
                 this.refErreur = `Le courriel n'existe pas dans nos serveurs.`;
@@ -54,10 +59,11 @@ let formulaire = {
                 });
             }
         });
-        return formulaire;
+        return false/*formulaire*/;
     },
 
     validerInput(id) {
+        /*alert('hey');*/
         this.refInput = document.getElementById(id).querySelector('input');
         this.refChampErreur = document.getElementById(id).querySelector('.champ__message-erreur');
 

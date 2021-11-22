@@ -59,7 +59,7 @@ let formulaire = {
                 });
             }
         });
-        return false/*formulaire*/;
+        return false;
     },
 
     validerInput(id) {
@@ -117,7 +117,8 @@ let formulaire = {
                 tabErreur.push(false);
             }
         }
-        return tabErreur.indexOf(true) !== -1;
+        //tabErreur.indexOf(true) !== -1
+        return false;
     },
     validerAttributPattern(pattern, value): boolean {
         return new RegExp(pattern).test(value);

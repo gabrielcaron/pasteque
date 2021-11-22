@@ -121,13 +121,13 @@
 
 	&Item {
 	  background-color: $blanc;
-	  border-bottom: 5px solid $bleuRoyal;
+	  //border-bottom: 5px solid $bleuRoyal;
 
-	  @media (max-width: $desktop1000px - 1) {
-		&:nth-child(1) {
-		  border-top: 5px solid $bleuRoyal;
-		}
-	  }
+	  //@media (max-width: $desktop1000px - 1) {
+		//&:nth-child(1) {
+		//  border-top: 5px solid $bleuRoyal;
+		//}
+	  //}
 
 	  @media (min-width: $desktop1000px) {
 		display: inline-block;
@@ -207,7 +207,7 @@
 }
 
 .activeMenuItem {
-  border-bottom: 3px solid $bleuRoyal;
+  border-bottom: 5px solid $bleuRoyal;
   @media (max-width: 1000px - 1) {
 	background: $bleuRoyal;
 	border-bottom: 0;

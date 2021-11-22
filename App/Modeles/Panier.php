@@ -77,7 +77,7 @@ class Panier
 
     //Trouver dans la table paniers par le id d'une categorie
     // TODO Panier|false n'est pas une syntaxe permise en PHP, utiliser plutôt ?Panier
-    public static function trouverParIdSession(string $sessionChoisi):Panier|false {
+    public static function trouverParIdSession(string $sessionChoisi):?Panier {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM paniers  WHERE id_session = :sessionChoisi';
         // Préparer la requête (optimisation)
@@ -89,7 +89,8 @@ class Panier
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        return $requetePreparee->fetch();
+        $result =  $requetePreparee->fetch();
+        return $result === false ? null : $result;
     }
 
     //Inserer dans la table paniers un nouveau panier

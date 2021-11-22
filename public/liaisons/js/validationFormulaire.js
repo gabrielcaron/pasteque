@@ -48,7 +48,7 @@ var formulaire = {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=index&courriel=" + courriel)
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=index&courriel=".concat(courriel))
                             .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
@@ -67,7 +67,7 @@ var formulaire = {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=connexion&courriel=" + courriel)
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=connexion&courriel=".concat(courriel))
                             .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
@@ -122,7 +122,7 @@ var formulaire = {
         document.getElementById(id).querySelector('.champ__message-erreur').classList.remove('erreur');
         document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = '';
         if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
-            this.refErreur = "Le champ " + id + " est obligatoire.";
+            this.refErreur = "Le champ ".concat(id, " est obligatoire.");
             this.refChampErreur.style = 'display:block;';
             document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
             document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;
@@ -130,7 +130,7 @@ var formulaire = {
         else if (this.refInput.hasAttribute('pattern') && this.validerAttributPattern(this.refInput.pattern, this.refInput.value) === false) {
             var bool = this.validerAttributPattern(this.refInput.pattern, this.refInput.value);
             if (bool === false) {
-                this.refErreur = "Veuillez verifier que la valeur du champ " + id + " correspond aux crit\u00E8res demand\u00E9s.";
+                this.refErreur = "Veuillez verifier que la valeur du champ ".concat(id, " correspond aux crit\u00E8res demand\u00E9s.");
                 this.refChampErreur.style = 'display:block;';
                 document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
                 document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;

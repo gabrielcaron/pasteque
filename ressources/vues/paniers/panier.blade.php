@@ -20,7 +20,7 @@
                          alt="{{$article->getLivreAssocie()->getTitre()}}">
                 </picture>
                 <section class="panier__articleInfos">
-                    <a href="#">
+                    <a href="index.php?controleur=livre&action=fiche&id={{$article->getProduitId()}}">
                         <h2 class="panier__articleInfosTitre">{{$article->getLivreAssocie()->getTitre()}}</h2>
                     </a>
                     <ul class="livre__listeInfos">
@@ -51,7 +51,7 @@
                 <form class="panier__articleRetirer" action="index.php?controleur=panier&action=supprimer" method="POST">
                     <label for="id" style="display: none">Id</label>
                     <input id="id" type="hidden" name="id" value="{{$article->getId()}}">
-                    <input class="bouton texte" type="submit" value="Retirer l'article du panier">
+                    <input class="bouton texte destructif" type="submit" value="Retirer l'article du panier">
                 </form>
             </article>
         @endforeach

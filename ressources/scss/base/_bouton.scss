@@ -69,6 +69,10 @@
     letter-spacing: 0.05em;
     color: $bleuRoyal;
 
+    &.destructif {
+      color: $rouge;
+    }
+
     &:hover {
       text-decoration: underline;
     }

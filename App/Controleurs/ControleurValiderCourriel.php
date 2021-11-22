@@ -23,4 +23,18 @@ class ControleurValiderCourriel
         exit;
     }
 
+    public function connexion(){
+
+        $email = $_GET['courriel'];
+        $compte = Compte::trouverParCourriel($email);
+        $courrielEnvoyer = [];
+        $element = array('courriel'=>$compte->getCourriel(), 'motDePasse'=>$compte->getMotDePasse());
+        array_push($courrielEnvoyer, $element);
+
+
+        header('Content-Type: application/json');
+
+        echo json_encode($courrielEnvoyer);
+    }
+
 }

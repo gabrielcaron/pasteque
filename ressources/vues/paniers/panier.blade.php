@@ -3,8 +3,6 @@
     class="panier"
 @endsection
 @section('contenu')
-    <?php var_dump($panier);
-    var_dump($panier->getArticlesAssocies()); ?>
     <h1>Panier</h1>
     <section class="panier__sectionResume">
         <p class="panier__sectionResumeSousTotal">Sous-total ({{$nombreArticles}} articles) : {{number_format($prixTotal, 2)}}$</p>
@@ -48,8 +46,7 @@
                         </select>
                         <input class="bouton texte" type="submit" value="Mettre à jour le panier">
                     </form>
-                    <p aria-label="Sous-total de l'article {{$article->getLivreAssocie()->getTitre()}}">{{number_format($article->getLivreAssocie()->getPrixCan() * $article->getQuantite(), 2)}}
-                        $</p>
+                    <p aria-label="Sous-total de l'article {{$article->getLivreAssocie()->getTitre()}}">{{number_format($article->getLivreAssocie()->getPrixCan() * $article->getQuantite(), 2)}}$</p>
                 </section>
                 <form class="panier__articleRetirer" action="index.php?controleur=panier&action=supprimer" method="POST">
                     <label for="id" style="display: none">Id</label>

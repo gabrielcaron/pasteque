@@ -16,7 +16,7 @@
             <div class="tabSection__bar">
                 <div class="tabSection__barContent active" id="first">
                     <div class="tabSection__texts">
-                        <form id="connexionForm" name="inscription" class="form" method="POST" action="#" novalidate>
+                        <form id="connexionForm" name="inscription" class="form" method="POST" action="index.php?controleur=site&action=accueil" novalidate onsubmit="return formulaire.validerConnexion()">
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert"></div>
                             <section class="compte__flex">
@@ -33,13 +33,16 @@
                                     <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
                                 </div>
                             </div>
-                            <div id="champPassword" class="champ champ--lg">
+                            <div id="champPasswordConnexion" class="champ champ--lg">
                                 <div class="champ__boite">
                                     <label for="connexionPassword" class="champ__etiquette">Entrez votre mot de passe</label>
                                     <input class="champ__input" id="connexionPassword" name="password" type="password"
                                            autocomplete="current-password"
                                            required="required" aria-labelledby="messagesPassword"
                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}" min="8"/>
+                                </div>
+                                <div id="messagesConnexionPassword" class="champ__messages">
+                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
                                 </div>
                             </div>
                             </section>
@@ -51,7 +54,7 @@
                             </div>
                             <a id="mdpOublie" href="#">Mot de passe oublié?</a>
                             <div class="form-wrap">
-                                <button type="submit" class="btnConnecter">Se connecter</button>
+                                <button id="btnConnecter" type="submit" class="btnConnecter">Se connecter</button>
                             </div>
 
                         </form>
@@ -108,8 +111,7 @@
                                         </div>
                                     </div>
                             </section>
-                            <section class="compte__mdp">
-                                <div class="compte__flex">
+                            <section class="compte__mdp compte__flex">
                                     <div id="champPassword" class="champ champ--lg">
                                         <div class="champ__boite">
                                             <label for="mot_de_passe" class="champ__etiquette">Créer un mot de passe</label>
@@ -129,7 +131,6 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div>
                             </section>
                             <section class="form__etape" data-etape="confirmation" style="display: none" tabindex="-1"
                                      aria-labelledby="titreConfirmation">

@@ -5,6 +5,7 @@
 @endsection
 
 @section('contenu')
+    <h1 class="screen-reader-only">Accueil</h1>
     <section class="nouveautes livres">
         <h2 class="accueil__titre">Nouveautés</h2>
         <div class="livre conteneurGrille">

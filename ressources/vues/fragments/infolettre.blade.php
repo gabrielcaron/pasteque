@@ -1,6 +1,6 @@
 <section class="socialMedia">
-    <div class="socialMedia__div">
-        <h5 class="socialMedia__texte">Suivez-nous sur nos médias sociaux!</h5>
+    <div class="socialMedia__conteneurGrille">
+        <h2 class="socialMedia__texte">Suivez-nous sur nos médias sociaux!</h2>
         <div class="socialMedia__flex">
         <span>
             <a href="https://www.facebook.com/lapasteque" target="_blank"> <img

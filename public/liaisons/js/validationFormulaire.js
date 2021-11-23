@@ -48,7 +48,7 @@ var formulaire = {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=index&courriel=".concat(courriel))
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=index&courriel=" + courriel)
                             .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
@@ -67,7 +67,7 @@ var formulaire = {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=connexion&courriel=".concat(courriel))
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=validercourriel&action=connexion&courriel=" + courriel)
                             .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
@@ -83,35 +83,53 @@ var formulaire = {
         this.refChampErreur.style = 'display:none;';
         document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.remove('erreur');
         document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = '';
-        this.validerCourriel(this.refInput.value).then(function (response) {
-            if (response === true) {
-                _this.refErreur = "Le courriel n'existe pas dans nos serveurs.";
-                _this.refChampErreur.style = 'display:block;';
-                document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.add('erreur');
-                document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
-                _this.formulaireConnexionValide = false;
-            }
-            else {
-                _this.validerConnexionCourriel(_this.refInput.value).then(function (rep) {
-                    _this.refInput = document.getElementById('champPasswordConnexion').querySelector('input');
-                    _this.refChampErreur = document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur');
-                    _this.refChampErreur.style = 'display:none;';
-                    document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.remove('erreur');
-                    document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = '';
-                    if (rep[0].motDePasse !== _this.refInput.value) {
-                        _this.refErreur = "Le mot de passe n'est pas bon";
-                        _this.refChampErreur.style = 'display:block;';
-                        _this.refInput.innerHTML = '';
-                        document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.add('erreur');
-                        document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
-                        _this.formulaireConnexionValide = false;
-                    }
-                    else {
-                        _this.formulaireConnexionValide = true;
-                    }
-                });
-            }
-        });
+        if (this.refInput.required === true && this.refInput.value === '') {
+            this.refErreur = "Le champ courriel est vide";
+            this.refChampErreur.style = 'display:block;';
+            document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.add('erreur');
+            document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = this.refErreur;
+            this.formulaireConnexionValide = false;
+        }
+        else {
+            this.validerCourriel(this.refInput.value).then(function (response) {
+                if (response === true) {
+                    _this.refErreur = "Le courriel n'existe pas dans nos serveurs.";
+                    _this.refChampErreur.style = 'display:block;';
+                    document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.add('erreur');
+                    document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
+                    _this.formulaireConnexionValide = false;
+                }
+                else {
+                    _this.validerConnexionCourriel(_this.refInput.value).then(function (rep) {
+                        _this.refInput = document.getElementById('champPasswordConnexion').querySelector('input');
+                        _this.refChampErreur = document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur');
+                        _this.refChampErreur.style = 'display:none;';
+                        document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.remove('erreur');
+                        document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = '';
+                        if (_this.refInput.required === true && _this.refInput.value === '') {
+                            _this.refErreur = "Le champ mot de passe est vide";
+                            _this.refChampErreur.style = 'display:block;';
+                            document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.add('erreur');
+                            document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
+                            _this.formulaireConnexionValide = false;
+                        }
+                        else {
+                            if (rep[0].motDePasse !== _this.refInput.value) {
+                                _this.refErreur = "Le mot de passe n'est pas bon";
+                                _this.refChampErreur.style = 'display:block;';
+                                _this.refInput.innerHTML = '';
+                                document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.add('erreur');
+                                document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
+                                _this.formulaireConnexionValide = false;
+                            }
+                            else {
+                                _this.formulaireConnexionValide = true;
+                            }
+                        }
+                    });
+                }
+            });
+        }
         return this.formulaireConnexionValide;
     },
     validerInput: function (id) {
@@ -122,7 +140,7 @@ var formulaire = {
         document.getElementById(id).querySelector('.champ__message-erreur').classList.remove('erreur');
         document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = '';
         if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
-            this.refErreur = "Le champ ".concat(id, " est obligatoire.");
+            this.refErreur = "Le champ " + id + " est obligatoire.";
             this.refChampErreur.style = 'display:block;';
             document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
             document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;
@@ -130,7 +148,7 @@ var formulaire = {
         else if (this.refInput.hasAttribute('pattern') && this.validerAttributPattern(this.refInput.pattern, this.refInput.value) === false) {
             var bool = this.validerAttributPattern(this.refInput.pattern, this.refInput.value);
             if (bool === false) {
-                this.refErreur = "Veuillez verifier que la valeur du champ ".concat(id, " correspond aux crit\u00E8res demand\u00E9s.");
+                this.refErreur = "Veuillez verifier que la valeur du champ " + id + " correspond aux crit\u00E8res demand\u00E9s.";
                 this.refChampErreur.style = 'display:block;';
                 document.getElementById(id).querySelector('.champ__message-erreur').classList.add('erreur');
                 document.getElementById(id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;

@@ -63,7 +63,7 @@ class Commande
     public function setCompteId(int $unCompteId):void {
         $this->compte_id = $unCompteId;
     }
-    // $id : Getter et setter
+    // $nombre_commande : Getter et setter
     public function getNombreCommande():int {
         return $this->nombre_commande;
     }
@@ -71,6 +71,10 @@ class Commande
         $this->nombre_commande = $unNombreCommande;
     }
 
+    /**
+     * Méthode pour trouver toutes les commandes
+     * @return array - Tableau des commandes
+     */
     public static function trouverTout(): array
     {
         // Définir la chaine SQL
@@ -85,6 +89,11 @@ class Commande
         return $requetePreparee->fetchAll();
     }
 
+    /**
+     * Méthode pour trouver toutes les commandes avec un compte id
+     * @param int $compteId - Un compte id
+     * @return ?array - Tableau des commandes
+     */
     public static function trouverParIdCompte(int $compteId):?array {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM commandes WHERE compte_id = :compteId';
@@ -97,7 +106,6 @@ class Commande
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $result= $requetePreparee->fetchAll();
-        return $result;
+        return $requetePreparee->fetchAll();
     }
 }

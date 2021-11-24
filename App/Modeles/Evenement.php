@@ -97,7 +97,10 @@ class Evenement
         $this->lien_instagram = $unLienInstagram;
     }
 
-    /*** Mettre $this->>l_evenement dans le explode? ***/
+    /**
+     * Méthode pour avoir l'affichage de l'intro d'un événement
+     * @return string - L'intro de l'événement
+     */
     public function getIntro()
     {
         $evenement = $this->l_evenement;
@@ -105,7 +108,8 @@ class Evenement
         return $evenement[0] . ".";
     }
 
-    /** Méthode pour trouver tous les événements
+    /**
+     * Méthode pour trouver tous les événements
      * @return array - Tableau des événements
      */
     public static function trouverTout(): array

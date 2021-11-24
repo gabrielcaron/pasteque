@@ -50,11 +50,18 @@ class Article
         $this->panier_id = $unPanierId;
     }
 
+    /**
+     * Méthode pour trouver le livre associer à l'article
+     * @return Livre - Livre associe
+     */
     public function getLivreAssocie():Livre {
         return Livre::trouverParId($this->produit_id);
     }
 
-    //Trouver tout dans la table articles
+    /**
+     * Méthode pour trouver tous les articles
+     * @return array - Tableau des articles
+     */
     public static function trouverTout():array {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM articles ';
@@ -68,7 +75,12 @@ class Article
         return $requetePreparee->fetchAll();
     }
 
-    //Trouver tout dans la table articles
+    /**
+     * Méthode pour trouver un article par le panier id et le produit id
+     * @param int $panierId - Un panier id
+     * @param int $produitId - Un produit id
+     * @return ?Article - Un Article ou null
+     */
     public static function trouverParIdProduitIdPanier(int $panierId, int $produitId): ?Article  {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT articles.* FROM articles WHERE panier_id = :panier_id AND produit_id = :produit_id';
@@ -86,7 +98,11 @@ class Article
         return $request === false ? null : $request;
     }
 
-    //Trouver dans la table articles par le id d'un article
+    /**
+     * Méthode pour trouver un article par id
+     * @param int $articleChoisi - Un article id
+     * @return Article - Un Article
+     */
     public static function trouverParId(int $articleChoisi):Article {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM articles  WHERE id = :articleChoisi';
@@ -102,7 +118,11 @@ class Article
         return $requetePreparee->fetch();
     }
 
-    //Trouver dans la table articles par le id d'un article
+    /**
+     * Méthode pour trouver les articles par panier id
+     * @param int $panierChoisi - Un panier id
+     * @return array - Tableau des articles
+     */
     public static function trouverParIdPanier(int $panierChoisi):array {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM articles  WHERE panier_id = :panierChoisi';
@@ -118,7 +138,9 @@ class Article
         return $requetePreparee->fetchAll();
     }
 
-    //Inserer dans la table articles un nouvel article
+    /**
+     * Méthode pour insérer un article dans la table articles
+     */
     public function inserer():void {
         // Définir la chaine SQL
         $chaineSQL = 'INSERT INTO articles (produit_id, quantite, panier_id) VALUES (:produit_id, :quantite, :panier_id)';
@@ -128,13 +150,13 @@ class Article
         $requetePreparee->bindParam(':produit_id', $this->produit_id, PDO::PARAM_INT);
         $requetePreparee->bindParam(':quantite', $this->quantite, PDO::PARAM_INT);
         $requetePreparee->bindParam(':panier_id', $this->panier_id, PDO::PARAM_INT);
-
-        var_dump($requetePreparee);
         // Exécuter la requête
         $requetePreparee->execute();
     }
 
-    //Modifier dans la table articles un article
+    /**
+     * Méthode pour mettre à jour un article dans la table articles
+     */
     public function mettreAJour():void {
 
         // Définir la chaine SQL
@@ -149,7 +171,9 @@ class Article
         $requetePreparee->execute();
     }
 
-    //Supprimer de la table produits un produit
+    /**
+     * Méthode pour supprimer un article dans la table articles
+     */
     public function supprimer():void {
         // Définir la chaine SQL
         $chaineSQL = 'DELETE FROM articles  WHERE id=:id';

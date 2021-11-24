@@ -13,6 +13,7 @@ class ControleurRequete
         //vide
     }
 
+    //Trouver Tout livre
     public function trouverToutLivre(){
 
         $livres = Livre::trouverTout();
@@ -21,9 +22,7 @@ class ControleurRequete
             $range = array('id'=>$livre->getId(), 'titre'=>$livre->getTitre());
             array_push($livreEnvoyer, $range);
         }
-
         header('Content-Type: application/json');
-
         echo json_encode($livreEnvoyer);
     }
 

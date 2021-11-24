@@ -12,6 +12,7 @@ class ControleurValiderCourriel
         //vide
     }
 
+    //Valider courriel
     public function index(){
 
         $email = $_GET['courriel'];
@@ -23,6 +24,7 @@ class ControleurValiderCourriel
         exit;
     }
 
+    //Valider Mot de passe
     public function connexion(){
 
         $email = $_GET['courriel'];

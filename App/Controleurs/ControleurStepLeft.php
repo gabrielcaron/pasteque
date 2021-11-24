@@ -25,14 +25,13 @@ class ControleurStepLeft
         else{
             $compte = Compte::trouverParCourriel($_SESSION['email']);
             $commande = $compte->getCommandesAssocies();
+            $facturation = $compte->getCommandesAssocies();
             $provinces = Province::trouverTout();
             if($commande !== null){
-                echo 'jai plusieurs commandes';
-                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte, "commande"=>$commande, "provinces"=>$provinces);
+                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte, "commande"=>$commande, "facturation"=>$facturation, "provinces"=>$provinces);
             }
             else{
-                echo 'je suis connecte et jai jamais commander';
-                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte, "commande"=>$commande, "provinces"=>$provinces);
+                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte, "commande"=>$commande, "facturation"=>$facturation, "provinces"=>$provinces);
             }
             echo App::getBlade()->run("paniers.formulaireCommande",$tDonnees);
         }

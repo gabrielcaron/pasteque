@@ -58,7 +58,7 @@ class Commande
     }
     // $compte_id : Getter et setter
     public function getCompteId():int {
-        return $this->id;
+        return $this->compte_id;
     }
     public function setCompteId(int $unCompteId):void {
         $this->compte_id = $unCompteId;

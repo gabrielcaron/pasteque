@@ -2,11 +2,25 @@
     2. Facturation
 </h2>
 <section class="identification">
-    <h3>Identification</h3>
-    <p>Nom Prénom</p>
-    <p>monadressecourriel@nomdedomaine.ca</p>
+    @include('paniers.fragments.identification')
 </section>
 <h2>Informations de paiement</h2>
+<section class="adressePaiement">
+    <h3>Adresse de Facturation</h3>
+    @component('paniers.fragments.adresseRecap')
+        @slot('adresse') @if($facturation !== null) {{$facturation->getAdresse()}} @endif @endslot
+        @slot('ville') @if($facturation !== null) {{$facturation->getVille()}} @endif @endslot
+        @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
+        @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
+    @endcomponent
+    @component('paniers.fragments.adresse')
+        @slot('livraisonOuFacturation')facturation@endslot
+        @slot('adresse') @if($facturation !== null) {{$facturation->getAdresse()}} @endif @endslot
+        @slot('ville') @if($facturation !== null) {{$facturation->getVille()}} @endif @endslot
+        @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
+        @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
+    @endcomponent
+</section>
 <section class="modePaiement">
 <h3>Mode de paiement</h3>
     <h4>Cartes de crédits acceptées</h4>

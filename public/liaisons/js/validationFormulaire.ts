@@ -33,6 +33,14 @@ let formulaire = {
         this.refChampErreur.style = 'display:none;';
         document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.remove('erreur');
         document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = '';
+        if(this.refInput.required === true && this.refInput.value === ''){
+            this.refErreur = `Le champ courriel est vide`;
+            this.refChampErreur.style = 'display:block;';
+            document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').classList.add('erreur');
+            document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur').innerHTML = this.refErreur;
+            this.formulaireConnexionValide = false;
+        }
+        else {
         this.validerCourriel(this.refInput.value).then(response => {
             if (response === true) {
                 this.refErreur = `Le courriel n'existe pas dans nos serveurs.`;
@@ -48,20 +56,30 @@ let formulaire = {
                     this.refChampErreur.style = 'display:none;';
                     document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.remove('erreur');
                     document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = '';
-                    if (rep[0].motDePasse !== this.refInput.value) {
-                        this.refErreur = `Le mot de passe n'est pas bon`;
+                    if(this.refInput.required === true && this.refInput.value === ''){
+                        this.refErreur = `Le champ mot de passe est vide`;
                         this.refChampErreur.style = 'display:block;';
-                        this.refInput.innerHTML = '';
                         document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.add('erreur');
                         document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = this.refErreur;
                         this.formulaireConnexionValide = false;
                     }
-                    else {
-                        this.formulaireConnexionValide = true;
+                    else{
+                        if (rep[0].motDePasse !== this.refInput.value) {
+                            this.refErreur = `Le mot de passe n'est pas bon`;
+                            this.refChampErreur.style = 'display:block;';
+                            this.refInput.innerHTML = '';
+                            document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').classList.add('erreur');
+                            document.getElementById('champPasswordConnexion').querySelector('.champ__message-erreur').innerHTML = this.refErreur;
+                            this.formulaireConnexionValide = false;
+                        }
+                        else {
+                            this.formulaireConnexionValide = true;
+                        }
                     }
+
                 });
             }
-        });
+        });}
         return this.formulaireConnexionValide;
     },
 

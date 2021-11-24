@@ -351,3 +351,10 @@ padding-bottom: 0!important;
   cursor: pointer;
   margin-top: 10px!important;
 }
+.entete__compteFlex{
+  display: flex;
+  align-items: baseline;
+}
+.erreur{
+  color: red!important;
+}

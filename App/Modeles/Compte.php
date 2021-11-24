@@ -31,7 +31,7 @@ class Compte
     // $prenom : Getter et setter
     public function getPrenom(): string
     {
-        return $this->$this->prenom;
+        return $this->prenom;
     }
 
     public function setPrenom(string $unPrenom): void

@@ -16,7 +16,7 @@
             <div class="tabSection__bar">
                 <div class="tabSection__barContent active" id="first">
                     <div class="tabSection__texts">
-                        <form id="connexionForm" name="inscription" class="form" method="POST" action="index.php?controleur=site&action=accueil" novalidate onsubmit="return formulaire.validerConnexion()">
+                        <form id="connexionForm" name="inscription" class="form" method="POST" action="index.php?controleur=compte&action=connecter" novalidate onsubmit="return formulaire.validerConnexion()">
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert"></div>
                             <section class="compte__flex">

@@ -18,7 +18,26 @@
         </a>
         <ul class="nav topNavLink">
             <li class="menuTop__listeItem">
-                <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien user"><img src="liaisons/images/user.svg"></a>
+
+                @if(isset($_SESSION['connected']))
+                    @if($_SESSION['connected'])
+                        <div class="entete__compteFlex">
+
+                            <span> Bonjour {{$_SESSION['prenom']}}!</span>
+                            <a href="index.php?controleur=compte&action=deconnecter">Me déconnecter</a>
+                            <a href="#" class="menuTop__lien user"><img
+                                        src="liaisons/images/user.svg"></a>
+                        </div>
+                    @else
+                        <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien user"><img
+                                    src="liaisons/images/user.svg"></a>
+                    @endif
+
+
+                @else
+                    <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien user"><img
+                                src="liaisons/images/user.svg"></a>
+                @endif
             </li>
             <li class="menuTop__listeItem">
                 <a href="index.php?controleur=panier&action=panier" class="menuTop__lien"><i
@@ -45,25 +64,25 @@
     </section>
     <nav class="menu menu--ferme ">
         <ul class="menu__liste" id="menu__liste">
-            <li class="menu__listeItem" >
+            <li class="menu__listeItem">
                 <a href="index.php?controleur=site&action=accueil" id="accueil" class="menu__lien">Accueil</a>
             </li>
-            <li class="menu__listeItem" >
+            <li class="menu__listeItem">
                 <a href="index.php?controleur=livre&action=index" id="livre" class="menu__lien">Livres</a>
             </li>
-            <li class="menu__listeItem" >
+            <li class="menu__listeItem">
                 <a href="index.php?controleur=auteur&action=index" id="auteur" class="menu__lien">Artistes</a>
             </li>
-            <li class="menu__listeItem" >
+            <li class="menu__listeItem">
                 <a href="" id="galerie" class="menu__lien">Galerie-boutique</a>
             </li>
-            <li class="menu__listeItem" >
+            <li class="menu__listeItem">
                 <a href="" id="production" class="menu__lien">Production La Pastèque</a>
             </li>
             <li class="menu__listeItem">
                 <a href="#" class="menu__lien" id="apropos">À propos</a>
             </li>
-            <li class="menu__listeItem" >
+            <li class="menu__listeItem">
                 <a href="" id="contact" class="menu__lien">Contact</a>
             </li>
         </ul>

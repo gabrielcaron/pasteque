@@ -41,11 +41,18 @@ class Panier
         $this->date_unix_dernier_acces = $unDateUnix;
     }
 
+    /**
+     * Méthode pour trouver les articles associés au panier
+     * @return array - Articles associés
+     */
     public function getArticlesAssocies():array {
         return Article::trouverParIdPanier($this->id);
     }
 
-    //Trouver tout dans la table paniers
+    /**
+     * Méthode pour trouver tout dans la table paniers
+     * @return array - Tableau des paniers
+     */
     public static function trouverTout():array {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM paniers ';
@@ -59,7 +66,11 @@ class Panier
         return $requetePreparee->fetchAll();
     }
 
-    //Trouver dans la table panier par le id d'un panier
+    /**
+     * Méthode pour trouver un panier par id
+     * @param int $panierChoisi - Un panier id
+     * @return Panier - Un panier
+     */
     public static function trouverParId(int $panierChoisi):Panier {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM paniers  WHERE id = :panierChoisi';
@@ -75,8 +86,11 @@ class Panier
         return $requetePreparee->fetch();
     }
 
-    //Trouver dans la table paniers par le id d'une categorie
-    // TODO Panier|false n'est pas une syntaxe permise en PHP, utiliser plutôt ?Panier
+    /**
+     * Méthode pour trouver un panier par session_id
+     * @param string $sessionChoisi - Un session_id
+     * @return ?Panier - Un panier ou null
+     */
     public static function trouverParIdSession(string $sessionChoisi):?Panier {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM paniers  WHERE id_session = :sessionChoisi';
@@ -93,7 +107,9 @@ class Panier
         return $result === false ? null : $result;
     }
 
-    //Inserer dans la table paniers un nouveau panier
+    /**
+     * Méthode pour insérer un panier dans la table paniers
+     */
     public function inserer():void {
         // Définir la chaine SQL
         $chaineSQL = 'INSERT INTO paniers (id_session, date_unix_dernier_acces) VALUES (:id_session, :date_unix_dernier_acces)';
@@ -106,9 +122,10 @@ class Panier
         $requetePreparee->execute();
     }
 
-    //Modifier dans la table paniers un panier
+    /**
+     * Méthode pour mettre à jour un panier dans la table paniers
+     */
     public function mettreAJour():void {
-
         // Définir la chaine SQL
         $chaineSQL = 'UPDATE paniers SET id_session=:id_session, date_unix_dernier_acces=:date_unix_dernier_acces WHERE id=:id';
         // Préparer la requête (optimisation)

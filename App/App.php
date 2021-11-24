@@ -205,8 +205,7 @@ class App
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
             }
-        }
-        else if ($controleur === 'stepLeft'){
+        } else if ($controleur === 'stepLeft'){
             $this->monControleur = new ControleurStepLeft();
             switch ($action) {
                 case 'debuterStepLeft':
@@ -216,9 +215,7 @@ class App
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
             }
-        }
-
-        else if ($controleur === 'site'){
+        } else if ($controleur === 'site'){
             $this->monControleur = new ControleurSite();
             switch ($action) {
                 case 'accueil':

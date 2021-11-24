@@ -14,6 +14,7 @@ class ControleurStepLeft
         //vide
     }
 
+    //Débuter le formulaire step left de commandes
     public function debuterStepLeft():void{
 
         if (isset($_SESSION['connected']) === false || $_SESSION['connected'] === false){

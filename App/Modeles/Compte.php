@@ -77,16 +77,25 @@ class Compte
     {
         return $this->panier_id;
     }
-
     public function setPanierId(int $unPanierId): void
     {
         $this->panier_id = $unPanierId;
     }
+
+    /**
+     * Méthode pour trouver les commandes associées à un compte
+     * @return ?array - Commandes associées à un compte
+     */
     public function getCommandesAssocies(): ?array
     {
         return Commande::trouverParIdCompte($this->id);
     }
 
+    /**
+     * Méthode pour trouver un compte par session_id
+     * @param string $sessionChoisi - Un session_id
+     * @return ?Compte - Un compte ou null
+     */
     public static function trouverParIdSession(string $sessionChoisi):?Compte {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM comptes INNER JOIN paniers ON comptes.panier_id = paniers.id WHERE paniers.id_session = :sessionChoisi';
@@ -103,7 +112,8 @@ class Compte
         return $result === false ? null : $result;
     }
 
-    /** Méthode pour trouver tous les champs du compte
+    /**
+     * Méthode pour trouver tout de la table comptes
      * @return array - Tableau du compte
      */
     public static function trouverTout(): array
@@ -119,7 +129,13 @@ class Compte
         // Récupérer une seule occurrence à la fois
         return $requetePreparee->fetchAll();
     }
-    public static function trouverParCourriel($courriel):Compte
+
+    /**
+     * Méthode pour trouver un compte par courriel
+     * @param string $courriel - Un courriel
+     * @return Compte - Un compte
+     */
+    public static function trouverParCourriel(string $courriel):Compte
     {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM `comptes` WHERE courriel = :courriel';
@@ -135,7 +151,12 @@ class Compte
         return $requetePreparee->fetch();
     }
 
-    public static function courrielValide($courriel): bool
+    /**
+     * Méthode pour trouver si le courriel est disponible dans la bd
+     * @param string $courriel - Un courriel
+     * @return bool - True ou false
+     */
+    public static function courrielValide(string $courriel): bool
     {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT COUNT(1) AS courrielCount FROM `comptes` WHERE courriel = :courriel';
@@ -152,6 +173,9 @@ class Compte
         return ((int)$result->courrielCount) === 0;
     }
 
+    /**
+     * Méthode pour insérer un compte dans la table comptes
+     */
     public function inserer():void{
         // Définir la chaine SQL
         $chaineSQL = "INSERT INTO comptes (prenom, nom, courriel, mot_de_passe, panier_id) VALUE (:prenom, :nom, :courriel, :mot_de_passe, :panier_id)";

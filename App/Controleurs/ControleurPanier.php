@@ -30,6 +30,7 @@ class ControleurPanier
         echo App::getBlade()->run("paniers.panier",$tDonnees);
     }
 
+    //Modifier Articles
     public function modifier():void
     {
         $ancienArticle = Article::trouverParIdProduitIdPanier(intval($_POST['panier_id']), intval($_POST['livre_id']));
@@ -38,6 +39,7 @@ class ControleurPanier
         header('Location: index.php?controleur=panier&action=panier');
     }
 
+    //Supprimer Article
     public function supprimer():void
     {
         $ancienArticle = Article::trouverParId(intval($_POST['id']));

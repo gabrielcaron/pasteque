@@ -33,7 +33,8 @@ class Categorie
         $this->nom = $unNom;
     }
 
-    /** Méthode pour trouver toutes les catégories
+    /**
+     * Méthode pour trouver toutes les catégories
      * @return array - Tableau des catégories
      */
     public static function trouverTout():array {
@@ -50,7 +51,8 @@ class Categorie
         return $requetePreparee->fetchAll();
     }
 
-    /** Méthode pour trouver une catégorie
+    /**
+     * Méthode pour trouver une catégorie
      * @param int $idCategorie - Id d'une catégorie
      * @return Categorie - Une catégorie
      */

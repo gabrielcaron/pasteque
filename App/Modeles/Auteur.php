@@ -64,7 +64,8 @@ class Auteur
         return Livre::trouverLivresParAuteur($this->id);
     }
 
-    /** Méthode pour trouver tous les auteurs
+    /**
+     * Méthode pour trouver tous les auteurs
      * @param string $trierPar - Chaine par quoi trier les auteurs
      * @param int $enregistrementDepart - Nombre de départ
      * @param int $nbAuteursParPage - Nombre d'auteurs par page
@@ -92,7 +93,8 @@ class Auteur
         return $requetePreparee->fetchAll();
     }
 
-    /** Méthode pour trouver le nombre d'auteur
+    /**
+     * Méthode pour trouver le nombre d'auteur
      * @return string - Nombre de d'auteurs
      */
     public static function trouverNombreAuteurs():string {
@@ -109,7 +111,8 @@ class Auteur
         return $resultat->nombreAuteurs;
     }
 
-    /** Méthode pour trouver un seul auteur
+    /**
+     * Méthode pour trouver un seul auteur
      * @param int $unIdAuteur - Id d'un auteur
      * @return Auteur - Un auteur
      */
@@ -130,7 +133,8 @@ class Auteur
         return $requetePreparee->fetch();
     }
 
-    /** Méthode pour trouver tout les auteurs associés à un livre
+    /**
+     * Méthode pour trouver tout les auteurs associés à un livre
      * @param int $unIdLivres - Id d'un livre
      * @return array - Tableau des auteurs associés au livre
      */

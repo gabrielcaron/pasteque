@@ -279,28 +279,45 @@ class Livre
         $this->langue = $unLangue;
     }
 
-
+    /**
+     * Méthode pour trouver la catégorie associée à un livre
+     * @return Categorie - Catégorie associée
+     */
     public function getCategorieAssocie(): Categorie
     {
         return Categorie::trouverParId($this->categorie_id);
     }
 
+    /**
+     * Méthode pour trouver les auteurs associés à un livre
+     * @return array - Tableau des auteurs associés
+     */
     public function getAuteurAssocie(): array
     {
         return Auteur::trouverParIdLivre($this->id);
     }
 
+    /**
+     * Méthode pour trouver les reconnaissances associées à un livre
+     * @return array - Tableau des auteurs associés
+     */
     public function getReconnaissanceAssocie(): array
     {
         return Reconnaissance::trouverParId($this->id);
     }
 
-    public function getArticlePanierAssocie($unIdPanier): Article
+    /**
+     * Méthode pour trouver l'article associé à un livre et un id panier
+     * @param int $unIdPanier - Un panier id
+     * @return Article - Un article associé
+     */
+    public function getArticlePanierAssocie(int $unIdPanier): Article
     {
         return Article::trouverParIdProduitIdPanier($unIdPanier, $this->id);
     }
 
-    /** Méthode pour trouver tous les livres
+    /**
+     * Méthode pour trouver tous les livres
      * @return array - Tableau des livres
      */
     public static function trouverTout(): array
@@ -321,7 +338,8 @@ class Livre
         return $requetePreparee->fetchAll();
     }
 
-    /** Méthode pour trouver tous les livres avec ORDER BY et LIMIT, sans catégories
+    /**
+     * Méthode pour trouver tous les livres avec ORDER BY et LIMIT, sans catégories
      * @param string $trierPar - Chaine par quoi trier les auteurs
      * @param int $enregistrementDepart - Nombre de départ
      * @param int $nombreLivreParPage - Nombre de livres par page
@@ -362,7 +380,8 @@ class Livre
         return $requetePreparee->fetchAll();
     }
 
-    /** Méthode pour trouver un livre
+    /**
+     * Méthode pour trouver un livre
      * @param int $idLivre - Id d'un livre
      * @return Livre - Un livre
      */
@@ -382,7 +401,8 @@ class Livre
         return $requetePreparee->fetch();
     }
 
-    /** Méthode pour trouver le nombre de livre
+    /**
+     * Méthode pour trouver le nombre de livre
      * @return string - Le nombre de livre total
      */
     public static function trouverNombreLivres(): string
@@ -400,7 +420,8 @@ class Livre
         return $resultat->nombreLivres;
     }
 
-    /** Méthode pour trouver le nombre de livre avec catégorie sélectionné
+    /**
+     * Méthode pour trouver le nombre de livre avec catégorie sélectionné
      * @param array $idCategories - Tableau des catégories
      * @return string - Le nombre de livre total
      */
@@ -424,7 +445,8 @@ class Livre
         return $resultat->nombreLivres;
     }
 
-    /** Méthode pour trouver tous les livres avec ORDER BY et LIMIT, avec catégories
+    /**
+     * Méthode pour trouver tous les livres avec ORDER BY et LIMIT, avec catégories
      * @param array $idCategories - Tableau des catégories
      * @param string $trierPar - Chaine par quoi trier les auteurs
      * @param int $enregistrementDepart - Nombre de départ
@@ -473,7 +495,8 @@ class Livre
         return $requetePreparee->fetchAll();
     }
 
-    /** Méthode pour trouver les livres associés à un auteur
+    /**
+     * Méthode pour trouver les livres associés à un auteur
      * @param int $unIdAuteur - Id d'un auteur
      * @return array - Les livres associés
      */
@@ -498,7 +521,8 @@ class Livre
         return $requetePreparee->fetchAll();
     }
 
-    /** Méthode pour trouver les nouveautés par hasard
+    /**
+     * Méthode pour trouver les nouveautés par hasard
      * @param int $combien - Nombre de livre à sortir
      * @return array - Les livres nouveautés
      */
@@ -517,7 +541,8 @@ class Livre
         return $requetePreparee->fetchAll();
     }
 
-    /** Méthode pour trouver les à parraitre par hasard
+    /**
+     * Méthode pour trouver les à parraitre par hasard
      * @param int $combien - Nombre de livre à sortir
      * @return array - Les livres à parraitre
      */

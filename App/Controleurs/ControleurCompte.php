@@ -31,18 +31,23 @@ class ControleurCompte
         $tDonnees = array("titrePage"=>"connexion", "classeBody"=>"connexion", "action"=>"connexion");
         echo App::getBlade()->run("comptes.compte",$tDonnees);
     }
+
+    //Connection réussi
     public function connecter():void{
         $compte = Compte::trouverParCourriel($_POST['email']);
         $_SESSION['connected'] = true;
         $_SESSION['prenom'] = $compte->getPrenom();
         header('Location: index.php?controleur=site&action=accueil');
     }
-    public function creer():void
-    {
-        //Retourne un formulaire pour creer une region
-        $tDonnees = array();
-        echo App::getBlade()->run("produits.creer",$tDonnees);
+
+    //Deconnexion
+    public function deconnecter():void{
+        $_SESSION['connected'] = false;
+        $_SESSION['prenom'] = '';
+        header('Location: index.php?controleur=site&action=accueil');
     }
+
+    //Inserer un compte
     public function inserer():void
     {
         // 1) Recevoir les donnees d'un formulaire de creation
@@ -71,12 +76,6 @@ class ControleurCompte
         $_SESSION['prenom'] = $_POST['prenom'];
 
         // Rediriger
-        header('Location: index.php?controleur=site&action=accueil');
-        //}
-    }
-    public function deconnecter():void{
-        $_SESSION['connected'] = false;
-        $_SESSION['prenom'] = '';
         header('Location: index.php?controleur=site&action=accueil');
     }
 }

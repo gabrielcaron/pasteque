@@ -85,7 +85,8 @@ class Actualite
         $this->lien_instagram = $unLienInstagram;
     }
 
-    /** Méthode pour avoir l'affichage de l'intro d'une actualité
+    /**
+     * Méthode pour avoir l'affichage de l'intro d'une actualité
      * @return string - L'intro de l'actualité
      */
     public function getIntro():string
@@ -95,7 +96,8 @@ class Actualite
         return $actualite[0] . ".";
     }
 
-    /** Méthode pour trouver toutes les actualités
+    /**
+     * Méthode pour trouver toutes les actualités
      * @return array - Tableau des actualités
      */
     public static function trouverTout(): array

@@ -27,7 +27,7 @@
 <div id="champProvince" class="champ champ--lg">
     <div class="champ__boite">
         <label for="province" class="champ__etiquette">Province</label>
-        <select class="champ__input" id="province" name="province" type="text" required="required" aria-labelledby="messagesProvince">
+        <select class="champ__input" id="province" name="province" required="required" aria-labelledby="messagesProvince">
             <option value=””>option1</option>
             <option value=””>option2</option>
             <option value=””>option3</option>

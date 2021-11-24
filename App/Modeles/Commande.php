@@ -92,9 +92,9 @@ class Commande
     /**
      * Méthode pour trouver toutes les commandes avec un compte id
      * @param int $compteId - Un compte id
-     * @return ?array - Tableau des commandes
+     * @return ?Commande - Tableau des commandes
      */
-    public static function trouverParIdCompte(int $compteId):?array {
+    public static function trouverParIdCompte(int $compteId):?Commande {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM commandes WHERE compte_id = :compteId';
         // Préparer la requête (optimisation)
@@ -102,10 +102,11 @@ class Commande
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
         $requetePreparee->bindParam(':compteId', $compteId, PDO::PARAM_INT);
         // Définir le mode de récupération
-        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Compte');
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Commande');
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        return $requetePreparee->fetchAll();
+        $result = $requetePreparee->fetch();
+        return $result === false ? null : $result;
     }
 }

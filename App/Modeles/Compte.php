@@ -84,9 +84,9 @@ class Compte
 
     /**
      * Méthode pour trouver les commandes associées à un compte
-     * @return ?array - Commandes associées à un compte
+     * @return ?Commande - Commandes associées à un compte
      */
-    public function getCommandesAssocies(): ?array
+    public function getCommandesAssocies():?Commande
     {
         return Commande::trouverParIdCompte($this->id);
     }

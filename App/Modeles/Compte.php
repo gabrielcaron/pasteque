@@ -82,6 +82,10 @@ class Compte
     {
         $this->panier_id = $unPanierId;
     }
+    public function getCommandesAssocies(): ?array
+    {
+        return Commande::trouverParIdCompte($this->id);
+    }
 
     public static function trouverParIdSession(string $sessionChoisi):?Compte {
         // Définir la chaine SQL

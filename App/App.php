@@ -8,6 +8,7 @@ use App\Controleurs\ControleurLivre;
 use App\Controleurs\ControleurPanier;
 use App\Controleurs\ControleurRequete;
 use App\Controleurs\ControleurSite;
+use App\Controleurs\ControleurStepLeft;
 use App\Controleurs\ControleurValiderCourriel;
 use App\Modeles\Panier;
 use eftec\bladeone\BladeOne;
@@ -204,7 +205,20 @@ class App
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
             }
-        } else if ($controleur === 'site'){
+        }
+        else if ($controleur === 'stepLeft'){
+            $this->monControleur = new ControleurStepLeft();
+            switch ($action) {
+                case 'debuterStepLeft':
+                    $this->monControleur->debuterStepLeft();
+                    break;
+                default:
+                    $this->monControleur=new ControleurSite();
+                    $this->monControleur->erreur();
+            }
+        }
+
+        else if ($controleur === 'site'){
             $this->monControleur = new ControleurSite();
             switch ($action) {
                 case 'accueil':

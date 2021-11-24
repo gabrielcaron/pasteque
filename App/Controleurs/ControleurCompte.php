@@ -35,6 +35,7 @@ class ControleurCompte
         $compte = Compte::trouverParCourriel($_POST['email']);
         $_SESSION['connected'] = true;
         $_SESSION['prenom'] = $compte->getPrenom();
+        $_SESSION['email'] = $compte->getCourriel();
         header('Location: index.php?controleur=site&action=accueil');
     }
     public function creer():void

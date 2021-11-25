@@ -14,7 +14,7 @@
         @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
     @endcomponent
     @component('paniers.fragments.adresse')
-        @slot('livraisonOuFacturation')facturation@endslot
+        @slot('livraisonOuFacturation') facturation @endslot
         @slot('adresse') @if($facturation !== null) {{$facturation->getAdresse()}} @endif @endslot
         @slot('ville') @if($facturation !== null) {{$facturation->getVille()}} @endif @endslot
         @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot

@@ -5,7 +5,7 @@
     @include('paniers.fragments.identification')
 </section>
 @component('paniers.fragments.adresse')
-    @slot('livraisonOuFacturation')livraison@endslot
+    @slot('livraisonOuFacturation') livraison @endslot
     @slot('adresse') @if($commande !== null) {{$commande->getAdresse()}} @endif @endslot
     @slot('ville') @if($commande !== null) {{$commande->getVille()}} @endif @endslot
     @slot('provinceChoisi') @if($commande !== null) {{$commande->getProvinceId()}} @endif @endslot

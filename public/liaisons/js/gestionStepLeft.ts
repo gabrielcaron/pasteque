@@ -29,11 +29,13 @@ const refFacturationInputProvince: HTMLInputElement = document.getElementById('f
 const refFacturationInputCodePostal: HTMLInputElement = document.getElementById('facturation_codePostal') as HTMLInputElement;
 
 
+/** Gestion du step-left **/
 let gestionStepLeft = {
 
     livraisonCompleted: false,
     facturationCompleted: false,
 
+    /** Initialisation du step-left **/
     initialiser() {
         gestionStepLeft.remettreAZero();
         if (refLivraisonInputAdresse.value === '') {
@@ -44,7 +46,9 @@ let gestionStepLeft = {
             refEtapeValidation.style.display = 'block'
         }
     },
-    continuerLivraison(){
+
+    /** Continuer de la livraison vers facturation / validation **/
+    continuerLivraison() {
         gestionStepLeft.remettreAZero();
         if (this.livraisonCompleted === false) {
             this.livraisonCompleted = true;
@@ -66,22 +70,30 @@ let gestionStepLeft = {
             refEtapeValidation.style.display = 'block';
         }
     },
-    continuerFacturation(){
+
+    /** Continuer de facturation vers validation **/
+    continuerFacturation() {
         gestionStepLeft.remettreAZero();
         this.facturationCompleted = true;
         refEtapeValidation.style.display = 'block';
 
     },
+
+    /** Modifier une Livraison **/
     modifierLivraison() {
         gestionStepLeft.remettreAZero();
         refEtapeLivraison.style.display = 'block';
     },
+
+    /** Modifier Facturation **/
     modifierFacturation() {
         gestionStepLeft.remettreAZero();
         refEtapeFacturation.style.display = 'block';
         refSectionRecapAdresseFacturation.style.display = 'block';
         refSectionPaiementFacturation.style.display = 'block';
     },
+
+    /** Remet à display none toutes les étapes et section d'étapes nécessaires **/
     remettreAZero() {
         refEtapeLivraison.style.display = 'none';
         refEtapeFacturation.style.display = 'none';
@@ -91,6 +103,10 @@ let gestionStepLeft = {
         refSectionPaiementFacturation.style.display = 'none';
     },
 }
+
+/*************************************************************************************
+************************ Écouteurs d'événements du step-left *************************
+**************************************************************************************/
 window.addEventListener('load', function () {gestionStepLeft.initialiser()});
 document.getElementById('continuerLivraison').addEventListener('click', function (){gestionStepLeft.continuerLivraison()});
 document.getElementById('continuerFacturation').addEventListener('click', function (){gestionStepLeft.continuerFacturation()});

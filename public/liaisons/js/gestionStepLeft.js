@@ -2,7 +2,6 @@
  * TODO - Mettre les champs de recap adresse en const
  * TODO - Faire le INNERHTML sur les champs recaps
  * TODO - Valider les champs
- * TODO - Mettre les champs de carte de crédit en const
  */
 /** Élément pouvant être en display none pour l'affichage du formulaire step-left **/
 var refEtapeLivraison = document.getElementById('etapeLivraison');
@@ -22,6 +21,12 @@ var refFacturationInputAdresse = document.getElementById('facturation_adresse');
 var refFacturationInputVille = document.getElementById('facturation_ville');
 var refFacturationInputProvince = document.getElementById('facturation_province');
 var refFacturationInputCodePostal = document.getElementById('facturation_codePostal');
+/** Champs input de la section paiement facturation **/
+var refFacturationInputNomTitulaire = document.getElementById('facturation_nomTitulaire');
+var refFacturationInputNumeroCarte = document.getElementById('facturation_numeroCarte');
+var refFacturationInputMoisExpiration = document.getElementById('facturation_moisExpiration');
+var refFacturationInputAnneeExpiration = document.getElementById('facturation_anneeExpiration');
+var refFacturationInputCvv = document.getElementById('facturation_cvv');
 /** Gestion du step-left **/
 var gestionStepLeft = {
     livraisonCompleted: false,

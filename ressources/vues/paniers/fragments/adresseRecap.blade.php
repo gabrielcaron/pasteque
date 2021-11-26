@@ -1,6 +1,6 @@
-<ul>
-    <li>{{$adresse}}</li>
-    <li>{{$ville}}</li>
-    <li>{{$provinceChoisi}}</li>
-    <li>{{$codePostal}}</li>
-</ul>
+<h2>{{$titre}}</h2>
+@if($sousTitre !== '') <h3>{{$sousTitre}}</h3> @endif
+<p id="{{$idUnique}}_recapAdresse">{{$adresse}}</p>
+<p id="{{$idUnique}}_recapVille">{{$ville}}</p>
+<p id="{{$idUnique}}_recapProvince">{{$provinceChoisi}}</p>
+<p id="{{$idUnique}}_recapCodePostal">{{$codePostal}}</p>

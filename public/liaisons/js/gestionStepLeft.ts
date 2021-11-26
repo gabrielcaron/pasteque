@@ -2,7 +2,6 @@
  * TODO - Mettre les champs de recap adresse en const
  * TODO - Faire le INNERHTML sur les champs recaps
  * TODO - Valider les champs
- * TODO - Mettre les champs de carte de crédit en const
  */
 
 /** Élément pouvant être en display none pour l'affichage du formulaire step-left **/
@@ -27,6 +26,14 @@ const refFacturationInputAdresse: HTMLInputElement = document.getElementById('fa
 const refFacturationInputVille: HTMLInputElement = document.getElementById('facturation_ville') as HTMLInputElement;
 const refFacturationInputProvince: HTMLInputElement = document.getElementById('facturation_province') as HTMLInputElement;
 const refFacturationInputCodePostal: HTMLInputElement = document.getElementById('facturation_codePostal') as HTMLInputElement;
+
+
+/** Champs input de la section paiement facturation **/
+const refFacturationInputNomTitulaire: HTMLInputElement = document.getElementById('facturation_nomTitulaire') as HTMLInputElement;
+const refFacturationInputNumeroCarte: HTMLInputElement = document.getElementById('facturation_numeroCarte') as HTMLInputElement;
+const refFacturationInputMoisExpiration: HTMLInputElement = document.getElementById('facturation_moisExpiration') as HTMLInputElement;
+const refFacturationInputAnneeExpiration: HTMLInputElement = document.getElementById('facturation_anneeExpiration') as HTMLInputElement;
+const refFacturationInputCvv: HTMLInputElement = document.getElementById('facturation_cvv') as HTMLInputElement;
 
 
 /** Gestion du step-left **/

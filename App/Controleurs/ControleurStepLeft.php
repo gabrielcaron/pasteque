@@ -33,6 +33,8 @@ class ControleurStepLeft
                 $nombreArticles += $article->getQuantite();
                 $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
             }
+
+
             $compte = Compte::trouverParCourriel($_SESSION['email']);
             $commande = $compte->getCommandesAssocies();
             $facturation = $compte->getCommandesAssocies();

@@ -36,8 +36,6 @@ class App
         if (Panier::trouverParIdSession(session_id())===null) $nouveauProduit->setIdSession(session_id());
         $nouveauProduit->setDateUnix(time());
         Panier::trouverParIdSession(session_id()) === null ? $nouveauProduit->inserer() : $nouveauProduit->mettreAJour();
-
-
     }
 
     /**

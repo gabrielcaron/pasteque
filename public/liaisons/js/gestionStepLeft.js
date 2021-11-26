@@ -1,32 +1,52 @@
 /**
- * TODO - Mettre les champs de recap adresse en const
  * TODO - Faire le INNERHTML sur les champs recaps
  * TODO - Valider les champs
  */
-/** Élément pouvant être en display none pour l'affichage du formulaire step-left **/
+/** Formulaire : Élément pouvant être en display none pour l'affichage du step-left **/
 var refEtapeLivraison = document.getElementById('etapeLivraison');
 var refEtapeFacturation = document.getElementById('etapeFacturation');
 var refEtapeValidation = document.getElementById('etapeValidation');
 var refSectionRecapAdresseFacturation = document.getElementById('sectionRecapAdresseFacturation');
 var refSectionAdresseFacturation = document.getElementById('sectionAdresseFacturation');
 var refSectionPaiementFacturation = document.getElementById('sectionPaiementFacturation');
-/** Champs input de la section adresse livraison **/
+/** Livraison : Champs input de la section adresse **/
 var refLivraisonInputAdresse = document.getElementById('livraison_adresse');
 var refLivraisonInputVille = document.getElementById('livraison_ville');
 var refLivraisonInputProvince = document.getElementById('livraison_province');
 var refLivraisonInputCodePostal = document.getElementById('livraison_codePostal');
 var refLivraisonMemeAdresse = document.getElementById('memeAdresse');
-/** Champs input de la section adresse facturation **/
+/** Facturation : Champs input de la section adresse **/
 var refFacturationInputAdresse = document.getElementById('facturation_adresse');
 var refFacturationInputVille = document.getElementById('facturation_ville');
 var refFacturationInputProvince = document.getElementById('facturation_province');
 var refFacturationInputCodePostal = document.getElementById('facturation_codePostal');
-/** Champs input de la section paiement facturation **/
-var refFacturationInputNomTitulaire = document.getElementById('facturation_nomTitulaire');
+/** Facturation : Champs input de la section paiement **/
+var refFacturationInputTitulaire = document.getElementById('facturation_nomTitulaire');
 var refFacturationInputNumeroCarte = document.getElementById('facturation_numeroCarte');
 var refFacturationInputMoisExpiration = document.getElementById('facturation_moisExpiration');
 var refFacturationInputAnneeExpiration = document.getElementById('facturation_anneeExpiration');
 var refFacturationInputCvv = document.getElementById('facturation_cvv');
+/** Facturation : Paragraphes du recap de l'adresse de facturation **/
+var refFacturationAdresseFacturationRecap = document.getElementById('facturationAdresseFacturation_adresse');
+var refFacturationVilleFacturationRecap = document.getElementById('facturationAdresseFacturation_ville');
+var refFacturationProvinceFacturationRecap = document.getElementById('facturationAdresseFacturation_province');
+var refFacturationCodePostalFacturationRecap = document.getElementById('facturationAdresseFacturation_codePostal');
+/** Validation : Paragraphes du recap de l'adresse de livraison **/
+var refLivraisonAdresseValidationRecap = document.getElementById('livraisonAdresseValidation_adresse');
+var refLivraisonVilleValidationRecap = document.getElementById('livraisonAdresseValidation_ville');
+var refLivraisonProvinceValidationRecap = document.getElementById('livraisonAdresseValidation_province');
+var refLivraisonCodePostalValidationRecap = document.getElementById('livraisonAdresseValidation_codePostal');
+/** Validation : Paragraphes du recap de l'adresse de facturation **/
+var refFacturationAdresseValidationRecap = document.getElementById('facturationAdresseValidation_adresse');
+var refFacturationVilleValidationRecap = document.getElementById('facturationAdresseValidation_ville');
+var refFacturationProvinceValidationRecap = document.getElementById('facturationAdresseValidation_province');
+var refFacturationCodePostalValidationRecap = document.getElementById('facturationAdresseValidation_codePostal');
+/** Validation : Paragraphes du recap du paiement facturation **/
+var refFacturationTitulaireValidationRecap = document.getElementById('paiement_titulaire');
+var refFacturationNumeroCarteValidationRecap = document.getElementById('paiement_numeroCarte');
+var refFacturationMoisExpirationValidationRecap = document.getElementById('paiement_moisExpiration');
+var refFacturationAnneeExpirationValidationRecap = document.getElementById('paiement_anneeExpiration');
+var refFacturationCvvValidationRecap = document.getElementById('paiement_cvv');
 /** Gestion du step-left **/
 var gestionStepLeft = {
     livraisonCompleted: false,
@@ -47,6 +67,11 @@ var gestionStepLeft = {
     /** Continuer de la livraison vers facturation / validation **/
     continuerLivraison: function () {
         gestionStepLeft.remettreAZero();
+        //Validation : Mettre à jour recap adresse Livraison
+        refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
+        refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
+        refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince.value;
+        refLivraisonCodePostalValidationRecap.innerHTML = refLivraisonInputCodePostal.value;
         if (this.livraisonCompleted === false) {
             this.livraisonCompleted = true;
             refEtapeFacturation.style.display = 'block';
@@ -61,28 +86,57 @@ var gestionStepLeft = {
             }
             else {
                 refSectionAdresseFacturation.style.display = 'block';
+                refSectionPaiementFacturation.style.display = 'block';
             }
         }
         else {
             refEtapeValidation.style.display = 'block';
         }
     },
+    /** Continuer de adresse Facturation vers paiement Facturation **/
+    continuerAdresseFacturation: function () {
+        gestionStepLeft.remettreAZero();
+        //Facturation Mettre à jour recap adresse Facturation
+        refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
+        refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
+        refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.value;
+        refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
+        //Validation : Mettre à jour recap adresse Facturation
+        refFacturationAdresseValidationRecap.innerHTML = refFacturationInputAdresse.value;
+        refFacturationVilleValidationRecap.innerHTML = refFacturationInputVille.value;
+        refFacturationProvinceValidationRecap.innerHTML = refFacturationInputProvince.value;
+        refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
+        refEtapeFacturation.style.display = 'block';
+        refSectionRecapAdresseFacturation.style.display = 'block';
+        refSectionPaiementFacturation.style.display = 'block';
+    },
     /** Continuer de facturation vers validation **/
     continuerFacturation: function () {
         gestionStepLeft.remettreAZero();
+        //Validation : Mettre à jour recap paiement Facturation
+        refFacturationTitulaireValidationRecap.innerHTML = refFacturationInputTitulaire.value;
+        refFacturationNumeroCarteValidationRecap.innerHTML = refFacturationInputNumeroCarte.value;
+        refFacturationMoisExpirationValidationRecap.innerHTML = refFacturationInputMoisExpiration.value;
+        refFacturationAnneeExpirationValidationRecap.innerHTML = refFacturationInputAnneeExpiration.value;
+        refFacturationCvvValidationRecap.innerHTML = refFacturationInputCvv.value;
         this.facturationCompleted = true;
         refEtapeValidation.style.display = 'block';
     },
-    /** Modifier une Livraison **/
+    /** Modifier une adresse de Livraison **/
     modifierLivraison: function () {
         gestionStepLeft.remettreAZero();
         refEtapeLivraison.style.display = 'block';
     },
-    /** Modifier Facturation **/
-    modifierFacturation: function () {
+    /** Modifier une adresse de Facturation **/
+    modifierAdresseFacturation: function () {
         gestionStepLeft.remettreAZero();
         refEtapeFacturation.style.display = 'block';
-        refSectionRecapAdresseFacturation.style.display = 'block';
+        refSectionAdresseFacturation.style.display = 'block';
+    },
+    /** Modifier un paiement de Facturation **/
+    modifierPaiementFacturation: function () {
+        gestionStepLeft.remettreAZero();
+        refEtapeFacturation.style.display = 'block';
         refSectionPaiementFacturation.style.display = 'block';
     },
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/
@@ -98,9 +152,15 @@ var gestionStepLeft = {
 /*************************************************************************************
 ************************ Écouteurs d'événements du step-left *************************
 **************************************************************************************/
+//Load
 window.addEventListener('load', function () { gestionStepLeft.initialiser(); });
+//Livraison : Écouteurs d'événements
 document.getElementById('continuerLivraison').addEventListener('click', function () { gestionStepLeft.continuerLivraison(); });
+//Facturation : Écouteurs d'événements
+document.getElementById('continuerAdresseFacturation').addEventListener('click', function () { gestionStepLeft.continuerAdresseFacturation(); });
 document.getElementById('continuerFacturation').addEventListener('click', function () { gestionStepLeft.continuerFacturation(); });
-document.getElementById('modifierAdresseFacturation').addEventListener('click', function () { gestionStepLeft.modifierFacturation(); });
-document.getElementById('modifierAdresseFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierFacturation(); });
+document.getElementById('modifierAdresseFacturation').addEventListener('click', function () { gestionStepLeft.modifierAdresseFacturation(); });
+//Validation : Écouteurs d'événements
 document.getElementById('modifierAdresseLivraisonValidation').addEventListener('click', function () { gestionStepLeft.modifierLivraison(); });
+document.getElementById('modifierAdresseFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierAdresseFacturation(); });
+document.getElementById('modifierPaiementFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierPaiementFacturation(); });

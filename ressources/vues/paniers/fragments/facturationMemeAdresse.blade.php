@@ -27,7 +27,7 @@
             @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-            <button id="">Continuer</button>
+            <button id="continuerAdresseFacturation">Continuer</button>
     </section>
 </section>
 <section id="sectionPaiementFacturation" class="modePaiement">

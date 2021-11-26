@@ -33,7 +33,14 @@
     </section>
     <section>
         <h3>Mode de paiement</h3>
-        <p >Numero de carte</p>
+        <p id="paiement_titulaire">Titulaire</p>
+        <p id="paiement_numeroCarte">Numero Carte</p>
+        <p id="paiement_moisExpiration">Mois expiration</p>
+        <p id="paiement_anneeExpiration">Annee expiration</p>
+        <p id="paiement_cvv">Cvv</p>
+        <button id="modifierPaiementFacturationValidation">Modifier l'adresse de livraison</button>
+
+
     </section>
 </section>
 <section class="validationPanier">

@@ -17,7 +17,7 @@
             @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-        <button id="modifierAdresseFacturation">Modifier l'adresse de facturation</button>
+        <button id="modifierAdresseFacturation" type="button">Modifier l'adresse de facturation</button>
     </section>
     <section id="sectionAdresseFacturation" style="display: none">
         @component('paniers.fragments.adresse')
@@ -27,7 +27,7 @@
             @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-            <button id="continuerAdresseFacturation">Continuer</button>
+            <button id="continuerAdresseFacturation" type="button">Continuer</button>
     </section>
 </section>
 <section id="sectionPaiementFacturation" class="modePaiement">
@@ -39,7 +39,7 @@
         <div class="champ__boite">
             <label for="facturation_nomTitulaire" class="champ__etiquette">Nom du titulaire</label>
             <input class="champ__input" id="facturation_nomTitulaire" name="facturation_nomTitulaire" type="text"
-                   autocomplete="nomTitulaire" required="required" aria-labelledby="messagesNomTitulaire"
+                   autocomplete="nomTitulaire" aria-labelledby="messagesNomTitulaire"
                    pattern="^[a-zA-Z-_]{2,}$" min="2" />
         </div>
         <div id="messagesNomTitulaire" class="champ__messages">
@@ -50,7 +50,7 @@
         <div class="champ__boite">
             <label for="facturation_numeroCarte" class="champ__etiquette">Numéro de la carte</label>
             <input class="champ__input" id="facturation_numeroCarte" name="facturation_numeroCarte" type="text"
-                   autocomplete="numeroCarte" required="required" aria-labelledby="messagesNumeroCarte"
+                   autocomplete="numeroCarte" ria-labelledby="messagesNumeroCarte"
                    pattern="^[a-zA-Z-_]{2,}$" min="2" />
         </div>
         <div id="messagesNumeroCarte" class="champ__messages">

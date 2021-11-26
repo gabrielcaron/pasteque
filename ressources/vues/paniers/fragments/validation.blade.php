@@ -15,7 +15,7 @@
             @slot('provinceChoisi') @if($commande !== null) {{$commande->getProvinceId()}} @endif @endslot
             @slot('codePostal') @if($commande !== null) {{$commande->getCodePostal()}} @endif @endslot
         @endcomponent
-        <button id="modifierAdresseLivraisonValidation">Modifier l'adresse de livraison</button>
+        <button id="modifierAdresseLivraisonValidation" type="button">Modifier l'adresse de livraison</button>
     </section>
 </section>
 <section id="validationAdressePaiement" class="validationAdressePaiement">
@@ -29,7 +29,7 @@
             @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-        <button id="modifierAdresseFacturationValidation">Modifier l'adresse de livraison</button>
+        <button id="modifierAdresseFacturationValidation" type="button">Modifier l'adresse de facturation</button>
     </section>
     <section>
         <h3>Mode de paiement</h3>
@@ -38,9 +38,7 @@
         <p id="paiement_moisExpiration">Mois expiration</p>
         <p id="paiement_anneeExpiration">Annee expiration</p>
         <p id="paiement_cvv">Cvv</p>
-        <button id="modifierPaiementFacturationValidation">Modifier l'adresse de livraison</button>
-
-
+        <button id="modifierPaiementFacturationValidation" type="button">Modifier le mode de paiement</button>
     </section>
 </section>
 <section class="validationPanier">

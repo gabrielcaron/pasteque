@@ -2,7 +2,7 @@
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}__adresse" class="champ__etiquette">Adresse</label>
         <input class="champ__input" id="{{$livraisonOuFacturation}}_adresse" name="{{$livraisonOuFacturation}}_adresse" type="text"
-               autocomplete="adresse" required="required" aria-labelledby="{{$livraisonOuFacturation}}_messagesAdresse"
+               autocomplete="adresse" aria-labelledby="{{$livraisonOuFacturation}}_messagesAdresse"
                pattern="^[a-zA-Z-_]{2,}$" min="2" value="{{$adresse}}"/>
     </div>
     <div id="{{$livraisonOuFacturation}}_messagesAdresse" class="champ__messages">
@@ -13,7 +13,7 @@
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}_ville" class="champ__etiquette">Ville</label>
         <input class="champ__input" id="{{$livraisonOuFacturation}}_ville" name="{{$livraisonOuFacturation}}_ville" type="text"
-               autocomplete="ville" required="required" aria-labelledby="{{$livraisonOuFacturation}}_messagesVille"
+               autocomplete="ville" aria-labelledby="{{$livraisonOuFacturation}}_messagesVille"
                pattern="^[a-zA-Z-_]{2,}$" min="2" value="{{$ville}}" />
     </div>
     <div id="{{$livraisonOuFacturation}}_messagesVille" class="champ__messages">

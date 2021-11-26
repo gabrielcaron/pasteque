@@ -1,5 +1,4 @@
 /**
- * TODO - Faire le INNERHTML sur les champs recaps
  * TODO - Valider les champs
  */
 /** Formulaire : Élément pouvant être en display none pour l'affichage du step-left **/
@@ -58,39 +57,46 @@ var gestionStepLeft = {
             refEtapeLivraison.style.display = 'block';
         }
         else if (refFacturationInputAdresse.value === '') {
+            this.livraisonCompleted = true;
             refEtapeFacturation.style.display = 'block';
         }
         else {
             refEtapeValidation.style.display = 'block';
+            this.livraisonCompleted = true;
+            this.facturationCompleted = true;
         }
     },
     /** Continuer de la livraison vers facturation / validation **/
     continuerLivraison: function () {
         gestionStepLeft.remettreAZero();
         //Validation : Mettre à jour recap adresse Livraison
-        console.log(refLivraisonAdresseValidationRecap);
         refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
         refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
         refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince.value;
         refLivraisonCodePostalValidationRecap.innerHTML = refLivraisonInputCodePostal.value;
-        console.log('apres');
+        if (refLivraisonMemeAdresse.checked === true) {
+            //Adresse identique
+            refFacturationInputAdresse.value = refLivraisonInputAdresse.value;
+            refFacturationInputVille.value = refLivraisonInputVille.value;
+            refFacturationInputProvince.value = refLivraisonInputProvince.value;
+            refFacturationInputCodePostal.value = refLivraisonInputCodePostal.value;
+            //Facturation Mettre à jour recap adresse Facturation
+            refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
+            refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
+            refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.value;
+            refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
+            //Validation : Mettre à jour recap adresse Facturation
+            refFacturationAdresseValidationRecap.innerHTML = refFacturationInputAdresse.value;
+            refFacturationVilleValidationRecap.innerHTML = refFacturationInputVille.value;
+            refFacturationProvinceValidationRecap.innerHTML = refFacturationInputProvince.value;
+            refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
+        }
         if (this.livraisonCompleted === false) {
             this.livraisonCompleted = true;
             refEtapeFacturation.style.display = 'block';
             if (refLivraisonMemeAdresse.checked === true) {
                 refSectionRecapAdresseFacturation.style.display = 'block';
                 refSectionPaiementFacturation.style.display = 'block';
-                //Adresse identique
-                refFacturationInputAdresse.value = refLivraisonInputAdresse.value;
-                refFacturationInputVille.value = refLivraisonInputVille.value;
-                refFacturationInputProvince.value = refLivraisonInputProvince.value;
-                refFacturationInputCodePostal.value = refLivraisonInputCodePostal.value;
-                //Facturation Mettre à jour recap adresse Facturation
-                console.log(refFacturationAdresseFacturationRecap);
-                refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
-                refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
-                refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.value;
-                refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
             }
             else {
                 refSectionAdresseFacturation.style.display = 'block';
@@ -114,9 +120,14 @@ var gestionStepLeft = {
         refFacturationVilleValidationRecap.innerHTML = refFacturationInputVille.value;
         refFacturationProvinceValidationRecap.innerHTML = refFacturationInputProvince.value;
         refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
-        refEtapeFacturation.style.display = 'block';
-        refSectionRecapAdresseFacturation.style.display = 'block';
-        refSectionPaiementFacturation.style.display = 'block';
+        if (this.facturationCompleted === false) {
+            refEtapeFacturation.style.display = 'block';
+            refSectionRecapAdresseFacturation.style.display = 'block';
+            refSectionPaiementFacturation.style.display = 'block';
+        }
+        else {
+            refEtapeValidation.style.display = 'block';
+        }
     },
     /** Continuer de facturation vers validation **/
     continuerFacturation: function () {
@@ -145,6 +156,7 @@ var gestionStepLeft = {
     modifierPaiementFacturation: function () {
         gestionStepLeft.remettreAZero();
         refEtapeFacturation.style.display = 'block';
+        refSectionRecapAdresseFacturation.style.display = 'block';
         refSectionPaiementFacturation.style.display = 'block';
     },
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/

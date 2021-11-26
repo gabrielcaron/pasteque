@@ -27,20 +27,20 @@ var refFacturationInputMoisExpiration = document.getElementById('facturation_moi
 var refFacturationInputAnneeExpiration = document.getElementById('facturation_anneeExpiration');
 var refFacturationInputCvv = document.getElementById('facturation_cvv');
 /** Facturation : Paragraphes du recap de l'adresse de facturation **/
-var refFacturationAdresseFacturationRecap = document.getElementById('facturationAdresseFacturation_adresse');
-var refFacturationVilleFacturationRecap = document.getElementById('facturationAdresseFacturation_ville');
-var refFacturationProvinceFacturationRecap = document.getElementById('facturationAdresseFacturation_province');
-var refFacturationCodePostalFacturationRecap = document.getElementById('facturationAdresseFacturation_codePostal');
+var refFacturationAdresseFacturationRecap = document.getElementById('facturationAdresseFacturation_recapAdresse');
+var refFacturationVilleFacturationRecap = document.getElementById('facturationAdresseFacturation_recapVille');
+var refFacturationProvinceFacturationRecap = document.getElementById('facturationAdresseFacturation_recapProvince');
+var refFacturationCodePostalFacturationRecap = document.getElementById('facturationAdresseFacturation_recapCodePostal');
 /** Validation : Paragraphes du recap de l'adresse de livraison **/
-var refLivraisonAdresseValidationRecap = document.getElementById('livraisonAdresseValidation_adresse');
-var refLivraisonVilleValidationRecap = document.getElementById('livraisonAdresseValidation_ville');
-var refLivraisonProvinceValidationRecap = document.getElementById('livraisonAdresseValidation_province');
-var refLivraisonCodePostalValidationRecap = document.getElementById('livraisonAdresseValidation_codePostal');
+var refLivraisonAdresseValidationRecap = document.getElementById('livraisonAdresseValidation_recapAdresse');
+var refLivraisonVilleValidationRecap = document.getElementById('livraisonAdresseValidation_recapVille');
+var refLivraisonProvinceValidationRecap = document.getElementById('livraisonAdresseValidation_recapProvince');
+var refLivraisonCodePostalValidationRecap = document.getElementById('livraisonAdresseValidation_recapCodePostal');
 /** Validation : Paragraphes du recap de l'adresse de facturation **/
-var refFacturationAdresseValidationRecap = document.getElementById('facturationAdresseValidation_adresse');
-var refFacturationVilleValidationRecap = document.getElementById('facturationAdresseValidation_ville');
-var refFacturationProvinceValidationRecap = document.getElementById('facturationAdresseValidation_province');
-var refFacturationCodePostalValidationRecap = document.getElementById('facturationAdresseValidation_codePostal');
+var refFacturationAdresseValidationRecap = document.getElementById('facturationAdresseValidation_recapAdresse');
+var refFacturationVilleValidationRecap = document.getElementById('facturationAdresseValidation_recapVille');
+var refFacturationProvinceValidationRecap = document.getElementById('facturationAdresseValidation_recapProvince');
+var refFacturationCodePostalValidationRecap = document.getElementById('facturationAdresseValidation_recapCodePostal');
 /** Validation : Paragraphes du recap du paiement facturation **/
 var refFacturationTitulaireValidationRecap = document.getElementById('paiement_titulaire');
 var refFacturationNumeroCarteValidationRecap = document.getElementById('paiement_numeroCarte');
@@ -68,10 +68,12 @@ var gestionStepLeft = {
     continuerLivraison: function () {
         gestionStepLeft.remettreAZero();
         //Validation : Mettre à jour recap adresse Livraison
+        console.log(refLivraisonAdresseValidationRecap);
         refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
         refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
         refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince.value;
         refLivraisonCodePostalValidationRecap.innerHTML = refLivraisonInputCodePostal.value;
+        console.log('apres');
         if (this.livraisonCompleted === false) {
             this.livraisonCompleted = true;
             refEtapeFacturation.style.display = 'block';
@@ -83,6 +85,12 @@ var gestionStepLeft = {
                 refFacturationInputVille.value = refLivraisonInputVille.value;
                 refFacturationInputProvince.value = refLivraisonInputProvince.value;
                 refFacturationInputCodePostal.value = refLivraisonInputCodePostal.value;
+                //Facturation Mettre à jour recap adresse Facturation
+                console.log(refFacturationAdresseFacturationRecap);
+                refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
+                refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
+                refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.value;
+                refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
             }
             else {
                 refSectionAdresseFacturation.style.display = 'block';

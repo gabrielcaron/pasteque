@@ -35,24 +35,24 @@ const refFacturationInputAnneeExpiration: HTMLInputElement = document.getElement
 const refFacturationInputCvv: HTMLInputElement = document.getElementById('facturation_cvv') as HTMLInputElement;
 
 /** Facturation : Paragraphes du recap de l'adresse de facturation **/
-const refFacturationAdresseFacturationRecap: HTMLElement = document.getElementById('facturationAdresseFacturation_adresse') as HTMLElement;
-const refFacturationVilleFacturationRecap: HTMLElement = document.getElementById('facturationAdresseFacturation_ville') as HTMLElement;
-const refFacturationProvinceFacturationRecap: HTMLElement = document.getElementById('facturationAdresseFacturation_province') as HTMLElement;
-const refFacturationCodePostalFacturationRecap: HTMLElement = document.getElementById('facturationAdresseFacturation_codePostal') as HTMLElement;
+const refFacturationAdresseFacturationRecap: HTMLElement = document.getElementById('facturationAdresseFacturation_recapAdresse') as HTMLElement;
+const refFacturationVilleFacturationRecap: HTMLElement = document.getElementById('facturationAdresseFacturation_recapVille') as HTMLElement;
+const refFacturationProvinceFacturationRecap: HTMLElement = document.getElementById('facturationAdresseFacturation_recapProvince') as HTMLElement;
+const refFacturationCodePostalFacturationRecap: HTMLElement = document.getElementById('facturationAdresseFacturation_recapCodePostal') as HTMLElement;
 
 
 /** Validation : Paragraphes du recap de l'adresse de livraison **/
-const refLivraisonAdresseValidationRecap: HTMLElement = document.getElementById('livraisonAdresseValidation_adresse') as HTMLElement;
-const refLivraisonVilleValidationRecap: HTMLElement = document.getElementById('livraisonAdresseValidation_ville') as HTMLElement;
-const refLivraisonProvinceValidationRecap: HTMLElement = document.getElementById('livraisonAdresseValidation_province') as HTMLElement;
-const refLivraisonCodePostalValidationRecap: HTMLElement = document.getElementById('livraisonAdresseValidation_codePostal') as HTMLElement;
+const refLivraisonAdresseValidationRecap: HTMLElement = document.getElementById('livraisonAdresseValidation_recapAdresse') as HTMLElement;
+const refLivraisonVilleValidationRecap: HTMLElement = document.getElementById('livraisonAdresseValidation_recapVille') as HTMLElement;
+const refLivraisonProvinceValidationRecap: HTMLElement = document.getElementById('livraisonAdresseValidation_recapProvince') as HTMLElement;
+const refLivraisonCodePostalValidationRecap: HTMLElement = document.getElementById('livraisonAdresseValidation_recapCodePostal') as HTMLElement;
 
 
 /** Validation : Paragraphes du recap de l'adresse de facturation **/
-const refFacturationAdresseValidationRecap: HTMLElement = document.getElementById('facturationAdresseValidation_adresse') as HTMLElement;
-const refFacturationVilleValidationRecap: HTMLElement = document.getElementById('facturationAdresseValidation_ville') as HTMLElement;
-const refFacturationProvinceValidationRecap: HTMLElement = document.getElementById('facturationAdresseValidation_province') as HTMLElement;
-const refFacturationCodePostalValidationRecap: HTMLElement = document.getElementById('facturationAdresseValidation_codePostal') as HTMLElement;
+const refFacturationAdresseValidationRecap: HTMLElement = document.getElementById('facturationAdresseValidation_recapAdresse') as HTMLElement;
+const refFacturationVilleValidationRecap: HTMLElement = document.getElementById('facturationAdresseValidation_recapVille') as HTMLElement;
+const refFacturationProvinceValidationRecap: HTMLElement = document.getElementById('facturationAdresseValidation_recapProvince') as HTMLElement;
+const refFacturationCodePostalValidationRecap: HTMLElement = document.getElementById('facturationAdresseValidation_recapCodePostal') as HTMLElement;
 
 /** Validation : Paragraphes du recap du paiement facturation **/
 const refFacturationTitulaireValidationRecap: HTMLElement = document.getElementById('paiement_titulaire') as HTMLElement;
@@ -86,10 +86,12 @@ let gestionStepLeft = {
         gestionStepLeft.remettreAZero();
 
         //Validation : Mettre à jour recap adresse Livraison
+        console.log(refLivraisonAdresseValidationRecap)
         refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
         refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
         refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince.value;
         refLivraisonCodePostalValidationRecap.innerHTML = refLivraisonInputCodePostal.value;
+        console.log('apres');
 
 
         if (this.livraisonCompleted === false) {
@@ -104,6 +106,13 @@ let gestionStepLeft = {
                 refFacturationInputVille.value = refLivraisonInputVille.value;
                 refFacturationInputProvince.value = refLivraisonInputProvince.value;
                 refFacturationInputCodePostal.value = refLivraisonInputCodePostal.value;
+
+                //Facturation Mettre à jour recap adresse Facturation
+                console.log(refFacturationAdresseFacturationRecap)
+                refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
+                refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
+                refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.value;
+                refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
             }
             else {
                 refSectionAdresseFacturation.style.display = 'block';

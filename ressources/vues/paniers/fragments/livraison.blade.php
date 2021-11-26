@@ -12,11 +12,11 @@
         @slot('provinceChoisi') @if($commande !== null) {{$commande->getProvinceId()}} @endif @endslot
         @slot('codePostal') @if($commande !== null) {{$commande->getCodePostal()}} @endif @endslot
     @endcomponent
-        <div id="{{$livraisonOuFacturation}}_champCodePostal" class="champ champ--lg">
-            <div class="champ__boite">
-                <label for="{{$livraisonOuFacturation}}_codePostal" class="champ__etiquette">Code Postal</label>
-                <input class="champ__input" id="memeAdresse" name="memeAdresse" type="checkbox"
+        <div id="champ__memeAdresse" class="">
+            <div class="">
+                <input class="" id="memeAdresse" name="memeAdresse" type="checkbox"
                        @if($commande !== null && $facturation !== null && $commande === $facturation) checked @endif/>
+                <label for="memeAdresse" class="">L'adresse de Facturation est la même que l'adresse de livraison</label>
             </div>
         </div>
 </section>

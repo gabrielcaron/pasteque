@@ -17,7 +17,7 @@
             @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-        <button id="modifierAdresseFacturation">Modifier l'adresse de livraison</button>
+        <button id="modifierAdresseFacturation">Modifier l'adresse de facturation</button>
     </section>
     <section id="sectionAdresseFacturation" style="display: none">
         @component('paniers.fragments.adresse')

@@ -93,4 +93,41 @@ class Adresse
         $result = $requetePreparee->fetch();
         return $result === false ? null : $result;
     }
+
+    /**
+     * Méthode pour insérer une adresse dans la table adresses
+     */
+    public function inserer():void {
+        // Définir la chaine SQL
+        $chaineSQL = 'INSERT INTO adresses (adresse, ville, province_id, code_postal) VALUES (:adresse, :ville, :province_id, :code_postal)';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':adresse', $this->adresse, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':ville', $this->ville, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':province_id', $this->province_id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':code_postal', $this->code_postal, PDO::PARAM_STR);
+        // Exécuter la requête
+        $requetePreparee->execute();
+    }
+
+    /**
+     * Méthode pour mettre à jour une adresse dans la table adresses
+     */
+    public function mettreAJour():void
+    {
+
+        // Définir la chaine SQL
+        $chaineSQL = 'UPDATE adresses SET adresse=:adresse, ville=:ville, province_id=:province_id, code_postal=:code_postal WHERE id=:id';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':adresse', $this->adresse, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':ville', $this->ville, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':province_id', $this->province_id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':code_postal', $this->code_postal, PDO::PARAM_STR);
+        // Exécuter la requête
+        $requetePreparee->execute();
+    }
 }

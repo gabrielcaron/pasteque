@@ -61,9 +61,18 @@ class ControleurStepLeft
         var_dump($_POST);
 
         $ancienCommande = $_POST['commande_id'] !== '' ? Commande::trouverParId(intval($_POST['commande_id'])) : null;
-        $ancienLivraison = $_POST['livraison_id'] !== '' ? Adresse::trouverParId(intval($_POST['livraison_id'])) : null;
+        $ancienLivraison = $_POST['livraison_id'] !== '' ? Adresse::trouverParId(intval($_POST['livraison_id'])) : new Adresse();
         $ancienFacturation = $_POST['facturation_id'] !== '' ? Adresse::trouverParId(intval($_POST['livraison_id'])) : null;
         $ancienPaiement = $_POST['paiement_id'] !== '' ? Paiement::trouverParId(intval($_POST['paiement_id'])) : null;
+
+        if ($_POST['livraison_id'] === ''|| ($ancienLivraison->getAdresse() !== $_POST['livraison_adresse'] || $ancienLivraison->getVille() || $ancienLivraison->getProvinceId() || $ancienLivraison->getCodePostal())) {
+            if ($_POST['livraison_id'] === ''|| $ancienLivraison->getAdresse() !== $_POST['livraison_adresse']) $ancienLivraison->setAdresse($_POST['livraison_adresse']);
+            if ($_POST['livraison_id'] === ''|| $ancienLivraison->getVille() !== $_POST['livraison_ville']) $ancienLivraison->setVille($_POST['livraison_ville']);
+            if ($_POST['livraison_id'] === ''|| $ancienLivraison->getProvinceId() !== $_POST['livraison_province']) $ancienLivraison->setProvinceId(intval($_POST['livraison_province']));
+            if ($_POST['livraison_id'] === ''|| $ancienLivraison->getCodePostal() !== $_POST['livraison_codePostal']) $ancienLivraison->setCodePostal($_POST['livraison_codePostal']);
+            $_POST['livraison_id'] === '' ? $ancienLivraison->inserer() : $ancienLivraison->mettreAJour();
+        }
+
 
 
 

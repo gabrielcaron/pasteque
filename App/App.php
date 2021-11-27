@@ -209,6 +209,9 @@ class App
                 case 'debuterStepLeft':
                     $this->monControleur->debuterStepLeft();
                     break;
+                case 'inserer':
+                    $this->monControleur->inserer();
+                    break;
                 default:
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();

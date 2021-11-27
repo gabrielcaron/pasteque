@@ -201,6 +201,16 @@ let gestionStepLeft = {
         refSectionAdresseFacturation.style.display = 'none';
         refSectionPaiementFacturation.style.display = 'none';
     },
+
+    envoyerFormulaire() {
+        refEtapeLivraison.style.display = 'block';
+        refEtapeFacturation.style.display = 'block';
+        refEtapeValidation.style.display = 'block';
+        refSectionRecapAdresseFacturation.style.display = 'block';
+        refSectionAdresseFacturation.style.display = 'block';
+        refSectionPaiementFacturation.style.display = 'block';
+        console.log('envoyer')
+    }
 }
 
 /*************************************************************************************
@@ -221,3 +231,5 @@ document.getElementById('modifierAdresseFacturation').addEventListener('click', 
 document.getElementById('modifierAdresseLivraisonValidation').addEventListener('click', function (){gestionStepLeft.modifierLivraison()});
 document.getElementById('modifierAdresseFacturationValidation').addEventListener('click', function (){gestionStepLeft.modifierAdresseFacturation()});
 document.getElementById('modifierPaiementFacturationValidation').addEventListener('click', function (){gestionStepLeft.modifierPaiementFacturation()});
+
+//document.getElementById('envoyerFormulaireStepLeft').addEventListener('click', function (){gestionStepLeft.envoyerFormulaire()});

@@ -67,12 +67,16 @@ class Commande
         $this->date_unix_commande = $unDateUnixCommande;
     }
 
-    public function getLivraisonAdresseAssocie():Adresse {
+    public function getLivraisonAdresseAssocie():?Adresse {
         return Adresse::trouverParId($this->livraison_adresse_id);
     }
 
-    public function getFacturationAdresseAssocie():Adresse {
+    public function getFacturationAdresseAssocie():?Adresse {
         return Adresse::trouverParId($this->facturation_adresse_id);
+    }
+
+    public function getPaiementAssocie():?Paiement {
+        return Paiement::trouverParId($this->paiement_id);
     }
 
     /*// $nombre_commande : Getter et setter
@@ -113,6 +117,27 @@ class Commande
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
         $requetePreparee->bindParam(':compteId', $compteId, PDO::PARAM_INT);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Commande');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $result = $requetePreparee->fetch();
+        return $result === false ? null : $result;
+    }
+
+    /**
+     * Méthode pour trouver la commande avec un id
+     * @param int $commandeId - Une commande id
+     * @return ?Commande - La commande
+     */
+    public static function trouverParId(int $commandeId):?Commande {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT * FROM commandes WHERE id = :commandeId';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':commandeId', $commandeId, PDO::PARAM_INT);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Commande');
         // Exécuter la requête

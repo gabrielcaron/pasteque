@@ -1,3 +1,4 @@
+<input id="{{$livraisonOuFacturation}}_id" name="{{$livraisonOuFacturation}}_id" type="hidden" value="{{$id}}"/>
 <div id="{{$livraisonOuFacturation}}_champAdresse" class="champ champ--lg">
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}__adresse" class="champ__etiquette">Adresse</label>

@@ -7,6 +7,7 @@
 <section id="sectionAdresseLivraison">
     @component('paniers.fragments.adresse')
         @slot('livraisonOuFacturation') livraison @endslot
+        @slot('id') @if($livraison !== null) {{$livraison->getId()}} @endif @endslot
         @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot
         @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot
         @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceId()}} @endif @endslot

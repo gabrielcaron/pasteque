@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace App\Controleurs;
 use App\App;
+use App\Modeles\Adresse;
 use App\Modeles\Commande;
 use App\Modeles\Compte;
+use App\Modeles\Paiement;
 use App\Modeles\Panier;
 use App\Modeles\Province;
 
@@ -41,15 +43,30 @@ class ControleurStepLeft
             if($commande !== null){
                 $livraison = $commande->getLivraisonAdresseAssocie();
                 $facturation = $commande->getFacturationAdresseAssocie();
-                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte, "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "provinces"=>$provinces, "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
+                $paiement = $commande->getPaiementAssocie();
+                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte, "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces, "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
             }
             else{
                 $livraison = null;
                 $facturation = null;
-                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte, "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "provinces"=>$provinces, "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
+                $paiement = null;
+                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte, "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces, "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
             }
             echo App::getBlade()->run("paniers.formulaireCommande",$tDonnees);
         }
+    }
+
+    public function inserer():void {
+
+        var_dump($_POST);
+
+        $ancienCommande = $_POST['commande_id'] !== '' ? Commande::trouverParId(intval($_POST['commande_id'])) : null;
+        $ancienLivraison = $_POST['livraison_id'] !== '' ? Adresse::trouverParId(intval($_POST['livraison_id'])) : null;
+        $ancienFacturation = $_POST['facturation_id'] !== '' ? Adresse::trouverParId(intval($_POST['livraison_id'])) : null;
+        $ancienPaiement = $_POST['paiement_id'] !== '' ? Paiement::trouverParId(intval($_POST['paiement_id'])) : null;
+
+
+
 
     }
 }

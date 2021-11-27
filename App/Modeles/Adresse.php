@@ -95,6 +95,33 @@ class Adresse
     }
 
     /**
+     * Méthode pour trouver l'adresse id par tout les champs
+     * @param string $unAdresse - Une adresse
+     * @param string $unVille - Une ville
+     * @param int $unProvinceId - Une province
+     * @param string $unCodePostal - Un code postal
+     * @return string - Le id
+     */
+    public static function trouverParTousLesChamps(string $unAdresse, string $unVille, int $unProvinceId, string $unCodePostal):string {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT id AS id FROM adresses WHERE adresse = :adresse AND ville = :ville AND province_id = :province_id AND code_postal = :code_postal';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':adresse', $unAdresse, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':ville', $unVille, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':province_id', $unProvinceId, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':code_postal', $unCodePostal, PDO::PARAM_STR);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $result = $requetePreparee->fetch();
+        return $result->id;
+    }
+
+    /**
      * Méthode pour insérer une adresse dans la table adresses
      */
     public function inserer():void {

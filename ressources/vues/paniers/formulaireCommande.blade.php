@@ -15,6 +15,7 @@
         </nav>
         <form id="form" name="inscription" class="form" method="POST" action="index.php?controleur=stepLeft&action=inserer" novalidate>
             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"></div>
+            <input id="compte_id" name="compte_id" type="hidden" value="@if($compte !== null){{$compte->getId()}}@endif"/>
             <input id="commande_id" name="commande_id" type="hidden" value="@if($commande !== null){{$commande->getId()}}@endif"/>
             <fieldset id="etapeLivraison" class="form__etape" data-etape="identification" tabindex="-1" style="display: none"
                       aria-labelledby="titreIdentification">

@@ -52,7 +52,7 @@
         <div class="champ__boite">
             <label for="facturation_numeroCarte" class="champ__etiquette">Numéro de la carte</label>
             <input class="champ__input" id="facturation_numeroCarte" name="facturation_numeroCarte" type="number"
-                   autocomplete="numeroCarte" ria-labelledby="messagesNumeroCarte"
+                   autocomplete="numeroCarte" aria-labelledby="messagesNumeroCarte"
                    pattern="^[a-zA-Z-_]{2,}$" min="2" value="@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif"/>
         </div>
         <div id="messagesNumeroCarte" class="champ__messages">

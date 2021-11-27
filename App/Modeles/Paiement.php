@@ -52,7 +52,7 @@ class Paiement
     }
 
     // $annee_expiration : Getter et setter
-    public function getAnneExpiration():int {
+    public function getAnneeExpiration():int {
         return $this->annee_expiration;
     }
     public function setAnneeExpiration(int $unAnneeExpiration):void {
@@ -105,5 +105,73 @@ class Paiement
         // Récupérer une seule occurrence à la fois
         $result = $requetePreparee->fetch();
         return $result === false ? null : $result;
+    }
+
+    /**
+     * Méthode pour trouver le paiement id par tout les champs
+     * @param string $unTitulaire - Un titulaire
+     * @param int $unNumeroCarte - Un numéro de carte
+     * @param int $unMoisExpiration - Un mois d'expiration
+     * @param int $unAnneeExpiration - Une année d'expiration
+     * @param int $unCvv - Un cvv
+     * @return string - Le id
+     */
+    public static function trouverParTousLesChamps(string $unTitulaire, int $unNumeroCarte, int $unMoisExpiration, int $unAnneeExpiration, int $unCvv):string {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT id AS id FROM paiements WHERE titulaire = :titulaire AND numero_carte = :numero_carte AND mois_expiration = :mois_expiration AND annee_expiration = :annee_expiration AND cvv = :cvv';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':titulaire', $unTitulaire, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':numero_carte', $unNumeroCarte, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':mois_expiration', $unMoisExpiration, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':annee_expiration', $unAnneeExpiration, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':cvv', $unCvv, PDO::PARAM_INT);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        $result = $requetePreparee->fetch();
+        return $result->id;
+    }
+
+    /**
+     * Méthode pour insérer un paiement dans la table adresses
+     */
+    public function inserer():void {
+        // Définir la chaine SQL
+        $chaineSQL = 'INSERT INTO paiements (titulaire, numero_carte, mois_expiration, annee_expiration, cvv) VALUES (:titulaire, :numero_carte, :mois_expiration, :annee_expiration, :cvv)';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':titulaire', $this->titulaire, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':numero_carte', $this->numero_carte, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':mois_expiration', $this->mois_expiration, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':annee_expiration', $this->annee_expiration, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':cvv', $this->cvv, PDO::PARAM_INT);
+        // Exécuter la requête
+        $requetePreparee->execute();
+    }
+
+    /**
+     * Méthode pour mettre à jour un paiement dans la table adresses
+     */
+    public function mettreAJour():void
+    {
+
+        // Définir la chaine SQL
+        $chaineSQL = 'UPDATE paiements SET titulaire=:titulaire, numero_carte=:numero_carte, mois_expiration=:mois_expiration, annee_expiration=:annee_expiration, cvv=:cvv WHERE id=:id';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':titulaire', $this->titulaire, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':numero_carte', $this->numero_carte, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':mois_expiration', $this->mois_expiration, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':annee_expiration', $this->annee_expiration, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':cvv', $this->cvv, PDO::PARAM_INT);
+        // Exécuter la requête
+        $requetePreparee->execute();
     }
 }

@@ -146,4 +146,22 @@ class Commande
         $result = $requetePreparee->fetch();
         return $result === false ? null : $result;
     }
+
+    /**
+     * Méthode pour insérer une commande dans la table commande
+     */
+    public function inserer():void {
+        // Définir la chaine SQL
+        $chaineSQL = 'INSERT INTO commandes (livraison_adresse_id, facturation_adresse_id, paiement_id, compte_id, date_unix_commande) VALUES (:livraison_adresse_id, :facturation_adresse_id, :paiement_id, :compte_id, :date_unix_commande)';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':livraison_adresse_id', $this->livraison_adresse_id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':facturation_adresse_id', $this->facturation_adresse_id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':paiement_id', $this->paiement_id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':compte_id', $this->compte_id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':date_unix_commande', $this->date_unix_commande, PDO::PARAM_INT);
+        // Exécuter la requête
+        $requetePreparee->execute();
+    }
 }

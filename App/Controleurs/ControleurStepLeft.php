@@ -58,12 +58,15 @@ class ControleurStepLeft
 
     public function inserer():void {
 
+        /**
+         * TODO - Vérifier si la personne est connecter avec un compte valide et que le compte_id est valide dans le formulaire aussi
+         */
         var_dump($_POST);
 
-        $ancienCommande = $_POST['commande_id'] !== '' ? Commande::trouverParId(intval($_POST['commande_id'])) : null;
+
         $ancienLivraison = $_POST['livraison_id'] !== '' ? Adresse::trouverParId(intval($_POST['livraison_id'])) : new Adresse();
         $ancienFacturation = $_POST['facturation_id'] !== '' ? Adresse::trouverParId(intval($_POST['livraison_id'])) : new Adresse();
-        $ancienPaiement = $_POST['paiement_id'] !== '' ? Paiement::trouverParId(intval($_POST['paiement_id'])) : null;
+        $ancienPaiement = $_POST['paiement_id'] !== '' ? Paiement::trouverParId(intval($_POST['paiement_id'])) : new Paiement();
 
         if ($_POST['livraison_id'] === ''|| ($ancienLivraison->getAdresse() !== $_POST['livraison_adresse'] || $ancienLivraison->getVille() || $ancienLivraison->getProvinceId() || $ancienLivraison->getCodePostal())) {
             if ($_POST['livraison_id'] === ''|| $ancienLivraison->getAdresse() !== $_POST['livraison_adresse']) $ancienLivraison->setAdresse($_POST['livraison_adresse']);
@@ -74,15 +77,33 @@ class ControleurStepLeft
         }
 
         if ($_POST['facturation_id'] === ''|| ($ancienFacturation->getAdresse() !== $_POST['facturation_id'] || $ancienFacturation->getVille() || $ancienFacturation->getProvinceId() || $ancienFacturation->getCodePostal())) {
-            if ($_POST['facturation_adresse'] === ''|| $ancienFacturation->getAdresse() !== $_POST['facturation_adresse']) $ancienFacturation->setAdresse($_POST['facturation_adresse']);
-            if ($_POST['facturation_ville'] === ''|| $ancienFacturation->getVille() !== $_POST['facturation_ville']) $ancienFacturation->setVille($_POST['facturation_ville']);
-            if ($_POST['facturation_province'] === ''|| $ancienFacturation->getProvinceId() !== $_POST['facturation_province']) $ancienFacturation->setProvinceId(intval($_POST['facturation_province']));
-            if ($_POST['facturation_codePostal'] === ''|| $ancienFacturation->getCodePostal() !== $_POST['facturation_codePostal']) $ancienFacturation->setCodePostal($_POST['facturation_codePostal']);
+            if ($_POST['facturation_id'] === ''|| $ancienFacturation->getAdresse() !== $_POST['facturation_adresse']) $ancienFacturation->setAdresse($_POST['facturation_adresse']);
+            if ($_POST['facturation_id'] === ''|| $ancienFacturation->getVille() !== $_POST['facturation_ville']) $ancienFacturation->setVille($_POST['facturation_ville']);
+            if ($_POST['facturation_id'] === ''|| $ancienFacturation->getProvinceId() !== $_POST['facturation_province']) $ancienFacturation->setProvinceId(intval($_POST['facturation_province']));
+            if ($_POST['facturation_id'] === ''|| $ancienFacturation->getCodePostal() !== $_POST['facturation_codePostal']) $ancienFacturation->setCodePostal($_POST['facturation_codePostal']);
             $_POST['facturation_id'] === '' ? $ancienFacturation->inserer() : $ancienFacturation->mettreAJour();
         }
 
+        if ($_POST['paiement_id'] === ''|| ($ancienPaiement->getTitulaire() !== $_POST['facturation_nomTitulaire'] || $ancienPaiement->getNumeroCarte() !== $_POST['facturation_numeroCarte'] || $ancienPaiement->getMoisExpiration() !== $_POST['facturation_moisExpiration'] || $ancienPaiement->getAnneeExpiration() !== $_POST['facturation_anneeExpiration']|| $ancienPaiement->getCvv() !== $_POST['facturation_cvv'])) {
+            if ($_POST['paiement_id'] === ''|| $ancienPaiement->getTitulaire() !== $_POST['facturation_nomTitulaire']) $ancienPaiement->setTitulaire($_POST['facturation_nomTitulaire']);
+            if ($_POST['paiement_id'] === ''|| $ancienPaiement->getNumeroCarte() !== $_POST['facturation_numeroCarte']) $ancienPaiement->setNumeroCarte(intval($_POST['facturation_numeroCarte']));
+            if ($_POST['paiement_id'] === ''|| $ancienPaiement->getMoisExpiration() !== $_POST['facturation_moisExpiration']) $ancienPaiement->setMoisExpiration(intval($_POST['facturation_moisExpiration']));
+            if ($_POST['paiement_id'] === ''|| $ancienPaiement->getAnneeExpiration() !== $_POST['facturation_anneeExpiration']) $ancienPaiement->setAnneeExpiration(intval($_POST['facturation_anneeExpiration']));
+            if ($_POST['paiement_id'] === ''|| $ancienPaiement->getCvv() !== $_POST['facturation_cvv']) $ancienPaiement->setCvv(intval($_POST['facturation_cvv']));
+            $_POST['paiement_id'] === '' ? $ancienPaiement->inserer() : $ancienPaiement->mettreAJour();
+        }
 
+        $idLivraison = $_POST['livraison_id'] !== '' ? intval($_POST['livraison_id']) : intval(Adresse::trouverParTousLesChamps($ancienLivraison->getAdresse(), $ancienLivraison->getVille(), $ancienLivraison->getProvinceId(), $ancienLivraison->getCodePostal()));
+        $idFacturation = $_POST['facturation_id'] !== '' ? intval($_POST['facturation_id']) : intval(Adresse::trouverParTousLesChamps($ancienLivraison->getAdresse(), $ancienLivraison->getVille(), $ancienLivraison->getProvinceId(), $ancienLivraison->getCodePostal()));
+        $idPaiement = $_POST['paiement_id'] !== '' ? intval($_POST['paiement_id']) : intval(Paiement::trouverParTousLesChamps($ancienPaiement->getTitulaire(), $ancienPaiement->getNumeroCarte(), $ancienPaiement->getMoisExpiration(), $ancienPaiement->getAnneeExpiration(), $ancienPaiement->getCvv()));
 
+        $commande = new Commande();
+        $commande->setLivraisonAdresseId($idLivraison);
+        $commande->setFacturationAdresseId($idFacturation);
+        $commande->setPaiementId($idPaiement);
+        $commande->setCompteId(intval($_POST['compte_id']));
+        $commande->setDateUnixCommande(time());
+        $commande->inserer();
 
 
     }

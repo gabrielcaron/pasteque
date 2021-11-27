@@ -37,13 +37,16 @@ class ControleurStepLeft
 
             $compte = Compte::trouverParCourriel($_SESSION['email']);
             $commande = $compte->getCommandesAssocies();
-            $facturation = $compte->getCommandesAssocies();
             $provinces = Province::trouverTout();
             if($commande !== null){
-                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte, "commande"=>$commande, "facturation"=>$facturation, "provinces"=>$provinces, "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
+                $livraison = $commande->getLivraisonAdresseAssocie();
+                $facturation = $commande->getFacturationAdresseAssocie();
+                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte, "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "provinces"=>$provinces, "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
             }
             else{
-                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte, "commande"=>$commande, "facturation"=>$facturation, "provinces"=>$provinces, "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
+                $livraison = null;
+                $facturation = null;
+                $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte, "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "provinces"=>$provinces, "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
             }
             echo App::getBlade()->run("paniers.formulaireCommande",$tDonnees);
         }

@@ -9,12 +9,11 @@ use app\App;
 class Commande
 {
     private int $id;
-    private string $adresse;
-    private string $ville;
-    private int $province_id;
-    private string $code_postal;
+    private int $livraison_adresse_id;
+    private int $facturation_adresse_id;
+    private int $paiement_id;
     private int $compte_id;
-    private int $nombre_commande;
+    private int $date_unix_commande;
 
     public function __construct() {
         //vide
@@ -28,34 +27,30 @@ class Commande
         $this->id = $unId;
     }
 
-    // $adresse : Getter et setter
-    public function getAdresse():string {
-        return $this->adresse;
+    // $livraison_adresse_id : Getter et setter
+    public function getLivraisonAdresseId():int {
+        return $this->livraison_adresse_id;
     }
-    public function setAdresse(string $adresse):void {
-        $this->adresse = $adresse;
+    public function setLivraisonAdresseId(int $unLivraisonAdresseId):void {
+        $this->livraison_adresse_id = $unLivraisonAdresseId;
     }
-    // $ville : Getter et setter
-    public function getVille():string {
-        return $this->ville;
+
+    // $facturation_adresse_id : Getter et setter
+    public function getFacturationAdresseId():int {
+        return $this->facturation_adresse_id;
     }
-    public function setVille(string $uneVille):void {
-        $this->ville = $uneVille;
+    public function setFacturationAdresseId(int $unFacturationAdresseId):void {
+        $this->facturation_adresse_id = $unFacturationAdresseId;
     }
-    // $province : Getter et setter
-    public function getProvinceId():int {
-        return $this->province_id;
+
+    // $paiementId : Getter et setter
+    public function getPaiementId():int {
+        return $this->paiement_id;
     }
-    public function setProvinceId(int $uneProvinceId):void {
-        $this->province_id = $uneProvinceId;
+    public function setPaiementId(int $unPaiementId):void {
+        $this->paiement_id = $unPaiementId;
     }
-    // $code_postal : Getter et setter
-    public function getCodePostal():string {
-        return $this->code_postal;
-    }
-    public function setCodePostal(string $unCodePostal):void {
-        $this->code_postal= $unCodePostal;
-    }
+
     // $compte_id : Getter et setter
     public function getCompteId():int {
         return $this->compte_id;
@@ -63,13 +58,30 @@ class Commande
     public function setCompteId(int $unCompteId):void {
         $this->compte_id = $unCompteId;
     }
-    // $nombre_commande : Getter et setter
+
+    // $date_unix_commande : Getter et setter
+    public function getDateUnixCommande():int {
+        return $this->date_unix_commande;
+    }
+    public function setDateUnixCommande(int $unDateUnixCommande):void {
+        $this->date_unix_commande = $unDateUnixCommande;
+    }
+
+    public function getLivraisonAdresseAssocie():Adresse {
+        return Adresse::trouverParId($this->livraison_adresse_id);
+    }
+
+    public function getFacturationAdresseAssocie():Adresse {
+        return Adresse::trouverParId($this->facturation_adresse_id);
+    }
+
+    /*// $nombre_commande : Getter et setter
     public function getNombreCommande():int {
         return $this->nombre_commande;
     }
     public function setNombreCommande(int $unNombreCommande):void {
         $this->nombre_commande = $unNombreCommande;
-    }
+    }*/
 
     /**
      * Méthode pour trouver toutes les commandes

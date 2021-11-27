@@ -10,10 +10,10 @@
             @slot('titre') Adresse de Livraison @endslot
             @slot('sousTitre')  @endslot
             @slot('idUnique') livraisonAdresseValidation @endslot
-            @slot('adresse') @if($commande !== null) {{$commande->getAdresse()}} @endif @endslot
-            @slot('ville') @if($commande !== null) {{$commande->getVille()}} @endif @endslot
-            @slot('provinceChoisi') @if($commande !== null) {{$commande->getProvinceId()}} @endif @endslot
-            @slot('codePostal') @if($commande !== null) {{$commande->getCodePostal()}} @endif @endslot
+            @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot
+            @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot
+            @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceId()}} @endif @endslot
+            @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
         @endcomponent
         <button id="modifierAdresseLivraisonValidation" type="button">Modifier l'adresse de livraison</button>
     </section>

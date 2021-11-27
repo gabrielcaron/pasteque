@@ -7,15 +7,15 @@
 <section id="sectionAdresseLivraison">
     @component('paniers.fragments.adresse')
         @slot('livraisonOuFacturation') livraison @endslot
-        @slot('adresse') @if($commande !== null) {{$commande->getAdresse()}} @endif @endslot
-        @slot('ville') @if($commande !== null) {{$commande->getVille()}} @endif @endslot
-        @slot('provinceChoisi') @if($commande !== null) {{$commande->getProvinceId()}} @endif @endslot
-        @slot('codePostal') @if($commande !== null) {{$commande->getCodePostal()}} @endif @endslot
+        @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot
+        @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot
+        @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceId()}} @endif @endslot
+        @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
     @endcomponent
         <div id="champ__memeAdresse" class="">
             <div class="">
                 <input class="" id="memeAdresse" name="memeAdresse" type="checkbox"
-                       @if($commande !== null && $facturation !== null && $commande === $facturation) checked @endif/>
+                       @if($livraison !== null && $facturation !== null && $livraison === $facturation) checked @endif/>
                 <label for="memeAdresse" class="">L'adresse de Facturation est la même que l'adresse de livraison</label>
             </div>
         </div>

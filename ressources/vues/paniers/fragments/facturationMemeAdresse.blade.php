@@ -14,7 +14,7 @@
             @slot('idUnique') facturationAdresseFacturation @endslot
             @slot('adresse') @if($facturation !== null) {{$facturation->getAdresse()}} @endif @endslot
             @slot('ville') @if($facturation !== null) {{$facturation->getVille()}} @endif @endslot
-            @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
+            @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceAssocie()->getNom()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
         <button id="modifierAdresseFacturation" type="button">Modifier l'adresse de facturation</button>
@@ -25,7 +25,7 @@
             @slot('id') @if($facturation !== null) {{$facturation->getId()}} @endif @endslot
             @slot('adresse') @if($facturation !== null) {{$facturation->getAdresse()}} @endif @endslot
             @slot('ville') @if($facturation !== null) {{$facturation->getVille()}} @endif @endslot
-            @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
+            @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceAssocie()->getNom()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
             <button id="continuerAdresseFacturation" type="button">Continuer</button>

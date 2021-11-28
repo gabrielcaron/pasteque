@@ -55,6 +55,11 @@ class Adresse
         $this->code_postal= $unCodePostal;
     }
 
+    //Trouver la province associe à un id
+    public function getProvinceAssocie():Province {
+        return Province::trouverParId($this->province_id);
+    }
+
     /**
      * Méthode pour trouver toutes les adresses
      * @return array - Tableau des adresses

@@ -12,7 +12,7 @@
             @slot('idUnique') livraisonAdresseValidation @endslot
             @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot
             @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot
-            @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceId()}} @endif @endslot
+            @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceAssocie()->getNom()}} @endif @endslot
             @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
         @endcomponent
         <button id="modifierAdresseLivraisonValidation" type="button">Modifier l'adresse de livraison</button>
@@ -26,7 +26,7 @@
             @slot('idUnique') facturationAdresseValidation @endslot
             @slot('adresse') @if($facturation !== null) {{$facturation->getAdresse()}} @endif @endslot
             @slot('ville') @if($facturation !== null) {{$facturation->getVille()}} @endif @endslot
-            @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
+            @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceAssocie()->getNom()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
         <button id="modifierAdresseFacturationValidation" type="button">Modifier l'adresse de facturation</button>

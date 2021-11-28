@@ -4,30 +4,41 @@
 <section class="identification">
     @include('paniers.fragments.identification')
 </section>
-<h2>Récapitulatif des informations</h2>
 <section id="validationAdresseLivraison" class="validationAdresseLivraison">
-    <h3>Adresse de Livraison</h3>
     <section id="sectionRecapAdresseLivraison">
         @component('paniers.fragments.adresseRecap')
-            @slot('adresse') @if($commande !== null) {{$commande->getAdresse()}} @endif @endslot
-            @slot('ville') @if($commande !== null) {{$commande->getVille()}} @endif @endslot
-            @slot('provinceChoisi') @if($commande !== null) {{$commande->getProvinceId()}} @endif @endslot
-            @slot('codePostal') @if($commande !== null) {{$commande->getCodePostal()}} @endif @endslot
+            @slot('titre') Adresse de Livraison @endslot
+            @slot('sousTitre')  @endslot
+            @slot('idUnique') livraisonAdresseValidation @endslot
+            @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot
+            @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot
+            @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceAssocie()->getNom()}} @endif @endslot
+            @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
         @endcomponent
-        <button id="modifierAdresseLivraisonValidation">Modifier l'adresse de livraison</button>
+        <button id="modifierAdresseLivraisonValidation" type="button">Modifier l'adresse de livraison</button>
     </section>
 </section>
 <section id="validationAdressePaiement" class="validationAdressePaiement">
-    <h3>Adresse de Facturation</h3>
     <section id="sectionRecapAdresseFacturation">
         @component('paniers.fragments.adresseRecap')
+            @slot('titre') Informations de facturation @endslot
+            @slot('sousTitre') Adresse de facturation @endslot
+            @slot('idUnique') facturationAdresseValidation @endslot
             @slot('adresse') @if($facturation !== null) {{$facturation->getAdresse()}} @endif @endslot
             @slot('ville') @if($facturation !== null) {{$facturation->getVille()}} @endif @endslot
-            @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
+            @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceAssocie()->getNom()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-        <button id="modifierAdresseFacturationValidation">Modifier l'adresse de livraison</button>
-
+        <button id="modifierAdresseFacturationValidation" type="button">Modifier l'adresse de facturation</button>
+    </section>
+    <section>
+        <h3>Mode de paiement</h3>
+        <p id="paiement_titulaire">Titulaire</p>
+        <p id="paiement_numeroCarte">Numero Carte</p>
+        <p id="paiement_moisExpiration">Mois expiration</p>
+        <p id="paiement_anneeExpiration">Annee expiration</p>
+        <p id="paiement_cvv">Cvv</p>
+        <button id="modifierPaiementFacturationValidation" type="button">Modifier le mode de paiement</button>
     </section>
 </section>
 <section class="validationPanier">

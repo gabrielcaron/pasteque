@@ -4,21 +4,38 @@
 <section class="identification">
     @include('paniers.fragments.identification')
 </section>
-<section id="sectionAdresseLivraison">
+<section id="sectionAncienneAdresseLivraison" style="display: none">
+    <input id="nombreAnciennesAdresses" type="hidden" value="@if($livraisonToutesLesAdresses !== null){{count($livraisonToutesLesAdresses)}}@endif">
+    @if($livraisonToutesLesAdresses !== null)
+        @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
+            <div>
+                <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</p>
+                <p id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</p>
+                <p id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</p>
+                <p id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</p>
+            </div>
+        @endfor
+        <button id="ajouterNouvelleAdresseLivraison" type="button" class="button">Ajouter une adresse nouvelle adresse</button>
+    @endif
+</section>
+<section id="sectionAdresseLivraison" style="display: none">
     @component('paniers.fragments.adresse')
         @slot('livraisonOuFacturation') livraison @endslot
-        @slot('adresse') @if($commande !== null) {{$commande->getAdresse()}} @endif @endslot
-        @slot('ville') @if($commande !== null) {{$commande->getVille()}} @endif @endslot
-        @slot('provinceChoisi') @if($commande !== null) {{$commande->getProvinceId()}} @endif @endslot
-        @slot('codePostal') @if($commande !== null) {{$commande->getCodePostal()}} @endif @endslot
+        @slot('id') @if($livraison !== null) {{$livraison->getId()}} @endif @endslot
+        @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot
+        @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot
+        @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceId()}} @endif @endslot
+        @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
     @endcomponent
-        <div id="{{$livraisonOuFacturation}}_champCodePostal" class="champ champ--lg">
-            <div class="champ__boite">
-                <label for="{{$livraisonOuFacturation}}_codePostal" class="champ__etiquette">Code Postal</label>
-                <input class="champ__input" id="memeAdresse" name="memeAdresse" type="checkbox"
-                       @if($commande !== null && $facturation !== null && $commande === $facturation) checked @endif/>
+        <div id="champ__memeAdresse" class="">
+            <div class="">
+                <input class="" id="memeAdresse" name="memeAdresse" type="checkbox"
+                       @if($livraison !== null && $facturation !== null && $livraison === $facturation) checked @endif/>
+                <label for="memeAdresse" class="">L'adresse de Facturation est la même que l'adresse de livraison</label>
             </div>
         </div>
+    <button id="ajouterLivraison" type="button" class="button">Confirmer</button>
+    <button id="annulerAjouterAdresse" type="button" class="button">Annuler</button>
 </section>
 
 <div class="form_wrap">

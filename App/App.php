@@ -4,6 +4,7 @@ namespace App;
 use App\Controleurs\ControleurArticle;
 use App\Controleurs\ControleurAuteur;
 use App\Controleurs\ControleurCompte;
+use App\Controleurs\ControleurInscription;
 use App\Controleurs\ControleurLivre;
 use App\Controleurs\ControleurPanier;
 use App\Controleurs\ControleurRequete;
@@ -139,6 +140,20 @@ class App
                 default:
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
+            }
+
+        }
+        else if($controleur === 'inscription') {
+            $this->monControleur = new ControleurInscription();
+            switch ($action) {
+                case 'creer':
+                    $this->monControleur->creer();
+                    break;
+                case 'inserer':
+                    $this->monControleur->inserer();
+                    break;
+                default:
+                    echo 'Erreur 404';
             }
         } else if ($controleur === 'auteur'){
             $this->monControleur = new ControleurAuteur();

@@ -4,17 +4,18 @@
 @endsection
 @section('contenu')
     <section class="compte">
+        <input type="hidden" value="{{$action}}" id="connexionOuCreation">
         <div class="tabSection">
             <div class="tabSection__menu">
-                <button class="tabSection__menuLink active" data-content="first">
+                <button class="tabSection__menuLink @if($action === 'connexion') active @endif" data-content="first">
                     <span data-title="first">Connexion au compte</span>
                 </button>
-                <button class="tabSection__menuLink" data-content="second">
+                <button class="tabSection__menuLink @if($action === 'creation') active @endif" data-content="second">
                     <span data-title="second">Création d'un compte</span>
                 </button>
             </div>
             <div class="tabSection__bar">
-                <div class="tabSection__barContent active" id="first">
+                <div class="tabSection__barContent @if($action === 'connexion') active @endif" id="first">
                     <div class="tabSection__texts">
                         <form id="connexionForm" name="inscription" class="form" method="POST" action="index.php?controleur=compte&action=connecter" novalidate onsubmit="return formulaire.validerConnexion()">
                             <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
@@ -27,10 +28,11 @@
                                            autocomplete="email"
                                            required="required" aria-labelledby="messagesEmail"
                                            pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}$"
+
                                     />
                                 </div>
                                 <div id="messagesConnexionEmail" class="champ__messages">
-                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['connexionEmail']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['connexionEmail']['message'] !== ''){{$tValidation['connexionEmail']['message']}}@endif</p>
                                 </div>
                             </div>
                             <div id="champPasswordConnexion" class="champ champ--lg">
@@ -43,7 +45,7 @@
                                     <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer; margin-top: 10px"></i>
                                 </div>
                                 <div id="messagesConnexionPassword" class="champ__messages">
-                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['connexionPassword']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['connexionPassword']['message'] !== ''){{$tValidation['connexionPassword']['message']}}@endif</p>
                                 </div>
                             </div>
                             </section>
@@ -62,9 +64,9 @@
                     </div>
                 </div>
 
-                <div class="tabSection__barContent" id="second">
+                <div class="tabSection__barContent @if($action === 'creation') active @endif" id="second">
                     <div class="tabSection__texts">
-                        <form id="inscriptionForm" name="inscription" class="form" action="index.php?controleur=compte&action=inserer" method="POST" novalidate onsubmit="return formulaire.validerFormulaire()">
+                        <form id="inscriptionForm" name="inscription" class="form" action="index.php?controleur=compte&action=inserer" method="POST" novalidate >
 
                                 <div id="messageErreurGeneral" class="form__message-erreur-general" tabindex="-1"
                                  role="alert">
@@ -79,10 +81,11 @@
                                         <label for="prenom" class="champ__etiquette">Prénom *</label>
                                         <input  class="champ__input" id="prenom" name="prenom" type="text"
                                                autocomplete="prenom"
-                                               required="required" aria-labelledby="messagesPrenom"/>
+                                               required="required" aria-labelledby="messagesPrenom"
+                                                @if($tValidation !== null) value="{{$tValidation['prenom']['valeur']}}" @endif/>
                                     </div>
                                     <div id="messagesPrenom" class="champ__messages">
-                                        <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+                                        <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"@if($tValidation !== null && $tValidation['prenom']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['prenom']['message'] !== ''){{$tValidation['prenom']['message']}}@endif</p>
                                     </div>
                                 </div>
                                 <div id="champNom" class="champ champ--lg">
@@ -90,10 +93,11 @@
                                         <label for="nom" class="champ__etiquette">Nom *</label>
                                         <input class="champ__input" id="nom" name="nom" type="text"
                                                autocomplete="family-name"
-                                               required="required" aria-labelledby="messagesNom"/>
+                                               required="required" aria-labelledby="messagesNom"
+                                               @if($tValidation !== null) value="{{$tValidation['nom']['valeur']}}" @endif/>
                                     </div>
                                     <div id="messagesNom" class="champ__messages">
-                                        <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+                                        <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['nom']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['nom']['message'] !== ''){{$tValidation['nom']['message']}}@endif</p>
                                     </div>
                                 </div>
                             </section>
@@ -105,10 +109,11 @@
                                                    autocomplete="email"
                                                    required="required" aria-labelledby="messagesEmail"
                                                    pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}$"
+                                                   @if($tValidation !== null) value="{{$tValidation['courriel']['valeur']}}" @endif
                                             />
                                         </div>
                                         <div id="messagesEmail" class="champ__messages">
-                                            <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+                                            <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['courriel']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['courriel']['message'] !== ''){{$tValidation['courriel']['message']}}@endif</p>
                                         </div>
                                     </div>
                             </section>
@@ -120,11 +125,12 @@
                                                    autocomplete="current-password"
                                                    required="required" aria-labelledby="messagesPassword"
                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}"
-                                                   min="8"/>
+                                                   min="8"
+                                                   @if($tValidation !== null) value="{{$tValidation['mot_de_passe']['valeur']}}" @endif/>
                                             <i class="far fa-eye" id="togglePasswordCreation" style="margin-left: -30px; cursor: pointer; margin-top: 10px"></i>
                                         </div>
                                         <div id="messagesPassword" class="champ__messages">
-                                            <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+                                            <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['mot_de_passe']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['mot_de_passe']['message'] !== ''){{$tValidation['mot_de_passe']['message']}}@endif</p>
                                             <p class="champ__message-aide">
                                                 Le&nbsp;mot&nbsp;de&nbsp;passe&nbsp;doit&nbsp;contenir&nbsp;au&nbsp;moins&nbsp;huit&nbsp;caractères,
                                                 dont&nbsp;au&nbsp;moins&nbsp;un&nbsp;chiffre&nbsp;et&nbsp;comprend&nbsp;les&nbsp;lettres

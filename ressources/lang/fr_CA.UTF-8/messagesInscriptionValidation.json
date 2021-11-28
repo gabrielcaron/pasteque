@@ -1,0 +1,18 @@
+{
+    "prenom": {
+        "vide": "Serveur: Vous devez entrer votre prénom",
+        "pattern": "Serveur: Pour le prénom, les accents français, les espaces, les tirets et les apostrophes sont permis."
+    },
+    "nom": {
+        "vide": "Serveur: Vous devez entrer votre nom de famille",
+        "pattern": "Serveur: Pour le nom de famille, les accents français, les espaces, les tirets et les apostrophes sont permis."
+    },
+    "courriel": {
+        "vide": "Serveur: Vous devez entrer une adresse courriel",
+        "pattern": "Serveur: Le format de l'adresse courriel n'est pas valide."
+    },
+    "mot_de_passe": {
+        "vide": "Serveur: Vous devez entrer un mot de passe",
+        "pattern": "Serveur: Le format du mot de passe n'est pas valide. Il doit contenir au moins huit caractères, dont au moins un chiffre et comprend les lettres majuscules et minuscules et des caractères spéciaux "
+    }
+}

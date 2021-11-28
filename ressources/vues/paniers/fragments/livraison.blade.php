@@ -4,6 +4,22 @@
 <section class="identification">
     @include('paniers.fragments.identification')
 </section>
+<section id="sectionAncienneAdresseLivraison">
+    <input id="nombreAnciennesAdresses" type="hidden" value="@if($livraisonToutesLesAdresses !== null){{count($livraisonToutesLesAdresses)}}@endif">
+    @if($livraisonToutesLesAdresses !== null)
+        @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
+            @component('paniers.fragments.adresseRecap')
+                @slot('titre')  @endslot
+                @slot('sousTitre')  @endslot
+                @slot('idUnique') {{$i}}_livraisonAncienneAdresse @endslot
+                @slot('adresse')  {{$livraisonToutesLesAdresses[$i]->getAdresse()}} @endslot
+                @slot('ville') {{$livraisonToutesLesAdresses[$i]->getVille()}} @endslot
+                @slot('provinceChoisi') {{$livraisonToutesLesAdresses[$i]->getProvinceId()}} @endslot
+                @slot('codePostal') {{$livraisonToutesLesAdresses[$i]->getCodePostal()}} @endslot
+            @endcomponent
+        @endfor
+    @endif
+</section>
 <section id="sectionAdresseLivraison">
     @component('paniers.fragments.adresse')
         @slot('livraisonOuFacturation') livraison @endslot

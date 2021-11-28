@@ -455,7 +455,7 @@ class Livre
      */
     public static function trouverLivresParCategories(array $idCategories, string $trierPar, int $enregistrementDepart, int $nombreLivreParPage): array
     {
-        /* Message à Michelle 29 ooctobre 2021 :
+        /* Message à Michelle 29 octobre 2021 :
         Impossibilité d'utiliser un paramètre (bindParam) pour la chaine $categories contenant le séparateur ',' */
         $categories = implode(', ', $idCategories);
 

@@ -106,13 +106,54 @@ class Commande
     }
 
     /**
-     * Méthode pour trouver toutes les commandes avec un compte id
+     * Méthode pour trouver toutes les adresses de livraisons
+     * @param int $compteId - Un compte id
+     * @return array - Tableau des adresses id
+     */
+    public static function trouverToutAdresseLivraison(int $compteId): array
+    {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT DISTINCT livraison_adresse_id, MAX(date_unix_commande) FROM commandes WHERE compte_id = :compteId GROUP BY livraison_adresse_id ORDER BY MAX(date_unix_commande) DESC LIMIT 0, 4';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        $requetePreparee->bindParam(':compteId', $compteId, PDO::PARAM_INT);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        return $requetePreparee->fetchAll();
+    }
+
+    /**
+     * Méthode pour trouver toutes les adresses de facturations
+     * @param int $compteId - Un compte id
+     * @return array - Tableau des adresses id
+     */
+    public static function trouverToutAdresseFacturation(int $compteId): array
+    {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT DISTINCT facturation_adresse_id, MAX(date_unix_commande) FROM commandes WHERE compte_id = :compteId GROUP BY facturation_adresse_id ORDER BY MAX(date_unix_commande) DESC LIMIT 0, 4';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        $requetePreparee->bindParam(':compteId', $compteId, PDO::PARAM_INT);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        return $requetePreparee->fetchAll();
+    }
+
+
+    /**
+     * Méthode pour trouver la derniere commande
      * @param int $compteId - Un compte id
      * @return ?Commande - Tableau des commandes
      */
     public static function trouverParIdCompte(int $compteId):?Commande {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT * FROM commandes WHERE compte_id = :compteId';
+        $chaineSQL = 'SELECT * FROM commandes WHERE compte_id = :compteId ORDER BY date_unix_commande DESC';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête

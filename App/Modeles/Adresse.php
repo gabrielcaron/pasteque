@@ -74,6 +74,29 @@ class Adresse
     }
 
     /**
+     * Méthode pour trouver toutes les adresses avec certains id
+     * @return array - Tableau des adresses
+     */
+    public static function trouverToutParTableauId(array $tableauDeId): array
+    {
+        /* Message à Michelle 27 novembre 2021 :
+        Impossibilité d'utiliser un paramètre (bindParam) pour la chaine $tableauDeId contenant le séparateur ',' */
+        $idAdresses = implode(', ', $tableauDeId);
+        var_dump($idAdresses);
+
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT * FROM adresses WHERE id IN ('. $idAdresses .')';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Adresse');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        return $requetePreparee->fetchAll();
+    }
+
+    /**
      * Méthode pour trouver l'adresse par id
      * @param int $adresseId - Un adresse id
      * @return ?Adresse - L'adresse
@@ -103,6 +126,7 @@ class Adresse
      * @return string - Le id
      */
     public static function trouverParTousLesChamps(string $unAdresse, string $unVille, int $unProvinceId, string $unCodePostal):string {
+        var_dump($unAdresse, $unVille, $unProvinceId, $unCodePostal);
         // Définir la chaine SQL
         $chaineSQL = 'SELECT id AS id FROM adresses WHERE adresse = :adresse AND ville = :ville AND province_id = :province_id AND code_postal = :code_postal';
         // Préparer la requête (optimisation)
@@ -118,6 +142,7 @@ class Adresse
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $result = $requetePreparee->fetch();
+        var_dump($result);
         return $result->id;
     }
 
@@ -143,9 +168,9 @@ class Adresse
      */
     public function mettreAJour():void
     {
-
+        var_dump('entre');
         // Définir la chaine SQL
-        $chaineSQL = 'UPDATE adresses SET adresse=:adresse, ville=:ville, province_id=:province_id, code_postal=:code_postal WHERE id=:id';
+        $chaineSQL = 'UPDATE adresses SET adresse=:adresse, ville=:ville, province_id=:province_id, code_postal=:code_postal WHERE id = :id';
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
@@ -156,5 +181,6 @@ class Adresse
         $requetePreparee->bindParam(':code_postal', $this->code_postal, PDO::PARAM_STR);
         // Exécuter la requête
         $requetePreparee->execute();
+        var_dump('id =',$this->id);
     }
 }

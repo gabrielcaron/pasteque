@@ -46,12 +46,12 @@ class ControleurStepLeft
                 $paiement = $commande->getPaiementAssocie();
 
 
-                $toutesLivraisonsId = Commande::trouverToutAdresseLivraison($compte->getId());
+                /*$toutesLivraisonsId = Commande::trouverToutAdresseLivraison($compte->getId());
                 $tableauReduitLivraisonsId = [];
                 for ($i = 0; $i < count($toutesLivraisonsId); $i++) {
                     $tableauReduitLivraisonsId[$i] = $toutesLivraisonsId[$i]->livraison_adresse_id;
                 }
-                $livraisonToutesLesAdresses = Adresse::trouverToutParTableauId($tableauReduitLivraisonsId);
+                $livraisonToutesLesAdresses = Adresse::trouverToutParTableauId($tableauReduitLivraisonsId);*/
 
                 $toutesFacturationsId = Commande::trouverToutAdresseFacturation($compte->getId());
                 $tableauReduitFacturationId = [];
@@ -59,6 +59,9 @@ class ControleurStepLeft
                     $tableauReduitFacturationId[$i] = $toutesFacturationsId[$i]->facturation_adresse_id;
                 }
                 $facturationToutesLesAdresses = Adresse::trouverToutParTableauId($tableauReduitFacturationId);
+
+                $livraisonToutesLesAdresses = Adresse::trouverToutAdresseParIdCompte($compte->getId(),'commandes.livraison_adresse_id');
+                //var_dump($livraisonToutesLesAdresses[0]->getId());
 
                 $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte,
                     "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces,
@@ -84,6 +87,7 @@ class ControleurStepLeft
 
         /**
          * TODO - Vérifier si la personne est connecter avec un compte valide et que le compte_id est valide dans le formulaire aussi
+         * TODO - Mettre à jour et insérer adresse dans requête fetch
          * TODO - Validation serveur
          */
         //var_dump($_POST);
@@ -126,7 +130,5 @@ class ControleurStepLeft
         $commande->setCompteId(intval($_POST['compte_id']));
         $commande->setDateUnixCommande(time());
         $commande->inserer();
-
-
     }
 }

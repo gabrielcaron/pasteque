@@ -4,23 +4,21 @@
 <section class="identification">
     @include('paniers.fragments.identification')
 </section>
-<section id="sectionAncienneAdresseLivraison">
+<section id="sectionAncienneAdresseLivraison" style="display: none">
     <input id="nombreAnciennesAdresses" type="hidden" value="@if($livraisonToutesLesAdresses !== null){{count($livraisonToutesLesAdresses)}}@endif">
     @if($livraisonToutesLesAdresses !== null)
         @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
-            @component('paniers.fragments.adresseRecap')
-                @slot('titre')  @endslot
-                @slot('sousTitre')  @endslot
-                @slot('idUnique') {{$i}}_livraisonAncienneAdresse @endslot
-                @slot('adresse')  {{$livraisonToutesLesAdresses[$i]->getAdresse()}} @endslot
-                @slot('ville') {{$livraisonToutesLesAdresses[$i]->getVille()}} @endslot
-                @slot('provinceChoisi') {{$livraisonToutesLesAdresses[$i]->getProvinceId()}} @endslot
-                @slot('codePostal') {{$livraisonToutesLesAdresses[$i]->getCodePostal()}} @endslot
-            @endcomponent
+            <div>
+                <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</p>
+                <p id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</p>
+                <p id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceId()}}</p>
+                <p id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</p>
+            </div>
         @endfor
+        <button id="ajouterNouvelleAdresseLivraison" type="button" class="button">Ajouter une adresse nouvelle adresse</button>
     @endif
 </section>
-<section id="sectionAdresseLivraison">
+<section id="sectionAdresseLivraison" style="display: none">
     @component('paniers.fragments.adresse')
         @slot('livraisonOuFacturation') livraison @endslot
         @slot('id') @if($livraison !== null) {{$livraison->getId()}} @endif @endslot
@@ -36,6 +34,8 @@
                 <label for="memeAdresse" class="">L'adresse de Facturation est la même que l'adresse de livraison</label>
             </div>
         </div>
+    <button id="ajouterLivraison" type="button" class="button">Confirmer</button>
+    <button id="annulerAjouterAdresse" type="button" class="button">Annuler</button>
 </section>
 
 <div class="form_wrap">

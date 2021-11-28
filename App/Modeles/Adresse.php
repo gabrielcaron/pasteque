@@ -74,6 +74,36 @@ class Adresse
     }
 
     /**
+     * Méthode pour trouver 0 à 4 adresses distinctes associées à un compte
+     * @param string $livraisonOuFacturation - commandes.livraison_adresse_id ou commandes.facturation_adresse_id
+     * @param int $compteId - Un compte id
+     * @return array - Tableau des adresses id
+     */
+    public static function trouverToutAdresseParIdCompte(int $compteId, string $livraisonOuFacturation): array
+    {
+        /* Message à Michelle 27 novembre 2021 :
+        Impossibilité d'utiliser un paramètre (bindParam) pour la chaine $livraisonOuFacturation contenant le séparateur '.' */
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT DISTINCT MAX(adresses.id) as id, adresse, ville, province_id, code_postal, MAX(date_unix_commande) 
+                        FROM adresses 
+                        INNER JOIN commandes ON adresses.id = '.$livraisonOuFacturation.'
+                        WHERE compte_id = :compteId 
+                        GROUP BY adresse, ville, province_id, code_postal 
+                        ORDER BY MAX(date_unix_commande) DESC 
+                        LIMIT 0, 4';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        $requetePreparee->bindParam(':compteId', $compteId, PDO::PARAM_INT);
+        //$requetePreparee->bindParam(':livraisonOuFacturation', $livraisonOuFacturation, PDO::PARAM_STR);
+        // Définir le mode de récupération
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Adresse');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        return $requetePreparee->fetchAll();
+    }
+
+    /**
      * Méthode pour trouver toutes les adresses avec certains id
      * @return array - Tableau des adresses
      */

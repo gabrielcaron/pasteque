@@ -223,6 +223,12 @@ let gestionStepLeft = {
             refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
         }
         //TODO - Set selected aria
+        refNombresLivraisonsCompte
+        for (let i = 0; i < parseInt(refNombresLivraisonsCompte.value); i++) {
+            
+        }
+        if (refLivraisonInputAdresse.value)
+
         refNombresLivraisonsCompte.value = refNombresLivraisonsCompte.value + 1;
 
         const refDiv = document.createElement('div');

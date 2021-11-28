@@ -187,7 +187,11 @@ var gestionStepLeft = {
             refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
         }
         //TODO - Set selected aria
-        refNombresLivraisonsCompte.value = refNombresLivraisonsCompte.value + 1;
+        refNombresLivraisonsCompte;
+        for (var i = 0; i < parseInt(refNombresLivraisonsCompte.value); i++) {
+        }
+        if (refLivraisonInputAdresse.value)
+            refNombresLivraisonsCompte.value = refNombresLivraisonsCompte.value + 1;
         var refDiv = document.createElement('div');
         var refAdresse = document.createElement('p');
         var refVille = document.createElement('p');

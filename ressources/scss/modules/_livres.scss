@@ -164,14 +164,23 @@
 	  display: inline-block;
 
 	  &:hover {
-		  background-color: $bleuRoyal;
+		  /*background-color: $bleuRoyal;
 		  color: $blanc;
-		  border: 2px solid $bleuRoyal;
+		  border: 2px solid $bleuRoyal;*/
 	  }
 	}
   }
 }
-
+@media screen and (max-width: 900px) {
+	#formTri{
+		display: none;
+	}
+}
+@media screen and (min-width: 900px) {
+	#lienFiltre{
+		display: none;
+	}
+}
 .modeliste.livres {
   .livre {
 	&__lien {

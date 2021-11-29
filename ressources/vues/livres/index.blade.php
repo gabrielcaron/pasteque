@@ -16,6 +16,7 @@
             </section>
             <!-- Éventuellement être caché en mobile
             <button class="enveloppe__">Filtres</button> -->
+            <button style="background-color: #252b46" class="compte__filtrer" id="lienFiltre" value="yes" onclick="gererFiltres(this)">Filtrer par</button>
             <form id="formTri" class="formulaire" action="index.php?controleur=livre&action=index" method="POST">
                 <fieldset class="formulaire__groupeChamps tuiles">
                     <legend class="formulaire__sectionLegende">

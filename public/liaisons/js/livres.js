@@ -58,6 +58,17 @@ var requestLivre = {
         });
     },
 };
+function gererFiltres(btnFiltre) {
+    var dvFiltre = document.getElementById("formTri");
+    if (btnFiltre.value == "Yes") {
+        dvFiltre.style.display = "block";
+        btnFiltre.value = "No";
+    }
+    else {
+        dvFiltre.style.display = "none";
+        btnFiltre.value = "Yes";
+    }
+}
 //*******************
 // Écouteurs d'événements
 //*******************

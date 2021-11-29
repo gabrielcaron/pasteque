@@ -93,6 +93,7 @@ var_dump($tValidation);
             }
 
         }
+
         if(in_array(false, $tableauErreur)){
             $_SESSION['tValidation'] = $tDonnes;
             header('Location: index.php?controleur=compte&action=creation');

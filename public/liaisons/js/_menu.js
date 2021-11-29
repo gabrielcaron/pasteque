@@ -57,7 +57,6 @@ var menu = {
         // On change le libellé du bouton selon l'état du menu
         if (this.refMenu.classList.contains("menu--ferme")) {
             this.refLibelle.innerHTML = this.lblMenuFerme;
-            console.log('hey')
         } else {
             this.refLibelle.innerHTML = this.lblMenuOuvert;
         }

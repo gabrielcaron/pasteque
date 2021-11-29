@@ -12,9 +12,19 @@ let requestLivre = {
         return response
     },
 }
+
+function gererFiltres(btnFiltre) {
+    let dvFiltre = document.getElementById("formTri");
+    if (btnFiltre.value == "Yes") {
+        dvFiltre.style.display = "block";
+        btnFiltre.value = "No";
+    } else {
+        dvFiltre.style.display = "none";
+        btnFiltre.value = "Yes";
+    }
+}
 //*******************
 // Écouteurs d'événements
 //*******************
 //document.getElementById('courriel').addEventListener('focusout', function () {request.trouverToutCompte('compte', 'trouverTout', '')});
-
 document.getElementById('testRequest').addEventListener('click', function () {requestLivre.trouverToutLivre('livre', 'trouverTout', '')});

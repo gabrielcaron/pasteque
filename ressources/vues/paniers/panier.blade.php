@@ -37,13 +37,28 @@
                         <input id="livre_id" type="hidden" name="livre_id" value="{{$article->getProduitId()}}">
                         <label for="panier_id" style="display: none">Id</label>
                         <input id="panier_id" type="hidden" name="panier_id" value="{{$article->getPanierId()}}">
-                        <label for="quantite">Quantité :</label>
+
+
+
+                        <div class="ficheLivre__ajout">
+                            <div class="ficheLivre__ajoutQuantite">
+                                <button class="minus-btn btnQuantite" type="button" name="button" onclick="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">-</button>
+                                    <label  style="display: none" for="quantite">Quantité :</label>
+                                    <input class="ficheLivre__ajoutInput" type="text" name="name" value="{{$article->getQuantite()}}">
+                                <button class="plus-btn btnQuantite" type="button" name="button" onclick="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">+</button>
+                            </div>
+                            <a class="bouton action ajoutPanier" href="#panier">
+                                Ajouter au panier
+                            </a>
+                        </div>
+
+                       {{-- <label for="quantite">Quantité :</label>
                         <select id="quantite" name="quantite" onchange="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">
                             @for($i=0;$i <=10;$i++)
                                 <option value="{{$i}}"
                                         @if($article->getQuantite() === $i) selected @endif>{{$i}}</option>
                             @endfor
-                        </select>
+                        </select>--}}
 {{--
                         <input  class="bouton texte" type="submit" value="Mettre à jour le panier">
 --}}

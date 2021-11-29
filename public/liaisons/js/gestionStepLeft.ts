@@ -91,11 +91,11 @@ let gestionStepLeft = {
     /** Continuer de la livraison vers facturation / validation **/
     continuerLivraison() {
         gestionStepLeft.remettreAZero();
-
+        //this.options[this.selectedIndex].text
         //Validation : Mettre à jour recap adresse Livraison
         refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
         refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
-        refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince.innerHTML;
+        refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince[refLivraisonInputProvince.value].text;
         refLivraisonCodePostalValidationRecap.innerHTML = refLivraisonInputCodePostal.value;
 
         if (refLivraisonMemeAdresse.checked === true) {
@@ -108,13 +108,13 @@ let gestionStepLeft = {
             //Facturation Mettre à jour recap adresse Facturation
             refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
             refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
-            refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.innerHTML;
+            refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince[refFacturationInputProvince.value].text;
             refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
 
             //Validation : Mettre à jour recap adresse Facturation
             refFacturationAdresseValidationRecap.innerHTML = refFacturationInputAdresse.value;
             refFacturationVilleValidationRecap.innerHTML = refFacturationInputVille.value;
-            refFacturationProvinceValidationRecap.innerHTML = refFacturationInputProvince.innerHTML;
+            refFacturationProvinceValidationRecap.innerHTML = refFacturationInputProvince[refFacturationInputProvince.value].text;
             refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
         }
 
@@ -141,13 +141,13 @@ let gestionStepLeft = {
         //Facturation Mettre à jour recap adresse Facturation
         refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
         refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
-        refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.innerHTML;
+        refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince[refFacturationInputProvince.value].text;
         refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
 
         //Validation : Mettre à jour recap adresse Facturation
         refFacturationAdresseValidationRecap.innerHTML = refFacturationInputAdresse.value;
         refFacturationVilleValidationRecap.innerHTML = refFacturationInputVille.value;
-        refFacturationProvinceValidationRecap.innerHTML = refFacturationInputProvince.innerHTML;
+        refFacturationProvinceValidationRecap.innerHTML = refFacturationInputProvince[refFacturationInputProvince.value].text;
         refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
 
         if (this.facturationCompleted === false) {

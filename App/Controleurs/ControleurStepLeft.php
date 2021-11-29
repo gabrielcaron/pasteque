@@ -40,10 +40,10 @@ class ControleurStepLeft
             $compte = Compte::trouverParCourriel($_SESSION['email']);
             $commande = $compte->getCommandesAssocies();
             $provinces = Province::trouverTout();
+            $livraison = $commande->getLivraisonAdresseAssocie() ?? null;
+            $facturation = $commande->getFacturationAdresseAssocie() ?? null;
+            $paiement = $commande->getPaiementAssocie() ?? null;
             if($commande !== null){
-                $livraison = $commande->getLivraisonAdresseAssocie();
-                $facturation = $commande->getFacturationAdresseAssocie();
-                $paiement = $commande->getPaiementAssocie();
 
 
                 /*$toutesLivraisonsId = Commande::trouverToutAdresseLivraison($compte->getId());
@@ -69,9 +69,6 @@ class ControleurStepLeft
                     "facturationToutesLesAdresses"=>$facturationToutesLesAdresses);
             }
             else{
-                $livraison = null;
-                $facturation = null;
-                $paiement = null;
                 $livraisonToutesLesAdresses = null;
                 $facturationToutesLesAdresses = null;
                 $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte,

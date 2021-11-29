@@ -137,6 +137,9 @@ class App
                 case 'supprimer':
                     $this->monControleur->supprimer();
                     break;
+                case 'confirmation':
+                    $this->monControleur->confirmation();
+                    break;
                 default:
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();

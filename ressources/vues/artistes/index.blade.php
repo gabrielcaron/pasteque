@@ -5,7 +5,11 @@
 @endsection
 
 @section('contenu')
-    <section class="indexLivres livres @if($choixVue==='liste') modeliste @endif">
+    @if($choixVue==='liste')
+        <section class="indexLivres livres modeliste">
+            @else
+                <section class="indexLivres livres">
+                    @endif
         <section class="filAriane">
             <span><a href="index.php">Accueil</a> / Artistes</span>
         </section>
@@ -14,22 +18,23 @@
             <button class="enveloppe__">Filtres</button> -->
             <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=auteur&action=index" method="POST">
                 <input id="id_page" value="0" type="hidden" name="id_page">
-                <fieldset class="formulaire__groupeChamps tuiles">
-                    <legend class="formulaire__sectionLegende">
+                <div class="formulaire__conteneursInlineFlex">
+                <fieldset class="formulaire__groupeChamps modeAffichage">
+                    <legend class="formulaire__sectionLegende screen-reader-only">
                         <h3 class="formulaire__sectionTitre">Type de vue:</h3>
                     </legend>
-                    <ul class="formulaire__liste">
+                    <ul class="formulaire__listeModes selecteur" id="modesAffichage">
                         <li class="bloc">
                             <input  onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue" type="radio" @if($choixVue === 'vignette') checked @endIf>
-                            <label  class="libelle" for="vignette">Vue en vignette</label>
+                            <label  class="libelle selecteur__enfant vignettes" for="vignette">Vue en vignette</label>
                         </li>
                         <li class="bloc">
                             <input onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="liste" value="liste" name="choixVue" type="radio" @if($choixVue === 'liste') checked @endIf>
-                            <label class="libelle" for="liste">Vue en liste</label>
+                            <label class="libelle selecteur__enfant liste" for="liste">Vue en liste</label>
                         </li>
                     </ul>
                 </fieldset>
-                <fieldset class="formulaire__groupeChamps formulaire__groupeChampsRangee">
+                    <fieldset class="formulaire__groupeChamps tris">
                     <legend class="formulaire__sectionLegende">
                         <h3 class="formulaire__sectionTitre screen-reader-only">Nombre d'auteurs par page :</h3>
                     </legend>
@@ -51,8 +56,8 @@
                             <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs Z-A</option>
                         </select>
                     </p>
-                </fieldset>
-
+                    </fieldset>
+                </div>
                 <input style="display: none" class="" type="submit" id="auteurTrie">
             </form>
         </section>
@@ -68,10 +73,17 @@
                             <div class="livre__conteneurVignette">
                                 <picture class="livre__picture">
                                     <!-- Image pour mobile, tablette et poste de table -->
+                                    @if(file_exists("liaisons/images/auteurs/{$auteur->getId()}-570.jpg"))
                                     <img class="livre__image etiquette"
                                          src="../public/liaisons/images/auteurs/{{$auteur->getId()}}-570.jpg"
                                          srcset="../public/liaisons/images/auteurs/{{$auteur->getId()}}-570.jpg 1x, ../public/liaisons/images/auteurs/{{$auteur->getId()}}-1140.jpg 2x"
                                          alt="{{$auteur->getPrenom()}} {{$auteur->getNom()}}">
+                                    @else
+                                        <img class="auteur__image etiquette"
+                                             src="../public/liaisons/images/auteurs/img-auteur-sans-photo-1140.png"
+                                             srcset="../public/liaisons/images/auteurs/img-auteur-sans-photo-570.png 1x"
+                                             alt="Image générique">
+                                    @endif
                                 </picture>
                             </div>
                             <div class="livre__conteneurTitreInfos">

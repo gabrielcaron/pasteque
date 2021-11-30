@@ -146,3 +146,16 @@
     }
   }
 }
+[role="radio"] {
+  padding:5px;
+}
+
+[role="radio"][aria-checked="true"]::before {
+  content: "(x)";
+  font-family: monospace;
+}
+
+[role="radio"][aria-checked="false"]::before {
+  content: "( )";
+  font-family: monospace;
+}

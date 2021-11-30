@@ -11,6 +11,7 @@ const refSectionAdresseFacturation: HTMLElement = document.getElementById('secti
 const refSectionPaiementFacturation: HTMLElement = document.getElementById('sectionPaiementFacturation') as HTMLElement;
 const refSectionAnciennesAdressesLivraison: HTMLElement = document.getElementById('sectionAncienneAdresseLivraison') as HTMLElement;
 const refSectionAdresseLivraison: HTMLElement = document.getElementById('sectionAdresseLivraison') as HTMLElement;
+const refSectionRadioAnciennesAdressesLivraison: HTMLElement = document.getElementById('sectionRadioAnciennesAdresses') as HTMLElement;
 
 
 /** Livraison : Champs input de la section adresse **/
@@ -64,6 +65,8 @@ const refFacturationCvvValidationRecap: HTMLElement = document.getElementById('p
 
 /** Différents input caché du formulaire **/
 const refNombresLivraisonsCompte: HTMLInputElement = document.getElementById('nombreAnciennesAdresses') as HTMLInputElement;
+let radiosLivraison = refSectionRadioAnciennesAdressesLivraison.querySelectorAll('[role=radio]');
+
 
 
 /** Gestion du step-left **/
@@ -223,27 +226,34 @@ let gestionStepLeft = {
             refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
         }
         //TODO - Set selected aria
-        refNombresLivraisonsCompte
-        for (let i = 0; i < parseInt(refNombresLivraisonsCompte.value); i++) {
-            
+        for (let i = 0; i < parseInt(refNombresLivraisonsCompte.value)-1; i++) {
+
         }
-        if (refLivraisonInputAdresse.value)
 
-        refNombresLivraisonsCompte.value = refNombresLivraisonsCompte.value + 1;
-
-        const refDiv = document.createElement('div');
-        const refAdresse = document.createElement('p');
+        const refAdress = document.createElement('address');
+        const refRue = document.createElement('p');
         const refVille= document.createElement('p');
         const refProvince = document.createElement('p');
         const refCodePostal = document.createElement('p');
 
-        refAdresse.innerHTML = refLivraisonInputAdresse.value;
+        refAdress.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_radioAdresse`);
+        refAdress.setAttribute('role', 'radio')
+        refRue.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_recapAdresse`);
+        refVille.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_recapVille`);
+        refProvince.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_recapProvince`);
+        refCodePostal.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_recapCodePostal`);
+
+        refRue.innerHTML = refLivraisonInputAdresse.value;
         refVille.innerHTML = refLivraisonInputVille.value;
         refProvince.innerHTML = refLivraisonInputProvince.value;
         refCodePostal.innerHTML = refLivraisonInputCodePostal.value;
 
-        refDiv.prepend(refAdresse, refVille, refProvince, refCodePostal);
-        refSectionAnciennesAdressesLivraison.prepend(refDiv);
+        refAdress.prepend(refRue, refVille, refProvince, refCodePostal);
+        refSectionRadioAnciennesAdressesLivraison.append(refAdress);
+
+        radiosLivraison = refSectionRadioAnciennesAdressesLivraison.querySelectorAll('[role=radio]');
+
+        refNombresLivraisonsCompte.value = (parseInt(refNombresLivraisonsCompte.value) + 1).toString();
 
     },
 
@@ -267,6 +277,56 @@ let gestionStepLeft = {
         refEtapeFacturation.style.display = 'block';
         refSectionRecapAdresseFacturation.style.display = 'block';
         refSectionPaiementFacturation.style.display = 'block';
+    },
+
+    handleClick(event) {
+        gestionStepLeft.setChecked(event);
+        event.preventDefault();
+    },
+/*
+    handleKeydown(event) {
+        switch (event.keyCode) {
+            case 32: // space
+            case 12: // return
+                currentChecked();
+                break;
+
+            case 38: // up
+            case 37: // left
+                previousRadioChecked();
+                break;
+
+            case 40: // down
+            case 39: // right
+                nextItemChecked();
+                break;
+
+            default:
+                break;
+        }
+        event.stopPropagation();
+        event.preventDefault();
+
+    },*/
+
+
+    setChecked(event) {
+        console.log(event)
+        console.log(radiosLivraison);
+        for (let i = 0; i < radiosLivraison.length; i++) {
+            document.getElementById(radiosLivraison[i].id).ariaChecked = 'false'
+        }
+        event.ariaChecked = 'true';
+        // uncheck all the radios in group
+        // iterated thru all the radios in radio group
+        // eachRadio.tabIndex = -1;
+        // eachRadio.setAttribute('aria-checked', 'false');
+
+        // set the selected radio to checked
+        // thisRadio.setAttribute('aria-checked', 'true');
+        // thisRadio.tabIndex = 0;
+        // thisRadio.focus();
+        // set the value of the radioGroup to the value of the currently selected radio
     },
 
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/
@@ -304,3 +364,11 @@ document.getElementById('modifierAdresseFacturation').addEventListener('click', 
 document.getElementById('modifierAdresseLivraisonValidation').addEventListener('click', function (){gestionStepLeft.modifierLivraison()});
 document.getElementById('modifierAdresseFacturationValidation').addEventListener('click', function (){gestionStepLeft.modifierAdresseFacturation()});
 document.getElementById('modifierPaiementFacturationValidation').addEventListener('click', function (){gestionStepLeft.modifierPaiementFacturation()});
+
+
+//Radio
+for (let j = 0; j < radiosLivraison.length; j++) {
+    //radiosLivraison[j].addEventListener('keydown', function() { gestionStepLeft.handleKeydown(); });
+    radiosLivraison[j].addEventListener('click', function() { gestionStepLeft.handleClick(radiosLivraison[j]);});
+}
+

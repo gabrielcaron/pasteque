@@ -10,6 +10,7 @@ var refSectionAdresseFacturation = document.getElementById('sectionAdresseFactur
 var refSectionPaiementFacturation = document.getElementById('sectionPaiementFacturation');
 var refSectionAnciennesAdressesLivraison = document.getElementById('sectionAncienneAdresseLivraison');
 var refSectionAdresseLivraison = document.getElementById('sectionAdresseLivraison');
+var refSectionRadioAnciennesAdressesLivraison = document.getElementById('sectionRadioAnciennesAdresses');
 /** Livraison : Champs input de la section adresse **/
 var refLivraisonInputAdresse = document.getElementById('livraison_adresse');
 var refLivraisonInputVille = document.getElementById('livraison_ville');
@@ -50,6 +51,7 @@ var refFacturationAnneeExpirationValidationRecap = document.getElementById('paie
 var refFacturationCvvValidationRecap = document.getElementById('paiement_cvv');
 /** Différents input caché du formulaire **/
 var refNombresLivraisonsCompte = document.getElementById('nombreAnciennesAdresses');
+var radiosLivraison = refSectionRadioAnciennesAdressesLivraison.querySelectorAll('[role=radio]');
 /** Gestion du step-left **/
 var gestionStepLeft = {
     livraisonCompleted: false,
@@ -188,22 +190,27 @@ var gestionStepLeft = {
             refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
         }
         //TODO - Set selected aria
-        refNombresLivraisonsCompte;
-        for (var i = 0; i < parseInt(refNombresLivraisonsCompte.value); i++) {
+        for (var i = 0; i < parseInt(refNombresLivraisonsCompte.value) - 1; i++) {
         }
-        if (refLivraisonInputAdresse.value)
-            refNombresLivraisonsCompte.value = refNombresLivraisonsCompte.value + 1;
-        var refDiv = document.createElement('div');
-        var refAdresse = document.createElement('p');
+        var refAdress = document.createElement('address');
+        var refRue = document.createElement('p');
         var refVille = document.createElement('p');
         var refProvince = document.createElement('p');
         var refCodePostal = document.createElement('p');
-        refAdresse.innerHTML = refLivraisonInputAdresse.value;
+        refAdress.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_radioAdresse"));
+        refAdress.setAttribute('role', 'radio');
+        refRue.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapAdresse"));
+        refVille.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapVille"));
+        refProvince.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapProvince"));
+        refCodePostal.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapCodePostal"));
+        refRue.innerHTML = refLivraisonInputAdresse.value;
         refVille.innerHTML = refLivraisonInputVille.value;
         refProvince.innerHTML = refLivraisonInputProvince.value;
         refCodePostal.innerHTML = refLivraisonInputCodePostal.value;
-        refDiv.prepend(refAdresse, refVille, refProvince, refCodePostal);
-        refSectionAnciennesAdressesLivraison.prepend(refDiv);
+        refAdress.prepend(refRue, refVille, refProvince, refCodePostal);
+        refSectionRadioAnciennesAdressesLivraison.append(refAdress);
+        radiosLivraison = refSectionRadioAnciennesAdressesLivraison.querySelectorAll('[role=radio]');
+        refNombresLivraisonsCompte.value = (parseInt(refNombresLivraisonsCompte.value) + 1).toString();
     },
     /** Modifier une adresse de Livraison **/
     modifierLivraison: function () {
@@ -223,6 +230,52 @@ var gestionStepLeft = {
         refEtapeFacturation.style.display = 'block';
         refSectionRecapAdresseFacturation.style.display = 'block';
         refSectionPaiementFacturation.style.display = 'block';
+    },
+    handleClick: function (event) {
+        gestionStepLeft.setChecked(event);
+        event.preventDefault();
+    },
+    /*
+        handleKeydown(event) {
+            switch (event.keyCode) {
+                case 32: // space
+                case 12: // return
+                    currentChecked();
+                    break;
+    
+                case 38: // up
+                case 37: // left
+                    previousRadioChecked();
+                    break;
+    
+                case 40: // down
+                case 39: // right
+                    nextItemChecked();
+                    break;
+    
+                default:
+                    break;
+            }
+            event.stopPropagation();
+            event.preventDefault();
+    
+        },*/
+    setChecked: function (event) {
+        console.log(event);
+        console.log(radiosLivraison);
+        for (var i = 0; i < radiosLivraison.length; i++) {
+            document.getElementById(radiosLivraison[i].id).ariaChecked = 'false';
+        }
+        event.ariaChecked = 'true';
+        // uncheck all the radios in group
+        // iterated thru all the radios in radio group
+        // eachRadio.tabIndex = -1;
+        // eachRadio.setAttribute('aria-checked', 'false');
+        // set the selected radio to checked
+        // thisRadio.setAttribute('aria-checked', 'true');
+        // thisRadio.tabIndex = 0;
+        // thisRadio.focus();
+        // set the value of the radioGroup to the value of the currently selected radio
     },
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/
     remettreAZero: function () {
@@ -255,3 +308,11 @@ document.getElementById('modifierAdresseFacturation').addEventListener('click', 
 document.getElementById('modifierAdresseLivraisonValidation').addEventListener('click', function () { gestionStepLeft.modifierLivraison(); });
 document.getElementById('modifierAdresseFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierAdresseFacturation(); });
 document.getElementById('modifierPaiementFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierPaiementFacturation(); });
+var _loop_1 = function (j) {
+    //radiosLivraison[j].addEventListener('keydown', function() { gestionStepLeft.handleKeydown(); });
+    radiosLivraison[j].addEventListener('click', function () { gestionStepLeft.handleClick(radiosLivraison[j]); });
+};
+//Radio
+for (var j = 0; j < radiosLivraison.length; j++) {
+    _loop_1(j);
+}

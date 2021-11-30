@@ -7,14 +7,19 @@
 <section id="sectionAncienneAdresseLivraison" style="display: none">
     <input id="nombreAnciennesAdresses" type="hidden" value="@if($livraisonToutesLesAdresses !== null){{count($livraisonToutesLesAdresses)}}@endif">
     @if($livraisonToutesLesAdresses !== null)
-        @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
-            <div>
-                <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</p>
-                <p id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</p>
-                <p id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</p>
-                <p id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</p>
-            </div>
-        @endfor
+        <div id="sectionRadioAnciennesAdresses" role="radiogroup" aria-labelledby="legend">
+            <h3 id="legend">Anciennes Adresses</h3>
+            @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
+                <address id="{{$i}}_livraisonAncienneAdresse_radioAdresse" role="radio" @if($livraisonToutesLesAdresses[$i]->getAdresse() === $livraison->getAdresse()) aria-checked="true" @else aria-checked="false" @endif tabindex="0" aria-labelledby="adresse_{{$i}}" @if($livraisonToutesLesAdresses[$i]->getAdresse() === $livraison->getAdresse()) data-value="True" @else data-value="False" @endif>
+                    <span id="adresse_{{$i}}" class="screen-reader-only">{{$livraisonToutesLesAdresses[$i]->getAdresse()}} {{$livraisonToutesLesAdresses[$i]->getVille()}} {{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}} {{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</span>
+                    <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</p>
+                    <p id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</p>
+                    <p id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</p>
+                    <p id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</p>
+                </address>
+                <br>
+            @endfor
+        </div>
         <button id="ajouterNouvelleAdresseLivraison" type="button" class="button">Ajouter une adresse nouvelle adresse</button>
     @endif
 </section>

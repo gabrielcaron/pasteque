@@ -283,40 +283,47 @@ let gestionStepLeft = {
         gestionStepLeft.setChecked(event);
         event.preventDefault();
     },
-/*
+
     handleKeydown(event) {
+        console.log(event.target)
+        let position = parseInt(event.target.id.charAt(0));
         switch (event.keyCode) {
             case 32: // space
             case 12: // return
-                currentChecked();
+                gestionStepLeft.setChecked(event.target);
                 break;
 
             case 38: // up
             case 37: // left
-                previousRadioChecked();
+                console.log('entre')
+                 let precedent = position - 1 < 0 ? radiosLivraison.length - 1 : position - 1;
+                document.getElementById(radiosLivraison[precedent].id).focus();
                 break;
 
             case 40: // down
             case 39: // right
-                nextItemChecked();
+                //nextItemChecked();
                 break;
 
             default:
                 break;
         }
-        event.stopPropagation();
+        //event.stopPropagation();
         event.preventDefault();
 
-    },*/
+    },
 
 
     setChecked(event) {
-        console.log(event)
-        console.log(radiosLivraison);
+        //console.log(event)
+        //console.log(radiosLivraison);
         for (let i = 0; i < radiosLivraison.length; i++) {
-            document.getElementById(radiosLivraison[i].id).ariaChecked = 'false'
+            document.getElementById(radiosLivraison[i].id).setAttribute('aria-checked', 'false');
+            document.getElementById(radiosLivraison[i].id).tabIndex = -1;
         }
         event.ariaChecked = 'true';
+        event.tabIndex = 0;
+        event.focus();
         // uncheck all the radios in group
         // iterated thru all the radios in radio group
         // eachRadio.tabIndex = -1;
@@ -368,7 +375,7 @@ document.getElementById('modifierPaiementFacturationValidation').addEventListene
 
 //Radio
 for (let j = 0; j < radiosLivraison.length; j++) {
-    //radiosLivraison[j].addEventListener('keydown', function() { gestionStepLeft.handleKeydown(); });
+    radiosLivraison[j].addEventListener('keydown', function() { gestionStepLeft.handleKeydown(event); });
     radiosLivraison[j].addEventListener('click', function() { gestionStepLeft.handleClick(radiosLivraison[j]);});
 }
 

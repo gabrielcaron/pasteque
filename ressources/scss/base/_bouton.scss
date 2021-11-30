@@ -149,6 +149,9 @@
 [role="radio"] {
   padding:5px;
 }
+[role="radio"]:focus {
+  border: solid 3px $bleu;
+}
 
 [role="radio"][aria-checked="true"]::before {
   content: "(x)";

@@ -235,38 +235,40 @@ var gestionStepLeft = {
         gestionStepLeft.setChecked(event);
         event.preventDefault();
     },
-    /*
-        handleKeydown(event) {
-            switch (event.keyCode) {
-                case 32: // space
-                case 12: // return
-                    currentChecked();
-                    break;
-    
-                case 38: // up
-                case 37: // left
-                    previousRadioChecked();
-                    break;
-    
-                case 40: // down
-                case 39: // right
-                    nextItemChecked();
-                    break;
-    
-                default:
-                    break;
-            }
-            event.stopPropagation();
-            event.preventDefault();
-    
-        },*/
+    handleKeydown: function (event) {
+        console.log(event.target);
+        var position = parseInt(event.target.id.charAt(0));
+        switch (event.keyCode) {
+            case 32: // space
+            case 12: // return
+                gestionStepLeft.setChecked(event.target);
+                break;
+            case 38: // up
+            case 37: // left
+                console.log('entre');
+                var precedent = position - 1 < 0 ? radiosLivraison.length - 1 : position - 1;
+                document.getElementById(radiosLivraison[precedent].id).focus();
+                break;
+            case 40: // down
+            case 39: // right
+                //nextItemChecked();
+                break;
+            default:
+                break;
+        }
+        //event.stopPropagation();
+        event.preventDefault();
+    },
     setChecked: function (event) {
-        console.log(event);
-        console.log(radiosLivraison);
+        //console.log(event)
+        //console.log(radiosLivraison);
         for (var i = 0; i < radiosLivraison.length; i++) {
-            document.getElementById(radiosLivraison[i].id).ariaChecked = 'false';
+            document.getElementById(radiosLivraison[i].id).setAttribute('aria-checked', 'false');
+            document.getElementById(radiosLivraison[i].id).tabIndex = -1;
         }
         event.ariaChecked = 'true';
+        event.tabIndex = 0;
+        event.focus();
         // uncheck all the radios in group
         // iterated thru all the radios in radio group
         // eachRadio.tabIndex = -1;
@@ -309,7 +311,7 @@ document.getElementById('modifierAdresseLivraisonValidation').addEventListener('
 document.getElementById('modifierAdresseFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierAdresseFacturation(); });
 document.getElementById('modifierPaiementFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierPaiementFacturation(); });
 var _loop_1 = function (j) {
-    //radiosLivraison[j].addEventListener('keydown', function() { gestionStepLeft.handleKeydown(); });
+    radiosLivraison[j].addEventListener('keydown', function () { gestionStepLeft.handleKeydown(event); });
     radiosLivraison[j].addEventListener('click', function () { gestionStepLeft.handleClick(radiosLivraison[j]); });
 };
 //Radio

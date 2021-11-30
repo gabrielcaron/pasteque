@@ -37,16 +37,25 @@
                         <input id="livre_id" type="hidden" name="livre_id" value="{{$article->getProduitId()}}">
                         <label for="panier_id" style="display: none">Id</label>
                         <input id="panier_id" type="hidden" name="panier_id" value="{{$article->getPanierId()}}">
-                        <label for="quantite">Quantité :</label>
+
+
+
+                        <div class="ficheLivre__ajout">
+                            <div class="ficheLivre__ajoutQuantite">
+                                <button class="minus-btn btnQuantite" type="button" name="button" @if ($article->getQuantite() > 1)  onclick="document.getElementById('quantite_panier{{$article->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$article->getId()}}').value) - 1; document.getElementById('modifierQuantite{{$article->getId()}}').submit()" @endif>-</button>
+                                    <label  style="display: none" for="quantite_panier{{$article->getId()}}">Quantité :</label>
+                                    <input id="quantite_panier{{$article->getId()}}" class="ficheLivre__ajoutInput" type="number" name="quantite" value="{{$article->getQuantite()}}" onchange="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">
+                                <button class="plus-btn btnQuantite" type="button" name="button" @if ($article->getQuantite() < 10) onclick="document.getElementById('quantite_panier{{$article->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$article->getId()}}').value) + 1; document.getElementById('modifierQuantite{{$article->getId()}}').submit()" @endif>+</button>
+                            </div>
+                        </div>
+
+                       {{-- <label for="quantite">Quantité :</label>
                         <select id="quantite" name="quantite" onchange="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">
                             @for($i=0;$i <=10;$i++)
                                 <option value="{{$i}}"
                                         @if($article->getQuantite() === $i) selected @endif>{{$i}}</option>
                             @endfor
-                        </select>
-{{--
-                        <input  class="bouton texte" type="submit" value="Mettre à jour le panier">
---}}
+                        </select>--}}
                     </form>
                     <p aria-label="Sous-total de l'article {{$article->getLivreAssocie()->getTitre()}}">{{number_format($article->getLivreAssocie()->getPrixCan() * $article->getQuantite(), 2)}}$</p>
                 </section>

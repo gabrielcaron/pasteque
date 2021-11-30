@@ -24,28 +24,30 @@
                             <div id="champConnexionEmail" class="champ champ--lg">
                                 <div class="champ__boite">
                                     <label for="connexionEmail" class="champ__etiquette">Entrez votre courriel *</label>
-                                    <input class="champ__input" id="connexionEmail" name="email" type="email"
+                                    <input class="champ__input" id="connexionEmail" name="connexionEmail" type="email"
                                            autocomplete="email"
                                            required="required" aria-labelledby="messagesEmail"
                                            pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}$"
+                                           @if($tValidation !== null) value="{{$tValidation['connexionEmail']['valeur']}}" @endif
 
                                     />
                                 </div>
                                 <div id="messagesConnexionEmail" class="champ__messages">
-                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['connexionEmail']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['connexionEmail']['message'] !== ''){{$tValidation['connexionEmail']['message']}}@endif</p>
+                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['connexionEmail']['message'] !== '') style="display: block;" @endif>@if($tValidation !== null && $tValidation['connexionEmail']['message'] !== '') {{$tValidation['connexionEmail']['message']}} @endif</p>
                                 </div>
                             </div>
                             <div id="champPasswordConnexion" class="champ champ--lg">
                                 <div class="champ__boite">
                                     <label for="connexionPassword" class="champ__etiquette">Entrez votre mot de passe *</label>
-                                    <input class="champ__input" id="connexionPassword" name="password" type="password"
+                                    <input class="champ__input" id="connexionPassword" name="connexionPassword" type="password"
                                            autocomplete="current-password"
                                            required="required" aria-labelledby="messagesPassword"
-                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}" min="8"/>
+                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}" min="8"
+                                           @if($tValidation !== null) value="{{$tValidation['connexionPassword']['valeur']}}" @endif/>
                                     <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer; margin-top: 10px"></i>
                                 </div>
                                 <div id="messagesConnexionPassword" class="champ__messages">
-                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['connexionPassword']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['connexionPassword']['message'] !== ''){{$tValidation['connexionPassword']['message']}}@endif</p>
+                                    <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['connexionPassword']['message'] !== '') style="display: block;" @endif>@if($tValidation !== null && $tValidation['connexionPassword']['message'] !== ''){{$tValidation['connexionPassword']['message']}}@endif</p>
                                 </div>
                             </div>
                             </section>

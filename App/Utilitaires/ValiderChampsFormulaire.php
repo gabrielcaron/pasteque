@@ -13,11 +13,9 @@ class ValiderChampsFormulaire
     }
     public static function verifierSiChampVide(string $strChamp):bool{
         if($strChamp === ''){
-
             return false;
         }
         return true;
-
     }
     public static function verifierSiRegexCorrect(string $strChamp, string $strChampPost):bool{
         $rgx = [
@@ -33,5 +31,40 @@ class ValiderChampsFormulaire
             'mot_de_passe'=>'#^[ a-zA-ZÀ-ÿ\-‘]+$#'
         ];
         return preg_match($rgx[$strChamp],$strChampPost) === 1;
+    }
+    public static function validerFormulaire(array $tMessagesJson):array{
+        $tDonnes = [];
+        // À compléter...
+        foreach (array_keys($tMessagesJson) as $champValide){
+            if(isset($_POST[$champValide])){
+                if($tMessagesJson[$champValide]['vide'] !== '' && ValiderChampsFormulaire::verifierSiChampVide($_POST[$champValide]) === false){
+                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
+                }
+                elseif($tMessagesJson[$champValide]['pattern'] !== '' && ValiderChampsFormulaire::verifierSiRegexCorrect($champValide, $_POST[$champValide]) === false){
+                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['pattern']];
+                }
+                else{
+                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>true, 'message'=>''];
+                }
+            }
+            else{
+                $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
+            }
+        }
+        return $tDonnes;
+    }
+
+    public static function verifierErreurFormulaire(array $tDonnes):array{
+        $tableauErreur = [];
+        foreach ($tDonnes as $champ){
+            if($champ['validation'] === false){
+                array_push($tableauErreur, false);
+
+            }
+            else{
+                array_push($tableauErreur, true);
+            }
+        }
+        return $tableauErreur;
     }
 }

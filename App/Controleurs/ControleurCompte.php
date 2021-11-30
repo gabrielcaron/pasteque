@@ -34,17 +34,85 @@ var_dump($tValidation);
     //Connexion au compte
     public function connexion():void
     {
-        $tDonnees = array("titrePage"=>"connexion", "classeBody"=>"connexion", "action"=>"connexion");
-        echo App::getBlade()->run("comptes.compte",$tDonnees);
+        $tValidation = $_SESSION['tValidation'] ?? null;
+
+        $_SESSION['tValidation'] = null;
+
+        $exist = '';
+
+        if ($_GET['erreur']){
+            $exist = $_GET['erreur'];
+        }
+            $tDonnees = array("titrePage"=>"connexion", "classeBody"=>"connexion", "action"=>"connexion", "erreur"=>"$exist", "tValidation" => $tValidation);
+            echo App::getBlade()->run("comptes.compte",$tDonnees);
     }
 
     //Connection réussi
     public function connecter():void{
-        $compte = Compte::trouverParCourriel($_POST['email']);
-        $_SESSION['connected'] = true;
-        $_SESSION['prenom'] = $compte->getPrenom();
-        $_SESSION['email'] = $compte->getCourriel();
-        header('Location: index.php?controleur=site&action=accueil');
+        if(isset($_SESSION['tValidation'])){
+            unset($_SESSION['tValidation']);
+        }
+        //var_dump($_POST);
+        //$compte = Compte::trouverParCourriel($_POST['connexionEmail']);
+        // Récupérer le contenu des messages en format JSON
+        $contenuBruteFichierJson = file_get_contents("../ressources/lang/fr_CA.UTF-8/messagesConnexionValidation.json");
+        // Convertir en tableau associatif
+        $tMessagesJson = json_decode($contenuBruteFichierJson, true);
+        $tDonnes = [];
+        // À compléter...
+        $compte = isset($_POST['connexionEmail']) ?? null;
+        foreach (array_keys($tMessagesJson) as $champValide){
+            if(isset($_POST[$champValide])){
+
+                if($tMessagesJson[$champValide]['vide'] !== '' && ValiderChampsFormulaire::verifierSiChampVide($_POST[$champValide]) === false){
+                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
+                }
+                elseif ($champValide === 'connexionEmail'){
+                    //var_dump(Compte::courrielValide($_POST[$champValide]));
+                    if(Compte::courrielValide($_POST[$champValide]) === true){
+                        $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['pattern']];
+
+                    }
+                    else{
+                        $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>true, 'message'=>''];
+                    }
+                }
+                elseif($champValide === 'connexionPassword'){
+                    $compte = Compte::trouverParCourriel($_POST['connexionEmail']);
+                    if($compte -> getMotDePasse() !== $_POST[$champValide]){
+                        $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['pattern']];
+                    }
+                    else{
+                        $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>true, 'message'=>''];
+                    }
+                }
+            }
+            else{
+                $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
+            }
+        }
+        $tableauErreur = [];
+        foreach ($tDonnes as $champ){
+            if($champ['validation'] === false){
+                array_push($tableauErreur, false);
+            }
+            else{
+                array_push($tableauErreur, true);
+            }
+
+        }
+
+        if(in_array(false, $tableauErreur)){
+            $_SESSION['tValidation'] = $tDonnes;
+            header('Location: index.php?controleur=compte&action=connexion');
+        }
+        else{
+            $_SESSION['connected'] = true;
+            $_SESSION['prenom'] = $compte->getPrenom();
+            $_SESSION['email'] = $compte->getCourriel();
+            header('Location: index.php?controleur=site&action=accueil');
+        }
+
     }
 
     //Deconnexion
@@ -61,38 +129,9 @@ var_dump($tValidation);
         $contenuBruteFichierJson = file_get_contents("../ressources/lang/fr_CA.UTF-8/messagesInscriptionValidation.json");
         // Convertir en tableau associatif
         $tMessagesJson = json_decode($contenuBruteFichierJson, true);
-        $tDonnes = [];
-        // À compléter...
-        foreach (array_keys($tMessagesJson) as $champValide){
-            if(isset($_POST[$champValide])){
-                if($tMessagesJson[$champValide]['vide'] !== '' && ValiderChampsFormulaire::verifierSiChampVide($_POST[$champValide]) === false){
-                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
-                }
-                elseif($tMessagesJson[$champValide]['pattern'] !== '' && ValiderChampsFormulaire::verifierSiRegexCorrect($champValide, $_POST[$champValide]) === false){
-                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['pattern']];
-                }
-                else{
-                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>true, 'message'=>''];
-                }
-            }
-            else{
-                $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
-            }
-        }
+        $tDonnes = ValiderChampsFormulaire::validerFormulaire($tMessagesJson);
 
-
-
-        $tableauErreur = [];
-        foreach ($tDonnes as $champ){
-            if($champ['validation'] === false){
-                array_push($tableauErreur, false);
-
-            }
-            else{
-                array_push($tableauErreur, true);
-            }
-
-        }
+        $tableauErreur = ValiderChampsFormulaire::verifierErreurFormulaire($tDonnes);
 
         if(in_array(false, $tableauErreur)){
             $_SESSION['tValidation'] = $tDonnes;
@@ -128,8 +167,5 @@ var_dump($tValidation);
 
             header('Location: index.php?controleur=site&action=accueil');
         }
-
-
-
     }
 }

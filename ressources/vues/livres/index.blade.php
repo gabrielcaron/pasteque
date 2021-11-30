@@ -133,10 +133,17 @@
                             <div class="livre__conteneurVignette">
                                 <picture class="livre__picture">
                                     <!-- Image pour mobile, tablette et poste de table -->
-                                    <img class="livre__image etiquette"
-                                         src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg"
-                                         srcset="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg 1x, ../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg 2x"
-                                         alt="{{$livre->getTitre()}}">
+                                    @if(file_exists("liaisons/images/livres/{$livre->getIsbnPapier()}-940.jpg"))
+                                        <img class="livre__image etiquette"
+                                             src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg"
+                                             srcset="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-470.jpg 1x, ../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg 2x"
+                                             alt="{{$livre->getTitre()}}">
+                                    @else
+                                        <img class="livre__image etiquette"
+                                             src="../public/liaisons/images/livres/img-livre-sans-vignette-1140.png"
+                                             srcset="../public/liaisons/images/livres/img-livre-sans-vignette-570.png 1x"
+                                             alt="Image générique">
+                                    @endif
                                 </picture>
                                 @if ($livre->getStatut() === 2)
                                     <p class="livre__etiquette">Nouveauté</p>
@@ -159,7 +166,7 @@
             </div>
         </section>
         @if($intNbLivreParPage === '9' || $intNbLivreParPage === '15' ||  $intNbLivreParPage === '30')
-            <section>
+            <section class="livres__pagination">
                 @include('livres.fragments.pagination')
             </section>
         @endif

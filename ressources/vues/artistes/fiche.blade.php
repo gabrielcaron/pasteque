@@ -15,8 +15,10 @@
                 <img class="auteur__conteneurImg" src="../public/liaisons/images/auteurs/{{$auteur->getId()}}-1140.jpg"
                      alt="{{$auteur->getPrenom()}} {{$auteur->getNom()}}" width="20%">
             @else
-                <img class="auteur__conteneurImg" src="../public/liaisons/images/auteurs/img-auteur-sans-photo.jpg"
-                     alt="{{$auteur->getPrenom()}} {{$auteur->getNom()}}" width="20%">
+                <img class="auteur__image etiquette"
+                     src="../public/liaisons/images/auteurs/img-auteur-sans-photo-1140.png"
+                     srcset="../public/liaisons/images/auteurs/img-auteur-sans-photo-570.png 1x"
+                     alt="Image générique">
             @endif
         </div>
         <div class="auteur__conteneur2">

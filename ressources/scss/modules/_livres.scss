@@ -181,7 +181,7 @@
 		display: none;
 	}
 }
-.modeliste.livres {
+.modeliste.livres  {
   .livre {
 	&__lien {
 
@@ -240,5 +240,7 @@
 	}
   }
 }
-
+.livres__pagination{
+	text-align: center;
+}
 

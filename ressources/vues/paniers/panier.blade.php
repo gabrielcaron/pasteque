@@ -42,14 +42,11 @@
 
                         <div class="ficheLivre__ajout">
                             <div class="ficheLivre__ajoutQuantite">
-                                <button class="minus-btn btnQuantite" type="button" name="button" onclick="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">-</button>
-                                    <label  style="display: none" for="quantite">Quantité :</label>
-                                    <input class="ficheLivre__ajoutInput" type="text" name="name" value="{{$article->getQuantite()}}">
-                                <button class="plus-btn btnQuantite" type="button" name="button" onclick="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">+</button>
+                                <button class="minus-btn btnQuantite" type="button" name="button" @if ($article->getQuantite() > 1)  onclick="document.getElementById('quantite_panier{{$article->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$article->getId()}}').value) - 1; document.getElementById('modifierQuantite{{$article->getId()}}').submit()" @endif>-</button>
+                                    <label  style="display: none" for="quantite_panier{{$article->getId()}}">Quantité :</label>
+                                    <input id="quantite_panier{{$article->getId()}}" class="ficheLivre__ajoutInput" type="number" name="quantite" value="{{$article->getQuantite()}}" onchange="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">
+                                <button class="plus-btn btnQuantite" type="button" name="button" @if ($article->getQuantite() < 10) onclick="document.getElementById('quantite_panier{{$article->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$article->getId()}}').value) + 1; document.getElementById('modifierQuantite{{$article->getId()}}').submit()" @endif>+</button>
                             </div>
-                            <a class="bouton action ajoutPanier" href="#panier">
-                                Ajouter au panier
-                            </a>
                         </div>
 
                        {{-- <label for="quantite">Quantité :</label>
@@ -59,9 +56,6 @@
                                         @if($article->getQuantite() === $i) selected @endif>{{$i}}</option>
                             @endfor
                         </select>--}}
-{{--
-                        <input  class="bouton texte" type="submit" value="Mettre à jour le panier">
---}}
                     </form>
                     <p aria-label="Sous-total de l'article {{$article->getLivreAssocie()->getTitre()}}">{{number_format($article->getLivreAssocie()->getPrixCan() * $article->getQuantite(), 2)}}$</p>
                 </section>

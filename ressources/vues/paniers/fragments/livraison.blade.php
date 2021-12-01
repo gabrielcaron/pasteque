@@ -1,10 +1,22 @@
-<h2 id="titreLivraison" class="form__titre-etape">
-    1. Livraison
-</h2>
+
 <section class="identification">
     @include('paniers.fragments.identification')
 </section>
-<section id="sectionAncienneAdresseLivraison" style="display: none">
+<section id="validationAdresseLivraison" class="validationAdresseLivraison">
+    <section id="sectionRecapAdresseLivraison">
+        @component('paniers.fragments.adresseRecap')
+            @slot('titre') Adresse de Livraison @endslot
+            @slot('sousTitre')  @endslot
+            @slot('idUnique') livraisonAdresseLivraison @endslot
+            @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot
+            @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot
+            @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceAssocie()->getNom()}} @endif @endslot
+            @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
+        @endcomponent
+        <button id="modifierAdresseLivraisonValidation" type="button">Modifier les informations de livraison</button>
+    </section>
+</section>
+<section id="sectionAncienneAdresseLivraison" >
     <input id="nombreAnciennesAdresses" type="hidden" value="@if($livraisonToutesLesAdresses !== null){{count($livraisonToutesLesAdresses)}}@endif">
     @if($livraisonToutesLesAdresses !== null)
         <h3 id="legend">Anciennes Adresses</h3>
@@ -27,7 +39,7 @@
         <button id="ajouterNouvelleAdresseLivraison" type="button" class="button">Ajouter une adresse nouvelle adresse</button>
     @endif
 </section>
-<section id="sectionAdresseLivraison" style="display: none">
+<section id="sectionAdresseLivraison">
     @component('paniers.fragments.adresse')
         @slot('livraisonOuFacturation') livraison @endslot
         @slot('id') @if($livraison !== null) {{$livraison->getId()}} @endif @endslot

@@ -1,14 +1,9 @@
-<h2 id="titreFacturation" class="form__titre-etape">
-    3. Validation
-</h2>
-<section class="identification">
-    @include('paniers.fragments.identification')
-</section>
+
 <section id="validationAdresseLivraison" class="validationAdresseLivraison">
     <section id="sectionRecapAdresseLivraison">
         @component('paniers.fragments.adresseRecap')
-            @slot('titre') Adresse de Livraison @endslot
-            @slot('sousTitre')  @endslot
+            @slot('titre') Informations de Livraison @endslot
+            @slot('sousTitre') Adresse de livraison @endslot
             @slot('idUnique') livraisonAdresseValidation @endslot
             @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot
             @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot
@@ -32,7 +27,7 @@
         <button id="modifierAdresseFacturationValidation" type="button">Modifier l'adresse de facturation</button>
     </section>
     <section>
-        <h3>Mode de paiement</h3>
+        <h6>Mode de paiement</h6>
         <p id="paiement_titulaire">Titulaire</p>
         <p id="paiement_numeroCarte">Numero Carte</p>
         <p id="paiement_moisExpiration">Mois expiration</p>
@@ -71,23 +66,11 @@
                     <label for="panier_id" style="display: none">Id</label>
                     <input id="panier_id" type="hidden" name="panier_id" value="{{$article->getPanierId()}}">
                     <label for="quantite">Quantité :</label>
-                    <select id="quantite" name="quantite" onchange="document.getElementById('modifierQuantite{{$article->getId()}}').submit()">
-                        @for($i=0;$i <=10;$i++)
-                            <option value="{{$i}}"
-                                    @if($article->getQuantite() === $i) selected @endif>{{$i}}</option>
-                        @endfor
-                    </select>
-                    {{--
-                                            <input  class="bouton texte" type="submit" value="Mettre à jour le panier">
-                    --}}
+                    <input type="hidden" id="quantite" name="quantite" value="{{$article->getQuantite()}}">
                 </form>
+                <span>{{$article->getQuantite()}}</span>
                 <p aria-label="Sous-total de l'article {{$article->getLivreAssocie()->getTitre()}}">{{number_format($article->getLivreAssocie()->getPrixCan() * $article->getQuantite(), 2)}}$</p>
             </section>
-            <form class="panier__articleRetirer" action="index.php?controleur=panier&action=supprimer" method="POST">
-                <label for="id" style="display: none">Id</label>
-                <input id="id" type="hidden" name="id" value="{{$article->getId()}}">
-                <input class="bouton texte destructif" type="submit" value="Retirer l'article du panier">
-            </form>
         </article>
     @endforeach
     <table class="panier__tableauSousTotal">
@@ -109,10 +92,7 @@
                 <p>Une taxe fédérale de 5% s’appliquera à l’achat des livres</p></td>
         </tr>
     </table>
-    <a class="panier__continuerAchats bouton texte" href="index.php?controleur=livre&action=index">Continuer à magasiner</a>
-    <a class="panier__continuerAchats bouton texte" href="index.php?controleur=stepLeft&action=debuterStepLeft"><button class="panier__passerCommande bouton" type="button">Passer la commande</button></a>
 </section>
-
 <div class="form-wrap">
-    <button id="btnContinuerEtape1" type="button" class="btnCommander">Continuer</button>
+    <button id="envoyerFormulaireStepLeft" type="submit">Passer la commande</button>
 </div>

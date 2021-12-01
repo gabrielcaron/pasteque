@@ -1,13 +1,6 @@
-<h2 id="titreFacturation" class="form__titre-etape">
-    2. Facturation
-</h2>
-<section class="identification">
-    @include('paniers.fragments.identification')
-</section>
-<h2>Informations de paiement</h2>
 <section class="adressePaiement">
-    <h3>Adresse de Facturation</h3>
-    <section id="sectionRecapAdresseFacturation" style="display: none">
+    <h5>Adresse de Facturation</h5>
+    <section id="sectionRecapAdresseFacturation" >
         @component('paniers.fragments.adresseRecap')
             @slot('titre')  @endslot
             @slot('sousTitre')  @endslot
@@ -19,7 +12,7 @@
         @endcomponent
         <button id="modifierAdresseFacturation" type="button">Modifier l'adresse de facturation</button>
     </section>
-    <section id="sectionAdresseFacturation" style="display: none">
+    <section id="sectionAdresseFacturation" >
         @component('paniers.fragments.adresse')
             @slot('livraisonOuFacturation') facturation @endslot
             @slot('id') @if($facturation !== null) {{$facturation->getId()}} @endif @endslot
@@ -28,11 +21,11 @@
             @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceAssocie()->getNom()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-            <button id="continuerAdresseFacturation" type="button">Continuer</button>
+            <button id="continuerAdresseFacturation" type="button">Confirmer mon adressse de facturation</button>
     </section>
 </section>
 <section id="sectionPaiementFacturation" class="modePaiement">
-<h3>Mode de paiement</h3>
+<h5>Mode de paiement</h5>
     <h4>Cartes de crédits acceptées</h4>
     Ajouter les logos des cartes
 
@@ -60,6 +53,13 @@
         </div>
     </div>
     <div class="formulaire__champ">
+        <div class="formulaire__champInputFlex">
+            <label for="facturation_cvv">Code de sécurité</label>
+            <input class="formulaire__champInput formulaire__champInputExp" id="facturation_cvv" name="facturation_cvv" placeholder="352" type="text" value="@if($paiement !== null){{$paiement->getCvv()}}@endif"/>
+            <span>Ce code à trois chiffres se trouve à l’endos de votre carte.</span>
+        </div>
+    </div>
+    <div class="formulaire__champ">
         <label>Date d'expiration: *</label>
         <div class="formulaire__champInputFlex">
             <label class="screen-reader-only" for="facturation_moisExpiration">Mois d'expiration : </label>
@@ -68,15 +68,10 @@
             <input class="formulaire__champInput formulaire__champInputExp" id="facturation_anneeExpiration" name="facturation_anneeExpiration" type="number" value="@if($paiement !== null){{$paiement->getAnneeExpiration()}}@endif"/>
         </div>
     </div>
-    <div class="formulaire__champ">
-        <div class="formulaire__champInputFlex">
-            <label for="facturation_cvv">Code de sécurité</label>
-            <input class="formulaire__champInput formulaire__champInputExp" id="facturation_cvv" name="facturation_cvv" placeholder="352" type="number" value="@if($paiement !== null){{$paiement->getCvv()}}@endif"/>
-        </div>
-    </div>
+
 </section>
 
 <div class="form-wrap">
-    <button id="continuerFacturation" type="button" class="btnCommander">Continuer</button>
+    <button id="continuerFacturation" type="button" class="btnCommander">Valider la commande</button>
 </div>
 

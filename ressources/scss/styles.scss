@@ -41,11 +41,6 @@
 /** Mixins - Définitions des mixins **/
 @import 'utilitaires/mixins';
 
-/* LAYOUT
-** Formulaire - Formulaire du site*/
-@import 'layout/formulaireCompte';
-
-
 /****** BASE ******/
 
 /** Typographie - Styles généraux de la typographie **/
@@ -108,7 +103,14 @@
 /** tabsection **/
 @import 'modules/tabsection';
 
+/** stepleft **/
+@import 'modules/stepleft';
+
 /****** LAYOUT ******/
 
 /** Général **/
 @import 'layout/general';
+
+/** Formulaire - Formulaire du site*/
+@import 'layout/formulaireCompte';
+

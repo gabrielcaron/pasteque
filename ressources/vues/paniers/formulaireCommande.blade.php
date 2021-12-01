@@ -1,13 +1,15 @@
-@extends('gabarit')
+@extends('gabarit--transaction')
+
+@section('classeBody')
+    stepleft
+@endsection
 
 @section('classeMain')
     class="formulaireCommande"
 @endsection
 
 @section('contenu')
-
-
-    <section class="stepleft">
+    <section class="formulaireCommande__conteneurGrille">
         {{--<nav>
             <ol>
                 <li><a id="etapeNavLivraison">1. Livraison</a></li>

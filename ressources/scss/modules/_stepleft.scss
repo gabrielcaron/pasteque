@@ -1,5 +1,42 @@
 .stepleft {
-max-width: 800px;
-margin: 0 auto;
-  padding-top: 4rem;
+
+  & .entete {
+    background: initial;
+
+    &__conteneurLogo {
+      @include rangeeGrid12col();
+      @include paddingConteneur;
+    }
+
+    &__logo {
+      grid-column: 4 / 7;
+      padding-top: 7rem;
+      padding-bottom: 8rem;
+    }
+  }
+
+  & .formulaireCommande {
+    @include conteneur1400px();
+    @include paddingConteneur;
+
+    &__conteneurGrille {
+      @include rangeeGrid12col();
+
+      & > * {
+        grid-column: 4 / 10;
+      }
+    }
+  }
+
+  & .footer {
+    @include conteneur1400px();
+
+    &__transaction {
+      @include rangeeGrid12col();
+
+      & > * {
+        grid-column: 4 / 10;
+      }
+    }
+  }
 }

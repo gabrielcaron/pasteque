@@ -53,6 +53,7 @@ class ControleurPanier
     {
         $compte = Compte::trouverParCourriel($_SESSION['email']);
         $panier = Panier::trouverParIdSession(session_id());
+//        var_dump($panier);
         $articles = $panier->getArticlesAssocies();
         $prixTotal = 0;
         $nombreArticles = 0;
@@ -61,7 +62,7 @@ class ControleurPanier
             $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
         }
         $commande = $compte->getCommandesAssocies();
-        var_dump($commande);
+//        var_dump($commande);
 //        $livraison = $commande->getLivraisonAdresseAssocie();
 //        $facturation = $commande->getFacturationAdresseAssocie();
 //        $paiement = $commande->getPaiementAssocie();

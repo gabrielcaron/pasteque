@@ -6,14 +6,17 @@
 * TABLE DES MATIERES
 * ------------------
 * PANIER
-*
+* Conteneurs généraux des grilles
+* Section des articles (livres)
+* Section du sous-total
+* Confirmation de la commande
 *
 */
 
-
-/* Conteneurs généraux des grilles */
-
 .panier {
+
+  /* Conteneurs généraux des grilles */
+
   @include paddingConteneur();
   @include conteneur1400px();
 
@@ -87,7 +90,44 @@
   &__passerCommande {
 	grid-column: 9 / 12;
   }
+}
 
+/* Confirmation de la commande */
+
+.confirmation {
+  & .entete {
+	background: initial;
+
+	&__conteneurLogo {
+	  @include paddingConteneur;
+	  padding-top: 7rem;
+	  padding-bottom: 8rem;
+	}
+  }
+
+  &.contenu {
+	@include paddingConteneur;
+  }
+
+  & .panier {
+	&__article {
+	  & .livre {
+		&__picture {
+		  grid-column: 1 / 2;
+		}
+	  }
+
+	  &Infos {
+		grid-column: 2 / 13;
+	  }
+	}
+  }
+
+  & .footer {
+	&__transaction {
+	  @include paddingConteneur;
+	}
+  }
 }
 
 

@@ -27,20 +27,20 @@ class ControleurCompte
             $exist = $_GET['erreur'];
         }
         $tDonnees = array("titrePage"=>"creation", "classeBody"=>"creation", "action"=>"creation", "erreur"=>"$exist", "tValidation" => $tValidation);
-var_dump($tValidation);
         echo App::getBlade()->run("comptes.compte",$tDonnees);
     }
 
     //Connexion au compte
     public function connexion():void
     {
+
         $tValidation = $_SESSION['tValidation'] ?? null;
 
         $_SESSION['tValidation'] = null;
 
         $exist = '';
 
-        if ($_GET['erreur']){
+        if (isset($_GET['erreur'])){
             $exist = $_GET['erreur'];
         }
             $tDonnees = array("titrePage"=>"connexion", "classeBody"=>"connexion", "action"=>"connexion", "erreur"=>"$exist", "tValidation" => $tValidation);

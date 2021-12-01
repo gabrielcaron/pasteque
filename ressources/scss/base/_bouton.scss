@@ -6,6 +6,7 @@
 
   /* Bouton secondaire avec contour par défaut */
 
+  display: inline-block;
   border-radius: 15px;
   border: solid 5px $bleuRoyal;
   padding: 1rem 3rem;
@@ -25,6 +26,7 @@
   /* Boutons d'action */
 
   &.action {
+
     background-color: $bleuRoyal;
     font-family: $RobotoMedium;
     font-size: 2rem;

@@ -1,5 +1,5 @@
 <div class="entete__conteneurLogo">
-    <a class="menu__topNavEnteteLogo" href="index.php?controleur=site&action=accueil">
+    <a class="entete__logo" href="index.php?controleur=site&action=accueil">
         <svg class="menu__logo" fill="none" viewBox="0 0 382 100" xmlns="http://www.w3.org/2000/svg">
             <g fill="#000">
                 <path clip-rule="evenodd"

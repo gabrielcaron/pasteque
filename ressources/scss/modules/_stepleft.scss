@@ -1,5 +1,58 @@
+/**
+* @author Michel Veillette
+* @version 1.0
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* Step-Left
+*
+*/
 .stepleft {
-max-width: 800px;
-margin: 0 auto;
+  /* Conteneurs généraux des grilles */
+
+  @include paddingConteneur();
+  @include conteneur1400px();
   padding-top: 4rem;
+
+  &__etape {
+    border: none;
+    @include rangeeGrid12col();
+  }
+
+  &__titreEtape {
+    grid-column: 3 / 11;
+    padding-bottom: 30px;
+  }
+  &__section {
+    grid-column: 3 / 11;
+
+
+    &Form {
+      padding: 0 0 30px 30px;
+    }
+  }
+  &__champFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    &--item {
+      border: 1px solid #5f5f5f;
+      border-radius: 4px;
+      padding: 12px;
+      margin: 0.4rem 10px 0 0;
+
+    }
+
+  }
+  &__lien {
+    color: $bleu;
+  }
+  &__lien:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+
+
 }

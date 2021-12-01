@@ -130,6 +130,9 @@ button:focus:not(:active) {
   flex-direction: column;
   gap: 8px;
 }
+.champ--sm {
+  max-width: 50px;
+}
 
 .champ--md {
   max-width: 177px;
@@ -203,7 +206,7 @@ min-width: 300px;
 }
 
 .champ__input {
-  appearance: none;
+  //appearance: none;
   border: none;
   border-radius: 10px;
   outline: none;

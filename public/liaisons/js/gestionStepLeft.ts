@@ -12,6 +12,8 @@ const refSectionPaiementFacturation: HTMLElement = document.getElementById('sect
 const refSectionAnciennesAdressesLivraison: HTMLElement = document.getElementById('sectionAncienneAdresseLivraison') as HTMLElement;
 const refSectionAdresseLivraison: HTMLElement = document.getElementById('sectionAdresseLivraison') as HTMLElement;
 const refSectionRadioAnciennesAdressesLivraison: HTMLUListElement = document.getElementById('sectionRadioAnciennesAdresses') as HTMLUListElement;
+const refSectionRecapAdresseLivraison: HTMLElement = document.getElementById('sectionRecapAdresseLivraison') as HTMLElement;
+
 
 
 /** Livraison : Champs input de la section adresse **/
@@ -78,13 +80,13 @@ let gestionStepLeft = {
     initialiser() {
         gestionStepLeft.remettreAZero();
         if (refLivraisonInputAdresse.value === '') {
-            refEtapeLivraison.style.display = 'block';
             refSectionAdresseLivraison.style.display = 'block';
         } else if(refFacturationInputAdresse.value === '') {
             this.livraisonCompleted = true;
-            refEtapeFacturation.style.display = 'block';
+            refSectionAdresseFacturation.style.display = 'block';
         } else {
-            refEtapeValidation.style.display = 'block';
+            refSectionRecapAdresseLivraison.style.display = 'block'
+            refSectionRecapAdresseFacturation.style.display = 'block'
             this.livraisonCompleted = true;
             this.facturationCompleted = true;
         }
@@ -122,7 +124,6 @@ let gestionStepLeft = {
 
         if (this.livraisonCompleted === false) {
             this.livraisonCompleted = true;
-            refEtapeFacturation.style.display = 'block';
             if (refLivraisonMemeAdresse.checked === true) {
                 refSectionRecapAdresseFacturation.style.display = 'block';
                 refSectionPaiementFacturation.style.display = 'block';
@@ -224,25 +225,6 @@ let gestionStepLeft = {
             refFacturationProvinceValidationRecap.innerHTML = refFacturationInputProvince.innerHTML;
             refFacturationCodePostalValidationRecap.innerHTML = refFacturationInputCodePostal.value;
         }
-        //TODO - Set selected aria
-        for (let i = 0; i < parseInt(refNombresLivraisonsCompte.value)-1; i++) {
-
-        }
-
-        /**
-        * <li>
-                    <input id="{{$i}}_livraisonAncienneAdresse_radioAdresse" type="radio" name="ancienAdresses" value="{{$livraisonToutesLesAdresses[$i]->getAdresse()}}" @if($livraisonToutesLesAdresses[$i]->getAdresse() === $livraison->getAdresse()) checked @endif>
-                    <label for="{{$i}}_livraisonAncienneAdresse_radioAdresse">
-                        <address id="{{$i}}_livraisonAncienneAdresse_radioAdress">
-                            <span id="adresse_{{$i}}" class="screen-reader-only">{{$livraisonToutesLesAdresses[$i]->getAdresse()}} {{$livraisonToutesLesAdresses[$i]->getVille()}} {{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}} {{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</span>
-                            <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</p>
-                            <p id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</p>
-                            <p id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</p>
-                            <p id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</p>
-                        </address>
-                    </label>
-                </li>
-        * */
 
         const refLi = document.createElement('li');
         const refAdress = document.createElement('address');
@@ -299,14 +281,12 @@ let gestionStepLeft = {
 
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/
     remettreAZero() {
-        refEtapeLivraison.style.display = 'none';
-        refEtapeFacturation.style.display = 'none';
-        refEtapeValidation.style.display = 'none';
         refSectionRecapAdresseFacturation.style.display = 'none';
         refSectionAdresseFacturation.style.display = 'none';
         refSectionPaiementFacturation.style.display = 'none';
         refSectionAnciennesAdressesLivraison.style.display = 'none';
         refSectionAdresseLivraison.style.display = 'none';
+        refSectionRecapAdresseLivraison.style.display = 'none';
         document.getElementById('ajouterLivraison').style.display = 'none';
         document.getElementById('annulerAjouterAdresse').style.display = 'none';
     },

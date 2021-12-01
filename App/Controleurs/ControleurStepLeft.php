@@ -22,8 +22,7 @@ class ControleurStepLeft
     public function debuterStepLeft():void{
 
         if (isset($_SESSION['connected']) === false || $_SESSION['connected'] === false){
-            $tDonnees = array("titrePage"=>"creation", "classeBody"=>"creation", "action"=>"connexion");
-            echo App::getBlade()->run("comptes.compte",$tDonnees);
+            header('Location: index.php?controleur=compte&action=connexion');
         }
         else{
             $panier = Panier::trouverParIdSession(session_id());

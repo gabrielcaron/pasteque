@@ -69,6 +69,10 @@
     letter-spacing: 0.05em;
     color: $bleuRoyal;
 
+    &.renverse {
+      color: $blanc;
+    }
+
     &.destructif {
       color: $rouge;
     }

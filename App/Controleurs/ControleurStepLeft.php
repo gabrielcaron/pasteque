@@ -38,11 +38,11 @@ class ControleurStepLeft
 
 
             $compte = Compte::trouverParCourriel($_SESSION['email']);
-            $commande = $compte->getCommandesAssocies();
+            $commande = $compte->getCommandesAssocies() ?? null;
             $provinces = Province::trouverTout();
-            $livraison = $commande->getLivraisonAdresseAssocie() ?? null;
-            $facturation = $commande->getFacturationAdresseAssocie() ?? null;
-            $paiement = $commande->getPaiementAssocie() ?? null;
+            $livraison = $commande !== null && $commande->getLivraisonAdresseAssocie() !== null ? $commande->getLivraisonAdresseAssocie() : null;
+            $facturation = $commande !== null && $commande->getFacturationAdresseAssocie() !==null ? $commande->getFacturationAdresseAssocie() : null;
+            $paiement = $commande !== null && $commande->getPaiementAssocie() !== null ? $commande->getPaiementAssocie() : null;
             if($commande !== null){
 
 

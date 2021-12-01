@@ -3,7 +3,7 @@
 .entete {
   @include conteneur1400px($conteneurBleed: true);
 
-  border-top: 5px solid $bleuRoyal;
+  border-top: 10px solid $bleuRoyal;
 
   @media screen and (min-width: $mobile600px) {
 	background: #F7F7F7;

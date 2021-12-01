@@ -11,7 +11,7 @@ const refSectionAdresseFacturation: HTMLElement = document.getElementById('secti
 const refSectionPaiementFacturation: HTMLElement = document.getElementById('sectionPaiementFacturation') as HTMLElement;
 const refSectionAnciennesAdressesLivraison: HTMLElement = document.getElementById('sectionAncienneAdresseLivraison') as HTMLElement;
 const refSectionAdresseLivraison: HTMLElement = document.getElementById('sectionAdresseLivraison') as HTMLElement;
-const refSectionRadioAnciennesAdressesLivraison: HTMLElement = document.getElementById('sectionRadioAnciennesAdresses') as HTMLElement;
+const refSectionRadioAnciennesAdressesLivraison: HTMLUListElement = document.getElementById('sectionRadioAnciennesAdresses') as HTMLUListElement;
 
 
 /** Livraison : Champs input de la section adresse **/
@@ -65,8 +65,7 @@ const refFacturationCvvValidationRecap: HTMLElement = document.getElementById('p
 
 /** Différents input caché du formulaire **/
 const refNombresLivraisonsCompte: HTMLInputElement = document.getElementById('nombreAnciennesAdresses') as HTMLInputElement;
-let radiosLivraison = refSectionRadioAnciennesAdressesLivraison.querySelectorAll('[role=radio]');
-
+let refRadiosLivraisons = document.getElementsByName('ancienAdresses');
 
 
 /** Gestion du step-left **/
@@ -230,6 +229,22 @@ let gestionStepLeft = {
 
         }
 
+        /**
+        * <li>
+                    <input id="{{$i}}_livraisonAncienneAdresse_radioAdresse" type="radio" name="ancienAdresses" value="{{$livraisonToutesLesAdresses[$i]->getAdresse()}}" @if($livraisonToutesLesAdresses[$i]->getAdresse() === $livraison->getAdresse()) checked @endif>
+                    <label for="{{$i}}_livraisonAncienneAdresse_radioAdresse">
+                        <address id="{{$i}}_livraisonAncienneAdresse_radioAdress">
+                            <span id="adresse_{{$i}}" class="screen-reader-only">{{$livraisonToutesLesAdresses[$i]->getAdresse()}} {{$livraisonToutesLesAdresses[$i]->getVille()}} {{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}} {{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</span>
+                            <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</p>
+                            <p id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</p>
+                            <p id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</p>
+                            <p id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</p>
+                        </address>
+                    </label>
+                </li>
+        * */
+
+        const refLi = document.createElement('li');
         const refAdress = document.createElement('address');
         const refRue = document.createElement('p');
         const refVille= document.createElement('p');
@@ -237,7 +252,6 @@ let gestionStepLeft = {
         const refCodePostal = document.createElement('p');
 
         refAdress.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_radioAdresse`);
-        refAdress.setAttribute('role', 'radio')
         refRue.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_recapAdresse`);
         refVille.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_recapVille`);
         refProvince.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_recapProvince`);
@@ -249,9 +263,8 @@ let gestionStepLeft = {
         refCodePostal.innerHTML = refLivraisonInputCodePostal.value;
 
         refAdress.prepend(refRue, refVille, refProvince, refCodePostal);
-        refSectionRadioAnciennesAdressesLivraison.append(refAdress);
-
-        radiosLivraison = refSectionRadioAnciennesAdressesLivraison.querySelectorAll('[role=radio]');
+        refLi.prepend(refAdress);
+        refSectionRadioAnciennesAdressesLivraison.append(refLi);
 
         refNombresLivraisonsCompte.value = (parseInt(refNombresLivraisonsCompte.value) + 1).toString();
 
@@ -279,61 +292,9 @@ let gestionStepLeft = {
         refSectionPaiementFacturation.style.display = 'block';
     },
 
-    handleClick(event) {
-        gestionStepLeft.setChecked(event);
-        event.preventDefault();
-    },
-
-    handleKeydown(event) {
-        console.log(event.target)
-        let position = parseInt(event.target.id.charAt(0));
-        switch (event.keyCode) {
-            case 32: // space
-            case 12: // return
-                gestionStepLeft.setChecked(event.target);
-                break;
-
-            case 38: // up
-            case 37: // left
-                console.log('entre')
-                 let precedent = position - 1 < 0 ? radiosLivraison.length - 1 : position - 1;
-                document.getElementById(radiosLivraison[precedent].id).focus();
-                break;
-
-            case 40: // down
-            case 39: // right
-                //nextItemChecked();
-                break;
-
-            default:
-                break;
-        }
-        //event.stopPropagation();
-        event.preventDefault();
-
-    },
-
-
-    setChecked(event) {
-        //console.log(event)
-        //console.log(radiosLivraison);
-        for (let i = 0; i < radiosLivraison.length; i++) {
-            document.getElementById(radiosLivraison[i].id).setAttribute('aria-checked', 'false');
-            document.getElementById(radiosLivraison[i].id).tabIndex = -1;
-        }
-        event.ariaChecked = 'true';
-        event.tabIndex = 0;
-        event.focus();
-        // uncheck all the radios in group
-        // iterated thru all the radios in radio group
-        // eachRadio.tabIndex = -1;
-        // eachRadio.setAttribute('aria-checked', 'false');
-
-        // set the selected radio to checked
-        // thisRadio.setAttribute('aria-checked', 'true');
-        // thisRadio.tabIndex = 0;
-        // thisRadio.focus();
-        // set the value of the radioGroup to the value of the currently selected radio
+    /** Changer le selected **/
+    changerSelected(event) {
+        console.log(event);
     },
 
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/
@@ -372,10 +333,8 @@ document.getElementById('modifierAdresseLivraisonValidation').addEventListener('
 document.getElementById('modifierAdresseFacturationValidation').addEventListener('click', function (){gestionStepLeft.modifierAdresseFacturation()});
 document.getElementById('modifierPaiementFacturationValidation').addEventListener('click', function (){gestionStepLeft.modifierPaiementFacturation()});
 
-
-//Radio
-for (let j = 0; j < radiosLivraison.length; j++) {
-    radiosLivraison[j].addEventListener('keydown', function() { gestionStepLeft.handleKeydown(event); });
-    radiosLivraison[j].addEventListener('click', function() { gestionStepLeft.handleClick(radiosLivraison[j]);});
+//Radios
+console.log(refRadiosLivraisons)
+for (let i = 0; i < refRadiosLivraisons.length; i++) {
+    refRadiosLivraisons[i].addEventListener('click', function (){ gestionStepLeft.changerSelected(event) });
 }
-

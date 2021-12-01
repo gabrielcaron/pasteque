@@ -51,7 +51,7 @@ var refFacturationAnneeExpirationValidationRecap = document.getElementById('paie
 var refFacturationCvvValidationRecap = document.getElementById('paiement_cvv');
 /** Différents input caché du formulaire **/
 var refNombresLivraisonsCompte = document.getElementById('nombreAnciennesAdresses');
-var radiosLivraison = refSectionRadioAnciennesAdressesLivraison.querySelectorAll('[role=radio]');
+var refRadiosLivraisons = document.getElementsByName('ancienAdresses');
 /** Gestion du step-left **/
 var gestionStepLeft = {
     livraisonCompleted: false,
@@ -192,13 +192,27 @@ var gestionStepLeft = {
         //TODO - Set selected aria
         for (var i = 0; i < parseInt(refNombresLivraisonsCompte.value) - 1; i++) {
         }
+        /**
+        * <li>
+                    <input id="{{$i}}_livraisonAncienneAdresse_radioAdresse" type="radio" name="ancienAdresses" value="{{$livraisonToutesLesAdresses[$i]->getAdresse()}}" @if($livraisonToutesLesAdresses[$i]->getAdresse() === $livraison->getAdresse()) checked @endif>
+                    <label for="{{$i}}_livraisonAncienneAdresse_radioAdresse">
+                        <address id="{{$i}}_livraisonAncienneAdresse_radioAdress">
+                            <span id="adresse_{{$i}}" class="screen-reader-only">{{$livraisonToutesLesAdresses[$i]->getAdresse()}} {{$livraisonToutesLesAdresses[$i]->getVille()}} {{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}} {{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</span>
+                            <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</p>
+                            <p id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</p>
+                            <p id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</p>
+                            <p id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</p>
+                        </address>
+                    </label>
+                </li>
+        * */
+        var refLi = document.createElement('li');
         var refAdress = document.createElement('address');
         var refRue = document.createElement('p');
         var refVille = document.createElement('p');
         var refProvince = document.createElement('p');
         var refCodePostal = document.createElement('p');
         refAdress.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_radioAdresse"));
-        refAdress.setAttribute('role', 'radio');
         refRue.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapAdresse"));
         refVille.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapVille"));
         refProvince.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapProvince"));
@@ -208,8 +222,8 @@ var gestionStepLeft = {
         refProvince.innerHTML = refLivraisonInputProvince.value;
         refCodePostal.innerHTML = refLivraisonInputCodePostal.value;
         refAdress.prepend(refRue, refVille, refProvince, refCodePostal);
-        refSectionRadioAnciennesAdressesLivraison.append(refAdress);
-        radiosLivraison = refSectionRadioAnciennesAdressesLivraison.querySelectorAll('[role=radio]');
+        refLi.prepend(refAdress);
+        refSectionRadioAnciennesAdressesLivraison.append(refLi);
         refNombresLivraisonsCompte.value = (parseInt(refNombresLivraisonsCompte.value) + 1).toString();
     },
     /** Modifier une adresse de Livraison **/
@@ -231,53 +245,9 @@ var gestionStepLeft = {
         refSectionRecapAdresseFacturation.style.display = 'block';
         refSectionPaiementFacturation.style.display = 'block';
     },
-    handleClick: function (event) {
-        gestionStepLeft.setChecked(event);
-        event.preventDefault();
-    },
-    handleKeydown: function (event) {
-        console.log(event.target);
-        var position = parseInt(event.target.id.charAt(0));
-        switch (event.keyCode) {
-            case 32: // space
-            case 12: // return
-                gestionStepLeft.setChecked(event.target);
-                break;
-            case 38: // up
-            case 37: // left
-                console.log('entre');
-                var precedent = position - 1 < 0 ? radiosLivraison.length - 1 : position - 1;
-                document.getElementById(radiosLivraison[precedent].id).focus();
-                break;
-            case 40: // down
-            case 39: // right
-                //nextItemChecked();
-                break;
-            default:
-                break;
-        }
-        //event.stopPropagation();
-        event.preventDefault();
-    },
-    setChecked: function (event) {
-        //console.log(event)
-        //console.log(radiosLivraison);
-        for (var i = 0; i < radiosLivraison.length; i++) {
-            document.getElementById(radiosLivraison[i].id).setAttribute('aria-checked', 'false');
-            document.getElementById(radiosLivraison[i].id).tabIndex = -1;
-        }
-        event.ariaChecked = 'true';
-        event.tabIndex = 0;
-        event.focus();
-        // uncheck all the radios in group
-        // iterated thru all the radios in radio group
-        // eachRadio.tabIndex = -1;
-        // eachRadio.setAttribute('aria-checked', 'false');
-        // set the selected radio to checked
-        // thisRadio.setAttribute('aria-checked', 'true');
-        // thisRadio.tabIndex = 0;
-        // thisRadio.focus();
-        // set the value of the radioGroup to the value of the currently selected radio
+    /** Changer le selected **/
+    changerSelected: function (event) {
+        console.log(event);
     },
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/
     remettreAZero: function () {
@@ -310,11 +280,8 @@ document.getElementById('modifierAdresseFacturation').addEventListener('click', 
 document.getElementById('modifierAdresseLivraisonValidation').addEventListener('click', function () { gestionStepLeft.modifierLivraison(); });
 document.getElementById('modifierAdresseFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierAdresseFacturation(); });
 document.getElementById('modifierPaiementFacturationValidation').addEventListener('click', function () { gestionStepLeft.modifierPaiementFacturation(); });
-var _loop_1 = function (j) {
-    radiosLivraison[j].addEventListener('keydown', function () { gestionStepLeft.handleKeydown(event); });
-    radiosLivraison[j].addEventListener('click', function () { gestionStepLeft.handleClick(radiosLivraison[j]); });
-};
-//Radio
-for (var j = 0; j < radiosLivraison.length; j++) {
-    _loop_1(j);
+//Radios
+console.log(refRadiosLivraisons);
+for (var i = 0; i < refRadiosLivraisons.length; i++) {
+    refRadiosLivraisons[i].addEventListener('click', function () { gestionStepLeft.changerSelected(event); });
 }

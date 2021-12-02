@@ -1,5 +1,5 @@
 <section class="stepleft__section">
-    <section class="stepleft__sectionForm">
+    <section id="sectionRecapPanier" class="stepleft__sectionForm">
         <h2>Recap panier</h2>
         @foreach($panier->getArticlesAssocies() as $article)
             <article class="panier__article">
@@ -23,7 +23,7 @@
                         <input id="livre_id" type="hidden" name="livre_id" value="{{$article->getProduitId()}}">
                         <input id="panier_id" type="hidden" name="panier_id" value="{{$article->getPanierId()}}">
                         <input type="hidden" id="quantite" name="quantite" value="{{$article->getQuantite()}}">
-                    <span>{{$article->getQuantite()}}</span>
+                    <span>Quantité : {{$article->getQuantite()}}</span>
                     <p aria-label="Sous-total de l'article {{$article->getLivreAssocie()->getTitre()}}">{{number_format($article->getLivreAssocie()->getPrixCan() * $article->getQuantite(), 2)}}$</p>
                 </section>
             </article>

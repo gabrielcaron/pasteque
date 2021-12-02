@@ -13,33 +13,33 @@
                 @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceAssocie()->getNom()}} @endif @endslot
                 @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
             @endcomponent
-            <a id="modifierAdresseLivraisonValidation" class="stepleft__lien">Modifier les informations de livraison</a>
+            <a id="modifierAdresseLivraison" class="stepleft__lien">Modifier les informations de livraison</a>
         </section>
     </section>
     <section id="sectionAncienneAdresseLivraison"  class="stepleft__sectionForm stepleft__sectionAnciennesAdressesLivraisons">
         <input id="nombreAnciennesAdresses" type="hidden" value="@if($livraisonToutesLesAdresses !== null){{count($livraisonToutesLesAdresses)}}@endif">
-        @if($livraisonToutesLesAdresses !== null)
             <h3 id="legend">Anciennes Adresses</h3>
             <ul id="sectionRadioAnciennesAdresses">
-                @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
-                    <li>
-                        <input id="{{$i}}_livraisonAncienneAdresse_radioAdresse" type="radio" name="ancienAdresses" value="{{$i}}" @if($livraisonToutesLesAdresses[$i]->getAdresse() === $livraison->getAdresse()) checked @endif>
-                        <label for="{{$i}}_livraisonAncienneAdresse_radioAdresse">
-                            <address id="{{$i}}_livraisonAncienneAdresse_radioAdress">
-                                <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getId()}}</p>
-                                <p><span id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</span></p>
-                                <p>
-                                    <span id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</span>
-                                    <span id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</span>
-                                    <span id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</span>
-                                </p>
-                            </address>
-                        </label>
-                    </li>
-                @endfor
+                @if($livraisonToutesLesAdresses !== null)
+                    @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
+                        <li>
+                            <input id="{{$i}}_livraisonAncienneAdresse_radioAdresse" type="radio" name="ancienAdresses" value="{{$i}}" @if($livraisonToutesLesAdresses[$i]->getAdresse() === $livraison->getAdresse()) checked @endif>
+                            <label for="{{$i}}_livraisonAncienneAdresse_radioAdresse">
+                                <address id="{{$i}}_livraisonAncienneAdresse_radioAdress">
+                                    <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getId()}}</p>
+                                    <p><span id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getAdresse()}}</span></p>
+                                    <p>
+                                        <span id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</span>
+                                        <span id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</span>
+                                        <span id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</span>
+                                    </p>
+                                </address>
+                            </label>
+                        </li>
+                    @endfor
+                @endif
             </ul>
-            <a id="ajouterNouvelleAdresseLivraison" class="stepleft__lien">Ajouter une adresse nouvelle adresse</a>
-        @endif
+        <a id="ajouterNouvelleAdresseLivraison" class="stepleft__lien">Ajouter une adresse nouvelle adresse</a>
     </section>
     <section id="sectionAdresseLivraison" class="stepleft__sectionForm">
         @component('paniers.fragments.adresse')
@@ -58,7 +58,7 @@
             </div>
         </div>
         <button id="ajouterLivraison" type="button" class="button">Confirmer</button>
-        <button id="annulerAjouterAdresse" type="button" class="button">Annuler</button>
+        <button id="annulerAjouterLivraison" type="button" class="button">Annuler</button>
     </section>
     <section class="">
         <button id="continuerLivraison" type="button" class="button">Continuer vers les informations de facturation</button>

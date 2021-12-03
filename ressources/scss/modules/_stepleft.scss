@@ -9,83 +9,66 @@
 *
 */
 .stepleft {
-    /* Conteneurs généraux des grilles */
+  /* Conteneurs généraux des grilles */
 
-    @include paddingConteneur();
-    @include conteneur1400px();
-    padding-top: 4rem;
+  & .entete {
+	background: initial;
 
-    &__etape {
-        border: none;
-        @include rangeeGrid12col();
-    }
+	&__conteneurLogo {
+	  @include rangeeGrid12col();
+	  @include paddingConteneur;
+	}
 
-    &__titreEtape {
-        grid-column: 3 / 11;
-        padding-bottom: 30px;
-    }
-    &__section {
-        grid-column: 3 / 11;
+	&__logo {
+	  grid-column: 4 / 7;
+	  padding-top: 7rem;
+	  padding-bottom: 8rem;
+	}
+  }
 
-        &Form {
-            padding: 0 0 30px 30px;
-        }
-    }
-    &__champFlex {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        &--item {
-            border: 1px solid #5f5f5f;
-            border-radius: 4px;
-            padding: 12px;
-            margin: 0.4rem 10px 0 0;
-        }
-    }
-    &__lien {
-        color: $bleu;
-    }
-    &__lien:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
-    & .entete {
-        background: initial;
+  & .formulaireCommande {
+	@include conteneur1400px();
+	@include paddingConteneur;
 
-        &__conteneurLogo {
-            @include rangeeGrid12col();
-            @include paddingConteneur;
-        }
+	&__conteneurGrille {
+	  @include rangeeGrid12col();
 
-        &__logo {
-            grid-column: 4 / 7;
-            padding-top: 7rem;
-            padding-bottom: 8rem;
-        }
-    }
+	  & > * {
+		grid-column: 4 / 10;
+	  }
+	}
 
-    & .formulaireCommande {
-        @include conteneur1400px();
-        @include paddingConteneur;
+	&__etape {
+	  border: none;
+	  padding: 0;
+	  margin: 0;
 
-        &__conteneurGrille {
-            @include rangeeGrid12col();
+	  // Section dans un fieldset
+	  & .sectionFormulaire {
 
-            & > * {
-                grid-column: 4 / 10;
-            }
-        }
-    }
+		// Sous-sections
+		&__sectionForm {
+		  @include rangeeGrid12col($nombreColonnes: 6);
+		}
 
-    & .footer {
-        @include conteneur1400px();
+		&__sectionIdentification {
+		  & > * {
+		      grid-column: span 12;
+		  }
+		}
+	  }
+	}
+  }
 
-        &__transaction {
-            @include rangeeGrid12col();
+  & .footer {
+	@include conteneur1400px();
 
-            & > * {
-                grid-column: 4 / 10;
-            }
-        }
-    }
+	&__transaction {
+	  @include rangeeGrid12col();
+
+	  & > * {
+		grid-column: 4 / 10;
+	  }
+	}
+  }
 }

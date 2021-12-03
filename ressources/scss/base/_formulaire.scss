@@ -17,6 +17,10 @@
   max-width: 370px;
 }
 
+.champ--4c {
+  grid-column: 1 / 5;
+}
+
 .champ--erreur .champ__boite {
   border-color: var(--couleur-erreur);
 }

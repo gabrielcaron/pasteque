@@ -97,11 +97,11 @@
 }
 
 // Mixin pour rangée Grid sur 12 colonnes
-@mixin rangeeGrid12col($pointRupture: $mobile600px) {
+@mixin rangeeGrid12col($pointRupture: $mobile600px, $nombreColonnes: 12) {
   @supports (grid-template-columns: minmax(auto, $desktop1400px)) {
 	@media (min-width: $pointRupture) {
 	  display: grid;
-	  grid-template-columns: repeat(12, 1fr);
+	  grid-template-columns: repeat($nombreColonnes, 1fr);
 	  column-gap: 20px;
 	}
   }

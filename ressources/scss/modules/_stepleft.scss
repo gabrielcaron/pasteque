@@ -1,42 +1,91 @@
+/**
+* @author Michel Veillette
+* @version 1.0
+*
+* ------------------
+* TABLE DES MATIERES
+* ------------------
+* Step-Left
+*
+*/
 .stepleft {
+    /* Conteneurs généraux des grilles */
 
-  & .entete {
-    background: initial;
-
-    &__conteneurLogo {
-      @include rangeeGrid12col();
-      @include paddingConteneur;
-    }
-
-    &__logo {
-      grid-column: 4 / 7;
-      padding-top: 7rem;
-      padding-bottom: 8rem;
-    }
-  }
-
-  & .formulaireCommande {
+    @include paddingConteneur();
     @include conteneur1400px();
-    @include paddingConteneur;
+    padding-top: 4rem;
 
-    &__conteneurGrille {
-      @include rangeeGrid12col();
-
-      & > * {
-        grid-column: 4 / 10;
-      }
+    &__etape {
+        border: none;
+        @include rangeeGrid12col();
     }
-  }
 
-  & .footer {
-    @include conteneur1400px();
-
-    &__transaction {
-      @include rangeeGrid12col();
-
-      & > * {
-        grid-column: 4 / 10;
-      }
+    &__titreEtape {
+        grid-column: 3 / 11;
+        padding-bottom: 30px;
     }
-  }
+    &__section {
+        grid-column: 3 / 11;
+
+        &Form {
+            padding: 0 0 30px 30px;
+        }
+    }
+    &__champFlex {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        &--item {
+            border: 1px solid #5f5f5f;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 0.4rem 10px 0 0;
+        }
+    }
+    &__lien {
+        color: $bleu;
+    }
+    &__lien:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    & .entete {
+        background: initial;
+
+        &__conteneurLogo {
+            @include rangeeGrid12col();
+            @include paddingConteneur;
+        }
+
+        &__logo {
+            grid-column: 4 / 7;
+            padding-top: 7rem;
+            padding-bottom: 8rem;
+        }
+    }
+
+    & .formulaireCommande {
+        @include conteneur1400px();
+        @include paddingConteneur;
+
+        &__conteneurGrille {
+            @include rangeeGrid12col();
+
+            & > * {
+                grid-column: 4 / 10;
+            }
+        }
+    }
+
+    & .footer {
+        @include conteneur1400px();
+
+        &__transaction {
+            @include rangeeGrid12col();
+
+            & > * {
+                grid-column: 4 / 10;
+            }
+        }
+    }
 }

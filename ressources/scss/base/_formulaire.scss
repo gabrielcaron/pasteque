@@ -1,0 +1,136 @@
+.champ {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.champ--sm {
+  max-width: 50px;
+}
+
+.champ--md {
+  max-width: 177px;
+}
+
+.champ--lg {
+  max-width: 370px;
+}
+
+.champ--erreur .champ__boite {
+  border-color: var(--couleur-erreur);
+}
+
+.champ--erreur .champ__etiquette {
+  color: var(--couleur-erreur);
+}
+
+.champ {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 300px;
+  @media (max-width: 400px) {
+	min-width: 150px;
+  }
+
+}
+
+.champ__boite {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: inline-flex;
+  flex: auto;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgb(95, 95, 95);
+  color: rgb(95, 95, 95);
+  padding: 0;
+  margin: 0.4rem 0 0;
+}
+
+.champ:not(.champ--erreur) .champ__boite:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.champ:not(.champ--erreur):focus-within .champ__boite {
+  border-color: var(--couleur-interactivite);
+  box-shadow: 0 0 0px 2px var(--couleur-interactivite);
+}
+
+.champ:focus-within .champ__boite {
+  box-shadow: 0 0 0px 2px var(--couleur-erreur);
+}
+
+.champ__etiquette {
+  transition: color 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 8px;
+  transform: translate(0, -50%);
+  background: white;
+  padding: 0 4px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.champ:not(.champ--erreur):focus-within .champ__etiquette {
+  color: var(--couleur-interactivite);
+}
+
+.champ__input {
+  //appearance: none;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+  color: #000;
+  font-family: inherit;
+  font-weight: inherit;
+  background: rgba(255, 255, 255, 0);
+}
+
+.champ__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (max-width: 800px) {
+	max-width: 300px;
+	margin-bottom: 2rem;
+  }
+}
+
+.champ__message-aide,
+.champ__message-erreur {
+  margin: 0;
+  font-size: 12px;
+}
+
+.champ__message-aide {
+  color: rgb(82, 82, 82);
+}
+
+.champ__message-erreur {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  color: var(--couleur-erreur);
+}
+
+.champ__message-erreur::before {
+  content: '';
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 14px;
+  height: 14px;
+  background-image: url('../assets/svg/erreur.svg');
+}

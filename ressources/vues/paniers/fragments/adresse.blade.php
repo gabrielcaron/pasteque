@@ -1,5 +1,5 @@
 <input id="{{$livraisonOuFacturation}}_id" name="{{$livraisonOuFacturation}}_id" type="hidden" value="{{$id}}"/>
-<div id="{{$livraisonOuFacturation}}_champAdresse" class="champ champ--lg">
+<div id="{{$livraisonOuFacturation}}_champAdresse" class="champ champ--4c">
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}__adresse" class="champ__etiquette">Adresse</label>
         <input class="champ__input" id="{{$livraisonOuFacturation}}_adresse" name="{{$livraisonOuFacturation}}_adresse" type="text"
@@ -10,7 +10,7 @@
         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
     </div>
 </div>
-<div id="{{$livraisonOuFacturation}}_champVille" class="champ champ--lg">
+<div id="{{$livraisonOuFacturation}}_champVille" class="champ champ--4c">
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}_ville" class="champ__etiquette">Ville</label>
         <input class="champ__input" id="{{$livraisonOuFacturation}}_ville" name="{{$livraisonOuFacturation}}_ville" type="text"
@@ -21,7 +21,7 @@
         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
     </div>
 </div>
-<div id="{{$livraisonOuFacturation}}_champProvince" class="champ champ--lg">
+<div id="{{$livraisonOuFacturation}}_champProvince" class="champ champ--4c">
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}_province" class="champ__etiquette">Province</label>
         <select class="champ__input" id="{{$livraisonOuFacturation}}_province" name="{{$livraisonOuFacturation}}_province" required="required" aria-labelledby="{{$livraisonOuFacturation}}_messagesProvince">
@@ -35,7 +35,7 @@
         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
     </div>
 </div>
-<div id="{{$livraisonOuFacturation}}_champCodePostal" class="champ champ--lg">
+<div id="{{$livraisonOuFacturation}}_champCodePostal" class="champ champ--4c">
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}_codePostal" class="champ__etiquette">Code Postal</label>
         <input class="champ__input" id="{{$livraisonOuFacturation}}_codePostal" name="{{$livraisonOuFacturation}}_codePostal" type="text"

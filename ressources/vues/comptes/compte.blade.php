@@ -59,7 +59,7 @@
                             </div>
                             <a id="mdpOublie" href="#">Mot de passe oublié?</a>
                             <div class="form-wrap">
-                                <button id="btnConnecter" type="submit" class="btnConnecter">Se connecter</button>
+                                <button id="btnConnecter" type="submit" class="bouton action">Se connecter</button>
                             </div>
 
                         </form>
@@ -150,8 +150,8 @@
                                 <p>Votre compte à bien été créé.</p>
                             </section>
                             <div class="form-wrap">
-                                <button id="btnInscrire" type="submit" value="Submit">S'inscrire</button>
-                                <button id="btnReset" type="reset">Réinitialiser</button>
+                                <button id="btnInscrire" class="bouton action" type="submit" value="Submit">S'inscrire</button>
+                                <button id="btnReset" class="bouton" type="reset">Réinitialiser</button>
                             </div>
                         </form>
                     </div>

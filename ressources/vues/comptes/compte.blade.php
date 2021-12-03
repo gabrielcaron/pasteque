@@ -3,6 +3,7 @@
     creation
 @endsection
 @section('contenu')
+
     <section class="compte">
         <input type="hidden" value="{{$action}}" id="connexionOuCreation">
         <div class="tabSection">

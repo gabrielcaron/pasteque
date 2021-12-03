@@ -5,6 +5,19 @@
 @endsection
 
 @section('contenu')
+    <div id="page-loader" class="page-loader">
+        <div class="loader">
+            <div class="binding"></div>
+            <div class="pad">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+            </div>
+            <div class="text">
+                Chargement...
+            </div>
+        </div>
+    </div>
     @if($choixVue==='liste')
     <section class="indexLivres livres modeliste">
     @else
@@ -16,7 +29,7 @@
             </section>
             <!-- Éventuellement être caché en mobile
             <button class="enveloppe__">Filtres</button> -->
-            <button style="background-color: #252b46" class="compte__filtrer" id="lienFiltre" value="yes" onclick="gererFiltres(this)">Filtrer par</button>
+            <button class="livre__filtrer" id="lienFiltre" value="yes" onclick="gererFiltres(this)">Filtrer par</button>
             <form id="formTri" class="formulaire" action="index.php?controleur=livre&action=index" method="POST">
                 <fieldset class="formulaire__groupeChamps tuiles">
                     <legend class="formulaire__sectionLegende">

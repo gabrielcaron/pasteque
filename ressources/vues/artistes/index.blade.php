@@ -16,6 +16,7 @@
         <section>
             <!-- Éventuellement être caché en mobile
             <button class="enveloppe__">Filtres</button> -->
+            <button class="auteur__filtrer" id="lienFiltre" value="yes" onclick="gererFiltres(this)">Filtrer par</button>
             <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=auteur&action=index" method="POST">
                 <input id="id_page" value="0" type="hidden" name="id_page">
                 <div class="formulaire__conteneursInlineFlex">

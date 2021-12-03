@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controleurs;
 use App\App;
 use App\Modeles\Article;
+use App\Modeles\Commande;
 use App\Modeles\Compte;
 use App\Modeles\Panier;
 
@@ -53,6 +54,8 @@ class ControleurPanier
     {
         $compte = Compte::trouverParCourriel($_SESSION['email']);
         $panier = Panier::trouverParIdSession(session_id());
+        $commande = Commande::trouverParIdCompte($compte->getId());
+
 //        var_dump($panier);
         $articles = $panier->getArticlesAssocies();
         $prixTotal = 0;

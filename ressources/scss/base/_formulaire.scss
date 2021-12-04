@@ -17,8 +17,22 @@
   max-width: 370px;
 }
 
+// Champs alignés sur une grille
+
+.champ--1c {
+  grid-column: 1 / 2;
+}
+
+.champ--2c {
+  grid-column: 1 / 3;
+}
+
 .champ--4c {
   grid-column: 1 / 5;
+}
+
+.champ--6c {
+  grid-column: 1 / 7;
 }
 
 .champ--erreur .champ__boite {
@@ -30,7 +44,7 @@
 }
 
 .champ {
-  margin: 0;
+  margin: 1rem 0;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -49,7 +63,6 @@
   width: 100%;
   border-radius: 4px;
   border: 1px solid rgb(95, 95, 95);
-  color: rgb(95, 95, 95);
   padding: 0;
   margin: 0.4rem 0 0;
 }
@@ -69,6 +82,7 @@
 }
 
 .champ__etiquette {
+  font-family: $RobotoMedium;
   transition: color 0.3s ease;
   position: absolute;
   top: 0;
@@ -76,7 +90,6 @@
   transform: translate(0, -50%);
   background: white;
   padding: 0 4px;
-  color: inherit;
   cursor: pointer;
 }
 

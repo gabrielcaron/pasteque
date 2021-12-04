@@ -62,10 +62,6 @@
                         <p>{{$article->getLivreAssocie()->getPrixCan()}}&nbsp;$</p>
                         <p>Quantité&nbsp;: {{$article->getQuantite()}}</p>
                     </section>
-                    <section class="panier__articleQuantite">
-                        <h4 class="screen-reader-only">Quantité</h4>
-
-                    </section>
                 </article>
             @endforeach
             <table class="panier__tableauSousTotal">

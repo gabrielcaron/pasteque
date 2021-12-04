@@ -1,6 +1,5 @@
-<section class="stepleft__section">
+<section class="sectionFormulaire confirmation">
     <section id="sectionRecapPanier" class="stepleft__sectionForm">
-        <h2>Recap panier</h2>
         @foreach($panier->getArticlesAssocies() as $article)
             <article class="panier__article">
                 <picture class="livre__picture">
@@ -11,20 +10,16 @@
                          alt="{{$article->getLivreAssocie()->getTitre()}}">
                 </picture>
                 <section class="panier__articleInfos">
-                    <h2 class="panier__articleInfosTitre">{{$article->getLivreAssocie()->getTitre()}}</h2>
+                    <a href="index.php?controleur=livre&action=fiche&id={{$article->getProduitId()}}">
+                        <h3 class="panier__articleInfosTitre">{{$article->getLivreAssocie()->getTitre()}}</h3>
+                    </a>
                     <ul class="livre__listeInfos">
                         @foreach($article->getLivreAssocie()->getAuteurAssocie() as $auteur)
                             <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                         @endforeach
                     </ul>
-                </section>
-                <section class="panier__articleQuantite">
-                    <h4 class="screen-reader-only">Quantité</h4>
-                        <input id="livre_id" type="hidden" name="livre_id" value="{{$article->getProduitId()}}">
-                        <input id="panier_id" type="hidden" name="panier_id" value="{{$article->getPanierId()}}">
-                        <input type="hidden" id="quantite" name="quantite" value="{{$article->getQuantite()}}">
-                    <span>Quantité : {{$article->getQuantite()}}</span>
-                    <p aria-label="Sous-total de l'article {{$article->getLivreAssocie()->getTitre()}}">{{number_format($article->getLivreAssocie()->getPrixCan() * $article->getQuantite(), 2)}}$</p>
+                    <p>{{$article->getLivreAssocie()->getPrixCan()}}&nbsp;$</p>
+                    <p>Quantité&nbsp;: {{$article->getQuantite()}}</p>
                 </section>
             </article>
         @endforeach
@@ -49,6 +44,6 @@
         </table>
     </section>
     <section class="stepleft__sectionForm">
-        <button id="envoyerFormulaireStepLeft" type="submit">Passer la commande</button>
+        <button id="envoyerFormulaireStepLeft" type="submit" class="bouton action">Passer la commande</button>
     </section>
 </section>

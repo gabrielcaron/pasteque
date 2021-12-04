@@ -4,7 +4,7 @@
     </section>
     <section id="validationAdresseLivraison"
              class="sectionFormulaire__sectionForm sectionFormulaire__sectionRecapAdresseLivraison">
-        <section id="sectionRecapAdresseLivraison">
+        <section id="sectionRecapAdresseLivraison" class="sectionAnciennesAdressesLivraisons">
             @component('paniers.fragments.adresseRecap')
                 @slot('titre') Adresse de Livraison @endslot
                 @slot('sousTitre')  @endslot
@@ -14,14 +14,14 @@
                 @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceAssocie()->getNom()}} @endif @endslot
                 @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
             @endcomponent
-            <a id="modifierAdresseLivraison" class="stepleft__lien">Modifier les informations de livraison</a>
+            <a id="modifierAdresseLivraison" class="stepleft__lien bouton texte">Modifier les informations de livraison</a>
         </section>
     </section>
     <section id="sectionAncienneAdresseLivraison"
-             class="sectionFormulaire__sectionForm stepleft__sectionAnciennesAdressesLivraisons">
+             class="sectionFormulaire__sectionForm sectionAnciennesAdressesLivraisons">
         <input id="nombreAnciennesAdresses" type="hidden"
                value="@if($livraisonToutesLesAdresses !== null){{count($livraisonToutesLesAdresses)}}@endif">
-        <h3 id="legend">Anciennes Adresses</h3>
+        <h3 id="legend" class="sectionFormulaire__sectionFormH3">Anciennes adresses</h3>
         <ul id="sectionRadioAnciennesAdresses">
             @if($livraisonToutesLesAdresses !== null)
                 @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
@@ -46,7 +46,7 @@
                 @endfor
             @endif
         </ul>
-        <a id="ajouterNouvelleAdresseLivraison" class="stepleft__lien">Ajouter une adresse nouvelle adresse</a>
+        <a id="ajouterNouvelleAdresseLivraison" class="stepleft__lien bouton texte">Ajouter une adresse nouvelle adresse</a>
     </section>
     <section id="sectionAdresseLivraison" class="sectionFormulaire__sectionForm">
         @component('paniers.fragments.adresse')
@@ -57,16 +57,14 @@
             @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceId()}} @endif @endslot
             @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot
         @endcomponent
-        <div id="champ__memeAdresse" class="">
-            <div class="">
+        <div id="champ__memeAdresse" class="champ--6c">
                 <input class="" id="memeAdresse" name="memeAdresse" type="checkbox"
                        @if($livraison !== null && $facturation !== null && $livraison === $facturation) checked @endif/>
                 <label for="memeAdresse" class="">L'adresse de Facturation est la même que l'adresse de
                     livraison</label>
-            </div>
         </div>
-        <button id="ajouterLivraison" type="button" class="button">Confirmer</button>
-        <button id="annulerAjouterLivraison" type="button" class="button">Annuler</button>
+        <button id="ajouterLivraison" type="button" class="bouton action">Confirmer</button>
+        <button id="annulerAjouterLivraison" type="button" class="bouton texte">Annuler</button>
     </section>
     <button id="continuerLivraison" type="button" class="bouton action">Continuer</button>
 </section>

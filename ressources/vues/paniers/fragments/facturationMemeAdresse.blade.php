@@ -68,7 +68,7 @@
                        value="@if($paiement !== null){{$paiement->getCvv()}}@endif"/>
             </div>
         </div>
-        <div class="champ">
+        <div class="champ champ--span2">
             <div class="champ__boite">
                 <label class="champ__etiquette">Date d'expiration</label>
                 <div class="champ__flex champ__input">

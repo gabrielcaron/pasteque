@@ -23,16 +23,32 @@
   grid-column: 1 / 2;
 }
 
+.champ--span1 {
+  grid-column: span 1;
+}
+
 .champ--2c {
   grid-column: 1 / 3;
+}
+
+.champ--span2 {
+  grid-column: span 2;
 }
 
 .champ--4c {
   grid-column: 1 / 5;
 }
 
+.champ--span4 {
+  grid-column: span 4;
+}
+
 .champ--6c {
   grid-column: 1 / 7;
+}
+
+.champ--span6 {
+  grid-column: span 6;
 }
 
 .champ--erreur .champ__boite {

@@ -34,19 +34,27 @@
 	  @include rangeeGrid12col();
 
 	  & > * {
-		grid-column: 4 / 10;
+		grid-column: 3 / 11;
 	  }
 	}
 
 	&__titreEtape {
 	  display: inline-block;
 	  margin: 0; // Évite un désalignement de l'icône qui identifie l'étape
+	  font-family: $RobotoMedium;
+	  color: $gris50AA;
+	}
+
+	& .bouton {
+	  margin: 3rem 0;
 	}
 
 	// Fieldset d'une étape
 	&__etape {
-	  border: none;
-	  padding: 0;
+	  @include rangeeGrid12col($nombreColonnes: 8);
+	  border: 0;
+	  border-top: 5px solid $gris90;
+	  padding: 3rem 0;
 	  margin: 0;
 
 	  &::before {
@@ -55,11 +63,19 @@
 		background-repeat: no-repeat;
 		height: 5.5rem;
 		width: 5.5rem;
-		margin-right: 1rem;
+		margin: 0 0 0 4rem;
 		vertical-align: top;
 	  }
 
-	  // Icônes du numéro d'étape devant le titre
+	  // Icône du numéro et titre de l'étape
+
+	  &.courante, &.complete {
+		& .formulaireCommande {
+		  &__titreEtape {
+			color: $noir;
+		  }
+		}
+	  }
 
 	  &.etape1 {
 		&::before {
@@ -95,7 +111,7 @@
 	  }
 
 	  &.complete {
-		display: inline-block;
+		background-color: $bleuPoudre;
 		&::before {
 		  background-image: url(../images/icones/etape--complete.svg);
 		}
@@ -103,15 +119,36 @@
 
 	  // Section dans un fieldset
 	  & .sectionFormulaire {
+		grid-column: 2 / 8;
 
 		// Sous-sections
 		&__sectionForm {
 		  @include rangeeGrid12col($nombreColonnes: 6);
+		  margin: 1rem 0;
+
+		  &H3 {
+			font-family: $RobotoMedium;
+			font-size: 2.5rem;
+			margin: 2rem 0 1rem 0;
+		  }
 		}
 
 		&__sectionIdentification {
 		  & > * {
 		      grid-column: span 12;
+		  }
+		}
+
+		// Cas particuliers
+
+		& .sectionRecapAdresseLivraison {
+		  grid-column: span 6;
+		}
+
+		& .sectionAnciennesAdressesLivraisons {
+		  grid-column: span 6;
+		  & > * {
+			grid-column: 1 / 7;
 		  }
 		}
 	  }

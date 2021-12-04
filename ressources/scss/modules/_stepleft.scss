@@ -41,6 +41,8 @@
 	&__titreEtape {
 	  display: inline-block;
 	  margin: 0; // Évite un désalignement de l'icône qui identifie l'étape
+	  font-family: $RobotoMedium;
+	  color: $gris50AA;
 	}
 
 	& .bouton {
@@ -65,7 +67,15 @@
 		vertical-align: top;
 	  }
 
-	  // Icônes du numéro d'étape devant le titre
+	  // Icône du numéro et titre de l'étape
+
+	  &.courante, &.complete {
+		& .formulaireCommande {
+		  &__titreEtape {
+			color: $noir;
+		  }
+		}
+	  }
 
 	  &.etape1 {
 		&::before {
@@ -101,6 +111,7 @@
 	  }
 
 	  &.complete {
+		background-color: $bleuPoudre;
 		&::before {
 		  background-image: url(../images/icones/etape--complete.svg);
 		}

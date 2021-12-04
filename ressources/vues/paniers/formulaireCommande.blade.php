@@ -15,24 +15,24 @@
         <input id="compte_id" name="compte_id" type="hidden" value="@if($compte !== null){{$compte->getId()}}@endif"/>
         <input id="commande_id" name="commande_id" type="hidden"
                value="@if($commande !== null){{$commande->getId()}}@endif"/>
-        <fieldset id="etapeLivraison" class="formulaireCommande__etape" data-etape="identification" tabindex="-1"
+        <fieldset id="etapeLivraison" class="formulaireCommande__etape etape1 courante" data-etape="identification" tabindex="-1"
                   aria-labelledby="titreIdentification">
             <h2 id="titreLivraison" class="formulaireCommande__titreEtape">
-                1. Livrer
+                Livraison
             </h2>
             @include('paniers.fragments.livraison')
         </fieldset>
-        <fieldset id="etapeFacturation" class="formulaireCommande__etape" data-etape="informations-connexion" tabindex="-1"
+        <fieldset id="etapeFacturation" class="formulaireCommande__etape etape2 complete" data-etape="informations-connexion" tabindex="-1"
                   aria-labelledby="titreInfoConnexion">
             <h2 id="titreFacturation" class="formulaireCommande__titreEtape">
-                2. Payer
+                Facturation
             </h2>
             @include('paniers.fragments.facturationMemeAdresse')
         </fieldset>
-        <fieldset id="etapeValidation" class="formulaireCommande__etape" data-etape="informations-connexion" tabindex="-1"
+        <fieldset id="etapeValidation" class="formulaireCommande__etape etape3" data-etape="informations-connexion" tabindex="-1"
                   aria-labelledby="titreInfoConnexion">
             <h2 id="titreFacturation" class="formulaireCommande__titreEtape">
-                3. Valider
+                Validation
             </h2>
             @include('paniers.fragments.validation')
         </fieldset>

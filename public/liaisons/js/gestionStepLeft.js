@@ -83,6 +83,7 @@ var gestionStepLeft = {
         refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
         refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince[refLivraisonInputProvince.value].text;
         refLivraisonCodePostalValidationRecap.innerHTML = refLivraisonInputCodePostal.value;
+        this.ajouterLivraisonAncienAdresse();
         if (refLivraisonMemeAdresse.checked === true) {
             //Adresse identique
             refFacturationInputAdresse.value = refLivraisonInputAdresse.value;
@@ -187,23 +188,39 @@ var gestionStepLeft = {
     },
     ajouterLivraisonAncienAdresse: function () {
         var refLi = document.createElement('li');
+        var refInput = document.createElement('input');
+        var refLabel = document.createElement('label');
         var refAdress = document.createElement('address');
-        var refRue = document.createElement('p');
-        var refVille = document.createElement('p');
-        var refProvince = document.createElement('p');
-        var refCodePostal = document.createElement('p');
-        refAdress.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_radioAdresse");
-        refRue.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapAdresse");
-        refVille.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapVille");
-        refProvince.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapProvince");
-        refCodePostal.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapCodePostal");
+        var refPId = document.createElement('p');
+        var refPRue = document.createElement('p');
+        var refPInfo = document.createElement('p');
+        var refRue = document.createElement('span');
+        var refVille = document.createElement('span');
+        var refProvince = document.createElement('span');
+        var refCodePostal = document.createElement('span');
+        refInput.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_inputAdresse"));
+        refInput.setAttribute('type', 'radio');
+        refInput.setAttribute('name', 'ancienAdresses');
+        refInput.checked = true;
+        refInput.addEventListener('click', function () { gestionStepLeft.changerSelected(event); });
+        refInput.setAttribute('value', parseInt(refNombresLivraisonsCompte.value).toString());
+        refLabel.setAttribute('for', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_inputAdresse"));
+        refAdress.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_radioAdresse"));
+        refRue.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapAdresse"));
+        refVille.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapVille"));
+        refProvince.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapProvince"));
+        refCodePostal.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapCodePostal"));
+        refPId.innerHTML = 'NA';
         refRue.innerHTML = refLivraisonInputAdresse.value;
-        refVille.innerHTML = refLivraisonInputVille.value;
-        refProvince.innerHTML = refLivraisonInputProvince[refLivraisonInputProvince.value].text;
+        refVille.innerHTML = refLivraisonInputVille.value + ', ';
+        refProvince.innerHTML = refLivraisonInputProvince[refLivraisonInputProvince.value].text + ', ';
         refCodePostal.innerHTML = refLivraisonInputCodePostal.value;
-        refAdress.prepend(refRue, refVille, refProvince, refCodePostal);
-        refLi.prepend(refAdress);
-        refSectionRadioAnciennesAdressesLivraison.append(refLi);
+        refPRue.prepend(refRue);
+        refPInfo.prepend(refVille, refProvince, refCodePostal);
+        refAdress.prepend(refPId, refPRue, refPInfo);
+        refLabel.prepend(refAdress);
+        refLi.prepend(refInput, refLabel);
+        refSectionRadioAnciennesAdressesLivraison.prepend(refLi);
         refNombresLivraisonsCompte.value = (parseInt(refNombresLivraisonsCompte.value) + 1).toString();
     },
     /** Modifier une adresse de Livraison **/

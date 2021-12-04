@@ -19,17 +19,16 @@
     </section>
     <section id="sectionAncienneAdresseLivraison"
              class="sectionFormulaire__sectionForm sectionAnciennesAdressesLivraisons">
-        <input id="nombreAnciennesAdresses" type="hidden"
-               value="@if($livraisonToutesLesAdresses !== null){{count($livraisonToutesLesAdresses)}}@endif">
+        <input id="nombreAnciennesAdresses" type="hidden" @if($livraisonToutesLesAdresses !== null)value="{{count($livraisonToutesLesAdresses)}}" @else value="0" @endif>
         <h3 id="legend" class="sectionFormulaire__sectionFormH3">Anciennes adresses</h3>
         <ul id="sectionRadioAnciennesAdresses">
             @if($livraisonToutesLesAdresses !== null)
                 @for($i = 0; $i < count($livraisonToutesLesAdresses); $i++)
                     <li>
-                        <input id="{{$i}}_livraisonAncienneAdresse_radioAdresse" type="radio" name="ancienAdresses"
+                        <input id="{{$i}}_livraisonAncienneAdresse_inputAdresse" type="radio" name="ancienAdresses"
                                value="{{$i}}"
                                @if($livraisonToutesLesAdresses[$i]->getAdresse() === $livraison->getAdresse()) checked @endif>
-                        <label for="{{$i}}_livraisonAncienneAdresse_radioAdresse">
+                        <label for="{{$i}}_livraisonAncienneAdresse_inputdresse">
                             <address id="{{$i}}_livraisonAncienneAdresse_radioAdress">
                                 <p id="{{$i}}_livraisonAncienneAdresse_recapAdresse">{{$livraisonToutesLesAdresses[$i]->getId()}}</p>
                                 <p>

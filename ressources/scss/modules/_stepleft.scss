@@ -151,6 +151,9 @@
 			grid-column: 1 / 7;
 		  }
 		}
+		  & .boutonActive {
+			  grid-column: 1/5;
+		  }
 	  }
 	}
   }

@@ -1,5 +1,5 @@
 <section class="sectionFormulaire">
-    <section id="sectionRecapAdresseFacturation" class="sectionFormulaire__sectionForm">
+    <section id="sectionRecapAdresseFacturation" class="sectionFormulaire__sectionForm sectionAnciennesAdressesLivraisons">
         <h3 class="sectionFormulaire__sectionFormH3">Adresse de Facturation</h3>
         @component('paniers.fragments.adresseRecap')
             @slot('titre')  @endslot
@@ -10,7 +10,7 @@
             @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceAssocie()->getNom()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-        <a id="modifierAdresseFacturation" class="stepleft__lien">Modifier les informations de facturation</a>
+        <a id="modifierAdresseFacturation" class="stepleft__lien bouton texte">Modifier les informations de facturation</a>
     </section>
     <section id="sectionAdresseFacturation" class="sectionFormulaire__sectionForm">
         @component('paniers.fragments.adresse')
@@ -21,9 +21,9 @@
             @slot('provinceChoisi') @if($facturation !== null) {{$facturation->getProvinceId()}} @endif @endslot
             @slot('codePostal') @if($facturation !== null) {{$facturation->getCodePostal()}} @endif @endslot
         @endcomponent
-        <button id="continuerAdresseFacturation" type="button">Confirmer mon adressse de facturation</button>
+        <button id="continuerAdresseFacturation" type="button" class="bouton action boutonActive">Confirmer mon adressse de facturation</button>
     </section>
-    <section id="sectionRecapPaiement" class="sectionFormulaire__sectionForm">
+    <section id="sectionRecapPaiement" class="sectionFormulaire__sectionForm sectionAnciennesAdressesLivraisons">
         <h6>Mode de paiement</h6>
         <p id="paiement_titulaire">@if($paiement !== null){{$paiement->getTitulaire()}}@endif</p>
         <p id="paiement_numeroCarte">@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif</p>
@@ -33,9 +33,8 @@
         <a id="modifierPaiementFacturation" class="stepleft__lien">Modifier le mode de paiement</a>
     </section>
     <section id="sectionPaiementFacturation" class="sectionFormulaire__sectionForm">
-        <!-- Ajouter les logos des cartes -->
         <h3 class="sectionFormulaire__sectionFormH3">Mode de paiement</h3>
-        <h4>Cartes de crédits acceptées</h4>
+        <!-- Ajouter les logos des cartes -->
         <input id="paiement_id" name="paiement_id" type="hidden"
                value="@if($paiement !== null){{$paiement->getId()}}@endif"/>
         <div id="champNomTitulaire" class="champ champ--4c">
@@ -70,7 +69,7 @@
             </div>
             <span>Ce code à trois chiffres se trouve à l’endos de votre carte.</span>
         </div>
-        <div class="formulaire__champ">
+        <div class="champ champ--4c">
             <label>Date d'expiration: *</label>
             <div class="stepleft__champFlex">
                 <div class="stepleft__champFlex--item">

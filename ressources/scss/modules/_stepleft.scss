@@ -38,10 +38,68 @@
 	  }
 	}
 
+	&__titreEtape {
+	  display: inline-block;
+	  margin: 0; // Évite un désalignement de l'icône qui identifie l'étape
+	}
+
+	// Fieldset d'une étape
 	&__etape {
 	  border: none;
 	  padding: 0;
 	  margin: 0;
+
+	  &::before {
+		display: inline-block;
+		content: "";
+		background-repeat: no-repeat;
+		height: 5.5rem;
+		width: 5.5rem;
+		margin-right: 1rem;
+		vertical-align: top;
+	  }
+
+	  // Icônes du numéro d'étape devant le titre
+
+	  &.etape1 {
+		&::before {
+		  background-image: url(../images/icones/etape1.svg);
+		}
+		&.courante {
+		  &::before {
+			background-image: url(../images/icones/etape1--courante.svg);
+		  }
+		}
+	  }
+
+	  &.etape2 {
+		&::before {
+		  background-image: url(../images/icones/etape2.svg);
+		}
+		&.courante {
+		  &::before {
+			background-image: url(../images/icones/etape2--courante.svg);
+		  }
+		}
+	  }
+
+	  &.etape3 {
+		&::before {
+		  background-image: url(../images/icones/etape3.svg);
+		}
+		&.courante {
+		  &::before {
+			background-image: url(../images/icones/etape3--courante.svg);
+		  }
+		}
+	  }
+
+	  &.complete {
+		display: inline-block;
+		&::before {
+		  background-image: url(../images/icones/etape--complete.svg);
+		}
+	  }
 
 	  // Section dans un fieldset
 	  & .sectionFormulaire {

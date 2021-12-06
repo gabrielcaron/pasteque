@@ -135,6 +135,9 @@
                     </div>
                 </div>
             </div>
+            <div id="messagesExpirations" class="champ__messages">
+                <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+            </div>
         </div>
     </section>
     <button id="continuerFacturation" type="button" class="bouton action boutonActive">Continuer</button>

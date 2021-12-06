@@ -28,9 +28,8 @@
                                     <input class="champ__input" id="connexionEmail" name="connexionEmail" type="email"
                                            autocomplete="email"
                                            required="required" aria-labelledby="messagesEmail"
-                                           pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}$"
+                                           pattern="#^[a-zA-Z0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,}$#"
                                            @if($tValidation !== null) value="{{$tValidation['connexionEmail']['valeur']}}" @endif
-
                                     />
                                 </div>
                                 <div id="messagesConnexionEmail" class="champ__messages">
@@ -85,6 +84,7 @@
                                         <input  class="champ__input" id="prenom" name="prenom" type="text"
                                                autocomplete="prenom"
                                                required="required" aria-labelledby="messagesPrenom"
+                                                pattern="#^[ a-zA-ZÀ-ÿ\-‘]+$#"
                                                 @if($tValidation !== null) value="{{$tValidation['prenom']['valeur']}}" @endif/>
                                     </div>
                                     <div id="messagesPrenom" class="champ__messages">
@@ -97,6 +97,7 @@
                                         <input class="champ__input" id="nom" name="nom" type="text"
                                                autocomplete="family-name"
                                                required="required" aria-labelledby="messagesNom"
+                                               pattern="#^[ a-zA-ZÀ-ÿ\-‘]+$#"
                                                @if($tValidation !== null) value="{{$tValidation['nom']['valeur']}}" @endif/>
                                     </div>
                                     <div id="messagesNom" class="champ__messages">
@@ -111,7 +112,7 @@
                                             <input class="champ__input" id="courriel" name="courriel" type="email"
                                                    autocomplete="email"
                                                    required="required" aria-labelledby="messagesEmail"
-                                                   pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}$"
+                                                   pattern="#^[a-zA-Z0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,}$#"
                                                    @if($tValidation !== null) value="{{$tValidation['courriel']['valeur']}}" @endif
                                             />
                                         </div>

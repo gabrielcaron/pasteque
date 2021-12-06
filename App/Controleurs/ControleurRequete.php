@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace App\Controleurs;
 use App\App;
+use App\Modeles\Adresse;
 use App\Modeles\Compte;
 use App\Modeles\Livre;
+use App\Modeles\Paiement;
 
 class ControleurRequete
 {
@@ -28,17 +30,20 @@ class ControleurRequete
 
     //Trouver adresse par tous les champs
     public function trouverAdresseParTousLesChamps(){
-
-        $arrInfo = [$_GET['adresse'] ?? false, $_GET['ville'] ?? false, $_GET['province_id'] ?? false, $_GET['code_postal'] ?? false];
-
-        $livres = Livre::trouverTout();
-        $livreEnvoyer = [];
-        foreach ($livres as $livre) {
-            $range = array('id'=>$livre->getId(), 'titre'=>$livre->getTitre());
-            array_push($livreEnvoyer, $range);
-        }
+        $adresse = Adresse::trouverParTousLesChamps($_GET['adresse'], $_GET['ville'], intval($_GET['province_id']), $_GET['code_postal']);
         header('Content-Type: application/json');
-        echo json_encode($livreEnvoyer);
+        echo json_encode($adresse);
+    }
+
+    public function insererAdresse() {
+        if (Adresse::trouverParTousLesChamps($_GET['adresse'], $_GET['ville'], intval($_GET['province_id']), $_GET['code_postal']) === null) {
+            $adresse = new Adresse();
+            $adresse->setAdresse($_GET['adresse']);
+            $adresse->setVille($_GET['ville']);
+            $adresse->setProvinceId(intval($_GET['province_id']));
+            $adresse->setCodePostal($_GET['code_postal']);
+            $adresse->inserer();
+        }
     }
 
 }

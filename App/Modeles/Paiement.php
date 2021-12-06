@@ -114,9 +114,9 @@ class Paiement
      * @param int $unMoisExpiration - Un mois d'expiration
      * @param int $unAnneeExpiration - Une année d'expiration
      * @param int $unCvv - Un cvv
-     * @return string - Le id
+     * @return ?string - L'id ou null
      */
-    public static function trouverParTousLesChamps(string $unTitulaire, int $unNumeroCarte, int $unMoisExpiration, int $unAnneeExpiration, int $unCvv):string {
+    public static function trouverParTousLesChamps(string $unTitulaire, int $unNumeroCarte, int $unMoisExpiration, int $unAnneeExpiration, int $unCvv):?string {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT id AS id FROM paiements WHERE titulaire = :titulaire AND numero_carte = :numero_carte AND mois_expiration = :mois_expiration AND annee_expiration = :annee_expiration AND cvv = :cvv';
         // Préparer la requête (optimisation)
@@ -133,7 +133,7 @@ class Paiement
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $result = $requetePreparee->fetch();
-        return $result->id;
+        return $result === false ? null : $result->id;
     }
 
     /**

@@ -151,6 +151,16 @@
 			grid-column: 1 / 7;
 		  }
 		}
+		  & .boutonActive {
+			  grid-column: 1/5;
+		  }
+		  & .champ__flex {
+			  display: flex;
+			  justify-content: center;
+		  }
+		  & .separateur {
+			  padding: 0 10px;
+		  }
 	  }
 	}
   }

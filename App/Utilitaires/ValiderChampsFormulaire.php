@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Utilitaires;
 
 use App\App;
+use App\Modeles\Compte;
 
 class ValiderChampsFormulaire
 {
@@ -11,14 +12,11 @@ class ValiderChampsFormulaire
     {
         // Constructeur vide
     }
-    public static function verifierSiChampVide(string $strChamp):bool{
-        if($strChamp === ''){
-            return false;
-        }
-        return true;
+    public static function verifierSiChampVide(string $unChamp):bool{
+        return !($unChamp === '');
     }
-    public static function verifierSiRegexCorrect(string $strChamp, string $strChampPost):bool{
-        $rgx = [
+    public static function validerChampRegex($unRegex, $unValueChamp):bool {
+        /*$rgx = [
             'prenom'=>'#^[ a-zA-ZÀ-ÿ\-‘]+$#',
             'nom'=>'#^[ a-zA-ZÀ-ÿ\-‘]+$#',
             'adresse'=>'#^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$#',
@@ -29,26 +27,31 @@ class ValiderChampsFormulaire
             'connexionEmail'=>'#^[a-zA-Z0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,}$#',
             'connexionPassword'=>'#^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}$#',
             'mot_de_passe'=>'#^[ a-zA-ZÀ-ÿ\-‘]+$#'
-        ];
-        return preg_match($rgx[$strChamp],$strChampPost) === 1;
+        ];*/
+        return preg_match($unRegex, $unValueChamp) === 1;
     }
     public static function validerFormulaire(array $tMessagesJson):array{
         $tDonnes = [];
-        // À compléter...
-        foreach (array_keys($tMessagesJson) as $champValide){
-            if(isset($_POST[$champValide])){
-                if($tMessagesJson[$champValide]['vide'] !== '' && ValiderChampsFormulaire::verifierSiChampVide($_POST[$champValide]) === false){
-                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
+        foreach (array_keys($tMessagesJson) as $champValider) {
+            if (isset($_POST[$champValider])) {
+                $champTrim = trim($_POST[$champValider]);
+                if ($tMessagesJson[$champValider]['vide'] !== '' && ValiderChampsFormulaire::verifierSiChampVide($champTrim)===false) {
+                    $tDonnes[$champValider] = ['valeur'=>$champTrim, 'valide'=>false, 'message'=>$tMessagesJson[$champValider]['vide']];
                 }
-                elseif($tMessagesJson[$champValide]['pattern'] !== '' && ValiderChampsFormulaire::verifierSiRegexCorrect($champValide, $_POST[$champValide]) === false){
-                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['pattern']];
+                else if ($tMessagesJson[$champValider]['pattern'] !== '' && ValiderChampsFormulaire::validerChampRegex($tMessagesJson[$champValider]['regex'], $champTrim)===false) {
+                    $tDonnes[$champValider] = ['valeur'=>$champTrim, 'valide'=>false, 'message'=>$tMessagesJson[$champValider]['pattern']];
                 }
-                else{
-                    $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>true, 'message'=>''];
+                else if($champValider === 'courriel' && Compte::courrielValide($_POST[$champValider]) === false){
+                    $tDonnes[$champValider] = ['valeur' => $_POST[$champValider], 'valide'=>false, 'message'=>$tMessagesJson[$champValider]['disponible']];
                 }
+                else {
+                    $tDonnes[$champValider] = ['valeur'=>$champTrim, 'valide'=>true, 'message'=>''];
+                }
+            } elseif ($tMessagesJson[$champValider]['vide'] !== '') {
+                $tDonnes[$champValider] = ['valeur'=>'off', 'valide'=>false, 'message'=>$tMessagesJson[$champValider]['vide']];
             }
-            else{
-                $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
+            else {
+                $tDonnes[$champValider] = ['valeur'=>'', 'valide'=>true, 'message'=>$tMessagesJson[$champValider]['vide']];
             }
         }
         return $tDonnes;
@@ -57,7 +60,7 @@ class ValiderChampsFormulaire
     public static function verifierErreurFormulaire(array $tDonnes):array{
         $tableauErreur = [];
         foreach ($tDonnes as $champ){
-            if($champ['validation'] === false){
+            if($champ['valide'] === false){
                 array_push($tableauErreur, false);
 
             }

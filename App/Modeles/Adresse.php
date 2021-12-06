@@ -158,9 +158,9 @@ class Adresse
      * @param string $unVille - Une ville
      * @param int $unProvinceId - Une province
      * @param string $unCodePostal - Un code postal
-     * @return string - Le id
+     * @return ?string - L'id ou null
      */
-    public static function trouverParTousLesChamps(string $unAdresse, string $unVille, int $unProvinceId, string $unCodePostal):string {
+    public static function trouverParTousLesChamps(string $unAdresse, string $unVille, int $unProvinceId, string $unCodePostal):?string {
         //var_dump($unAdresse, $unVille, $unProvinceId, $unCodePostal);
         // Définir la chaine SQL
         $chaineSQL = 'SELECT id AS id FROM adresses WHERE adresse = :adresse AND ville = :ville AND province_id = :province_id AND code_postal = :code_postal';
@@ -178,7 +178,7 @@ class Adresse
         // Récupérer une seule occurrence à la fois
         $result = $requetePreparee->fetch();
         //var_dump($result);
-        return $result->id;
+        return $result === false ? null :$result->id;
     }
 
     /**

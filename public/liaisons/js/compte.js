@@ -1,3 +1,4 @@
+"use strict";
 var compte = {
     trouverToutCompte: function (controleur, action, id) {
         console.log('heyyyyyyyyyyyyyyy');

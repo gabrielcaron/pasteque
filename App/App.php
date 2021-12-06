@@ -194,6 +194,14 @@ class App
                         $this->monControleur->trouverToutLivre();
                     }
                     break;
+                case 'stepleft':
+                    if ($action === 'trouverParChamp') {
+                        $this->monControleur->trouverAdresseParTousLesChamps();
+                    }
+                    if ($action === 'insererAdresse') {
+                        $this->monControleur->insererAdresse();
+                    }
+                    break;
                 default:
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();

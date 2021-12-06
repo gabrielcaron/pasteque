@@ -27,9 +27,7 @@
         <h6>Mode de paiement</h6>
         <p id="paiement_titulaire">@if($paiement !== null){{$paiement->getTitulaire()}}@endif</p>
         <p id="paiement_numeroCarte">@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif</p>
-        <p id="paiement_moisExpiration">@if($paiement !== null){{$paiement->getMoisExpiration()}}@endif</p>
-        <p id="paiement_anneeExpiration">@if($paiement !== null){{$paiement->getAnneeExpiration()}}@endif</p>
-        <p id="paiement_cvv">@if($paiement !== null){{$paiement->getCvv()}}@endif</p>
+        <p><span id="paiement_moisExpiration">@if($paiement !== null){{$paiement->getMoisExpiration()}}@endif</span> / <span id="paiement_anneeExpiration">@if($paiement !== null){{$paiement->getAnneeExpiration()}}@endif</span> <span id="paiement_cvv">@if($paiement !== null){{$paiement->getCvv()}}@endif</span></p>
         <a id="modifierPaiementFacturation" class="stepleft__lien">Modifier le mode de paiement</a>
     </section>
     <section id="sectionPaiementFacturation" class="sectionFormulaire__sectionForm">
@@ -37,35 +35,37 @@
         <!-- Ajouter les logos des cartes -->
         <input id="paiement_id" name="paiement_id" type="hidden"
                value="@if($paiement !== null){{$paiement->getId()}}@endif"/>
-        <div id="champNomTitulaire" class="champ champ--4c">
+        <div id="facturation_champNomTitulaire" class="champ champ--4c">
             <div class="champ__boite">
                 <label for="facturation_nomTitulaire" class="champ__etiquette">Nom du titulaire</label>
                 <input class="champ__input" id="facturation_nomTitulaire" name="facturation_nomTitulaire" type="text"
                        autocomplete="nomTitulaire" aria-labelledby="messagesNomTitulaire"
-                       pattern="^[a-zA-Z-_]{2,}$" min="2"
+                       pattern="^[a-zA-Z-_ ]{2,}$" min="2" required
                        value="@if($paiement !== null){{$paiement->getTitulaire()}}@endif"/>
             </div>
             <div id="messagesNomTitulaire" class="champ__messages">
                 <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
             </div>
         </div>
-        <div id="champNumeroCarte" class="champ champ--4c">
+        <div id="facturation_champNumeroCarte" class="champ champ--4c">
             <div class="champ__boite">
                 <label for="facturation_numeroCarte" class="champ__etiquette">Numéro de la carte</label>
                 <input class="champ__input" id="facturation_numeroCarte" name="facturation_numeroCarte" type="number"
-                       autocomplete="numeroCarte" aria-labelledby="messagesNumeroCarte"
-                       pattern="^[a-zA-Z-_]{2,}$" min="2"
-                       value="@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif"/>
+                       autocomplete="numeroCarte" aria-labelledby="messagesNumeroCarte" min="2"
+                       value="@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif" required/>
             </div>
             <div id="messagesNumeroCarte" class="champ__messages">
                 <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
             </div>
         </div>
-        <div class="champ champ--1c">
+        <div id="facturation_champCvv" class="champ champ--1c">
             <div class="champ__boite">
                 <label for="facturation_cvv" class="champ__etiquette">Cvv</label>
-                <input class="champ__input" id="facturation_cvv" name="facturation_cvv" placeholder="352" type="number"
-                       value="@if($paiement !== null){{$paiement->getCvv()}}@endif"/>
+                <input class="champ__input" id="facturation_cvv" name="facturation_cvv" placeholder="352" type="number" aria-labelledby="messagesCvv"
+                       value="@if($paiement !== null){{$paiement->getCvv()}}@endif" required/>
+            </div>
+            <div id="messagesCvv" class="champ__messages">
+                <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
             </div>
         </div>
         <div class="champ champ--span2">

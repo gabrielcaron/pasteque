@@ -36,7 +36,7 @@
                                 </p>
                                 <p>
                                     <span id="{{$i}}_livraisonAncienneAdresse_recapVille">{{$livraisonToutesLesAdresses[$i]->getVille()}}</span>
-                                    <span id="{{$i}}_livraisonAncienneAdresse_recapProvince">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</span>
+                                    <span id="{{$i}}_livraisonAncienneAdresse_recapProvince" data-province="{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getId()}}">{{$livraisonToutesLesAdresses[$i]->getProvinceAssocie()->getNom()}}</span>
                                     <span id="{{$i}}_livraisonAncienneAdresse_recapCodePostal">{{$livraisonToutesLesAdresses[$i]->getCodePostal()}}</span>
                                 </p>
                             </address>

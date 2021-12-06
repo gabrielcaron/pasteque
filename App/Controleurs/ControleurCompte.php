@@ -20,12 +20,10 @@ class ControleurCompte
     {
         $tValidation = $_SESSION['tValidation'] ?? null;
 
-        $_SESSION['tValidation'] = null;
+        unset($_SESSION['tValidation']);
 
-        $exist = '';
-        if ($_GET['erreur']){
-            $exist = $_GET['erreur'];
-        }
+        $exist = $_GET['erreur'] ?? '';
+
         $tDonnees = array("titrePage"=>"creation", "classeBody"=>"creation", "action"=>"creation", "erreur"=>"$exist", "tValidation" => $tValidation);
         echo App::getBlade()->run("comptes.compte",$tDonnees);
     }
@@ -132,6 +130,7 @@ class ControleurCompte
         $tDonnes = ValiderChampsFormulaire::validerFormulaire($tMessagesJson);
 
         $tableauErreur = ValiderChampsFormulaire::verifierErreurFormulaire($tDonnes);
+        var_dump($tDonnes);
 
         if(in_array(false, $tableauErreur)){
             $_SESSION['tValidation'] = $tDonnes;
@@ -165,7 +164,7 @@ class ControleurCompte
 
             // Rediriger
 
-            header('Location: index.php?controleur=site&action=accueil');
+            //header('Location: index.php?controleur=site&action=accueil');
         }
     }
 }

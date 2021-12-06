@@ -1,18 +1,23 @@
 {
     "prenom": {
         "vide": "Serveur: Vous devez entrer votre prénom",
-        "pattern": "Serveur: Pour le prénom, les accents français, les espaces, les tirets et les apostrophes sont permis."
+        "pattern": "Serveur: Pour le prénom, les accents français, les espaces, les tirets et les apostrophes sont permis.",
+        "regex": "#^[ a-zA-ZÀ-ÿ\\-‘]+$#"
     },
     "nom": {
         "vide": "Serveur: Vous devez entrer votre nom de famille",
-        "pattern": "Serveur: Pour le nom de famille, les accents français, les espaces, les tirets et les apostrophes sont permis."
+        "pattern": "Serveur: Pour le nom de famille, les accents français, les espaces, les tirets et les apostrophes sont permis.",
+        "regex": "#^[ a-zA-ZÀ-ÿ\\-‘]+$#"
     },
     "courriel": {
         "vide": "Serveur: Vous devez entrer une adresse courriel",
-        "pattern": "Serveur: Le format de l'adresse courriel n'est pas valide."
+        "pattern": "Serveur: Le format de l'adresse courriel n'est pas valide.",
+        "regex": "#^[a-zA-Z0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,}$#",
+        "disponible": "Désolé ce courriel est déjà utilisé"
     },
     "mot_de_passe": {
         "vide": "Serveur: Vous devez entrer un mot de passe",
-        "pattern": "Serveur: Le format du mot de passe n'est pas valide. Il doit contenir au moins huit caractères, dont au moins un chiffre et comprend les lettres majuscules et minuscules et des caractères spéciaux "
+        "pattern": "Serveur: Le format du mot de passe n'est pas valide. Il doit contenir au moins huit caractères, dont au moins un chiffre et comprend les lettres majuscules et minuscules et des caractères spéciaux ",
+        "regex": "#^[ a-zA-ZÀ-ÿ\\-‘]+$#"
     }
 }

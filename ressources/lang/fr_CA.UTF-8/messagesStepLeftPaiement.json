@@ -1,0 +1,22 @@
+{
+    "facturation_numeroCarte": {
+        "vide": "Vous devez entrer le numéro de carte.",
+        "pattern": "Ce numéro de carte ne respectent pas la forme."
+    },
+    "facturation_nomTitulaire": {
+        "vide": "Vous devez entrer le nom du titulaire",
+        "pattern": "Ce nom de titulaire ne respectent pas le format"
+    },
+    "facturation_cvv": {
+        "vide": "Vous devez entrer le Cvv",
+        "pattern": "Ce cvv ne respectent pas le format"
+    },
+    "facturation_moisExpiration": {
+        "vide": "Vous devez entrer le mois d'expiration",
+        "pattern": ""
+    },
+    "facturation_anneeExpiration": {
+        "vide": "Vous devez entrer l'année d'expiration",
+        "pattern": ""
+    }
+}

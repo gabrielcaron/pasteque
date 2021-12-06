@@ -1,10 +1,12 @@
 {
     "connexionEmail": {
         "vide": "Serveur: Vous devez entrer votre adresse courriel",
-        "pattern": "Serveur: Cette adresse n'existe pas sur nos serveurs."
+        "pattern": "Serveur: Cette adresse n'existe pas sur nos serveurs.",
+        "regex": "#^[a-zA-Z0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,}$#"
     },
     "connexionPassword": {
         "vide": "Serveur: Vous devez entrer votre mot de passe",
-        "pattern": "Serveur: Ce mot de passe ne concorde pas avec l'adresse courriel."
+        "pattern": "Serveur: Ce mot de passe ne concorde pas avec l'adresse courriel.",
+        "regex": "#^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}$#"
     }
 }

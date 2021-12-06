@@ -1,0 +1,18 @@
+{
+    "facturation_adresse": {
+        "vide": "Vous devez entrer votre adresse de livraison.",
+        "pattern": "Cette adresse ne respectent pas la forme."
+    },
+    "facturation_ville": {
+        "vide": "Vous devez entrer votre ville",
+        "pattern": "Cette ville ne respectent pas le format"
+    },
+    "facturation_province": {
+        "vide": "Vous devez entrer votre province",
+        "pattern": ""
+    },
+    "facturation_codePostal": {
+        "vide": "Vous devez entrer votre code postale",
+        "pattern": "Ce code postal ne respectent pas le format X1X 1X1"
+    }
+}

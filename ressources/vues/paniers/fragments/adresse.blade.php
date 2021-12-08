@@ -4,7 +4,7 @@
         <label for="{{$livraisonOuFacturation}}_adresse" class="champ__etiquette">Adresse</label>
         <input class="champ__input" id="{{$livraisonOuFacturation}}_adresse" name="{{$livraisonOuFacturation}}_adresse" type="text"
                autocomplete="adresse" aria-labelledby="{{$livraisonOuFacturation}}_messagesAdresse"
-               pattern="^[a-zA-Z-_]{2,}$" min="2" value="{{$adresse}}" required/>
+               pattern="#^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$#" min="2" value="{{$adresse}}" required/>
     </div>
     <div id="{{$livraisonOuFacturation}}_messagesAdresse" class="champ__messages">
         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
@@ -15,7 +15,7 @@
         <label for="{{$livraisonOuFacturation}}_ville" class="champ__etiquette">Ville</label>
         <input class="champ__input" id="{{$livraisonOuFacturation}}_ville" name="{{$livraisonOuFacturation}}_ville" type="text"
                autocomplete="ville" aria-labelledby="{{$livraisonOuFacturation}}_messagesVille"
-               pattern="^[a-zA-Z-_]{2,}$" min="2" value="{{$ville}}" required/>
+               pattern="#^[a-zA-ZÀ-ÿ0-9 \-]+$#" min="2" value="{{$ville}}" required/>
     </div>
     <div id="{{$livraisonOuFacturation}}_messagesVille" class="champ__messages">
         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
@@ -39,7 +39,7 @@
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}_codePostal" class="champ__etiquette">Code Postal</label>
         <input class="champ__input" id="{{$livraisonOuFacturation}}_codePostal" name="{{$livraisonOuFacturation}}_codePostal" type="text"
-               autocomplete="codePostal" required="required" aria-labelledby="{{$livraisonOuFacturation}}_messagesCodePostal" min="2" placeholder="Ex: G1W 4S2" value="{{$codePostal}}"/>
+               autocomplete="codePostal" required="required" pattern="#^[A-Za-z]{1}[0-9]{1}[A-Za-z]{1} [0-9]{1}[A-Za-z]{1}[0-9]{1}$#" aria-labelledby="{{$livraisonOuFacturation}}_messagesCodePostal" min="2" placeholder="Ex: G1W 4S2" value="{{$codePostal}}"/>
     </div>
     <div id="{{$livraisonOuFacturation}}_messagesCodePostal" class="champ__messages">
         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>

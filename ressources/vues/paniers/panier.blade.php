@@ -32,14 +32,11 @@
                 <section class="panier__articleQuantite">
                     <h4 class="screen-reader-only">Quantité</h4>
                     <form id="modifierQuantite{{$article->getId()}}" action="index.php?controleur=panier&action=modifier" method="POST">
-                        <legend class="visually-hidden">Formulaire de mise a jour de la quantité</legend>
+                        <legend class="screen-reader-only">Formulaire de mise à jour de la quantité</legend>
                         <label for="livre_id" style="display: none">Id</label>
                         <input id="livre_id" type="hidden" name="livre_id" value="{{$article->getProduitId()}}">
                         <label for="panier_id" style="display: none">Id</label>
                         <input id="panier_id" type="hidden" name="panier_id" value="{{$article->getPanierId()}}">
-
-
-
                         <div class="ficheLivre__ajout">
                             <div class="ficheLivre__ajoutQuantite">
                                 <button class="minus-btn btnQuantite" type="button" name="button" @if ($article->getQuantite() > 1)  onclick="document.getElementById('quantite_panier{{$article->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$article->getId()}}').value) - 1; document.getElementById('modifierQuantite{{$article->getId()}}').submit()" @endif>-</button>

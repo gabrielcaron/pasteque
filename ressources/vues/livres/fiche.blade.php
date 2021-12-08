@@ -16,8 +16,8 @@
         <div class="ficheLivre__conteneurVignette">
             <div class="ficheLivre__productImage">
                 @if(file_exists("liaisons/images/livres/{$livre->getIsbnPapier()}-940.jpg"))
-                <img class="ficheLivre__active"
-                     src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
+                    <img class="ficheLivre__active"
+                         src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
                 @else
                     <img class="livre__image etiquette"
                          src="../public/liaisons/images/livres/img-livre-sans-vignette-1140.png"
@@ -25,7 +25,7 @@
                          alt="Image générique">
                 @endif
 
-            @if($livre->getStatut()===3)
+                @if($livre->getStatut()===3)
                     <p class="ficheLivre__statut">À paraitre</p>
                 @elseif($livre->getStatut()===2)
                     <p class="ficheLivre__statut">Nouveauté</p>
@@ -104,8 +104,8 @@
                 </div>
             </div>
             <section class="ficheLivre__format">
-                <form id="formTri" class="formulaire enveloppe__Tris" action="" method="POST">
-                    <fieldset class="formulaire__groupeChamps tuiles">
+                <form id="formTri" class="formulaire enveloppe__Tris" action="../public/index.php?controleur=article&action=inserer" method="POST">
+                    <div class="formulaire__groupeChamps tuiles">
                         <ul class="formulaire__liste">
                             @if($livre->getIsbnPapier()!== '')
                                 <li class="bloc">
@@ -130,20 +130,24 @@
                                 </li>
                             @endif
                         </ul>
-                    </fieldset>
+                        <div class="ficheLivre__ajoutQuantite">
+                            <button class="minus-btn btnQuantite" type="button" name="button"
+                                    onclick="document.getElementById('quantite_panier{{$livre->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$livre->getId()}}').value) - 1">
+                                -
+                            </button>
+                            <label style="display: none" for="quantite_panier{{$livre->getId()}}">Quantité :</label>
+                            <input id="quantite_panier{{$livre->getId()}}" class="ficheLivre__ajoutInput" type="text"
+                                   name="quantite" value="1">
+                            <button class="plus-btn btnQuantite" type="button" name="button"
+                                    onclick="document.getElementById('quantite_panier{{$livre->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$livre->getId()}}').value) + 1">
+                                +
+                            </button>
+                        </div>
+                    </div>
+{{--                    <input class="bouton action ajoutPanier" href="#panier" type="submit">Ajouter au panier</input>--}}
+                    <input class="bouton action ajoutPanier" type="submit" value="Ajouter au panier">
                 </form>
             </section>
-            <div class="ficheLivre__ajout">
-                <div class="ficheLivre__ajoutQuantite">
-                    <button class="minus-btn btnQuantite" type="button" name="button" onclick="document.getElementById('quantite_panier{{$livre->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$livre->getId()}}').value) - 1">-</button>
-                    <label  style="display: none" for="quantite_panier{{$livre->getId()}}">Quantité :</label>
-                    <input id="quantite_panier{{$livre->getId()}}" class="ficheLivre__ajoutInput" type="text" name="quantite" value="1" >
-                    <button class="plus-btn btnQuantite" type="button" name="button" onclick="document.getElementById('quantite_panier{{$livre->getId()}}').value = parseInt(document.getElementById('quantite_panier{{$livre->getId()}}').value) + 1">+</button>
-                </div>
-                <a class="bouton action ajoutPanier" href="#panier">
-                    Ajouter au panier
-                </a>
-            </div>
         </div>
     </section>
     <section class="informations">
@@ -162,7 +166,7 @@
             </tr>
             <tr class="informations__tableRow">
                 <td class="informations__tableColumn">Éditeur</td>
-                <td class="informations__tableColumn">La pastèque</td>
+                <td class="informations__tableColumn">La Pastèque</td>
             </tr>
             <tr class="informations__tableRow">
                 <td class="informations__tableColumn">Prix canadien</td>
@@ -189,7 +193,7 @@
                 <td class="informations__tableColumn">Français</td>
             </tr>
             <tr class="informations__tableRow">
-                <td class="informations__tableColumn">Nombre de page</td>
+                <td class="informations__tableColumn">Nombre de pages</td>
                 <td class="informations__tableColumn">{{$livre->getPagination()}}</td>
             </tr>
             <tr class="informations__tableRow">

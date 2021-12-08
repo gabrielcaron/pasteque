@@ -40,7 +40,7 @@
                 <label for="facturation_nomTitulaire" class="champ__etiquette">Nom du titulaire</label>
                 <input class="champ__input" id="facturation_nomTitulaire" name="facturation_nomTitulaire" type="text"
                        autocomplete="nomTitulaire" aria-labelledby="messagesNomTitulaire"
-                       pattern="^[a-zA-Z-_ ]{2,}$" min="2" required
+                       pattern="#^[ a-zA-ZÀ-ÿ\-‘]+$#" min="2" required
                        value="@if($paiement !== null){{$paiement->getTitulaire()}}@endif"/>
             </div>
             <div id="messagesNomTitulaire" class="champ__messages">
@@ -51,7 +51,7 @@
             <div class="champ__boite">
                 <label for="facturation_numeroCarte" class="champ__etiquette">Numéro de la carte</label>
                 <input class="champ__input" id="facturation_numeroCarte" name="facturation_numeroCarte" type="number"
-                       autocomplete="numeroCarte" aria-labelledby="messagesNumeroCarte" min="2"
+                       autocomplete="numeroCarte" aria-labelledby="messagesNumeroCarte" min="2" pattern="/^([0-9]{4}( |\-)){3}[0-4]{4}$/"
                        value="@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif" required/>
             </div>
             <div id="messagesNumeroCarte" class="champ__messages">
@@ -61,7 +61,7 @@
         <div id="facturation_champCvv" class="champ champ--1c">
             <div class="champ__boite">
                 <label for="facturation_cvv" class="champ__etiquette">Cvv</label>
-                <input class="champ__input" id="facturation_cvv" name="facturation_cvv" placeholder="352" type="number" aria-labelledby="messagesCvv"
+                <input class="champ__input" id="facturation_cvv" name="facturation_cvv" pattern="^\d{1,3}$" placeholder="352" type="number" aria-labelledby="messagesCvv"
                        value="@if($paiement !== null){{$paiement->getCvv()}}@endif" required/>
             </div>
             <div id="messagesCvv" class="champ__messages">

@@ -24,13 +24,14 @@
             @include('fragments.infolettre')
             @include('fragments.pieddepage')
         </footer>
+        @yield('scripts')
         <script src="liaisons/js/_menu.js"></script>
         <script src="liaisons/js/_tabsection.js"></script>
         <script src="liaisons/js/livres.ts"></script>
         <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>
         <script src="liaisons/js/productPage.js" type="text/javascript"></script>
         <script src="liaisons/js/validationFormulaire.js" type="text/javascript"></script>
-        {{--<script src="liaisons/js/fetchRequest.js" ></script>--}}
+        <script src="liaisons/js/fetchRequest.js" ></script>
         <script src="liaisons/js/compte.js" ></script>
         <script src="liaisons/js/password.js" ></script>
         <script src="liaisons/js/loader.js" ></script>

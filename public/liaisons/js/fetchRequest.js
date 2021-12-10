@@ -1,4 +1,3 @@
-"use strict";
 var request = {
     trouverToutLivre: function (controleur, action, id) {
         var test = null;

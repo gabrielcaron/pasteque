@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controleurs;
 use App\App;
 use App\Modeles\Adresse;
+use App\Modeles\Article;
 use App\Modeles\Compte;
 use App\Modeles\Livre;
 use App\Modeles\Paiement;
@@ -43,6 +44,26 @@ class ControleurRequete
             $adresse->setProvinceId(intval($_GET['province_id']));
             $adresse->setCodePostal($_GET['code_postal']);
             $adresse->inserer();
+        }
+    }
+
+    // Inserer article en JS
+    public function insererLivre():void {
+
+        var_dump(Article::trouverParIdProduitIdPanier(intval($_GET['panier_id']), intval($_GET['produit_id'])));
+        if (Article::trouverParIdProduitIdPanier(intval($_GET['panier_id']), intval($_GET['produit_id'])) === null) {
+            $monNouvelArticle = new Article();
+            $monNouvelArticle->setProduitId(intval($_GET['produit_id']));
+            $monNouvelArticle->setPanierId(intval($_GET['panier_id']));
+            $monNouvelArticle->setQuantite(intval($_GET['quantite']));
+
+            $monNouvelArticle->inserer();
+        }
+        else {
+            $ancienArticle = Article::trouverParIdProduitIdPanier(intval($_GET['panier_id']), intval($_GET['produit_id']));
+            $quantite = $ancienArticle->getQuantite() + intval($_GET['quantite']) <= 10 ? $ancienArticle->getQuantite() + intval($_GET['quantite']) : 10 ;
+            $ancienArticle->setQuantite($quantite);
+            $ancienArticle->mettreAJour();
         }
     }
 

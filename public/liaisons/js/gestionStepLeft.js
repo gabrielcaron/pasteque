@@ -276,21 +276,21 @@ var gestionStepLeft = {
         var refVille = document.createElement('span');
         var refProvince = document.createElement('span');
         var refCodePostal = document.createElement('span');
-        refInput.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_inputAdresse"));
+        refInput.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_inputAdresse");
         refInput.setAttribute('type', 'radio');
         refInput.setAttribute('name', 'ancienAdresses');
         refInput.checked = true;
         refInput.addEventListener('click', function () { gestionStepLeft.changerSelected(event); });
         refInput.setAttribute('value', parseInt(refNombresLivraisonsCompte.value).toString());
-        refLabel.setAttribute('for', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_inputAdresse"));
-        refAdress.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_radioAdresse"));
-        refRue.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapAdresse"));
+        refLabel.setAttribute('for', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_inputAdresse");
+        refAdress.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_radioAdresse");
+        refRue.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapAdresse");
         refRue.setAttribute('data-rue', refLivraisonInputAdresse.value);
-        refVille.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapVille"));
+        refVille.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapVille");
         refVille.setAttribute('data-ville', refLivraisonInputVille.value);
-        refProvince.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapProvince"));
+        refProvince.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapProvince");
         refProvince.setAttribute('data-province', refLivraisonInputProvince.value);
-        refCodePostal.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapCodePostal"));
+        refCodePostal.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapCodePostal");
         refCodePostal.setAttribute('data-codePostal', refLivraisonInputCodePostal.value);
         refPId.innerHTML = 'NA';
         refRue.innerHTML = refLivraisonInputAdresse.value;
@@ -350,7 +350,7 @@ var gestionStepLeft = {
             document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.remove('erreur');
             document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = '';
             if (_this.refInput.hasAttribute('required') && _this.refInput.value === '') {
-                _this.refErreur = "Le champ ".concat(tableauRefNom[index], " est obligatoire.");
+                _this.refErreur = "Le champ " + tableauRefNom[index] + " est obligatoire.";
                 _this.refChampErreur.style = 'display:block;';
                 document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
                 document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
@@ -359,7 +359,7 @@ var gestionStepLeft = {
             else if (_this.refInput.hasAttribute('pattern') && _this.validerAttributPattern(_this.refInput.pattern, _this.refInput.value) === false) {
                 var bool = _this.validerAttributPattern(_this.refInput.pattern, _this.refInput.value);
                 if (bool === false) {
-                    _this.refErreur = "Veuillez verifier que la valeur du champ ".concat(tableauRefNom[index], " correspond aux crit\u00E8res demand\u00E9s.");
+                    _this.refErreur = "Veuillez verifier que la valeur du champ " + tableauRefNom[index] + " correspond aux crit\u00E8res demand\u00E9s.";
                     _this.refChampErreur.style = 'display:block;';
                     document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
                     document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
@@ -374,7 +374,7 @@ var gestionStepLeft = {
         return new RegExp(pattern).test(value);
     },
     ajouterAdresse: function (adresse, ville, province, codePostal) {
-        var response = fetch("index.php?controleur=requete&classe=stepleft&action=insererAdresse&adresse=".concat(adresse, "&ville=").concat(ville, "&province_id=").concat(province, "&code_postal=").concat(codePostal));
+        var response = fetch("index.php?controleur=requete&classe=stepleft&action=insererAdresse&adresse=" + adresse + "&ville=" + ville + "&province_id=" + province + "&code_postal=" + codePostal);
         return response;
     },
     trouverIdAdresse: function (adresse, ville, province, codePostal) {
@@ -382,7 +382,7 @@ var gestionStepLeft = {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=stepleft&action=trouverParChamp&adresse=".concat(adresse, "&ville=").concat(ville, "&province_id=").concat(province, "&code_postal=").concat(codePostal))
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=stepleft&action=trouverParChamp&adresse=" + adresse + "&ville=" + ville + "&province_id=" + province + "&code_postal=" + codePostal)
                             .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();

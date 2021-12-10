@@ -93,9 +93,11 @@ let gestionStepLeft = {
         gestionStepLeft.remettreAZero();
         if (refLivraisonInputAdresse.value === '') {
             refSectionAdresseLivraison.removeAttribute("style");
+            document.getElementById('continuerLivraison').removeAttribute('style');
         } else if(refFacturationInputAdresse.value === '') {
             this.livraisonCompleted = true;
             refSectionAdresseFacturation.removeAttribute("style");
+            document.getElementById('continuerFacturation').removeAttribute('style');
         } else {
             refSectionRecapAdresseLivraison.removeAttribute("style");
             refSectionRecapAdresseFacturation.removeAttribute("style");
@@ -272,6 +274,13 @@ let gestionStepLeft = {
         }
     },
 
+    annulerAjouterLivraison (){
+        refRadiosLivraisons.forEach(radio => {
+            console.log(radio.querySelector("input"));
+        })
+
+    },
+
     ajouterLivraisonAncienAdresse() {
         const refLi = document.createElement('li');
         const refInput = document.createElement('input');
@@ -424,6 +433,9 @@ let gestionStepLeft = {
         refSectionRecapAdresseLivraison.style.display = 'none';
         document.getElementById('ajouterLivraison').style.display = 'none';
         document.getElementById('annulerAjouterLivraison').style.display = 'none';
+        document.getElementById('continuerLivraison').style.display = 'none';
+        document.getElementById('continuerFacturation').style.display = 'none';
+
     },
 }
 
@@ -437,6 +449,7 @@ window.addEventListener('load', function () {gestionStepLeft.initialiser()});
 document.getElementById('continuerLivraison').addEventListener('click', function (){gestionStepLeft.continuerLivraison()});
 document.getElementById('ajouterNouvelleAdresseLivraison').addEventListener('click', function (){gestionStepLeft.ajouterLivraison()});
 document.getElementById('ajouterLivraison').addEventListener('click', function (){gestionStepLeft.confirmerAjouterLivraison()});
+document.getElementById('annulerAjouterLivraison').addEventListener('click', function (){gestionStepLeft.annulerAjouterLivraison()})
 
 //Facturation : Écouteurs d'événements
 document.getElementById('continuerAdresseFacturation').addEventListener('click', function (){gestionStepLeft.continuerAdresseFacturation()});
@@ -453,3 +466,4 @@ console.log(refRadiosLivraisons)
 for (let i = 0; i < refRadiosLivraisons.length; i++) {
     refRadiosLivraisons[i].addEventListener('click', function (){ gestionStepLeft.changerSelected(event) });
 }
+

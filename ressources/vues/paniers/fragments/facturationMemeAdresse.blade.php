@@ -28,7 +28,7 @@
         <p id="paiement_titulaire">@if($paiement !== null){{$paiement->getTitulaire()}}@endif</p>
         <p id="paiement_numeroCarte">@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif</p>
         <p><span id="paiement_moisExpiration">@if($paiement !== null){{$paiement->getMoisExpiration()}}@endif</span> / <span id="paiement_anneeExpiration">@if($paiement !== null){{$paiement->getAnneeExpiration()}}@endif</span> <span id="paiement_cvv">@if($paiement !== null){{$paiement->getCvv()}}@endif</span></p>
-        <a id="modifierPaiementFacturation" class="stepleft__lien">Modifier le mode de paiement</a>
+        <a id="modifierPaiementFacturation" class="stepleft__lien bouton texte">Modifier le mode de paiement</a>
     </section>
     <section id="sectionPaiementFacturation" class="sectionFormulaire__sectionForm">
         <h3 class="sectionFormulaire__sectionFormH3">Mode de paiement</h3>

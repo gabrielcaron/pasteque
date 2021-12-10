@@ -346,10 +346,12 @@ var gestionStepLeft = {
         tableauValider.forEach(function (id, index) {
             _this.refInput = document.getElementById(prefixe + id).querySelector('input') === null ? document.getElementById(prefixe + id).querySelector('select') : document.getElementById(prefixe + id).querySelector('input');
             _this.refChampErreur = document.getElementById(prefixe + id).querySelector('.champ__message-erreur');
+            _this.refInput.classList.remove('erreurInput');
             _this.refChampErreur.style = 'display:none;';
             document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.remove('erreur');
             document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = '';
             if (_this.refInput.hasAttribute('required') && _this.refInput.value === '') {
+                _this.refInput.classList.add('erreurInput');
                 _this.refErreur = "Le champ " + tableauRefNom[index] + " est obligatoire.";
                 _this.refChampErreur.style = 'display:block;';
                 document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
@@ -359,6 +361,7 @@ var gestionStepLeft = {
             else if (_this.refInput.hasAttribute('pattern') && _this.validerAttributPattern(_this.refInput.pattern, _this.refInput.value) === false) {
                 var bool = _this.validerAttributPattern(_this.refInput.pattern, _this.refInput.value);
                 if (bool === false) {
+                    _this.refInput.classList.add('erreurInput');
                     _this.refErreur = "Veuillez verifier que la valeur du champ " + tableauRefNom[index] + " correspond aux crit\u00E8res demand\u00E9s.";
                     _this.refChampErreur.style = 'display:block;';
                     document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');

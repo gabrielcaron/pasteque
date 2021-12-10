@@ -40,7 +40,7 @@
                 <label for="facturation_nomTitulaire" class="champ__etiquette">Nom du titulaire</label>
                 <input class="champ__input" id="facturation_nomTitulaire" name="facturation_nomTitulaire" type="text"
                        autocomplete="nomTitulaire" aria-labelledby="messagesNomTitulaire"
-                       pattern="#^[ a-zA-ZÀ-ÿ\-‘]+$#" min="2" required
+                       pattern="^[ a-zA-ZÀ-ÿ\-‘]+$" min="2" required
                        value="@if($paiement !== null){{$paiement->getTitulaire()}}@endif"/>
             </div>
             <div id="messagesNomTitulaire" class="champ__messages">

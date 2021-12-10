@@ -2,8 +2,8 @@
   max-width: 70%;
   margin: 0 auto;
   text-align: center;
-  padding: 5rem;
-  padding-bottom: 8rem;
+  /*padding: 5rem;
+  padding-bottom: 8rem;*/
 
   &__sousTitre{
     color: $bleuRoyal;
@@ -13,4 +13,8 @@
 
 .champ__message-erreur{
   color: red;
+}
+.erreurInput{
+  border: 2px solid red;
+  border-radius: 4px;
 }

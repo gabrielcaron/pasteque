@@ -30,7 +30,7 @@
             </tr>
             <tr>
                 <td>Frais de livraison estimé</td>
-                <td>0.00$</td>
+                <td>{{number_format($prixLivraison, 2)}}$</td>
             </tr>
             <tr>
                 <td>Date de livraison estimée</td>
@@ -38,7 +38,7 @@
             </tr>
             <tr>
                 <td>Total estimé</td>
-                <td><p>{{number_format($prixTotal * 1.05, 2)}}$</p>
+                <td><p>{{number_format(($prixTotal + $prixLivraison) * 1.05, 2)}}$</p>
                     <p>Une taxe fédérale de 5% s’appliquera à l’achat des livres</p></td>
             </tr>
         </table>

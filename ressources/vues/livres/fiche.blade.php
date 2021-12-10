@@ -104,7 +104,7 @@
                 </div>
             </div>
             <section class="ficheLivre__format">
-                <form id="formTri" class="formulaire enveloppe__Tris" action="../public/index.php?controleur=article&action=inserer" method="POST">
+                <form id="formulaireAjoutPanier" class="formulaire enveloppe__Tris" action="../public/index.php?controleur=article&action=inserer" method="POST">
                     <div class="formulaire__groupeChamps tuiles">
                         <ul class="formulaire__liste">
                             @if($livre->getIsbnPapier()!== '')
@@ -143,10 +143,13 @@
                                 +
                             </button>
                         </div>
+                        <input id="produit_id" type="text" name="produit_id" value="{{$livre->getId()}}" hidden>
+                        <input id="panier_id" type="text" name="panier_id" value="{{$panier->getId()}}" hidden>
+                        <input id="quantite" type="text" name="quantite" value="1" hidden>
                     </div>
-{{--                    <input class="bouton action ajoutPanier" href="#panier" type="submit">Ajouter au panier</input>--}}
-                    <input class="bouton action ajoutPanier" type="submit" value="Ajouter au panier">
+                    <button id="boutonAjouterPanierPHP" class="bouton action ajoutPanier" type="submit">Ajouter au panier</button>
                 </form>
+{{--                <a id="boutonAjouterPanier" class="bouton action ajoutPanier" href="#panier">Ajouter au panier en JS</a>--}}
             </section>
         </div>
     </section>
@@ -210,6 +213,12 @@
             </tr>
         </table>
     </section>
+
 @endsection
 
 @include('livres.fragments.panier')
+@section('scripts')
+    <script src="../public/liaisons/js/ajoutPanier.js" type="text/javascript"></script>
+@endsection
+
+

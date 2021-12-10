@@ -13,7 +13,7 @@
   align-items: flex-end;
   justify-content: center;
   background: rgba(77, 77, 77, 0);
-  transition: 1000ms all ease-in-out;
+  transition: 1000ms bottom ease-in-out;
 
   &:target {
 	visibility: visible;

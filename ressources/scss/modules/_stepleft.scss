@@ -1,15 +1,22 @@
 /**
 * @author Michel Veillette
+* @author Gabriel Caron
 * @version 1.0
 *
 * ------------------
-* TABLE DES MATIERES
+* FORMULAIRE DE LA TRANSACTION
 * ------------------
-* Step-Left
+* Conteneurs et styles généraux
+* Fieldset d'une étape
+* Icône du numéro et titre de l'étape
+* Section dans un fieldset
+* Sous-sections dans un fieldset
+* Cas particuliers
 *
 */
 .stepleft {
-  /* Conteneurs généraux des grilles */
+
+  /* Conteneurs et styles généraux */
 
   & .entete {
 	background: initial;
@@ -20,21 +27,28 @@
 	}
 
 	&__logo {
-	  grid-column: 4 / 7;
+	  grid-column: 3 / 6;
 	  padding-top: 7rem;
 	  padding-bottom: 8rem;
 	}
   }
 
   & .formulaireCommande {
-	@include conteneur1400px();
-	@include paddingConteneur;
+	@include conteneur1400px($conteneurBleed: true);
 
 	&__conteneurGrille {
 	  @include rangeeGrid12col();
 
-	  & > * {
-		grid-column: 3 / 11;
+	  @media screen and (min-width: $mobile600px) {
+		& > * {
+		  grid-column: 1 / 13;
+		}
+	  }
+
+	  @media screen and (min-width: $tablet900px) {
+		& > * {
+		  grid-column: 3 / 11;
+		}
 	  }
 	}
 
@@ -42,32 +56,49 @@
 	  display: inline-block;
 	  margin: 0; // Évite un désalignement de l'icône qui identifie l'étape
 	  font-family: $RobotoMedium;
+	  font-size: 4rem;
 	  color: $gris50AA;
+
+	  @media screen and (min-width: $mobile600px) {
+		font-size: 5.5rem;
+	  }
 	}
 
 	& .bouton {
 	  margin: 3rem 0;
 	}
 
-	// Fieldset d'une étape
+	/* Fieldset d'une étape */
+
 	&__etape {
 	  @include rangeeGrid12col($nombreColonnes: 8);
 	  border: 0;
 	  border-top: 5px solid $gris90;
-	  padding: 3rem 0;
+	  padding: 3rem 2rem;
 	  margin: 0;
+
+	  @media screen and (min-width: $mobile600px) {
+		padding: 3rem 0;
+	  }
 
 	  &::before {
 		display: inline-block;
 		content: "";
 		background-repeat: no-repeat;
-		height: 5.5rem;
-		width: 5.5rem;
-		margin: 0 0 0 4rem;
+		margin: 0 0.5rem 0 0;
+		height: 4rem;
+		width: 4rem;
+
 		vertical-align: top;
+
+		@media screen and (min-width: $mobile600px) {
+		  margin: 0 0 0 3rem;
+		  height: 5.5rem;
+		  width: 5.5rem;
+		}
 	  }
 
-	  // Icône du numéro et titre de l'étape
+	  /* Icône du numéro et titre de l'étape */
 
 	  &.courante, &.complete {
 		& .formulaireCommande {
@@ -117,11 +148,13 @@
 		}
 	  }
 
-	  // Section dans un fieldset
+	  /* Section dans un fieldset */
+
 	  & .sectionFormulaire {
 		grid-column: 2 / 8;
 
-		// Sous-sections
+		/* Sous-sections dans un fieldset */
+
 		&__sectionForm {
 		  @include rangeeGrid12col($nombreColonnes: 6);
 		  margin: 1rem 0;
@@ -139,7 +172,7 @@
 		  }
 		}
 
-		// Cas particuliers
+		/* Cas particuliers */
 
 		& .sectionRecapAdresseLivraison {
 		  grid-column: span 6;
@@ -161,18 +194,6 @@
 		  & .separateur {
 			  padding: 0 10px;
 		  }
-	  }
-	}
-  }
-
-  & .footer {
-	@include conteneur1400px();
-
-	&__transaction {
-	  @include rangeeGrid12col();
-
-	  & > * {
-		grid-column: 4 / 10;
 	  }
 	}
   }

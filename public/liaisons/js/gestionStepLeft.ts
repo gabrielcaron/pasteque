@@ -364,13 +364,14 @@ let gestionStepLeft = {
         tableauValider.forEach((id, index) => {
             this.refInput = document.getElementById(prefixe + id).querySelector('input') === null ? document.getElementById(prefixe + id).querySelector('select') :document.getElementById(prefixe + id).querySelector('input');
             this.refChampErreur = document.getElementById(prefixe + id).querySelector('.champ__message-erreur');
+            this.refInput.classList.remove('erreurInput');
 
             this.refChampErreur.style = 'display:none;';
             document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.remove('erreur');
             document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = '';
 
             if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
-
+                    this.refInput.classList.add('erreurInput');
                 this.refErreur = `Le champ ${tableauRefNom[index]} est obligatoire.`;
                 this.refChampErreur.style = 'display:block;';
                 document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
@@ -381,6 +382,7 @@ let gestionStepLeft = {
 
                 let bool = this.validerAttributPattern(this.refInput.pattern, this.refInput.value)
                 if (bool === false) {
+                    this.refInput.classList.add('erreurInput');
                     this.refErreur = `Veuillez verifier que la valeur du champ ${tableauRefNom[index]} correspond aux critères demandés.`;
                     this.refChampErreur.style = 'display:block;';
                     document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');

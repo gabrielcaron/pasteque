@@ -27,14 +27,13 @@ class ControleurStepLeft
         else{
             $panier = Panier::trouverParIdSession(session_id());
             $articles = $panier->getArticlesAssocies();
-
             $prixTotal = 0;
             $nombreArticles = 0;
             foreach ($articles as $article) {
                 $nombreArticles += $article->getQuantite();
                 $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
             }
-
+            $prixLivraison = $prixTotal > 60 ? 0 : 7;
 
             $compte = Compte::trouverParCourriel($_SESSION['email']);
             $commande = $compte->getCommandesAssocies() ?? null;
@@ -65,7 +64,7 @@ class ControleurStepLeft
                 $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte,
                     "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces,
                     "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles, "livraisonToutesLesAdresses"=>$livraisonToutesLesAdresses,
-                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses);
+                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison);
             }
             else{
                 $livraisonToutesLesAdresses = null;

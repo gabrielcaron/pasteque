@@ -9,6 +9,7 @@
         <p class="panier__sectionResumeLivraison">Admissible à la livraison gratuite standard partout au Canada pour un achat de 60$ CDN et plus. </p>
     </section>
     <hr>
+    @if($nombreArticles > 0)
     <section class="panier__sectionArticles">
         @foreach($panier->getArticlesAssocies() as $article)
             <article class="panier__article">
@@ -63,6 +64,7 @@
                 </form>
             </article>
         @endforeach
+
             <table class="panier__tableauSousTotal">
                 <tr>
                     <td>Sous-total ({{$nombreArticles}} articles)</td>
@@ -70,7 +72,7 @@
                 </tr>
                 <tr>
                     <td>Frais de livraison estimé</td>
-                    <td>0.00$</td>
+                    <td>{{number_format($prixLivraison, 2)}}$</td>
                 </tr>
                 <tr>
                     <td>Date de livraison estimée</td>
@@ -78,11 +80,22 @@
                 </tr>
                 <tr>
                     <td>Total estimé</td>
-                    <td><p>{{number_format($prixTotal * 1.05, 2)}}$</p>
+                    <td><p>{{number_format(($prixTotal + $prixLivraison) * 1.05, 2)}}$</p>
                         <p>Une taxe fédérale de 5% s’appliquera à l’achat des livres</p></td>
                 </tr>
             </table>
-            <a class="panier__continuerAchats bouton texte" href="index.php?controleur=livre&action=index">Continuer à magasiner</a>
-            <a class="panier__continuerAchats bouton texte" href="index.php?controleur=stepLeft&action=debuterStepLeft"><button class="panier__passerCommande bouton" type="button">Passer la commande</button></a>
+                <a class="panier__continuerAchats bouton texte" href="index.php?controleur=livre&action=index">Continuer à magasiner</a>
+                @if($nombreArticles > 0)
+                    <a class="panier__continuerAchats bouton texte" href="index.php?controleur=stepLeft&action=debuterStepLeft"><button class="panier__passerCommande bouton" type="button">Passer la commande</button></a>
+                @else
+                    <button class="panier__passerCommande bouton btnDesactiver" type="button">Passer la commande</button>
+                @endif
     </section>
+    @else
+        <section style="text-align: center; padding: 10%;">
+        <h2>Vous avez aucun article dans votre panier</h2>
+        <a class="panier__continuerAchats bouton texte" href="index.php?controleur=livre&action=index">Continuer à magasiner</a>
+        </section>
+    @endif
+
 @endsection

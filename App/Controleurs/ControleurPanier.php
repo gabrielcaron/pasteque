@@ -28,7 +28,8 @@ class ControleurPanier
             $nombreArticles += $article->getQuantite();
             $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
         }
-        $tDonnees = array("titrePage"=>"Mon panier", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
+        $prixLivraison = $prixTotal > 60 ? 0 : 7;
+        $tDonnees = array("titrePage"=>"Mon panier", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles, "prixLivraison" => $prixLivraison);
         echo App::getBlade()->run("paniers.panier",$tDonnees);
     }
 

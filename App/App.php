@@ -121,6 +121,9 @@ class App
                 case 'inserer':
                     $this->monControleur->inserer();
                     break;
+                case 'insererJS':
+                    $this->monControleur->insererEnJavaScript();
+                    break;
                 default:
                     $this->monControleur=new ControleurSite();
                     $this->monControleur->erreur();
@@ -192,6 +195,9 @@ class App
                 case 'livre':
                     if ($action === 'trouverTout') {
                         $this->monControleur->trouverToutLivre();
+                    }
+                    if ($action === 'insererLivre') {
+                        $this->monControleur->insererLivre();
                     }
                     break;
                 case 'stepleft':

@@ -14,9 +14,9 @@ class ControleurArticle
         //vide
     }
 
-    //Inserer article
+    //Inserer article en PHP
     public function inserer():void {
-        var_dump(Article::trouverParIdProduitIdPanier(intval($_POST['panier_id']), intval($_POST['produit_id'])));
+//        var_dump(Article::trouverParIdProduitIdPanier(intval($_POST['panier_id']), intval($_POST['produit_id'])));
         if (Article::trouverParIdProduitIdPanier(intval($_POST['panier_id']), intval($_POST['produit_id'])) === null) {
             $monNouvelArticle = new Article();
             $monNouvelArticle->setProduitId(intval($_POST['produit_id']));
@@ -37,7 +37,5 @@ class ControleurArticle
         exit;
 
     }
-
-
 }
 

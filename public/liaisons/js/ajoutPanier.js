@@ -1,3 +1,4 @@
+// Ajout au panier lorsque JS est activé, affiche la fenêtre modale
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,43 +35,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var requestLivre = {
-    trouverToutLivre: function (classe, action, id) {
+var refFormulaire = document.getElementById("formulaireAjoutPanier");
+var refSectionFicheLivre = document.querySelector(".ficheLivre__format");
+var refBoutonAjouterPHP = document.getElementById("boutonAjouterPanierPHP");
+var refBoutonAjouterJS = document.createElement("a");
+var refProduitId = document.getElementById("produit_id");
+var refPanierId = document.getElementById("panier_id");
+var refQuantite = document.getElementById("quantite");
+// Redessiner certaines balises lorsque le JS est activé
+refBoutonAjouterPHP.remove();
+refBoutonAjouterJS.id = "boutonAjouterPanierJS";
+refBoutonAjouterJS.classList.add("bouton", "action", "ajoutPanier");
+refBoutonAjouterJS.href = "#panier";
+refBoutonAjouterJS.innerHTML = "Ajouter au panier";
+refSectionFicheLivre.append(refBoutonAjouterJS);
+var ajoutPanier = {
+    // get à la place de post, envoyer dans querystring
+    ajouterAuPanier: function () {
         return __awaiter(this, void 0, void 0, function () {
-            var test, response;
+            var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        test = null;
-                        return [4 /*yield*/, fetch('index.php?controleur=requete&classe=' + classe + '&action=' + action + '&id=' + id)
-                                .then(function (response) {
-                                return response.json();
-                            })
-                                .catch(function (error) {
-                                console.log(error);
-                            })];
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=livre&action=insererLivre&produit_id=" + refProduitId.value + "&panier_id=" + refPanierId.value + "&quantite=" + refQuantite.value)];
                     case 1:
                         response = _a.sent();
-                        console.log(response);
                         return [2 /*return*/, response];
                 }
             });
         });
-    },
+    }
 };
-function gererFiltres(btnFiltre) {
-    var dvFiltre = document.getElementById("formTri");
-    if (btnFiltre.value == "Yes") {
-        dvFiltre.style.display = "block";
-        btnFiltre.value = "No";
-    }
-    else {
-        dvFiltre.style.display = "none";
-        btnFiltre.value = "Yes";
-    }
-}
-//*******************
 // Écouteurs d'événements
-//*******************
-//document.getElementById('courriel').addEventListener('focusout', function () {request.trouverToutCompte('compte', 'trouverTout', '')});
-document.getElementById('testRequest').addEventListener('click', function () { requestLivre.trouverToutLivre('livre', 'trouverTout', ''); });
+refBoutonAjouterJS.addEventListener("click", ajoutPanier.ajouterAuPanier);
+// document.getElementById("fermerModale").addEventListener("click", function () {
+//     const refModale = document.getElementById("panier");
+//     refModale.style.visibility = "hidden";
+//     refModale.style.opacity = "0";
+//     refModale.style.bottom = "-40rem";
+// });

@@ -101,10 +101,12 @@ var gestionStepLeft = {
         gestionStepLeft.remettreAZero();
         if (refLivraisonInputAdresse.value === '') {
             refSectionAdresseLivraison.removeAttribute("style");
+            document.getElementById('continuerLivraison').removeAttribute('style');
         }
         else if (refFacturationInputAdresse.value === '') {
             this.livraisonCompleted = true;
             refSectionAdresseFacturation.removeAttribute("style");
+            document.getElementById('continuerFacturation').removeAttribute('style');
         }
         else {
             refSectionRecapAdresseLivraison.removeAttribute("style");
@@ -264,6 +266,11 @@ var gestionStepLeft = {
             });
         }
     },
+    annulerAjouterLivraison: function () {
+        refRadiosLivraisons.forEach(function (radio) {
+            console.log(radio.querySelector("input"));
+        });
+    },
     ajouterLivraisonAncienAdresse: function () {
         var refLi = document.createElement('li');
         var refInput = document.createElement('input');
@@ -407,6 +414,8 @@ var gestionStepLeft = {
         refSectionRecapAdresseLivraison.style.display = 'none';
         document.getElementById('ajouterLivraison').style.display = 'none';
         document.getElementById('annulerAjouterLivraison').style.display = 'none';
+        document.getElementById('continuerLivraison').style.display = 'none';
+        document.getElementById('continuerFacturation').style.display = 'none';
     },
 };
 /*************************************************************************************
@@ -418,6 +427,7 @@ window.addEventListener('load', function () { gestionStepLeft.initialiser(); });
 document.getElementById('continuerLivraison').addEventListener('click', function () { gestionStepLeft.continuerLivraison(); });
 document.getElementById('ajouterNouvelleAdresseLivraison').addEventListener('click', function () { gestionStepLeft.ajouterLivraison(); });
 document.getElementById('ajouterLivraison').addEventListener('click', function () { gestionStepLeft.confirmerAjouterLivraison(); });
+document.getElementById('annulerAjouterLivraison').addEventListener('click', function () { gestionStepLeft.annulerAjouterLivraison(); });
 //Facturation : Écouteurs d'événements
 document.getElementById('continuerAdresseFacturation').addEventListener('click', function () { gestionStepLeft.continuerAdresseFacturation(); });
 document.getElementById('continuerFacturation').addEventListener('click', function () { gestionStepLeft.continuerFacturation(); });

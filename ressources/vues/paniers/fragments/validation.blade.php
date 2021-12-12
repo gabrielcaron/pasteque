@@ -10,15 +10,13 @@
                          alt="{{$article->getLivreAssocie()->getTitre()}}">
                 </picture>
                 <section class="panier__articleInfos">
-                    <a href="index.php?controleur=livre&action=fiche&id={{$article->getProduitId()}}">
-                        <h3 class="panier__articleInfosTitre">{{$article->getLivreAssocie()->getTitre()}}</h3>
-                    </a>
+                    <h3 class="panier__articleInfosTitre">{{$article->getLivreAssocie()->getTitre()}}</h3>
                     <ul class="livre__listeInfos">
                         @foreach($article->getLivreAssocie()->getAuteurAssocie() as $auteur)
                             <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                         @endforeach
                     </ul>
-                    <p>{{$article->getLivreAssocie()->getPrixCan()}}&nbsp;$</p>
+                    <p>{{number_format($article->getLivreAssocie()->getPrixCan(), 2)}}&nbsp;$</p>
                     <p>Quantité&nbsp;: {{$article->getQuantite()}}</p>
                 </section>
             </article>

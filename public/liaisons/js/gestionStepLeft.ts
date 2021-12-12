@@ -1,6 +1,3 @@
-/**
- * TODO - Valider les champs
- */
 
 /** Formulaire : Élément pouvant être en display none pour l'affichage du step-left **/
 const refEtapeLivraison: HTMLFieldSetElement = document.getElementById('etapeLivraison') as HTMLFieldSetElement;
@@ -81,6 +78,9 @@ let gestionStepLeft = {
 
     livraisonCompleted: false,
     facturationCompleted: false,
+    paiementCompleted: false,
+    adresseLivraisonMemoire: [],
+
 
     tableauChampAdresseId: ['_champAdresse', '_champVille', '_champProvince', '_champCodePostal'],
     tableauInputAdresseId: ['adresse', 'ville', 'province', 'code postal'],
@@ -92,13 +92,19 @@ let gestionStepLeft = {
     initialiser() {
         gestionStepLeft.remettreAZero();
         if (refLivraisonInputAdresse.value === '') {
+            refEtapeLivraison.classList.add('courante');
             refSectionAdresseLivraison.removeAttribute("style");
             document.getElementById('continuerLivraison').removeAttribute('style');
         } else if(refFacturationInputAdresse.value === '') {
+            refEtapeLivraison.classList.add('complete');
+            refEtapeFacturation.classList.add('courante');
             this.livraisonCompleted = true;
             refSectionAdresseFacturation.removeAttribute("style");
             document.getElementById('continuerFacturation').removeAttribute('style');
         } else {
+            refEtapeLivraison.classList.add('complete');
+            refEtapeFacturation.classList.add('complete');
+            refEtapeValidation.classList.add('courante')
             refSectionRecapAdresseLivraison.removeAttribute("style");
             refSectionRecapAdresseFacturation.removeAttribute("style");
             refSectionRecapPaiement.removeAttribute("style");
@@ -225,6 +231,10 @@ let gestionStepLeft = {
     /** Ajouter une adresse de Livraison **/
     ajouterLivraison() {
         gestionStepLeft.remettreAZero();
+        this.adresseLivraisonMemoire[0] = refLivraisonInputAdresse.value;
+        this.adresseLivraisonMemoire[1] = refLivraisonInputVille.value;
+        this.adresseLivraisonMemoire[2] = refLivraisonInputProvince.value;
+        this.adresseLivraisonMemoire[3] = refLivraisonInputCodePostal.value;
         refLivraisonInputAdresse.value = '';
         refLivraisonInputVille.value = '';
         refLivraisonInputProvince.value = '';
@@ -276,9 +286,16 @@ let gestionStepLeft = {
     },
 
     annulerAjouterLivraison (){
-        refRadiosLivraisons.forEach(radio => {
-            console.log(radio.querySelector("input"));
-        })
+        gestionStepLeft.remettreAZero();
+        refSectionAnciennesAdressesLivraison.removeAttribute("style");
+        document.getElementById('continuerModifierAdresseLivraison').removeAttribute('style');
+
+        refLivraisonInputAdresse.value = this.adresseLivraisonMemoire[0];
+        refLivraisonInputVille.value = this.adresseLivraisonMemoire[1];
+        refLivraisonInputProvince.value = this.adresseLivraisonMemoire[2];
+        refLivraisonInputCodePostal.value = this.adresseLivraisonMemoire[3];
+        this.adresseLivraisonMemoire = [];
+
 
     },
 
@@ -334,8 +351,16 @@ let gestionStepLeft = {
     modifierLivraison() {
         gestionStepLeft.remettreAZero();
         refSectionAnciennesAdressesLivraison.removeAttribute("style");
-        document.getElementById('continuerLivraison').removeAttribute('style');
-        console.log('modifier')
+        document.getElementById('continuerModifierAdresseLivraison').removeAttribute('style');
+    },
+
+    /** Continuer après avoir modifier une adresse de livraison **/
+    continuerModifierAdresseLivraison(){
+        gestionStepLeft.remettreAZero();
+        refSectionRecapAdresseLivraison.removeAttribute("style");
+        refSectionRecapAdresseFacturation.removeAttribute("style");
+        refSectionRecapPaiement.removeAttribute("style");
+        refSectionRecapPanier.removeAttribute("style");
     },
 
     /** Modifier une adresse de Facturation **/
@@ -439,6 +464,7 @@ let gestionStepLeft = {
         document.getElementById('annulerAjouterLivraison').style.display = 'none';
         document.getElementById('continuerLivraison').style.display = 'none';
         document.getElementById('continuerFacturation').style.display = 'none';
+        document.getElementById('continuerModifierAdresseLivraison').style.display = 'none';
 
     },
 }
@@ -451,6 +477,7 @@ window.addEventListener('load', function () {gestionStepLeft.initialiser()});
 
 //Livraison : Écouteurs d'événements
 document.getElementById('continuerLivraison').addEventListener('click', function (){gestionStepLeft.continuerLivraison()});
+document.getElementById('continuerModifierAdresseLivraison').addEventListener('click', function (){gestionStepLeft.continuerModifierAdresseLivraison()})
 document.getElementById('ajouterNouvelleAdresseLivraison').addEventListener('click', function (){gestionStepLeft.ajouterLivraison()});
 document.getElementById('ajouterLivraison').addEventListener('click', function (){gestionStepLeft.confirmerAjouterLivraison()});
 document.getElementById('annulerAjouterLivraison').addEventListener('click', function (){gestionStepLeft.annulerAjouterLivraison()})

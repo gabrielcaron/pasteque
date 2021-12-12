@@ -65,6 +65,7 @@
         <button id="ajouterLivraison" type="button" class="bouton action">Confirmer</button>
         <button id="annulerAjouterLivraison" type="button" class="bouton texte">Annuler</button>
     </section>
+    <button id="continuerModifierAdresseLivraison" type="button" class="bouton action">Continuer</button>
     <button id="continuerLivraison" type="button" class="bouton action">Continuer</button>
 </section>
 

@@ -55,10 +55,10 @@ class ControleurPanier
     {
         $compte = Compte::trouverParCourriel($_SESSION['email']);
         $panier = Panier::trouverParIdSession(session_id());
-        $commande = Commande::trouverParIdCompte($compte->getId());
 
-        session_regenerate_id();
-        /*$panier = Panier::trouverParIdSession(session_id());
+        /** Ne pas oublier de mettre le panier id dans la commande. **/
+        /* session_regenerate_id();
+        $panier = Panier::trouverParIdSession(session_id());
         $compteModifierPanier = Compte::trouverParId();
         $compteModifierPanier->getNom();
         $compteModifierPanier->getPrenom();
@@ -75,6 +75,7 @@ class ControleurPanier
             $nombreArticles += $article->getQuantite();
             $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
         }
+
         $commande = $compte->getCommandesAssocies();
 //        var_dump($commande);
 //        $livraison = $commande->getLivraisonAdresseAssocie();

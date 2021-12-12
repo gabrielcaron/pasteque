@@ -43,14 +43,6 @@ class ControleurStepLeft
             $paiement = $commande !== null && $commande->getPaiementAssocie() !== null ? $commande->getPaiementAssocie() : null;
             if($commande !== null){
 
-
-                /*$toutesLivraisonsId = Commande::trouverToutAdresseLivraison($compte->getId());
-                $tableauReduitLivraisonsId = [];
-                for ($i = 0; $i < count($toutesLivraisonsId); $i++) {
-                    $tableauReduitLivraisonsId[$i] = $toutesLivraisonsId[$i]->livraison_adresse_id;
-                }
-                $livraisonToutesLesAdresses = Adresse::trouverToutParTableauId($tableauReduitLivraisonsId);*/
-
                 $toutesFacturationsId = Commande::trouverToutAdresseFacturation($compte->getId());
                 $tableauReduitFacturationId = [];
                 for ($i = 0; $i < count($toutesFacturationsId); $i++) {

@@ -125,6 +125,7 @@ class ControleurStepLeft
         $commande->setCompteId(intval($_POST['compte_id']));
         $commande->setDateUnixCommande(time());
         $commande->inserer();
+
         header('Location: index.php?controleur=panier&action=confirmation');
     }
 }

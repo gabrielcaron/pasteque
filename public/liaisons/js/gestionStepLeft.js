@@ -272,6 +272,7 @@ var gestionStepLeft = {
                     .then(function (response) {
                     // console.log(response)
                     refLivraisonId.value = response;
+                    console.log(refLivraisonId);
                 });
             });
         }
@@ -314,7 +315,7 @@ var gestionStepLeft = {
         refProvince.setAttribute('data-province', refLivraisonInputProvince.value);
         refCodePostal.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapCodePostal"));
         refCodePostal.setAttribute('data-codePostal', refLivraisonInputCodePostal.value);
-        refPId.innerHTML = 'NA';
+        //refPId.innerHTML = 'NA';
         refRue.innerHTML = refLivraisonInputAdresse.value;
         refVille.innerHTML = refLivraisonInputVille.value + ', ';
         refProvince.innerHTML = refLivraisonInputProvince.options[refLivraisonInputProvince.selectedIndex].text + ', ';
@@ -324,6 +325,7 @@ var gestionStepLeft = {
         refAdress.prepend(refPId, refPRue, refPInfo);
         refLabel.prepend(refAdress);
         refLi.prepend(refInput, refLabel);
+        refLi.classList.add('listeAnciennesAdresses');
         refSectionRadioAnciennesAdressesLivraison.prepend(refLi);
         refNombresLivraisonsCompte.value = (parseInt(refNombresLivraisonsCompte.value) + 1).toString();
     },
@@ -356,17 +358,18 @@ var gestionStepLeft = {
     /** Changer le selected **/
     changerSelected: function (event) {
         var index = event.target.id.charAt(0);
-        // console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').innerHTML)
+        console.log(index);
+        console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue'));
         refLivraisonInputAdresse.value = document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue');
         refLivraisonInputVille.value = document.getElementById(index + '_livraisonAncienneAdresse_recapVille').getAttribute('data-ville');
         refLivraisonInputProvince.value = document.getElementById(index + '_livraisonAncienneAdresse_recapProvince').getAttribute('data-province');
         refLivraisonInputCodePostal.value = document.getElementById(index + '_livraisonAncienneAdresse_recapCodePostal').getAttribute('data-codePostal');
-        ;
-        //console.log(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
+        console.log(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value);
         this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
             .then(function (response) {
             // console.log(response)
             refLivraisonId.value = response;
+            console.log(refLivraisonId.value);
         });
     },
     validerChampSectionAdresse: function (livraisoFacturationOuPaiement) {

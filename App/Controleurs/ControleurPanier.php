@@ -57,6 +57,16 @@ class ControleurPanier
         $panier = Panier::trouverParIdSession(session_id());
         $commande = Commande::trouverParIdCompte($compte->getId());
 
+        session_regenerate_id();
+        /*$panier = Panier::trouverParIdSession(session_id());
+        $compteModifierPanier = Compte::trouverParId();
+        $compteModifierPanier->getNom();
+        $compteModifierPanier->getPrenom();
+        $compteModifierPanier->getCourriel();
+        $compteModifierPanier->getMotDePasse();
+        $compteModifierPanier->setPanierId($panier->getId());
+        $compteModifierPanier->mettreAJour();*/
+
 //        var_dump($panier);
         $articles = $panier->getArticlesAssocies();
         $prixTotal = 0;

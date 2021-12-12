@@ -183,6 +183,20 @@
 		  & > * {
 			grid-column: 1 / 7;
 		  }
+			& .listeAnciennesAdresses {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: flex-start;
+				border-bottom: solid 1px $bleuRoyal;
+				padding: 20px 0;
+				& label {
+					padding-left: 30px;
+				}
+				& label:hover, input:hover {
+					cursor: pointer;
+				}
+			}
 		}
 		  & .boutonActive {
 			  grid-column: 1/5;

@@ -26,7 +26,7 @@ const refSectionRadioAnciennesAdressesLivraison: HTMLUListElement = document.get
 /** Livraison : Champs input de la section adresse **/
 const refLivraisonInputAdresse: HTMLInputElement = document.getElementById('livraison_adresse') as HTMLInputElement;
 const refLivraisonInputVille: HTMLInputElement = document.getElementById('livraison_ville') as HTMLInputElement;
-const refLivraisonInputProvince: HTMLInputElement = document.getElementById('livraison_province') as HTMLInputElement;
+const refLivraisonInputProvince: HTMLSelectElement = document.getElementById('livraison_province') as HTMLSelectElement;
 const refLivraisonInputCodePostal: HTMLInputElement = document.getElementById('livraison_codePostal') as HTMLInputElement;
 const refLivraisonMemeAdresse: HTMLInputElement = document.getElementById('memeAdresse') as HTMLInputElement;
 
@@ -115,10 +115,10 @@ let gestionStepLeft = {
             //this.options[this.selectedIndex].text
             //Validation : Mettre à jour recap adresse Livraison
 
-            document.getElementById('continuerLivraison').style.display = 'none';
+           // document.getElementById('continuerLivraison').style.display = 'none';
             refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
             refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
-            refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince[refLivraisonInputProvince.value].text;
+            refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince.options[refLivraisonInputProvince.selectedIndex].text;
             refLivraisonCodePostalValidationRecap.innerHTML = refLivraisonInputCodePostal.value;
             this.ajouterLivraisonAncienAdresse();
 
@@ -147,6 +147,7 @@ let gestionStepLeft = {
                 else {
                     refSectionAdresseFacturation.removeAttribute("style");
                     refSectionPaiementFacturation.removeAttribute("style");
+                    document.getElementById('continuerAdresseFacturation').removeAttribute('style');
                 }
             } else {
                 refSectionRecapAdresseLivraison.removeAttribute("style");
@@ -159,7 +160,7 @@ let gestionStepLeft = {
                 .then(response => {
                     this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
                         .then(response=> {
-                            console.log(response)
+                           // console.log(response)
                             refLivraisonId.value = response;
                         });
                 });
@@ -176,7 +177,7 @@ let gestionStepLeft = {
             //Facturation Mettre à jour recap adresse Facturation
             refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
             refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
-            refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince[refFacturationInputProvince.value].text;
+            refFacturationProvinceFacturationRecap.innerHTML = refLivraisonInputProvince.options[refLivraisonInputProvince.selectedIndex].text;
             refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
 
             if (this.facturationCompleted === false) {
@@ -194,7 +195,7 @@ let gestionStepLeft = {
                 .then(response => {
                     this.trouverIdAdresse(refFacturationInputAdresse.value, refFacturationInputVille.value, parseInt(refFacturationInputProvince.value), refFacturationInputCodePostal.value)
                         .then(response=> {
-                            console.log(response)
+                           // console.log(response)
                             refFacturationId.value = response;
                         });
                 })
@@ -267,7 +268,7 @@ let gestionStepLeft = {
                 .then(response => {
                     this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
                         .then(response=> {
-                            console.log(response)
+                           // console.log(response)
                             refLivraisonId.value = response;
                         });
                 })
@@ -316,7 +317,7 @@ let gestionStepLeft = {
         refPId.innerHTML = 'NA';
         refRue.innerHTML = refLivraisonInputAdresse.value;
         refVille.innerHTML = refLivraisonInputVille.value + ', ';
-        refProvince.innerHTML = refLivraisonInputProvince[refLivraisonInputProvince.value].text + ', ';
+        refProvince.innerHTML = refLivraisonInputProvince.options[refLivraisonInputProvince.selectedIndex].text + ', ';
         refCodePostal.innerHTML = refLivraisonInputCodePostal.value;
 
         refPRue.prepend(refRue);
@@ -333,6 +334,8 @@ let gestionStepLeft = {
     modifierLivraison() {
         gestionStepLeft.remettreAZero();
         refSectionAnciennesAdressesLivraison.removeAttribute("style");
+        document.getElementById('continuerLivraison').removeAttribute('style');
+        console.log('modifier')
     },
 
     /** Modifier une adresse de Facturation **/
@@ -344,22 +347,23 @@ let gestionStepLeft = {
     /** Modifier un paiement de Facturation **/
     modifierPaiementFacturation() {
         gestionStepLeft.remettreAZero();
-        refSectionRecapAdresseFacturation.removeAttribute("style");
+        //refSectionRecapAdresseFacturation.removeAttribute("style");
         refSectionPaiementFacturation.removeAttribute("style");
+        document.getElementById('continuerFacturation').removeAttribute('style');
     },
 
     /** Changer le selected **/
     changerSelected(event) {
         let index = event.target.id.charAt(0);
-        console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').innerHTML)
+       // console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').innerHTML)
         refLivraisonInputAdresse.value = document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue');
         refLivraisonInputVille.value = document.getElementById(index + '_livraisonAncienneAdresse_recapVille').getAttribute('data-ville');
         refLivraisonInputProvince.value = document.getElementById(index + '_livraisonAncienneAdresse_recapProvince').getAttribute('data-province');
         refLivraisonInputCodePostal.value = document.getElementById(index + '_livraisonAncienneAdresse_recapCodePostal').getAttribute('data-codePostal');;
-        console.log(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
+        //console.log(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
         this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
             .then(response=> {
-                console.log(response)
+               // console.log(response)
                 refLivraisonId.value = response;
             });
     },
@@ -401,7 +405,7 @@ let gestionStepLeft = {
 
             }
         });
-        console.log(tableauErreur)
+       // console.log(tableauErreur)
         return tableauErreur.length === 0;
     },
 
@@ -417,7 +421,7 @@ let gestionStepLeft = {
     async trouverIdAdresse(adresse:string, ville:string, province:string, codePostal:string) {
         let response =  await fetch(`index.php?controleur=requete&classe=stepleft&action=trouverParChamp&adresse=${adresse}&ville=${ville}&province_id=${province}&code_postal=${codePostal}`)
             .then(response => response.json());
-        console.log(response)
+       // console.log(response)
         return response;
     },
 

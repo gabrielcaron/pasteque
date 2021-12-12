@@ -27,7 +27,7 @@
         <select class="champ__input" id="{{$livraisonOuFacturation}}_province" name="{{$livraisonOuFacturation}}_province" required="required" aria-labelledby="{{$livraisonOuFacturation}}_messagesProvince">
             <option value="" @if($provinceChoisi === '') selected @endif>Veuillez choisir une province</option>
             @foreach($provinces as $province)
-                <option value="{{$province->getId()}}" @if(intval($provinceChoisi) === $province->getId()) selected @endif>{{$province->getNom()}}</option>
+                <option id="{{$livraisonOuFacturation}}_province_{{$province->getId()}}" value="{{$province->getId()}}" @if(intval($provinceChoisi) === $province->getId()) selected @endif>{{$province->getNom()}}</option>
             @endforeach
         </select>
     </div>

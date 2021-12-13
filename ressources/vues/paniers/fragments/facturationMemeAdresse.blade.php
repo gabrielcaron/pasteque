@@ -31,8 +31,9 @@
         <a id="modifierPaiementFacturation" class="stepleft__lien bouton texte">Modifier le mode de paiement</a>
     </section>
     <section id="sectionPaiementFacturation" class="sectionFormulaire__sectionForm">
-        <h3 class="sectionFormulaire__sectionFormH3">Mode de paiement</h3>
-        <!-- Ajouter les logos des cartes -->
+        <h3 class="sectionFormulaire__sectionFormH3 champ--4c">Mode de paiement</h3>
+        <a  style="margin-top: 1rem; margin-bottom: 1rem;" class="champ--4c" href="http://www.credit-card-logos.com/"><img alt="Credit Card Logos" title="Credit Card Logos" src="http://www.credit-card-logos.com/images/visa_credit-card-logos/visa_mastercard_2.gif" width="116" height="35" border="0" /></a>
+            <!-- Ajouter les logos des cartes -->
         <input id="paiement_id" name="paiement_id" type="hidden"
                value="@if($paiement !== null){{$paiement->getId()}}@endif"/>
         <div id="facturation_champNomTitulaire" class="champ champ--4c">

@@ -34,7 +34,7 @@
         <script src="liaisons/js/validationFormulaire.js" type="text/javascript"></script>
         <script src="liaisons/js/fetchRequest.js" ></script>
         <script src="liaisons/js/compte.js" ></script>
-        <script src="liaisons/js/password.js" ></script>
+        <script src="liaisons/js/password.js"></script>
         <script src="liaisons/js/loader.js" ></script>
         <script src="liaisons/js/gestionStepLeft.js" type="text/javascript"></script>
         <script>

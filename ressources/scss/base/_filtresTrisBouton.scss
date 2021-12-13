@@ -185,6 +185,7 @@
   }
 }
 
+
 /* Styles spécifiques à la liste des livres */
 
 .indexLivres {
@@ -230,4 +231,7 @@
 	  }
 	}
   }
+}
+.livresIndex .formulaire__groupeChamps.tuiles .bloc .libelle, .artistes .formulaire__groupeChamps.tuiles .bloc .libelle, .ficheLivre .formulaire__groupeChamps.tuiles .bloc .libelle, .livresIndex .formulaire__champEnveloppeRangee, .artistes .formulaire__champEnveloppeRangee, .ficheLivre .formulaire__champEnveloppeRangee, select, .livresIndex .formulaire #modesAffichage .selecteur__enfant, .artistes .formulaire #modesAffichage .selecteur__enfant, .ficheLivre .formulaire #modesAffichage .selecteur__enfant, .selecteur__enfant{
+	cursor: pointer;
 }

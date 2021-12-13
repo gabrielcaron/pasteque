@@ -3,6 +3,17 @@
   display: inline-flex;
   flex-direction: column;
   gap: 8px;
+
+
+}
+.creation .champ{
+
+  @media (max-width: 800px) {
+    margin: 0 auto!important;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .champ--sm {

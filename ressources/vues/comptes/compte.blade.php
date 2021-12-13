@@ -128,7 +128,7 @@
                                             <input class="champ__input" id="mot_de_passe" name="mot_de_passe" type="password"
                                                    autocomplete="current-password"
                                                    required="required" aria-labelledby="messagesPassword"
-                                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}"
+                                                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})$"
                                                    min="8"
                                                    @if($tValidation !== null) value="{{$tValidation['mot_de_passe']['valeur']}}" @endif/>
                                             <i class="far fa-eye" id="togglePasswordCreation" style="margin-left: -30px; cursor: pointer; margin-top: 10px"></i>

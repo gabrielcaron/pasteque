@@ -164,7 +164,7 @@
                 <td class="informations__tableColumn">Auteur</td>
                 <td class="informations__tableColumn">@foreach($livre->getAuteurAssocie() as $auteur)<a
                             href="index.php?controleur=auteur&action=fiche&id={{$auteur->getId()}}">
-                        <span class="livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</span>
+                        <span class="livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</span><br>
                     </a>@endforeach</td>
             </tr>
             <tr class="informations__tableRow">

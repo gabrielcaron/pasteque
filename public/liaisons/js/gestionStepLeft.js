@@ -108,6 +108,13 @@ var gestionStepLeft = {
             refEtapeFacturation.classList.add('courante');
             this.livraisonCompleted = true;
             refSectionAdresseFacturation.removeAttribute("style");
+            document.getElementById('continuerAdresseFacturation').removeAttribute('style');
+        }
+        else if (refFacturationInputTitulaire.value === '') {
+            refEtapeLivraison.classList.add('complete');
+            refEtapeFacturation.classList.add('courante');
+            refSectionRecapAdresseFacturation.removeAttribute("style");
+            refSectionPaiementFacturation.removeAttribute("style");
             document.getElementById('continuerFacturation').removeAttribute('style');
         }
         else {
@@ -120,6 +127,7 @@ var gestionStepLeft = {
             refSectionRecapPanier.removeAttribute("style");
             this.livraisonCompleted = true;
             this.facturationCompleted = true;
+            document.getElementById('envoyerFormulaireStepLeft').removeAttribute('style');
         }
     },
     /** Continuer de la livraison vers facturation / validation **/
@@ -166,6 +174,7 @@ var gestionStepLeft = {
                 refSectionRecapAdresseFacturation.removeAttribute("style");
                 refSectionRecapPaiement.removeAttribute("style");
                 refSectionRecapPanier.removeAttribute("style");
+                document.getElementById('envoyerFormulaireStepLeft').removeAttribute('style');
             }
             this.ajouterAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
                 .then(function (response) {
@@ -201,6 +210,7 @@ var gestionStepLeft = {
                 refSectionRecapAdresseFacturation.removeAttribute("style");
                 refSectionRecapPaiement.removeAttribute("style");
                 refSectionRecapPanier.removeAttribute("style");
+                document.getElementById('envoyerFormulaireStepLeft').removeAttribute('style');
             }
             this.ajouterAdresse(refFacturationInputAdresse.value, refFacturationInputVille.value, parseInt(refFacturationInputProvince.value), refFacturationInputCodePostal.value)
                 .then(function (response) {
@@ -230,6 +240,7 @@ var gestionStepLeft = {
             refSectionRecapAdresseFacturation.removeAttribute("style");
             refSectionRecapPaiement.removeAttribute("style");
             refSectionRecapPanier.removeAttribute("style");
+            document.getElementById('envoyerFormulaireStepLeft').removeAttribute('style');
         }
     },
     /** Ajouter une adresse de Livraison **/
@@ -452,6 +463,7 @@ var gestionStepLeft = {
         document.getElementById('continuerLivraison').style.display = 'none';
         document.getElementById('continuerFacturation').style.display = 'none';
         document.getElementById('continuerModifierAdresseLivraison').style.display = 'none';
+        document.getElementById('envoyerFormulaireStepLeft').style.display = 'none';
     },
 };
 /*************************************************************************************

@@ -26,7 +26,9 @@ class ControleurStepLeft
             header('Location: index.php?controleur=compte&action=connexion');
         }
         else{
-            var_dump($_SESSION['tValidation']);
+            $tValidation = $_SESSION['tValidation'] ?? null;
+            unset($_SESSION['tValidation']);
+            var_dump($tValidation);
             $panier = Panier::trouverParIdSession(session_id());
             $articles = $panier->getArticlesAssocies();
             $prixTotal = 0;
@@ -58,7 +60,7 @@ class ControleurStepLeft
                 $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte,
                     "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces,
                     "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles, "livraisonToutesLesAdresses"=>$livraisonToutesLesAdresses,
-                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison);
+                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison, "tValidation"=>$tValidation);
             }
             else{
                 $livraisonToutesLesAdresses = null;
@@ -66,7 +68,7 @@ class ControleurStepLeft
                 $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte,
                     "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces,
                     "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles, "livraisonToutesLesAdresses"=>$livraisonToutesLesAdresses,
-                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison);
+                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison, "tValidation"=>$tValidation);
             }
            echo App::getBlade()->run("paniers.formulaireCommande",$tDonnees);
         }

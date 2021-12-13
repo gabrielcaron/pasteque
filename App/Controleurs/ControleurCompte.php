@@ -164,7 +164,7 @@ class ControleurCompte
 
             // Rediriger
 
-            //header('Location: index.php?controleur=site&action=accueil');
+            header('Location: index.php?controleur=site&action=accueil');
         }
     }
 }

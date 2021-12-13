@@ -4,6 +4,10 @@
     artiste
 @endsection
 
+@section('classeMain')
+    class="contenu"
+@endsection
+
 @section('contenu')
     <section class="filAriane">
         <span><a href="index.php">Accueil</a><a

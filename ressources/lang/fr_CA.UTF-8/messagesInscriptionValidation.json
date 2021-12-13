@@ -17,7 +17,7 @@
     },
     "mot_de_passe": {
         "vide": "Serveur: Vous devez entrer un mot de passe",
-        "pattern": "",
-        "regex": ""
+        "pattern": "Serveur: Pour le mot de passe",
+        "regex": "#.*^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#"
     }
 }

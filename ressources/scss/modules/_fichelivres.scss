@@ -11,7 +11,7 @@
 
 /* Conteneur pour le main */
 
-.livreFiche {
+.livreFiche, .artiste {
   & .contenu {
 	@include conteneur1400px();
   }

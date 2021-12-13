@@ -4,7 +4,7 @@
         <label for="{{$livraisonOuFacturation}}_adresse" class="champ__etiquette">Adresse</label>
         <input class="champ__input @if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_adresse']['message'] !== '') erreurInput @endif" id="{{$livraisonOuFacturation}}_adresse" name="{{$livraisonOuFacturation}}_adresse" type="text"
                autocomplete="adresse" aria-labelledby="{{$livraisonOuFacturation}}_messagesAdresse"
-               pattern="^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$" min="2" @if($tValidation !== null) value="{{$tValidation[$livraisonOuFacturation . '_adresse']['valeur']}}" @else value="{{$adresse}}" @endif required/>
+               pattern="^[0-9]{1,}[a-zA-ZÀ-ÿ0-9 \-]{3,}$" min="2" @if($tValidation !== null) value="{{$tValidation[$livraisonOuFacturation . '_adresse']['valeur']}}" @else value="{{$adresse}}" @endif required/>
     </div>
     <div id="{{$livraisonOuFacturation}}_messagesAdresse" class="champ__messages @if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_adresse']['message'] !== '') erreur @endif">
         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_adresse']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_adresse']['message'] !== '') {{$tValidation[$livraisonOuFacturation . '_adresse']['message']}} @endif</p>

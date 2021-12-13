@@ -165,9 +165,10 @@ document.getElementById('nom').addEventListener('change', function () {
 document.getElementById('courriel').addEventListener('change', function () {
     formulaire.validerInput('champEmail')
 });
-/*document.getElementById('mot_de_passe').addEventListener('change', function () {
+
+document.getElementById('mot_de_passe').addEventListener('change', function () {
     formulaire.validerInput('champPassword')
-});*/
+});
 document.getElementById('btnReset').addEventListener('reset', function () {
     formulaire.reinitialiserChamp()
 });

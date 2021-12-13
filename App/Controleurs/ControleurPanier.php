@@ -67,7 +67,6 @@ class ControleurPanier
         $compteModifierPanier->setPanierId($panier->getId());
         $compteModifierPanier->mettreAJour();*/
 
-//        var_dump($panier);
         $articles = $panier->getArticlesAssocies();
         $prixTotal = 0;
         $nombreArticles = 0;
@@ -75,16 +74,16 @@ class ControleurPanier
             $nombreArticles += $article->getQuantite();
             $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
         }
+        $prixLivraison = $prixTotal > 60 ? 0 : 7;
 
         $commande = $compte->getCommandesAssocies();
-//        var_dump($commande);
-//        $livraison = $commande->getLivraisonAdresseAssocie();
-//        $facturation = $commande->getFacturationAdresseAssocie();
-//        $paiement = $commande->getPaiementAssocie();
+        $livraison = $commande->getLivraisonAdresseAssocie();
 
 
 
-        $tDonnees = array("titrePage"=>"Commande confirmée", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles);
+        $tDonnees = array("titrePage"=>"Commande confirmée", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal,
+        "nombreArticles"=>$nombreArticles, "commande"=>$commande, "prixLivraison"=>$prixLivraison, "livraison"=>$livraison,
+        "compte"=>$compte);
         echo App::getBlade()->run("paniers.confirmation",$tDonnees);
     }
 }

@@ -10,7 +10,7 @@
         <h1 class="confirmation__titreH1">Confirmation de votre commande</h1>
         <p>Votre numéro de commande est le <strong>(Numéro de la commande)</strong></p>
         <section class="merci">
-            <p>Bonjour (Nom de la personne),</p>
+            <p>Bonjour {{$compte->getPrenom()}},</p>
             <p>Merci d’avoir magasiné chez La Pastèque Éditeur.<br>
                 Sachez que vous pouvez toujours commander nos livres chez votre libraire favori.</p>
             <p>La commande vous sera expédiée selon les modalités choisies. N’hésitez pas à consulter notre service à la
@@ -22,21 +22,12 @@
                 <h2 class="confirmation__titreH2">Date de livraison estimée</h2>
                 <p>Dimanche 19 décembre 2021</p>
                 <h2 class="confirmation__titreH2">Mode de livraison</h2>
-                <p>Régulière gratuite</p>
+                <p>Régulière @if($prixLivraison === 0) gratuite @else au coût de 7.00$ @endif</p>
                 <h2 class="confirmation__titreH2">Adresse de livraison de la commande</h2>
-                <p><strong>Nom du client</strong></p>
-                <p>850 chemin de la Canardière</p>
-                <p>Québec QC</p>
-                <p>G1J 0J1</p>
-                {{--        @component('paniers.fragments.adresseRecap')--}}
-                {{--            @slot('titre') Adresse de Livraison @endslot--}}
-                {{--            @slot('sousTitre')  @endslot--}}
-                {{--            @slot('idUnique') livraisonAdresseValidation @endslot--}}
-                {{--            @slot('adresse') @if($livraison !== null) {{$livraison->getAdresse()}} @endif @endslot--}}
-                {{--            @slot('ville') @if($livraison !== null) {{$livraison->getVille()}} @endif @endslot--}}
-                {{--            @slot('provinceChoisi') @if($livraison !== null) {{$livraison->getProvinceAssocie()->getNom()}} @endif @endslot--}}
-                {{--            @slot('codePostal') @if($livraison !== null) {{$livraison->getCodePostal()}} @endif @endslot--}}
-                {{--        @endcomponent--}}
+                <p><strong>{{$compte->getPrenom()}} {{$compte->getNom()}}</strong></p>
+                <p>{{$livraison->getAdresse()}}</p>
+                <p>{{$livraison->getVille()}}, {{$livraison->getProvinceAssocie()->getNom()}}</p>
+                <p>{{$livraison->getCodePostal()}}</p>
             </section>
         </section>
         <section class="validationPanier">
@@ -77,15 +68,15 @@
                 </tr>
                 <tr>
                     <td>Frais de livraison estimé</td>
-                    <td>0.00$</td>
+                    <td>{{number_format($prixLivraison, 2)}}$</td>
                 </tr>
                 <tr>
                     <td>Date de livraison estimée</td>
-                    <td>4 décembre 2021</td>
+                    <td>19 décembre 2021</td>
                 </tr>
                 <tr>
                     <td>Total estimé</td>
-                    <td><p>{{number_format($prixTotal * 1.05, 2)}}$</p></td>
+                    <td><p>{{number_format(($prixTotal+$prixLivraison) * 1.05, 2)}}$</p></td>
                 </tr>
                 </tbody>
             </table>

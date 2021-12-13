@@ -1,4 +1,3 @@
-"use strict";
 var loader = document.getElementById("page-loader");
 var enleverLoader = function () {
     loader.classList.add('c0');

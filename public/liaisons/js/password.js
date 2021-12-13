@@ -1,4 +1,3 @@
-"use strict";
 var togglePassword = document.querySelector('#togglePassword');
 var password = document.querySelector('#connexionPassword');
 var passwordCreation = document.querySelector('#mot_de_passe');

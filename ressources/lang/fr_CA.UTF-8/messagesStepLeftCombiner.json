@@ -1,0 +1,67 @@
+{
+    "livraison_adresse": {
+        "vide": "Vous devez entrer votre adresse de livraison.",
+        "pattern": "Cette adresse ne respectent pas la forme.",
+        "regex": "#^[0-9]+[a-zA-ZÀ-ÿ0-9 \\-]+$#"
+    },
+    "livraison_ville": {
+        "vide": "Vous devez entrer votre ville",
+        "pattern": "Cette ville ne respectent pas le format",
+        "regex": "#^[a-zA-ZÀ-ÿ0-9 \\-]+$#"
+    },
+    "livraison_province": {
+        "vide": "Vous devez entrer votre province",
+        "pattern": "",
+        "regex": ""
+    },
+    "livraison_codePostal": {
+        "vide": "Vous devez entrer votre code postale",
+        "pattern": "Ce code postal ne respectent pas le format X1X 1X1",
+        "regex": "#^[A-Za-z]{1}[0-9]{1}[A-Za-z]{1} [0-9]{1}[A-Za-z]{1}[0-9]{1}$#"
+    },
+    "facturation_adresse": {
+        "vide": "Vous devez entrer votre adresse de livraison.",
+        "pattern": "Cette adresse ne respectent pas la forme.",
+        "regex": "#^[0-9]+[a-zA-ZÀ-ÿ0-9 \\-]+$#"
+    },
+    "facturation_ville": {
+        "vide": "Vous devez entrer votre ville",
+        "pattern": "Cette ville ne respectent pas le format",
+        "regex": "#^[a-zA-ZÀ-ÿ0-9 \\-]+$#"
+    },
+    "facturation_province": {
+        "vide": "Vous devez entrer votre province",
+        "pattern": "",
+        "regex": "##"
+    },
+    "facturation_codePostal": {
+        "vide": "Vous devez entrer votre code postale",
+        "pattern": "Ce code postal ne respectent pas le format X1X 1X1",
+        "regex": "#^[A-Za-z]{1}[0-9]{1}[A-Za-z]{1} [0-9]{1}[A-Za-z]{1}[0-9]{1}$#"
+    },
+    "facturation_nomTitulaire": {
+        "vide": "Vous devez entrer le nom du titulaire",
+        "pattern": "Ce nom de titulaire ne respectent pas le format",
+        "regex": "#^[ a-zA-ZÀ-ÿ\\-‘]+$#"
+    },
+    "facturation_numeroCarte": {
+        "vide": "Vous devez entrer le numéro de carte.",
+        "pattern": "Ce numéro de carte ne respectent pas la forme.",
+        "regex": "#^([0-9]{4}( |\\-){0,1}){3}[0-4]{4}$#"
+    },
+    "facturation_cvv": {
+        "vide": "Vous devez entrer le Cvv",
+        "pattern": "Ce cvv ne respectent pas le format",
+        "regex": "#^\\d{1,3}$#"
+    },
+    "facturation_moisExpiration": {
+        "vide": "Vous devez entrer le mois d'expiration",
+        "pattern": "",
+        "regex": ""
+    },
+    "facturation_anneeExpiration": {
+        "vide": "Vous devez entrer l'année d'expiration",
+        "pattern": "",
+        "regex": ""
+    }
+}

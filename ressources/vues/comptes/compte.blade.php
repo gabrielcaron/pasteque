@@ -88,7 +88,7 @@
                                                 @if($tValidation !== null) value="{{$tValidation['prenom']['valeur']}}" @endif/>
                                     </div>
                                     <div id="messagesPrenom" class="champ__messages">
-                                        <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"@if($tValidation !== null && $tValidation['prenom']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['prenom']['message'] !== ''){{$tValidation['prenom']['message']}}@endif</p>
+                                        <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['prenom']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['prenom']['message'] !== ''){{$tValidation['prenom']['message']}}@endif</p>
                                     </div>
                                 </div>
                                 <div id="champNom" class="champ champ--lg">

@@ -1,6 +1,3 @@
-/**
- * TODO - Valider les champs
- */
 
 /** Formulaire : Élément pouvant être en display none pour l'affichage du step-left **/
 const refEtapeLivraison: HTMLFieldSetElement = document.getElementById('etapeLivraison') as HTMLFieldSetElement;
@@ -26,7 +23,7 @@ const refSectionRadioAnciennesAdressesLivraison: HTMLUListElement = document.get
 /** Livraison : Champs input de la section adresse **/
 const refLivraisonInputAdresse: HTMLInputElement = document.getElementById('livraison_adresse') as HTMLInputElement;
 const refLivraisonInputVille: HTMLInputElement = document.getElementById('livraison_ville') as HTMLInputElement;
-const refLivraisonInputProvince: HTMLInputElement = document.getElementById('livraison_province') as HTMLInputElement;
+const refLivraisonInputProvince: HTMLSelectElement = document.getElementById('livraison_province') as HTMLSelectElement;
 const refLivraisonInputCodePostal: HTMLInputElement = document.getElementById('livraison_codePostal') as HTMLInputElement;
 const refLivraisonMemeAdresse: HTMLInputElement = document.getElementById('memeAdresse') as HTMLInputElement;
 
@@ -34,7 +31,7 @@ const refLivraisonMemeAdresse: HTMLInputElement = document.getElementById('memeA
 /** Facturation : Champs input de la section adresse **/
 const refFacturationInputAdresse: HTMLInputElement = document.getElementById('facturation_adresse') as HTMLInputElement;
 const refFacturationInputVille: HTMLInputElement = document.getElementById('facturation_ville') as HTMLInputElement;
-const refFacturationInputProvince: HTMLInputElement = document.getElementById('facturation_province') as HTMLInputElement;
+const refFacturationInputProvince: HTMLSelectElement = document.getElementById('facturation_province') as HTMLSelectElement;
 const refFacturationInputCodePostal: HTMLInputElement = document.getElementById('facturation_codePostal') as HTMLInputElement;
 
 
@@ -81,6 +78,9 @@ let gestionStepLeft = {
 
     livraisonCompleted: false,
     facturationCompleted: false,
+    paiementCompleted: false,
+    adresseLivraisonMemoire: [],
+
 
     tableauChampAdresseId: ['_champAdresse', '_champVille', '_champProvince', '_champCodePostal'],
     tableauInputAdresseId: ['adresse', 'ville', 'province', 'code postal'],
@@ -92,13 +92,19 @@ let gestionStepLeft = {
     initialiser() {
         gestionStepLeft.remettreAZero();
         if (refLivraisonInputAdresse.value === '') {
+            refEtapeLivraison.classList.add('courante');
             refSectionAdresseLivraison.removeAttribute("style");
             document.getElementById('continuerLivraison').removeAttribute('style');
         } else if(refFacturationInputAdresse.value === '') {
+            refEtapeLivraison.classList.add('complete');
+            refEtapeFacturation.classList.add('courante');
             this.livraisonCompleted = true;
             refSectionAdresseFacturation.removeAttribute("style");
             document.getElementById('continuerFacturation').removeAttribute('style');
         } else {
+            refEtapeLivraison.classList.add('complete');
+            refEtapeFacturation.classList.add('complete');
+            refEtapeValidation.classList.add('courante')
             refSectionRecapAdresseLivraison.removeAttribute("style");
             refSectionRecapAdresseFacturation.removeAttribute("style");
             refSectionRecapPaiement.removeAttribute("style");
@@ -112,13 +118,10 @@ let gestionStepLeft = {
     continuerLivraison() {
         if (this.validerChampSectionAdresse('livraison')===true) {
             gestionStepLeft.remettreAZero();
-            //this.options[this.selectedIndex].text
-            //Validation : Mettre à jour recap adresse Livraison
 
-            document.getElementById('continuerLivraison').style.display = 'none';
             refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
             refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
-            refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince[refLivraisonInputProvince.value].text;
+            refLivraisonProvinceValidationRecap.innerHTML = refLivraisonInputProvince.options[refLivraisonInputProvince.selectedIndex].text;
             refLivraisonCodePostalValidationRecap.innerHTML = refLivraisonInputCodePostal.value;
             this.ajouterLivraisonAncienAdresse();
 
@@ -132,21 +135,26 @@ let gestionStepLeft = {
                 //Facturation Mettre à jour recap adresse Facturation
                 refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
                 refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
-                refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince[refFacturationInputProvince.value].text;
+                refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.options[refFacturationInputProvince.selectedIndex].text;
                 refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
 
             }
 
             if (this.livraisonCompleted === false) {
                 this.livraisonCompleted = true;
+                refEtapeLivraison.classList.remove('courante');
+                refEtapeLivraison.classList.add('complete');
+                refEtapeFacturation.classList.add('courante');
                 refSectionRecapAdresseLivraison.removeAttribute("style");
                 if (refLivraisonMemeAdresse.checked === true) {
                     refSectionRecapAdresseFacturation.removeAttribute("style");
                     refSectionPaiementFacturation.removeAttribute("style");
+                    document.getElementById('continuerFacturation').removeAttribute('style');
                 }
                 else {
                     refSectionAdresseFacturation.removeAttribute("style");
                     refSectionPaiementFacturation.removeAttribute("style");
+                    document.getElementById('continuerAdresseFacturation').removeAttribute('style');
                 }
             } else {
                 refSectionRecapAdresseLivraison.removeAttribute("style");
@@ -159,8 +167,11 @@ let gestionStepLeft = {
                 .then(response => {
                     this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
                         .then(response=> {
-                            console.log(response)
+                           // console.log(response)
                             refLivraisonId.value = response;
+                            if (refLivraisonMemeAdresse.checked === true) {
+                                refFacturationId.value = response;
+                            }
                         });
                 });
 
@@ -176,10 +187,11 @@ let gestionStepLeft = {
             //Facturation Mettre à jour recap adresse Facturation
             refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
             refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
-            refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince[refFacturationInputProvince.value].text;
+            refFacturationProvinceFacturationRecap.innerHTML = refLivraisonInputProvince.options[refLivraisonInputProvince.selectedIndex].text;
             refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
 
             if (this.facturationCompleted === false) {
+                refEtapeFacturation.classList.add('courante');
                 refSectionRecapAdresseLivraison.removeAttribute("style");
                 refSectionRecapAdresseFacturation.removeAttribute("style");
                 refSectionPaiementFacturation.removeAttribute("style");
@@ -194,7 +206,7 @@ let gestionStepLeft = {
                 .then(response => {
                     this.trouverIdAdresse(refFacturationInputAdresse.value, refFacturationInputVille.value, parseInt(refFacturationInputProvince.value), refFacturationInputCodePostal.value)
                         .then(response=> {
-                            console.log(response)
+                           // console.log(response)
                             refFacturationId.value = response;
                         });
                 })
@@ -214,6 +226,10 @@ let gestionStepLeft = {
             refFacturationCvvValidationRecap.innerHTML = refFacturationInputCvv.value;
 
             this.facturationCompleted = true;
+            refEtapeFacturation.classList.remove('courante');
+            refEtapeFacturation.classList.add('complete');
+            refEtapeValidation.classList.add('courante');
+
             refSectionRecapAdresseLivraison.removeAttribute("style");
             refSectionRecapAdresseFacturation.removeAttribute("style");
             refSectionRecapPaiement.removeAttribute("style");
@@ -224,6 +240,10 @@ let gestionStepLeft = {
     /** Ajouter une adresse de Livraison **/
     ajouterLivraison() {
         gestionStepLeft.remettreAZero();
+        this.adresseLivraisonMemoire[0] = refLivraisonInputAdresse.value;
+        this.adresseLivraisonMemoire[1] = refLivraisonInputVille.value;
+        this.adresseLivraisonMemoire[2] = refLivraisonInputProvince.value;
+        this.adresseLivraisonMemoire[3] = refLivraisonInputCodePostal.value;
         refLivraisonInputAdresse.value = '';
         refLivraisonInputVille.value = '';
         refLivraisonInputProvince.value = '';
@@ -259,7 +279,7 @@ let gestionStepLeft = {
                 //Facturation Mettre à jour recap adresse Facturation
                 refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
                 refFacturationVilleFacturationRecap.innerHTML = refFacturationInputVille.value;
-                refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince[parseInt(refFacturationInputProvince.value)-4].text;
+                refFacturationProvinceFacturationRecap.innerHTML = refFacturationInputProvince.options[refFacturationInputProvince.selectedIndex].text;
                 refFacturationCodePostalFacturationRecap.innerHTML = refFacturationInputCodePostal.value;
             }
             this.ajouterLivraisonAncienAdresse();
@@ -267,7 +287,7 @@ let gestionStepLeft = {
                 .then(response => {
                     this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
                         .then(response=> {
-                            console.log(response)
+                           // console.log(response)
                             refLivraisonId.value = response;
                         });
                 })
@@ -275,10 +295,15 @@ let gestionStepLeft = {
     },
 
     annulerAjouterLivraison (){
-        refRadiosLivraisons.forEach(radio => {
-            console.log(radio.querySelector("input"));
-        })
+        gestionStepLeft.remettreAZero();
+        refSectionAnciennesAdressesLivraison.removeAttribute("style");
+        document.getElementById('continuerModifierAdresseLivraison').removeAttribute('style');
 
+        refLivraisonInputAdresse.value = this.adresseLivraisonMemoire[0];
+        refLivraisonInputVille.value = this.adresseLivraisonMemoire[1];
+        refLivraisonInputProvince.value = this.adresseLivraisonMemoire[2];
+        refLivraisonInputCodePostal.value = this.adresseLivraisonMemoire[3];
+        this.adresseLivraisonMemoire = [];
     },
 
     ajouterLivraisonAncienAdresse() {
@@ -313,10 +338,10 @@ let gestionStepLeft = {
         refCodePostal.setAttribute('id', `${refNombresLivraisonsCompte.value}_livraisonAncienneAdresse_recapCodePostal`);
         refCodePostal.setAttribute('data-codePostal', refLivraisonInputCodePostal.value);
 
-        refPId.innerHTML = 'NA';
+        //refPId.innerHTML = 'NA';
         refRue.innerHTML = refLivraisonInputAdresse.value;
         refVille.innerHTML = refLivraisonInputVille.value + ', ';
-        refProvince.innerHTML = refLivraisonInputProvince[refLivraisonInputProvince.value].text + ', ';
+        refProvince.innerHTML = refLivraisonInputProvince.options[refLivraisonInputProvince.selectedIndex].text + ', ';
         refCodePostal.innerHTML = refLivraisonInputCodePostal.value;
 
         refPRue.prepend(refRue);
@@ -324,6 +349,7 @@ let gestionStepLeft = {
         refAdress.prepend(refPId, refPRue, refPInfo);
         refLabel.prepend(refAdress);
         refLi.prepend(refInput, refLabel);
+        refLi.classList.add('listeAnciennesAdresses');
         refSectionRadioAnciennesAdressesLivraison.prepend(refLi);
 
         refNombresLivraisonsCompte.value = (parseInt(refNombresLivraisonsCompte.value) + 1).toString();
@@ -333,6 +359,16 @@ let gestionStepLeft = {
     modifierLivraison() {
         gestionStepLeft.remettreAZero();
         refSectionAnciennesAdressesLivraison.removeAttribute("style");
+        document.getElementById('continuerModifierAdresseLivraison').removeAttribute('style');
+    },
+
+    /** Continuer après avoir modifier une adresse de livraison **/
+    continuerModifierAdresseLivraison(){
+        gestionStepLeft.remettreAZero();
+        refSectionRecapAdresseLivraison.removeAttribute("style");
+        refSectionRecapAdresseFacturation.removeAttribute("style");
+        refSectionRecapPaiement.removeAttribute("style");
+        refSectionRecapPanier.removeAttribute("style");
     },
 
     /** Modifier une adresse de Facturation **/
@@ -344,23 +380,26 @@ let gestionStepLeft = {
     /** Modifier un paiement de Facturation **/
     modifierPaiementFacturation() {
         gestionStepLeft.remettreAZero();
-        refSectionRecapAdresseFacturation.removeAttribute("style");
+        //refSectionRecapAdresseFacturation.removeAttribute("style");
         refSectionPaiementFacturation.removeAttribute("style");
+        document.getElementById('continuerFacturation').removeAttribute('style');
     },
 
     /** Changer le selected **/
     changerSelected(event) {
         let index = event.target.id.charAt(0);
-        console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').innerHTML)
+        console.log(index)
+        console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue'))
         refLivraisonInputAdresse.value = document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue');
         refLivraisonInputVille.value = document.getElementById(index + '_livraisonAncienneAdresse_recapVille').getAttribute('data-ville');
         refLivraisonInputProvince.value = document.getElementById(index + '_livraisonAncienneAdresse_recapProvince').getAttribute('data-province');
-        refLivraisonInputCodePostal.value = document.getElementById(index + '_livraisonAncienneAdresse_recapCodePostal').getAttribute('data-codePostal');;
+        refLivraisonInputCodePostal.value = document.getElementById(index + '_livraisonAncienneAdresse_recapCodePostal').getAttribute('data-codePostal');
         console.log(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
         this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
             .then(response=> {
-                console.log(response)
+               // console.log(response)
                 refLivraisonId.value = response;
+                console.log(refLivraisonId.value)
             });
     },
 
@@ -401,7 +440,7 @@ let gestionStepLeft = {
 
             }
         });
-        console.log(tableauErreur)
+       // console.log(tableauErreur)
         return tableauErreur.length === 0;
     },
 
@@ -417,7 +456,7 @@ let gestionStepLeft = {
     async trouverIdAdresse(adresse:string, ville:string, province:string, codePostal:string) {
         let response =  await fetch(`index.php?controleur=requete&classe=stepleft&action=trouverParChamp&adresse=${adresse}&ville=${ville}&province_id=${province}&code_postal=${codePostal}`)
             .then(response => response.json());
-        console.log(response)
+       // console.log(response)
         return response;
     },
 
@@ -435,6 +474,7 @@ let gestionStepLeft = {
         document.getElementById('annulerAjouterLivraison').style.display = 'none';
         document.getElementById('continuerLivraison').style.display = 'none';
         document.getElementById('continuerFacturation').style.display = 'none';
+        document.getElementById('continuerModifierAdresseLivraison').style.display = 'none';
 
     },
 }
@@ -447,6 +487,7 @@ window.addEventListener('load', function () {gestionStepLeft.initialiser()});
 
 //Livraison : Écouteurs d'événements
 document.getElementById('continuerLivraison').addEventListener('click', function (){gestionStepLeft.continuerLivraison()});
+document.getElementById('continuerModifierAdresseLivraison').addEventListener('click', function (){gestionStepLeft.continuerModifierAdresseLivraison()})
 document.getElementById('ajouterNouvelleAdresseLivraison').addEventListener('click', function (){gestionStepLeft.ajouterLivraison()});
 document.getElementById('ajouterLivraison').addEventListener('click', function (){gestionStepLeft.confirmerAjouterLivraison()});
 document.getElementById('annulerAjouterLivraison').addEventListener('click', function (){gestionStepLeft.annulerAjouterLivraison()})

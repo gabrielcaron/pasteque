@@ -1,5 +1,5 @@
-<section class="menu__entete">
-    <section class="menu__topNavEntete topNavTable">
+<div class="menu__entete">
+    <div class="menu__topNavEntete topNavTable">
         <a class="menu__topNavEnteteLogo" href="index.php?controleur=site&action=accueil">
             <svg class="menu__logo" fill="none" viewBox="0 0 382 100" xmlns="http://www.w3.org/2000/svg">
                 <g fill="#000">
@@ -26,42 +26,45 @@
                             <span> Bonjour {{$_SESSION['prenom']}}!</span>
                             <a href="index.php?controleur=compte&action=deconnecter">Me déconnecter</a>
                             <a href="#" class="menuTop__lien user"><img
-                                        src="liaisons/images/user.svg"></a>
+                                        src="liaisons/images/user.svg" alt="Mon compte"></a>
                         </div>
                     @else
                         <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien user"><img
-                                    src="liaisons/images/user.svg"></a>
+                                    src="liaisons/images/user.svg" alt="Mon compte"></a>
                     @endif
 
 
                 @else
                     <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien user"><img
-                                src="liaisons/images/user.svg"></a>
+                                src="liaisons/images/user.svg" alt="Mon compte"></a>
                 @endif
             </li>
             <li class="menuTop__listeItem">
                 <a href="index.php?controleur=panier&action=panier" class="menuTop__lien"><i
                             class="fa fa-shopping-cart"></i></a>
             </li>
-            <li id="search">
-                <ul class="listeEntete">
-                    <li id="options">
-                        <a class="options__tout" href="#">Tout</a>
-                        {{--  TODO les options devraient être des boutons radio dans le formulaire ?--}}
-                        <ul class="subnav">
-                            <li><a href="#">Titres</a></li>
-                            <li><a href="#">Auteurs</a></li>
-                            <li><a href="#">ISBN</a></li>
-                        </ul>
-                    </li>
-                    <form class="formRecherche" action="" method="get">
-                        <input type="text" name="search_text" id="search_text" placeholder="Recherche"/>
-                        <input type="button" name="search_button" id="search_button">
-                    </form>
-                </ul>
+            <li>
+                <form class="champRecherche" action="#" method="get">
+                    <label for="recherche" class="screen-reader-only">Choisir le type de recherche</label>
+                    <select class="champRecherche__select" name="recherche" id="recherche">
+                        <option value="tout">Tout</option>
+                        <option value="titres">Titres</option>
+                        <option value="auteurs">Auteurs</option>
+                        <option value="isbn">ISBN</option>
+                    </select>
+                    <input class="champRecherche__champ" type="text" name="search_text" id="search_text"
+                           placeholder="Rechercher..."/>
+                    <button class="champRecherche__boutonRechercher" type="submit" name="search_button" id="search_button" value="Rechercher">
+                        <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd"
+                                  d="m20 18.6069-4.2168-4.2158c1.2575-1.5687 1.9414-3.5198 1.9386-5.53021 0-4.89121-3.9697-8.86089-8.86091-8.86089s-8.86089 3.96968-8.86089 8.86089 3.96968 8.86091 8.86089 8.86091c2.01041.0028 3.96151-.6811 5.53021-1.9386l4.2158 4.2168zm-4.2473-9.74602c.0028 1.79232-.695 3.51472-1.9445 4.79962l-.1476.1477c-1.285 1.2495-3.0074 1.9473-4.79968 1.9445-3.80821 0-6.8918-3.0846-6.8918-6.89182 0-3.80821 3.08359-6.8918 6.8918-6.8918 3.80718 0 6.89178 3.08359 6.89178 6.8918z"
+                                  fill="#6d7587" fill-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </form>
             </li>
         </ul>
-    </section>
+    </div>
     <nav class="menu menu--ferme ">
         <ul class="menu__liste" id="menu__liste">
             <li class="menu__listeItem">
@@ -87,4 +90,4 @@
             </li>
         </ul>
     </nav>
-</section>
+</div>

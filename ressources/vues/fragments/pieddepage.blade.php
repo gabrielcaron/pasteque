@@ -1,4 +1,3 @@
-
 <nav class="menuSec">
     <div class="menuSec__conteneurGrille">
         <ul class="menuSec__liste" id="menuSec__liste">
@@ -54,7 +53,7 @@
         <h3 class="footer__infosH3">Heures d'ouverture</h3><br>
         <div class="footer__infosFlex"><br>
             <ul class="footer__infosListe">
-                <li><h5 class="footer__infosListeTitre">Galerie-boutique</h5></li>
+                <li><h4 class="footer__infosListeTitre">Galerie-boutique</h4></li>
                 <li class="footer__infosListeItem">Lundi et mardi : fermé</li>
                 <li class="footer__infosListeItem">Mercredi: 10h à 17h</li>
                 <li class="footer__infosListeItem"> Jeudi : 10h à 17h</li>

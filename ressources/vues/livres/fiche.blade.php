@@ -96,7 +96,7 @@
                         <div class="tabSection__barContent" id="second">
                             <div class="tabSection__texts">
                                 @foreach($livre->getReconnaissanceAssocie() as $reconnaissanceLivre)
-                                    {{$reconnaissanceLivre->getReconnaissance()}}
+                                    {{$reconnaissanceLivre->getReconnaissance()}}<br>
                                 @endforeach
                             </div>
                         </div>

@@ -24,12 +24,12 @@
     <section class="indexLivres livres">
     @endif
         <section>
-            <section class="filAriane">
+            <div class="filAriane">
                 <span id="testRequest"><a href="index.php">Accueil</a> / Livres</span>
-            </section>
+            </div>
             <!-- Éventuellement être caché en mobile
             <button class="enveloppe__">Filtres</button> -->
-            <button class="livre__filtrer" id="lienFiltre" value="yes" onclick="gererFiltres(this)">Filtrer par</button>
+            <button class="bouton livre__filtrer" id="lienFiltre" value="yes" onclick="gererFiltres(this)">Filtrer ou trier les livres</button>
             <form id="formTri" class="formulaire" action="index.php?controleur=livre&action=index" method="POST">
                 <fieldset class="formulaire__groupeChamps tuiles">
                     <legend class="formulaire__sectionLegende">

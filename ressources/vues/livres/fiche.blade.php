@@ -9,20 +9,20 @@
 @endsection
 
 @section('contenu')
-    <section class="filAriane">
+    <div class="filAriane">
         <span><a href="index.php">Accueil</a> / <a href="index.php?controleur=livre&action=index">Livres</a> / {{$livre->getTitre()}}</span>
-    </section>
+    </div>
     <section class="ficheLivre">
         <div class="ficheLivre__conteneurVignette">
             <div class="ficheLivre__productImage">
                 @if(file_exists("liaisons/images/livres/{$livre->getIsbnPapier()}-940.jpg"))
                     <img class="ficheLivre__active"
-                         src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg">
+                         src="../public/liaisons/images/livres/{{$livre->getIsbnPapier()}}-940.jpg" alt="">
                 @else
                     <img class="livre__image etiquette"
                          src="../public/liaisons/images/livres/img-livre-sans-vignette-1140.png"
                          srcset="../public/liaisons/images/livres/img-livre-sans-vignette-570.png 1x"
-                         alt="Image générique">
+                         alt="">
                 @endif
 
                 @if($livre->getStatut()===3)
@@ -41,7 +41,7 @@
                     @for($i=1;$i < 4; $i++)
                         @if(file_exists("liaisons/images/extraits/{$livre->getIsbnPapier()}_00{$i}-940.jpg"))
                             <li class="ficheLivre__imageItem"><img
-                                        src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg">
+                                        src="liaisons/images/extraits/{{$livre->getIsbnPapier()}}_00{{$i}}-940.jpg" alt="">
                             </li>
                         @endif
                     @endfor
@@ -96,14 +96,14 @@
                         <div class="tabSection__barContent" id="second">
                             <div class="tabSection__texts">
                                 @foreach($livre->getReconnaissanceAssocie() as $reconnaissanceLivre)
-                                    {{$reconnaissanceLivre->getReconnaissance()}}
+                                    {{$reconnaissanceLivre->getReconnaissance()}}<br>
                                 @endforeach
                             </div>
                         </div>
                     @endif
                 </div>
             </div>
-            <section class="ficheLivre__format">
+            <div class="ficheLivre__format">
                 <form id="formulaireAjoutPanier" class="formulaire enveloppe__Tris" action="../public/index.php?controleur=article&action=inserer" method="POST">
                     <div class="formulaire__groupeChamps tuiles">
                         <ul class="formulaire__liste">
@@ -150,7 +150,7 @@
                     <button id="boutonAjouterPanierPHP" class="bouton action ajoutPanier" type="submit">Ajouter au panier</button>
                 </form>
 {{--                <a id="boutonAjouterPanier" class="bouton action ajoutPanier" href="#panier">Ajouter au panier en JS</a>--}}
-            </section>
+            </div>
         </div>
     </section>
     <section class="informations">
@@ -213,11 +213,10 @@
             </tr>
         </table>
     </section>
-
 @endsection
 
-@include('livres.fragments.panier')
 @section('scripts')
+    @include('livres.fragments.panier')
     <script src="../public/liaisons/js/ajoutPanier.js" type="text/javascript"></script>
 @endsection
 

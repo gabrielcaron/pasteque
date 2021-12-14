@@ -14,6 +14,7 @@
 .livreFiche, .artiste {
   & .contenu {
 	@include conteneur1400px();
+	@include paddingConteneur;
   }
 }
 
@@ -55,21 +56,6 @@
 
   &__conteneurVignette {
 	grid-column: span 5;
-
-	img {
-	  width: 100%;
-	  max-height: 100%;
-	  object-fit: cover;
-	  @media (max-width: 900px) {
-		height: 50%;
-		object-fit: cover;
-	  }
-	}
-
-	@media (max-width: 900px) {
-	  width: 80%;
-	  margin: 0 auto;
-	}
   }
 
   &__conteneurInfos {
@@ -92,17 +78,18 @@
 	color: $bleuRoyal;
   }
 
+  & .formulaire {
+	&__liste {
+	  padding: 0;
+	}
+  }
+
   &__ajoutQuantite {
 	display: flex;
 	justify-content: flex-start;
 	width: 115px;
 	margin-right: 2rem;
 	margin-bottom: 2rem;
-
-	@media (max-width: 900px) {
-	  margin: 0 auto;
-
-	}
   }
 
   &__statut {
@@ -161,15 +148,11 @@
 	  &:nth-child(2n) {
 		background: rgb(0, 80, 200, 0.1);
 	  }
-
-	  @media (max-width: 800px) {
-		display: grid;
-		height: 8rem;
-	  }
 	}
 
 	&Column:first-child {
 	  font-weight: bold;
+	  padding-left: 2rem;
 	}
   }
 }
@@ -184,11 +167,6 @@
 	flex-wrap: wrap;
 
 	img {
-	  height: 100%;
-	  @media (max-width: 800px) {
-		height: 500px;
-	  }
-
 	  &.active {
 		display: block;
 		margin: 0 0 0.75rem 0;
@@ -209,7 +187,6 @@
 	}
 
 	img {
-	  height: 20rem;
 	  width: 100%;
 	  transition: opacity 0.3s ease;
 	  cursor: pointer;

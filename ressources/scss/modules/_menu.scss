@@ -63,6 +63,7 @@
 	&Logo {
 	  display: inline-block;
 	  width: 25rem;
+	  z-index: 2000;
 		@media (max-width: 350px) {
 			width: 60%;
 		}

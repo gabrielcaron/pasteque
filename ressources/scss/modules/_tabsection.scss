@@ -44,7 +44,7 @@ $color-red-light: #fa5757;
       max-width: 100%;
       height: auto;
       margin: 0 auto;
-      border-bottom: 1.3px solid darken($color-light, 10);
+      border-bottom: 1px solid $bleuRoyal;
       transition: all 0.3s ease;
 
       &Link {
@@ -56,12 +56,13 @@ $color-red-light: #fa5757;
         line-height: inherit;
         cursor: pointer;
         text-align: center;
-        width: calc(100% / 4);
+        width: calc(100% / 2);
         place-items: center;
         height: auto;
-        padding: 1rem 0;
+        padding: 1.5rem 0 1rem 0;
         display: grid;
         border-bottom: 2.5px solid transparent;
+        background-color: $blanc;
         color: #9194a1;
         transition: all 0.3s ease;
 
@@ -70,7 +71,10 @@ $color-red-light: #fa5757;
         }
 
         span{
+          font-size: 2rem;
+          letter-spacing: 0.05em;
           text-transform: uppercase;
+          padding-top: 0.2rem;
         }
 
         &::before {
@@ -87,9 +91,9 @@ $color-red-light: #fa5757;
           bottom: 0;
           z-index: 0;
           overflow: hidden;
-          border-bottom: 2.5px solid $bleuRoyal;
+          border-bottom: 5px solid $bleuRoyal;
+          background-color: $bleuPoudre;
           color: $bleuRoyal;
-          fill: $bleuRoyal;
         }
 
         &Path{

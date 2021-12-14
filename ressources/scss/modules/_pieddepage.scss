@@ -30,6 +30,7 @@
 
   &__conteneurGrille {
     @include conteneur1400px();
+    @include paddingConteneur;
   }
 
 
@@ -52,18 +53,8 @@
       }
     }
 
-    &Texte{
-      @media (max-width: 860px) {
-        text-align: center;
-      }
-    }
-
     &Logo{
       display: block;
-      @media (max-width: 860px) {
-        display: flex;
-        justify-content: center;
-      }
     }
 
     &Liste{
@@ -85,6 +76,7 @@
 
     &__conteneurGrille {
       @include conteneur1400px();
+      @include paddingConteneur;
     }
 
     &__logo {

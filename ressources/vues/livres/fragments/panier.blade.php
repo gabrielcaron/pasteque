@@ -30,14 +30,12 @@
                             <li class="livre__item livre__categorie">{{$livre->getPrixCan()}} $</li>
                             <li class="livre__item livre__categorie">Quantité : 1</li>
                         </ul>
+
                     </section>
-                    <form class="modale__formulaireAjout" action="../public/index.php?controleur=panier&action=panier" method="POST">
+                    <div class="modale__rangeeBoutons">
                         <a class="modale__boutonContinuer bouton texte" href="index.php?controleur=livre&action=index">Continuer à magasiner</a>
-                        <input id="produit_id" type="text" name="produit_id" value="{{$livre->getId()}}" hidden>
-                        <input id="panier_id" type="text" name="panier_id" value="{{$panier->getId()}}" hidden>
-                        <input id="quantite" type="text" name="quantite" value="1" hidden>
-                        <input class="modale__bouton bouton" type="submit" value="Voir le panier">
-                    </form>
+                        <a class="modale__bouton bouton" href="../public/index.php?controleur=panier&action=panier">Voir le panier</a>
+                    </div>
                 </div>
             </div>
         </div>

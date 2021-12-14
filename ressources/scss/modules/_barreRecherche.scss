@@ -17,132 +17,36 @@
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-#settings a {
-  padding: 18px;
-  height: 24px;
-  font-size: 10px;
-  line-height: 24px;
-}
 
-#search {
-  width: 100%;
+/* Champ de recherche */
 
-  @media screen and (min-width: $mobile600px) {
-    width: initial;
-  }
-
-  @media screen and (min-width: $desktop1000px) {
-    width: initial;
-  }
-
-  & .formRecherche {
-	display: flex;
-	flex-basis: 100%;
-  }
-}
-
-#search_text {
-  padding: 15px 0 15px 20px;
-  margin-right: 0;
-  color: black !important;
-  outline: none;
-  background: none;
-  border-top: 1px solid $bleuRoyal;
-  border-bottom: 1px solid $bleuRoyal;
-  box-sizing: border-box;
-  width: 100%;
-  transition: all 0.15s;
-
-  @media screen and (min-width: $mobile600px) {
-    width: initial;
-  }
-}
-
-::-webkit-input-placeholder { /* WebKit browsers */
-  color: black;
-}
-
-#search_text:focus {
-  //background: $blanc;
-}
-
-#search_button {
-  background: url(../../liaisons/images/loupe.png) center no-repeat;
-  width: 60px;
-  border-top: 1px solid $bleuRoyal;
-  border-bottom: 1px solid $bleuRoyal;
-  border-right: 1px solid $bleuRoyal;
-  padding: 0;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 0 10px 10px 0;
-}
-
-#options {
-  background: $bleuRoyal;
-  border-radius: 10px 0 0 10px;
-
-}
-
-#options a {
-  border-left: 0 none;
-  color: white;
-}
-
-#options a:hover {
-  border-left: 0 none;
-  color: $bleuRoyal;
-}
-
-#options > a {
-  background-image: url(liaisons/images/triangle.png);
-  background-position: 85% center;
-  background-repeat: no-repeat;
-  padding: 0.5rem 2rem 0 2rem;
-
-  &:hover {
-	color: $blanc;
-  }
-}
-
-.subnav {
-  visibility: hidden;
-  position: absolute;
-  top: 110%;
-  left: 0;
-  width: 200px;
-  height: auto;
-  opacity: 0;
-  transition: all 0.1s;
-  background: $bleuRoyal;
-}
-
-.subnav li {
-  float: none;
-}
-
-.subnav li:hover {
-  color: $bleuRoyal;
-  border: 2px solid $bleuRoyal;
-}
-
-.subnav li a {
-  border-bottom: 2px solid white;
-}
-
-.subnav li a:hover {
-  background: white;
-  color: $bleuRoyal;
-  border: 2px solid $bleuRoyal;
-}
-
-#options:hover .subnav {
-  visibility: visible;
-  top: 100%;
-  opacity: 1;
-}
-
-.listeEntete {
+.champRecherche {
   display: flex;
-  flex-basis: 100%;
+
+  &__select {
+    padding: 0 1rem;
+    font-size: 1.6rem;
+    background-color: $bleuRoyal;
+    color: $blanc;
+    border-radius: 10px 0 0 10px;
+  }
+
+  &__champ {
+    padding: 1.2rem;
+    border-top: 1px solid #0050AF;
+    border-bottom: 1px solid #0050AF;
+    font-size: 1.6rem;
+    &::placeholder {
+      color: $noir;
+    }
+  }
+
+  &__boutonRechercher {
+    padding: 0.5rem 1.5rem 0 1.5rem;
+    background-color: $blanc;
+    border-top: 1px solid #0050AF;
+    border-bottom: 1px solid #0050AF;
+    border-right: 1px solid #0050AF;
+    border-radius: 0 10px 10px 0;
+  }
 }

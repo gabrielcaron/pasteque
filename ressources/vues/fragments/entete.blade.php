@@ -1,5 +1,5 @@
-<section class="menu__entete">
-    <section class="menu__topNavEntete topNavTable">
+<div class="menu__entete">
+    <div class="menu__topNavEntete topNavTable">
         <a class="menu__topNavEnteteLogo" href="index.php?controleur=site&action=accueil">
             <svg class="menu__logo" fill="none" viewBox="0 0 382 100" xmlns="http://www.w3.org/2000/svg">
                 <g fill="#000">
@@ -36,7 +36,7 @@
 
                 @else
                     <a href="index.php?controleur=compte&action=connexion" class="menuTop__lien user"><img
-                                src="liaisons/images/user.svg"></a>
+                                src="liaisons/images/user.svg" alt="Mon compte"></a>
                 @endif
             </li>
             <li class="menuTop__listeItem">
@@ -64,7 +64,7 @@
                 </form>
             </li>
         </ul>
-    </section>
+    </div>
     <nav class="menu menu--ferme ">
         <ul class="menu__liste" id="menu__liste">
             <li class="menu__listeItem">
@@ -90,4 +90,4 @@
             </li>
         </ul>
     </nav>
-</section>
+</div>

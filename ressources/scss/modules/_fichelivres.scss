@@ -78,17 +78,18 @@
 	color: $bleuRoyal;
   }
 
+  & .formulaire {
+	&__liste {
+	  padding: 0;
+	}
+  }
+
   &__ajoutQuantite {
 	display: flex;
 	justify-content: flex-start;
 	width: 115px;
 	margin-right: 2rem;
 	margin-bottom: 2rem;
-
-	@media (max-width: 900px) {
-	  margin: 0 auto;
-
-	}
   }
 
   &__statut {

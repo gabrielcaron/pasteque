@@ -148,15 +148,11 @@
 	  &:nth-child(2n) {
 		background: rgb(0, 80, 200, 0.1);
 	  }
-
-	  @media (max-width: 800px) {
-		display: grid;
-		height: 8rem;
-	  }
 	}
 
 	&Column:first-child {
 	  font-weight: bold;
+	  padding-left: 2rem;
 	}
   }
 }

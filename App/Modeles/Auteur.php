@@ -9,12 +9,11 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Auteur == un enregistrement dans la table auteurs
 namespace App\Modeles;
 
 use App\App;
 use \PDO;
-
 class Auteur
 {
     private int $id;
@@ -67,7 +66,10 @@ class Auteur
         $this->site_web = $unSiteWeb;
     }
 
-
+    /**
+     * Méthode pour retourner les livres associés à un auteur
+     * @return array - Tableau des livres
+    */
     public function getLivresAssocies():array{
         return Livre::trouverLivresParAuteur($this->id);
     }
@@ -97,7 +99,6 @@ class Auteur
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        //var_dump($participants);
         return $requetePreparee->fetchAll();
     }
 
@@ -132,7 +133,7 @@ class Auteur
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
-        $requetePreparee->bindParam(':unIdAuteur', $unIdAuteur, PDO::PARAM_INT); // validation => Sécurité
+        $requetePreparee->bindParam(':unIdAuteur', $unIdAuteur, PDO::PARAM_INT);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Auteur');
         // Exécuter la requête
@@ -152,7 +153,7 @@ class Auteur
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
-        $requetePreparee->bindParam(':unIdLivres', $unIdLivres, PDO::PARAM_INT); // validation => Sécurité
+        $requetePreparee->bindParam(':unIdLivres', $unIdLivres, PDO::PARAM_INT);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Auteur');
         // Exécuter la requête

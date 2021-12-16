@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Commande == un enregistrement dans la table commandes
 namespace App\Modeles;
 
 use \PDO;
@@ -75,25 +75,29 @@ class Commande
         $this->date_unix_commande = $unDateUnixCommande;
     }
 
+    /**
+     * Méthode pour retourner l'adresse de livraison associée ou null
+     * @return ?Adresse - L'adresse ou null
+    */
     public function getLivraisonAdresseAssocie():?Adresse {
         return Adresse::trouverParId($this->livraison_adresse_id);
     }
 
+    /**
+     * Méthode pour retourner l'adresse de facturation associée ou null
+     * @return ?Adresse - L'adresse ou null
+     */
     public function getFacturationAdresseAssocie():?Adresse {
         return Adresse::trouverParId($this->facturation_adresse_id);
     }
 
+    /**
+     * Méthode pour retourner le paiement associé ou null
+     * @return ?Paiement - Le paiement ou null
+     */
     public function getPaiementAssocie():?Paiement {
         return Paiement::trouverParId($this->paiement_id);
     }
-
-    /*// $nombre_commande : Getter et setter
-    public function getNombreCommande():int {
-        return $this->nombre_commande;
-    }
-    public function setNombreCommande(int $unNombreCommande):void {
-        $this->nombre_commande = $unNombreCommande;
-    }*/
 
     /**
      * Méthode pour trouver toutes les commandes
@@ -112,47 +116,6 @@ class Commande
         // Récupérer une seule occurrence à la fois
         return $requetePreparee->fetchAll();
     }
-
-    /**
-     * Méthode pour trouver toutes les adresses de livraisons
-     * @param int $compteId - Un compte id
-     * @return array - Tableau des adresses id
-     */
-    public static function trouverToutAdresseLivraison(int $compteId): array
-    {
-        // Définir la chaine SQL
-        $chaineSQL = 'SELECT DISTINCT livraison_adresse_id, MAX(date_unix_commande) FROM commandes WHERE compte_id = :compteId GROUP BY livraison_adresse_id ORDER BY MAX(date_unix_commande) DESC LIMIT 0, 4';
-        // Préparer la requête (optimisation)
-        $requetePreparee = App::getPDO()->prepare($chaineSQL);
-        $requetePreparee->bindParam(':compteId', $compteId, PDO::PARAM_INT);
-        // Définir le mode de récupération
-        $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
-        // Exécuter la requête
-        $requetePreparee->execute();
-        // Récupérer une seule occurrence à la fois
-        return $requetePreparee->fetchAll();
-    }
-
-    /**
-     * Méthode pour trouver toutes les adresses de facturations
-     * @param int $compteId - Un compte id
-     * @return array - Tableau des adresses id
-     */
-    public static function trouverToutAdresseFacturation(int $compteId): array
-    {
-        // Définir la chaine SQL
-        $chaineSQL = 'SELECT DISTINCT facturation_adresse_id, MAX(date_unix_commande) FROM commandes WHERE compte_id = :compteId GROUP BY facturation_adresse_id ORDER BY MAX(date_unix_commande) DESC LIMIT 0, 4';
-        // Préparer la requête (optimisation)
-        $requetePreparee = App::getPDO()->prepare($chaineSQL);
-        $requetePreparee->bindParam(':compteId', $compteId, PDO::PARAM_INT);
-        // Définir le mode de récupération
-        $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
-        // Exécuter la requête
-        $requetePreparee->execute();
-        // Récupérer une seule occurrence à la fois
-        return $requetePreparee->fetchAll();
-    }
-
 
     /**
      * Méthode pour trouver la derniere commande

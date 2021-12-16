@@ -27,13 +27,11 @@ class ControleurSite
 
     //Page d'accueil
     public function accueil(): void {
-
         $nouveautes = Livre::trouverNouveautesHasard(3);
         $aparaitre = Livre::trouverAParaitreHasard(3);
         $actualites = Actualite::trouverTout();
         $evenements = Evenement::trouverTout();
         $tDonnees = array("titrePage"=>"Accueil", "classeBody"=>"accueil", "nouveautes"=>$nouveautes, "aparaitre"=>$aparaitre, "actualites"=>$actualites, "evenements"=>$evenements);
-//        var_dump($tDonnees);
         echo App::getBlade()->run("accueil",$tDonnees);
     }
 

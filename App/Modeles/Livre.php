@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Livre == un enregistrement dans la table livres
 namespace App\Modeles;
 
 use App\App;
@@ -355,11 +355,11 @@ class Livre
      */
     public static function trouverToutSansCategories(string $trierPar, int $enregistrementDepart, int $nombreLivreParPage): array
     {
-        /* Message à Michelle 3 novembre 2021 :
+        /** Message à Michelle 3 novembre 2021 :
         Je dois faire l'affichage du INNER JOIN et ORDER BY seulement lorsque je trie par auteur, sinon il y a des doublons (nous en avions discuté ensemble) */
+
         $innerJoin = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id': '';
         $orderBy = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC, case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,': '';
-
         $chaineSQL = 'SELECT livres.*
                             FROM livres
                             INNER JOIN categories ON categories.id = livres.categorie_id
@@ -373,7 +373,6 @@ class Livre
                                      case when :trierPar = \'statutA\' then statut end ASC,
                                      case when :trierPar = \'statutD\' then statut end DESC
                             LIMIT :enregistrementDepart, :nombreLivreParPage';
-        //ORDER BY :ordre :ascOuDesc
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
@@ -435,8 +434,9 @@ class Livre
      */
     public static function trouverNombreLivresAvecCategories(array $idCategories): string
     {
-        /* Message à Michelle 29 ooctobre 2021 :
+        /** Message à Michelle 29 ooctobre 2021 :
         Impossibilité d'utiliser un paramètre pour la chaine $categories contenant le séparateur ',' */
+
         $categories = implode(', ', $idCategories);
 
         // Définir la chaine SQL
@@ -463,12 +463,14 @@ class Livre
      */
     public static function trouverLivresParCategories(array $idCategories, string $trierPar, int $enregistrementDepart, int $nombreLivreParPage): array
     {
-        /* Message à Michelle 29 octobre 2021 :
+        /** Message à Michelle 29 octobre 2021 :
         Impossibilité d'utiliser un paramètre (bindParam) pour la chaine $categories contenant le séparateur ',' */
+
         $categories = implode(', ', $idCategories);
 
-        /* Message à Michelle 3 novembre 2021 :
+        /** Message à Michelle 3 novembre 2021 :
         Je dois faire l'affichage du INNER JOIN et ORDER BY seulement lorsque je trie par auteur, sinon il y a des doublons (nous en avions discuté ensemble) */
+
         $innerJoin = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'INNER JOIN livres_auteurs ON livres.id = livres_auteurs.livre_id INNER JOIN auteurs ON auteurs.id = livres_auteurs.auteur_id': '';
         $orderBy = $trierPar==='auteurs.nomA'||$trierPar==='auteurs.nomD' ? 'case when :trierPar = \'auteurs.nomA\' then auteurs.nom end ASC, case when :trierPar = \'auteurs.nomD\' then auteurs.nom end DESC,': '';
 
@@ -487,7 +489,6 @@ class Livre
                                      case when :trierPar = \'statutA\' then statut end ASC,
                                      case when :trierPar = \'statutD\' then statut end DESC
                             LIMIT :enregistrementDepart, :nombreLivreParPage';
-        //ORDER BY :ordre :ascOuDesc
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
@@ -525,7 +526,6 @@ class Livre
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        //var_dump($participants);
         return $requetePreparee->fetchAll();
     }
 
@@ -537,8 +537,7 @@ class Livre
     public static function trouverNouveautesHasard(int $combien) : array
     {
         // Définir la chaine SQL
-        $chaineSQL = 'SELECT DISTINCT * FROM livres WHERE statut = 2
-                      ORDER BY RAND() LIMIT ' . $combien;
+        $chaineSQL = 'SELECT DISTINCT * FROM livres WHERE statut = 2 ORDER BY RAND() LIMIT ' . $combien;
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir le mode de récupération
@@ -568,6 +567,4 @@ class Livre
         // Récupérer une seule occurrence à la fois
         return $requetePreparee->fetchAll();
     }
-
-
 }

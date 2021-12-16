@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Province == un enregistrement dans la table provinces
 namespace App\Modeles;
 
 use App\App;
@@ -55,7 +55,6 @@ class Province
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        //var_dump($participants);
         return $requetePreparee->fetchAll();
     }
 
@@ -78,8 +77,4 @@ class Province
         // Récupérer une seule occurrence à la fois
         return $requetePreparee->fetch();
     }
-
-
-
-
 }

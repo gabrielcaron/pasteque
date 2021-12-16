@@ -25,7 +25,6 @@ class ControleurLivre
     //Index des livres
     public function index(): void
     {
-//        var_dump($_POST);
         //Url de base
         $urlLivre = 'index.php?controleur=livre&action=index';
 
@@ -61,7 +60,6 @@ class ControleurLivre
     {
         $livre = Livre::trouverParId($livreChoisi);
         $panier = Panier::trouverParIdSession(session_id());
-        $tableauImage = [];
         $tDonnees = array("titrePage"=>"Livre", "action"=>"fiche", "livre"=>$livre, "panier"=>$panier);
         echo App::getBlade()->run("livres.fiche",$tDonnees);
     }

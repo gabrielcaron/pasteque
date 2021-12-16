@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Adresse == un enregistrement dans la table adresses
 namespace App\Modeles;
 
 use \PDO;
@@ -94,7 +94,7 @@ class Adresse
      */
     public static function trouverToutAdresseParIdCompte(int $compteId, string $livraisonOuFacturation): array
     {
-        /* Message à Michelle 27 novembre 2021 :
+        /** Message à Michelle 27 novembre 2021 :
         Impossibilité d'utiliser un paramètre (bindParam) pour la chaine $livraisonOuFacturation contenant le séparateur '.' */
         // Définir la chaine SQL
         $chaineSQL = 'SELECT DISTINCT MAX(adresses.id) as id, adresse, ville, province_id, code_postal, MAX(date_unix_commande) 
@@ -108,29 +108,6 @@ class Adresse
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         $requetePreparee->bindParam(':compteId', $compteId, PDO::PARAM_INT);
         //$requetePreparee->bindParam(':livraisonOuFacturation', $livraisonOuFacturation, PDO::PARAM_STR);
-        // Définir le mode de récupération
-        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Adresse');
-        // Exécuter la requête
-        $requetePreparee->execute();
-        // Récupérer une seule occurrence à la fois
-        return $requetePreparee->fetchAll();
-    }
-
-    /**
-     * Méthode pour trouver toutes les adresses avec certains id
-     * @return array - Tableau des adresses
-     */
-    public static function trouverToutParTableauId(array $tableauDeId): array
-    {
-        /* Message à Michelle 27 novembre 2021 :
-        Impossibilité d'utiliser un paramètre (bindParam) pour la chaine $tableauDeId contenant le séparateur ',' */
-        $idAdresses = implode(', ', $tableauDeId);
-        //var_dump($idAdresses);
-
-        // Définir la chaine SQL
-        $chaineSQL = 'SELECT * FROM adresses WHERE id IN ('. $idAdresses .')';
-        // Préparer la requête (optimisation)
-        $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Adresse');
         // Exécuter la requête
@@ -169,7 +146,6 @@ class Adresse
      * @return ?string - L'id ou null
      */
     public static function trouverParTousLesChamps(string $unAdresse, string $unVille, int $unProvinceId, string $unCodePostal):?string {
-        //var_dump($unAdresse, $unVille, $unProvinceId, $unCodePostal);
         // Définir la chaine SQL
         $chaineSQL = 'SELECT id AS id FROM adresses WHERE adresse = :adresse AND ville = :ville AND province_id = :province_id AND code_postal = :code_postal';
         // Préparer la requête (optimisation)
@@ -185,7 +161,6 @@ class Adresse
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
         $result = $requetePreparee->fetch();
-        //var_dump($result);
         return $result === false ? null :$result->id;
     }
 
@@ -211,7 +186,6 @@ class Adresse
      */
     public function mettreAJour():void
     {
-        //var_dump('entre');
         // Définir la chaine SQL
         $chaineSQL = 'UPDATE adresses SET adresse=:adresse, ville=:ville, province_id=:province_id, code_postal=:code_postal WHERE id = :id';
         // Préparer la requête (optimisation)
@@ -224,6 +198,5 @@ class Adresse
         $requetePreparee->bindParam(':code_postal', $this->code_postal, PDO::PARAM_STR);
         // Exécuter la requête
         $requetePreparee->execute();
-        //var_dump('id =',$this->id);
     }
 }

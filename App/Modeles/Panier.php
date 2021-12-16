@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Panier == un enregistrement dans la table paniers
 namespace App\Modeles;
 
 use \PDO;

@@ -25,7 +25,7 @@ class ControleurRequete
     }
 
     //Trouver Tout livre
-    public function trouverToutLivre(){
+    /*public function trouverToutLivre(){
 
         $livres = Livre::trouverTout();
         $livreEnvoyer = [];
@@ -35,7 +35,7 @@ class ControleurRequete
         }
         header('Content-Type: application/json');
         echo json_encode($livreEnvoyer);
-    }
+    }*/
 
     //Trouver adresse par tous les champs
     public function trouverAdresseParTousLesChamps(){
@@ -44,6 +44,7 @@ class ControleurRequete
         echo json_encode($adresse);
     }
 
+    //Inserer une adresse en ajax
     public function insererAdresse() {
         if (Adresse::trouverParTousLesChamps($_GET['adresse'], $_GET['ville'], intval($_GET['province_id']), $_GET['code_postal']) === null) {
             $adresse = new Adresse();
@@ -57,14 +58,11 @@ class ControleurRequete
 
     // Inserer article en JS
     public function insererLivre():void {
-
-        var_dump(Article::trouverParIdProduitIdPanier(intval($_GET['panier_id']), intval($_GET['produit_id'])));
         if (Article::trouverParIdProduitIdPanier(intval($_GET['panier_id']), intval($_GET['produit_id'])) === null) {
             $monNouvelArticle = new Article();
             $monNouvelArticle->setProduitId(intval($_GET['produit_id']));
             $monNouvelArticle->setPanierId(intval($_GET['panier_id']));
             $monNouvelArticle->setQuantite(intval($_GET['quantite']));
-
             $monNouvelArticle->inserer();
         }
         else {

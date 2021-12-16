@@ -58,14 +58,12 @@ class ControleurCompte
         if(isset($_SESSION['tValidation'])){
             unset($_SESSION['tValidation']);
         }
-        //var_dump($_POST);
         //$compte = Compte::trouverParCourriel($_POST['connexionEmail']);
         // Récupérer le contenu des messages en format JSON
         $contenuBruteFichierJson = file_get_contents("../ressources/lang/fr_CA.UTF-8/messagesConnexionValidation.json");
         // Convertir en tableau associatif
         $tMessagesJson = json_decode($contenuBruteFichierJson, true);
         $tDonnes = [];
-        // À compléter...
         $compte = isset($_POST['connexionEmail']) ?? null;
         foreach (array_keys($tMessagesJson) as $champValide){
             if(isset($_POST[$champValide])){
@@ -74,7 +72,6 @@ class ControleurCompte
                     $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['vide']];
                 }
                 elseif ($champValide === 'connexionEmail'){
-                    //var_dump(Compte::courrielValide($_POST[$champValide]));
                     if(Compte::courrielValide($_POST[$champValide]) === true){
                         $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['pattern']];
 
@@ -145,32 +142,20 @@ class ControleurCompte
             header('Location: index.php?controleur=compte&action=creation');
         }
         else{
-            // 1) Recevoir les donnees d'un formulaire de creation
-            // $_GET super global donnant acces a la query string
-            // $_POST donne accees aux donnees envoyé par un formulaire en post
-            // $_COOKIE super global qui permet de recevoir les donnees client
-            // 2) Recevoir les infos
-            // Très important pour la sécurité
-            // NE JAMAIS FAIRE CONFIANCE AUX DONNEES PROVENANT DU CLIENT
-            // PAS LE TEMPS DE FAIRE LA VALIDATION DANS LE COURS MAIS IMPORTANT!!!!!!!!
             $panier = Panier::trouverParIdSession(session_id());
             //$compte = Compte::trouverParIdSession(session_id());
             //if($compte === false){
             $monNouveauCompte = new Compte();
-            // 3) Creer un objet de region a partir du model
             $monNouveauCompte->setNom($_POST['nom']);
             $monNouveauCompte->setPrenom($_POST['prenom']);
             $monNouveauCompte->setCourriel($_POST['courriel']);
             $monNouveauCompte->setMotDePasse($_POST['mot_de_passe']);
             $monNouveauCompte->setPanierId($panier->getId());
-            // 4) Inserer cet objet dans la table region
             $monNouveauCompte->inserer();
 
             $_SESSION['connected'] = true;
             $_SESSION['prenom'] = $monNouveauCompte->getPrenom();
             $_SESSION['email'] = $monNouveauCompte->getCourriel();
-
-            // Rediriger
 
             header('Location: index.php?controleur=site&action=accueil');
         }

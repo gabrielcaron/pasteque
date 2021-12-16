@@ -64,17 +64,6 @@ class ControleurPanier
         $compte = Compte::trouverParCourriel($_SESSION['email']);
         $panier = Panier::trouverParIdSession(session_id());
 
-        /** Ne pas oublier de mettre le panier id dans la commande. **/
-        /* session_regenerate_id();
-        $panier = Panier::trouverParIdSession(session_id());
-        $compteModifierPanier = Compte::trouverParId();
-        $compteModifierPanier->getNom();
-        $compteModifierPanier->getPrenom();
-        $compteModifierPanier->getCourriel();
-        $compteModifierPanier->getMotDePasse();
-        $compteModifierPanier->setPanierId($panier->getId());
-        $compteModifierPanier->mettreAJour();*/
-
         $articles = $panier->getArticlesAssocies();
         $prixTotal = 0;
         $nombreArticles = 0;
@@ -83,11 +72,8 @@ class ControleurPanier
             $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
         }
         $prixLivraison = $prixTotal > 60 ? 0 : 7;
-
         $commande = $compte->getCommandesAssocies();
         $livraison = $commande->getLivraisonAdresseAssocie();
-
-
 
         $tDonnees = array("titrePage"=>"Commande confirmée", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal,
         "nombreArticles"=>$nombreArticles, "commande"=>$commande, "prixLivraison"=>$prixLivraison, "livraison"=>$livraison,

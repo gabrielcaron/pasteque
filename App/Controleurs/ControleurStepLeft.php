@@ -29,7 +29,6 @@ class ControleurStepLeft
 
     //Débuter le formulaire step left de commandes
     public function debuterStepLeft():void{
-
         if (isset($_SESSION['connected']) === false || $_SESSION['connected'] === false){
             header('Location: index.php?controleur=compte&action=connexion');
         }
@@ -53,16 +52,8 @@ class ControleurStepLeft
             $facturation = $commande !== null && $commande->getFacturationAdresseAssocie() !==null ? $commande->getFacturationAdresseAssocie() : null;
             $paiement = $commande !== null && $commande->getPaiementAssocie() !== null ? $commande->getPaiementAssocie() : null;
             if($commande !== null){
-
-                $toutesFacturationsId = Commande::trouverToutAdresseFacturation($compte->getId());
-                $tableauReduitFacturationId = [];
-                for ($i = 0; $i < count($toutesFacturationsId); $i++) {
-                    $tableauReduitFacturationId[$i] = $toutesFacturationsId[$i]->facturation_adresse_id;
-                }
-                $facturationToutesLesAdresses = Adresse::trouverToutParTableauId($tableauReduitFacturationId);
-
+                $facturationToutesLesAdresses = Adresse::trouverToutAdresseParIdCompte($compte->getId(),'commandes.facturation_adresse_id');
                 $livraisonToutesLesAdresses = Adresse::trouverToutAdresseParIdCompte($compte->getId(),'commandes.livraison_adresse_id');
-                //var_dump($livraisonToutesLesAdresses[0]->getId());
 
                 $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte,
                     "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces,
@@ -85,8 +76,6 @@ class ControleurStepLeft
 
         /**
          * TODO - Vérifier si la personne est connecter avec un compte valide et que le compte_id est valide dans le formulaire aussi
-         * TODO - Mettre à jour et insérer adresse dans requête fetch
-         * TODO - Validation serveur
          */
         // Récupérer le contenu des messages en format JSON
         $contenuBruteFichierJsonStepLeftCombiner = file_get_contents("../ressources/lang/fr_CA.UTF-8/messagesStepLeftCombiner.json");
@@ -142,7 +131,8 @@ class ControleurStepLeft
 
 
             /**
-             * Message à Michelle. Avoir eu le temps, j'aurais changé notre bd pour avoir un panier_id dans commande.
+             * Message à Michelle. Avoir eu le temps, j'aurais changée notre bd pour avoir un panier_id dans la table
+             * commandes afin de savoir ce qu'il y avait dans le panier associe a la commande.
             */
             session_regenerate_id();
             $nouveauPanier =  new Panier;

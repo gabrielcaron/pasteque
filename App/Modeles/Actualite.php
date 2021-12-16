@@ -7,7 +7,9 @@
  * @version 1.2.3
  *
  */
-
+declare(strict_types=1);
+// Classe modèle
+// Une instance de la classe Actualite == un enregistrement dans la table actualites
 namespace App\Modeles;
 
 use App\App;
@@ -44,7 +46,7 @@ class Actualite
         return $this->titre;
     }
 
-    public function setTitre(int $unTitre): void
+    public function setTitre(string $unTitre): void
     {
         $this->titre = $unTitre;
     }
@@ -55,7 +57,7 @@ class Actualite
         return $this->l_actualite;
     }
 
-    public function setlActualite(int $uneActualite): void
+    public function setlActualite(string $uneActualite): void
     {
         $this->l_actualite = $uneActualite;
     }
@@ -66,7 +68,7 @@ class Actualite
         return $this->date;
     }
 
-    public function setDate(int $uneDate): void
+    public function setDate(string $uneDate): void
     {
         $this->date = $uneDate;
     }
@@ -77,7 +79,7 @@ class Actualite
         return $this->lien_facebook;
     }
 
-    public function setLienFacebook(int $unLienFacebook): void
+    public function setLienFacebook(string $unLienFacebook): void
     {
         $this->lien_facebook = $unLienFacebook;
     }
@@ -88,7 +90,7 @@ class Actualite
         return $this->lien_instagram;
     }
 
-    public function setLienInstagram(int $unLienInstagram): void
+    public function setLienInstagram(string $unLienInstagram): void
     {
         $this->lien_instagram = $unLienInstagram;
     }

@@ -7,11 +7,14 @@
  * @version 1.2.3
  *
  */
+
+declare(strict_types=1);
+// Classe modèle
+// Une instance de la classe Evenement == un enregistrement dans la table evenements
 namespace App\Modeles;
 
 use App\App;
 use \PDO;
-
 class Evenement
 {
     private int $id;
@@ -44,7 +47,7 @@ class Evenement
         return $this->titre;
     }
 
-    public function setTitre(int $unTitre): void
+    public function setTitre(string $unTitre): void
     {
         $this->titre = $unTitre;
     }
@@ -55,7 +58,7 @@ class Evenement
         return $this->l_evenement;
     }
 
-    public function setlEvenement(int $unEvenement): void
+    public function setlEvenement(string $unEvenement): void
     {
         $this->l_evenement = $unEvenement;
     }
@@ -88,7 +91,7 @@ class Evenement
         return $this->lien_facebook;
     }
 
-    public function setLienFacebook(int $unLienFacebook): void
+    public function setLienFacebook(string $unLienFacebook): void
     {
         $this->lien_facebook = $unLienFacebook;
     }
@@ -99,7 +102,7 @@ class Evenement
         return $this->lien_instagram;
     }
 
-    public function setLienInstagram(int $unLienInstagram): void
+    public function setLienInstagram(string $unLienInstagram): void
     {
         $this->lien_instagram = $unLienInstagram;
     }
@@ -108,7 +111,7 @@ class Evenement
      * Méthode pour avoir l'affichage de l'intro d'un événement
      * @return string - L'intro de l'événement
      */
-    public function getIntro()
+    public function getIntro(): string
     {
         $evenement = $this->l_evenement;
         $evenement = explode(". ", $evenement);

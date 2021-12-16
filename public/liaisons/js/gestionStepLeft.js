@@ -38,7 +38,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
  * @file Fichier js servant à la gestion du stepleft
  * @author @Michel Veillette <1965623@csfoy.ca>
  * @version 1.2.3
- *
  */
 /** Formulaire : Élément pouvant être en display none pour l'affichage du step-left **/
 var refEtapeLivraison = document.getElementById('etapeLivraison');

@@ -2,7 +2,6 @@
  * @file Fichier js servant à la gestion du stepleft
  * @author @Michel Veillette <1965623@csfoy.ca>
  * @version 1.2.3
- *
  */
 /** Formulaire : Élément pouvant être en display none pour l'affichage du step-left **/
 const refEtapeLivraison: HTMLFieldSetElement = document.getElementById('etapeLivraison') as HTMLFieldSetElement;

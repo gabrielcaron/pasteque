@@ -248,3 +248,14 @@
   width: 100%;
   margin-top: 2rem;
 }
+.livresIndex .formulaire__groupeChamps.tuiles .bloc .libelle, .artistes .formulaire__groupeChamps.tuiles .bloc .libelle, .ficheLivre .formulaire__groupeChamps.tuiles .bloc .libelle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-transform: capitalize;
+}
+@media (max-width: 900px) {
+	.livresIndex .formulaire__listeModes, .artistes .formulaire__listeModes, .ficheLivre .formulaire__listeModes{
+		display: none;
+	}
+}

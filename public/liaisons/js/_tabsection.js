@@ -1,3 +1,9 @@
+/**
+ * @file Fichier js servant pour les tab sections dans la fiche dun livre
+ * @author @nicolasThibault <nicolasthibault@hotmail.ca>
+ * @version 1.2.3
+ *
+ */
 // Tabs Action
 const tabLink = document.querySelectorAll(".tabSection__menuLink");
 const tabContent = document.querySelectorAll(".tabSection__barContent");

@@ -1,3 +1,9 @@
+/**
+ * @file Fichier js servant à la gestion des requetes
+ * @author @Michel Veillette <1965623@csfoy.ca>
+ * @version 1.2.3
+ *
+ */
 let request = {
     trouverToutLivre(controleur, action, id) {
         let test = null;

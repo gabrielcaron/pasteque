@@ -27,7 +27,7 @@
         <h6>Mode de paiement</h6>
         <p id="paiement_titulaire">@if($paiement !== null){{$paiement->getTitulaire()}}@endif</p>
         <p id="paiement_numeroCarte">@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif</p>
-        <p><span id="paiement_moisExpiration">@if($paiement !== null){{$paiement->getMoisExpiration()}}@endif</span> / <span id="paiement_anneeExpiration">@if($paiement !== null){{$paiement->getAnneeExpiration()}}@endif</span> <span id="paiement_cvv">@if($paiement !== null){{$paiement->getCvv()}}@endif</span></p>
+        <p><span id="paiement_moisExpiration">@if($paiement !== null){{$paiement->getMoisExpiration()}}@endif</span> / <span id="paiement_anneeExpiration">@if($paiement !== null){{$paiement->getAnneeExpiration()}}@endif</span> <br><span id="paiement_cvv">@if($paiement !== null){{$paiement->getCvv()}}@endif</span></p>
         <a id="modifierPaiementFacturation" class="stepleft__lien bouton texte">Modifier le mode de paiement</a>
     </section>
     <section id="sectionPaiementFacturation" class="sectionFormulaire__sectionForm">
@@ -52,21 +52,27 @@
             <div class="champ__boite">
                 <label for="facturation_numeroCarte" class="champ__etiquette">Numéro de la carte</label>
                 <input class="champ__input" id="facturation_numeroCarte" name="facturation_numeroCarte" type="text"
-                       autocomplete="numeroCarte" aria-labelledby="messagesNumeroCarte" min="2" pattern="^([0-9]{4}( |\-){0,1}){3}[0-4]{4}$" placeholder="Ex: 1234 1234 1234 1234"
+                       autocomplete="numeroCarte" aria-labelledby="messagesNumeroCarte" min="2" pattern="^([0-9]{4}( |\-){0,1}){3}[0-4]{4}$"
                        value="@if($paiement !== null){{$paiement->getNumeroCarte()}}@endif" required/>
             </div>
             <div id="messagesNumeroCarte" class="champ__messages">
                 <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+                <p class="champ__message-aide">
+                    Ex: 1234 1234 1234 1234
+                </p>
             </div>
         </div>
         <div id="facturation_champCvv" class="champ champ--1c">
             <div class="champ__boite">
                 <label for="facturation_cvv" class="champ__etiquette">Cvv</label>
-                <input class="champ__input" id="facturation_cvv" name="facturation_cvv" pattern="^\d{1,3}$" placeholder="352" type="number" aria-labelledby="messagesCvv"
+                <input class="champ__input" id="facturation_cvv" name="facturation_cvv" pattern="^\d{1,3}$" type="number" aria-labelledby="messagesCvv"
                        value="@if($paiement !== null){{$paiement->getCvv()}}@endif" required/>
             </div>
             <div id="messagesCvv" class="champ__messages">
                 <p class="champ__message-erreur" aria-live="polite" aria-atomic="false"></p>
+                <p class="champ__message-aide">
+                    Ex: 352
+                </p>
             </div>
         </div>
         <div class="champ champ--span2">

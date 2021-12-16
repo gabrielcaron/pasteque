@@ -1,3 +1,12 @@
+/**
+ * @file Fichier js servant à la gestion des requetes pour le compte
+ * @author @Gabriel Caron <1861095@csfoy.ca>
+ * @author @Michel Veillette <1965623@csfoy.ca>
+ * @author @Nicolas Thibault <1635751@csfoy.ca>
+
+ * @version 1.2.3
+ *
+ */
 let compte = {
 
     trouverToutCompte(controleur, action, id) {

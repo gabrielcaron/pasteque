@@ -1,3 +1,9 @@
+/**
+ * @file Fichier js servant à la gestion du bouton pour voir le mot de passe
+ * @author @Nicolas Thibault <1635751@csfoy.ca>
+ * @version 1.2.3
+ *
+ */
 const togglePassword = document.querySelector('#togglePassword');
 const password = document.querySelector('#connexionPassword');
 const passwordCreation = document.querySelector('#mot_de_passe');

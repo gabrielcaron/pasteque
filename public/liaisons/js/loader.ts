@@ -1,9 +1,7 @@
 /**
  * @file Fichier js servant à la gestion du loader de page
  * @author @Nicolas Thibault <1635751@csfoy.ca>
-
  * @version 1.2.3
- *
  */
 let loader = document.getElementById("page-loader");
 

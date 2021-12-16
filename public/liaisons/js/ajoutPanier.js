@@ -1,7 +1,6 @@
 /**
  * @file Fichier js servant à l'ajout au panier à partir de la fiche d'un livre
  * @author @Gabriel Caron <1861095@csfoy.ca>
- * @author @Michel Veillette <1965623@csfoy.ca>
  * @version 1.2.3
  *
  */
@@ -63,7 +62,7 @@ var ajoutPanier = {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=livre&action=insererLivre&produit_id=" + refProduitId.value + "&panier_id=" + refPanierId.value + "&quantite=" + refQuantite.value)];
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=livre&action=insererLivre&produit_id=".concat(refProduitId.value, "&panier_id=").concat(refPanierId.value, "&quantite=").concat(refQuantite.value))];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response];

@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 /**
  * @file Fichier js servant à la gestion du stepleft
  * @author @Michel Veillette <1965623@csfoy.ca>
- * @author @Nicolas Thibault <1635751@csfoy.ca>
  * @version 1.2.3
  *
  */
@@ -140,7 +139,7 @@ var gestionStepLeft = {
     /** Continuer de la livraison vers facturation / validation **/
     continuerLivraison: function () {
         var _this = this;
-        if (this.validerChampSectionAdresse('livraison') === true) {
+        if (this.validerChampSectionFormulaire('livraison') === true) {
             gestionStepLeft.remettreAZero();
             refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
             refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
@@ -199,7 +198,7 @@ var gestionStepLeft = {
     /** Continuer de adresse Facturation vers paiement Facturation **/
     continuerAdresseFacturation: function () {
         var _this = this;
-        if (this.validerChampSectionAdresse('facturation') === true) {
+        if (this.validerChampSectionFormulaire('facturation') === true) {
             gestionStepLeft.remettreAZero();
             //Facturation Mettre à jour recap adresse Facturation
             refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
@@ -231,7 +230,7 @@ var gestionStepLeft = {
     },
     /** Continuer de facturation vers validation **/
     continuerFacturation: function () {
-        if (this.validerChampSectionAdresse('paiement') === true) {
+        if (this.validerChampSectionFormulaire('paiement') === true) {
             gestionStepLeft.remettreAZero();
             //Validation : Mettre à jour recap paiement Facturation
             refFacturationTitulaireValidationRecap.innerHTML = refFacturationInputTitulaire.value;
@@ -269,7 +268,7 @@ var gestionStepLeft = {
     /** Confirmer ajouter une adresse de Livraison **/
     confirmerAjouterLivraison: function () {
         var _this = this;
-        if (gestionStepLeft.validerChampSectionAdresse('livraison') === true) {
+        if (gestionStepLeft.validerChampSectionFormulaire('livraison') === true) {
             gestionStepLeft.remettreAZero();
             document.getElementById('continuerLivraison').removeAttribute("style");
             refSectionAnciennesAdressesLivraison.removeAttribute("style");
@@ -302,6 +301,7 @@ var gestionStepLeft = {
             });
         }
     },
+    /** Annuler d'ajouter la livraison **/
     annulerAjouterLivraison: function () {
         gestionStepLeft.remettreAZero();
         refSectionAnciennesAdressesLivraison.removeAttribute("style");
@@ -312,6 +312,7 @@ var gestionStepLeft = {
         refLivraisonInputCodePostal.value = this.adresseLivraisonMemoire[3];
         this.adresseLivraisonMemoire = [];
     },
+    /** Ajouter une adresse de livraison au radio des adresses **/
     ajouterLivraisonAncienAdresse: function () {
         var refLi = document.createElement('li');
         var refInput = document.createElement('input');
@@ -383,8 +384,6 @@ var gestionStepLeft = {
     /** Changer le selected **/
     changerSelected: function (event) {
         var index = event.target.id.charAt(0);
-        console.log(index);
-        console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue'));
         refLivraisonInputAdresse.value = document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue');
         refLivraisonInputVille.value = document.getElementById(index + '_livraisonAncienneAdresse_recapVille').getAttribute('data-ville');
         refLivraisonInputProvince.value = document.getElementById(index + '_livraisonAncienneAdresse_recapProvince').getAttribute('data-province');
@@ -397,7 +396,8 @@ var gestionStepLeft = {
             console.log(refLivraisonId.value);
         });
     },
-    validerChampSectionAdresse: function (livraisoFacturationOuPaiement) {
+    /** Valider les champs d'une section du formulaire **/
+    validerChampSectionFormulaire: function (livraisoFacturationOuPaiement) {
         var _this = this;
         var tableauErreur = [];
         var tableauValider = livraisoFacturationOuPaiement === 'paiement' ? this.tableauChampPaiementId : this.tableauChampAdresseId;
@@ -430,16 +430,18 @@ var gestionStepLeft = {
                 }
             }
         });
-        // console.log(tableauErreur)
         return tableauErreur.length === 0;
     },
+    /** Valider le regex d'un champ **/
     validerAttributPattern: function (pattern, value) {
         return new RegExp(pattern).test(value);
     },
+    /** Trouver une adresse **/
     ajouterAdresse: function (adresse, ville, province, codePostal) {
         var response = fetch("index.php?controleur=requete&classe=stepleft&action=insererAdresse&adresse=".concat(adresse, "&ville=").concat(ville, "&province_id=").concat(province, "&code_postal=").concat(codePostal));
         return response;
     },
+    /** Trouver une adresse en ajax **/
     trouverIdAdresse: function (adresse, ville, province, codePostal) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
@@ -449,7 +451,6 @@ var gestionStepLeft = {
                             .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
-                        // console.log(response)
                         return [2 /*return*/, response];
                 }
             });
@@ -492,7 +493,6 @@ document.getElementById('modifierAdresseLivraison').addEventListener('click', fu
 document.getElementById('modifierAdresseFacturation').addEventListener('click', function () { gestionStepLeft.modifierAdresseFacturation(); });
 document.getElementById('modifierPaiementFacturation').addEventListener('click', function () { gestionStepLeft.modifierPaiementFacturation(); });
 //Radios
-console.log(refRadiosLivraisons);
 for (var i = 0; i < refRadiosLivraisons.length; i++) {
     refRadiosLivraisons[i].addEventListener('click', function () { gestionStepLeft.changerSelected(event); });
 }

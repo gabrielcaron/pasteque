@@ -1,7 +1,6 @@
 /**
  * @file Fichier js servant à la gestion du stepleft
  * @author @Michel Veillette <1965623@csfoy.ca>
- * @author @Nicolas Thibault <1635751@csfoy.ca>
  * @version 1.2.3
  *
  */
@@ -14,7 +13,6 @@ const refSectionRecapAdresseLivraison: HTMLElement = document.getElementById('se
 const refSectionRecapAdresseFacturation: HTMLElement = document.getElementById('sectionRecapAdresseFacturation') as HTMLElement;
 const refSectionRecapPaiement: HTMLElement = document.getElementById('sectionRecapPaiement') as HTMLElement;
 const refSectionRecapPanier: HTMLElement = document.getElementById('sectionRecapPanier') as HTMLElement;
-
 
 const refSectionAdresseLivraison: HTMLElement = document.getElementById('sectionAdresseLivraison') as HTMLElement;
 const refSectionAdresseFacturation: HTMLElement = document.getElementById('sectionAdresseFacturation') as HTMLElement;
@@ -95,7 +93,7 @@ let gestionStepLeft = {
     tableauInputPaiementId: ['nom titulaire', 'numero de carte', 'cvv'],
 
     /** Initialisation du step-left **/
-    initialiser() {
+    initialiser():void {
         gestionStepLeft.remettreAZero();
         if (refLivraisonInputAdresse.value === '') {
             refEtapeLivraison.classList.add('courante');
@@ -113,9 +111,7 @@ let gestionStepLeft = {
             refSectionRecapAdresseFacturation.removeAttribute("style");
             refSectionPaiementFacturation.removeAttribute("style");
             document.getElementById('continuerFacturation').removeAttribute('style');
-        }
-        else
-        {
+        } else {
             refEtapeLivraison.classList.add('complete');
             refEtapeFacturation.classList.add('complete');
             refEtapeValidation.classList.add('courante')
@@ -130,8 +126,8 @@ let gestionStepLeft = {
     },
 
     /** Continuer de la livraison vers facturation / validation **/
-    continuerLivraison() {
-        if (this.validerChampSectionAdresse('livraison')===true) {
+    continuerLivraison():void {
+        if (this.validerChampSectionFormulaire('livraison')===true) {
             gestionStepLeft.remettreAZero();
 
             refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
@@ -196,8 +192,8 @@ let gestionStepLeft = {
     },
 
     /** Continuer de adresse Facturation vers paiement Facturation **/
-    continuerAdresseFacturation() {
-        if(this.validerChampSectionAdresse('facturation') === true) {
+    continuerAdresseFacturation():void {
+        if(this.validerChampSectionFormulaire('facturation') === true) {
             gestionStepLeft.remettreAZero();
 
             //Facturation Mettre à jour recap adresse Facturation
@@ -231,8 +227,8 @@ let gestionStepLeft = {
     },
 
     /** Continuer de facturation vers validation **/
-    continuerFacturation() {
-        if (this.validerChampSectionAdresse('paiement')===true) {
+    continuerFacturation():void {
+        if (this.validerChampSectionFormulaire('paiement')===true) {
             gestionStepLeft.remettreAZero();
 
             //Validation : Mettre à jour recap paiement Facturation
@@ -256,7 +252,7 @@ let gestionStepLeft = {
     },
 
     /** Ajouter une adresse de Livraison **/
-    ajouterLivraison() {
+    ajouterLivraison():void {
         gestionStepLeft.remettreAZero();
         this.adresseLivraisonMemoire[0] = refLivraisonInputAdresse.value;
         this.adresseLivraisonMemoire[1] = refLivraisonInputVille.value;
@@ -274,8 +270,8 @@ let gestionStepLeft = {
     },
 
     /** Confirmer ajouter une adresse de Livraison **/
-    confirmerAjouterLivraison() {
-        if (gestionStepLeft.validerChampSectionAdresse('livraison') === true) {
+    confirmerAjouterLivraison():void {
+        if (gestionStepLeft.validerChampSectionFormulaire('livraison') === true) {
             gestionStepLeft.remettreAZero();
 
             document.getElementById('continuerLivraison').removeAttribute("style");
@@ -312,7 +308,8 @@ let gestionStepLeft = {
         }
     },
 
-    annulerAjouterLivraison (){
+    /** Annuler d'ajouter la livraison **/
+    annulerAjouterLivraison():void {
         gestionStepLeft.remettreAZero();
         refSectionAnciennesAdressesLivraison.removeAttribute("style");
         document.getElementById('continuerModifierAdresseLivraison').removeAttribute('style');
@@ -324,7 +321,8 @@ let gestionStepLeft = {
         this.adresseLivraisonMemoire = [];
     },
 
-    ajouterLivraisonAncienAdresse() {
+    /** Ajouter une adresse de livraison au radio des adresses **/
+    ajouterLivraisonAncienAdresse():void {
         const refLi = document.createElement('li');
         const refInput = document.createElement('input');
         const refLabel = document.createElement('label');
@@ -374,14 +372,14 @@ let gestionStepLeft = {
     },
 
     /** Modifier une adresse de Livraison **/
-    modifierLivraison() {
+    modifierLivraison():void {
         gestionStepLeft.remettreAZero();
         refSectionAnciennesAdressesLivraison.removeAttribute("style");
         document.getElementById('continuerModifierAdresseLivraison').removeAttribute('style');
     },
 
     /** Continuer après avoir modifier une adresse de livraison **/
-    continuerModifierAdresseLivraison(){
+    continuerModifierAdresseLivraison():void {
         gestionStepLeft.remettreAZero();
         refSectionRecapAdresseLivraison.removeAttribute("style");
         refSectionRecapAdresseFacturation.removeAttribute("style");
@@ -390,13 +388,13 @@ let gestionStepLeft = {
     },
 
     /** Modifier une adresse de Facturation **/
-    modifierAdresseFacturation() {
+    modifierAdresseFacturation():void {
         gestionStepLeft.remettreAZero();
         refSectionAdresseFacturation.removeAttribute("style");
     },
 
     /** Modifier un paiement de Facturation **/
-    modifierPaiementFacturation() {
+    modifierPaiementFacturation():void {
         gestionStepLeft.remettreAZero();
         //refSectionRecapAdresseFacturation.removeAttribute("style");
         refSectionPaiementFacturation.removeAttribute("style");
@@ -404,10 +402,8 @@ let gestionStepLeft = {
     },
 
     /** Changer le selected **/
-    changerSelected(event) {
+    changerSelected(event):void {
         let index = event.target.id.charAt(0);
-        console.log(index)
-        console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue'))
         refLivraisonInputAdresse.value = document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue');
         refLivraisonInputVille.value = document.getElementById(index + '_livraisonAncienneAdresse_recapVille').getAttribute('data-ville');
         refLivraisonInputProvince.value = document.getElementById(index + '_livraisonAncienneAdresse_recapProvince').getAttribute('data-province');
@@ -421,7 +417,8 @@ let gestionStepLeft = {
             });
     },
 
-    validerChampSectionAdresse(livraisoFacturationOuPaiement) {
+    /** Valider les champs d'une section du formulaire **/
+    validerChampSectionFormulaire(livraisoFacturationOuPaiement:string):boolean {
         let tableauErreur = [];
         let tableauValider = livraisoFacturationOuPaiement === 'paiement' ? this.tableauChampPaiementId :this.tableauChampAdresseId;
         let tableauRefNom = livraisoFacturationOuPaiement === 'paiement' ? this.tableauInputPaiementId :this.tableauInputAdresseId;
@@ -437,7 +434,7 @@ let gestionStepLeft = {
             document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = '';
 
             if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
-                    this.refInput.classList.add('erreurInput');
+                this.refInput.classList.add('erreurInput');
                 this.refErreur = `Le champ ${tableauRefNom[index]} est obligatoire.`;
                 this.refChampErreur.style = 'display:block;';
                 document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
@@ -458,23 +455,24 @@ let gestionStepLeft = {
 
             }
         });
-       // console.log(tableauErreur)
         return tableauErreur.length === 0;
     },
 
-    validerAttributPattern(pattern, value): boolean {
+    /** Valider le regex d'un champ **/
+    validerAttributPattern(pattern:string, value:string): boolean {
         return new RegExp(pattern).test(value);
     },
 
-    ajouterAdresse(adresse:string, ville:string, province:bigint, codePostal:string) {
+    /** Trouver une adresse **/
+    ajouterAdresse(adresse:string, ville:string, province:bigint, codePostal:string):any {
        let response =  fetch(`index.php?controleur=requete&classe=stepleft&action=insererAdresse&adresse=${adresse}&ville=${ville}&province_id=${province}&code_postal=${codePostal}`);
        return response
     },
 
+    /** Trouver une adresse en ajax **/
     async trouverIdAdresse(adresse:string, ville:string, province:string, codePostal:string) {
         let response =  await fetch(`index.php?controleur=requete&classe=stepleft&action=trouverParChamp&adresse=${adresse}&ville=${ville}&province_id=${province}&code_postal=${codePostal}`)
             .then(response => response.json());
-       // console.log(response)
         return response;
     },
 
@@ -521,8 +519,6 @@ document.getElementById('modifierAdresseFacturation').addEventListener('click', 
 document.getElementById('modifierPaiementFacturation').addEventListener('click', function (){gestionStepLeft.modifierPaiementFacturation()});
 
 //Radios
-console.log(refRadiosLivraisons)
-
 for (let i = 0; i < refRadiosLivraisons.length; i++) {
     refRadiosLivraisons[i].addEventListener('click', function (){ gestionStepLeft.changerSelected(event) });
 }

@@ -145,12 +145,8 @@ let formulaire = {
                 tabErreur.push(false);
             }
         }
-        console.log(tabErreur);
 
         return tabErreur.indexOf(false) === -1;
-/*
-        return tabErreur.indexOf(true) !== -1;
-*/
     },
     validerAttributPattern(pattern, value): boolean {
         return new RegExp(pattern).test(value);

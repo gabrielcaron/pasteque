@@ -3,21 +3,22 @@
  * @author @Gabriel Caron <1861095@csfoy.ca>
  * @author @Michel Veillette <1965623@csfoy.ca>
  * @author @Nicolas Thibault <1635751@csfoy.ca>
-
  * @version 1.2.3
  *
  */
 let compte = {
 
-    trouverToutCompte(controleur, action, id) {
-        console.log('heyyyyyyyyyyyyyyy')
+    /**
+     * Function pour trouver tout d'un compte
+     * @param {string} controleur
+     * @param {string} action
+     * @param {string} id
+     */
+    trouverToutCompte(controleur:string, action:string, id:string) {
         let test = null;
         this.fetchRequest(controleur, action, id).then(function (result){
-            console.log('avant');
             test = result;
-            console.log('apres');
         });
-        console.log(test)
     },
 
     fetchRequest(controleur, action, id) {

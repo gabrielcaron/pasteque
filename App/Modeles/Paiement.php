@@ -18,7 +18,7 @@ class Paiement
 {
     private int $id;
     private string $titulaire;
-    private int $numero_carte;
+    private string $numero_carte;
     private int $mois_expiration;
     private int $annee_expiration;
     private int $cvv;
@@ -44,10 +44,10 @@ class Paiement
     }
 
     // $numero_carte : Getter et setter
-    public function getNumeroCarte():int {
+    public function getNumeroCarte():string {
         return $this->numero_carte;
     }
-    public function setNumeroCarte(int $unNumeroCarte):void {
+    public function setNumeroCarte(string $unNumeroCarte):void {
         $this->numero_carte = $unNumeroCarte;
     }
 
@@ -118,13 +118,13 @@ class Paiement
     /**
      * Méthode pour trouver le paiement id par tout les champs
      * @param string $unTitulaire - Un titulaire
-     * @param int $unNumeroCarte - Un numéro de carte
+     * @param string $unNumeroCarte - Un numéro de carte
      * @param int $unMoisExpiration - Un mois d'expiration
      * @param int $unAnneeExpiration - Une année d'expiration
      * @param int $unCvv - Un cvv
      * @return ?string - L'id ou null
      */
-    public static function trouverParTousLesChamps(string $unTitulaire, int $unNumeroCarte, int $unMoisExpiration, int $unAnneeExpiration, int $unCvv):?string {
+    public static function trouverParTousLesChamps(string $unTitulaire, string $unNumeroCarte, int $unMoisExpiration, int $unAnneeExpiration, int $unCvv):?string {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT id AS id FROM paiements WHERE titulaire = :titulaire AND numero_carte = :numero_carte AND mois_expiration = :mois_expiration AND annee_expiration = :annee_expiration AND cvv = :cvv';
         // Préparer la requête (optimisation)
@@ -154,7 +154,7 @@ class Paiement
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
         $requetePreparee->bindParam(':titulaire', $this->titulaire, PDO::PARAM_STR);
-        $requetePreparee->bindParam(':numero_carte', $this->numero_carte, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':numero_carte', $this->numero_carte, PDO::PARAM_STR);
         $requetePreparee->bindParam(':mois_expiration', $this->mois_expiration, PDO::PARAM_INT);
         $requetePreparee->bindParam(':annee_expiration', $this->annee_expiration, PDO::PARAM_INT);
         $requetePreparee->bindParam(':cvv', $this->cvv, PDO::PARAM_INT);
@@ -174,7 +174,7 @@ class Paiement
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
         $requetePreparee->bindParam(':id', $this->id, PDO::PARAM_INT);
         $requetePreparee->bindParam(':titulaire', $this->titulaire, PDO::PARAM_STR);
-        $requetePreparee->bindParam(':numero_carte', $this->numero_carte, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':numero_carte', $this->numero_carte, PDO::PARAM_STR);
         $requetePreparee->bindParam(':mois_expiration', $this->mois_expiration, PDO::PARAM_INT);
         $requetePreparee->bindParam(':annee_expiration', $this->annee_expiration, PDO::PARAM_INT);
         $requetePreparee->bindParam(':cvv', $this->cvv, PDO::PARAM_INT);

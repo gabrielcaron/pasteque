@@ -114,7 +114,7 @@ class ControleurStepLeft
 
             if ($_POST['paiement_id'] === ''|| ($ancienPaiement->getTitulaire() !== $_POST['facturation_nomTitulaire'] || $ancienPaiement->getNumeroCarte() !== $_POST['facturation_numeroCarte'] || $ancienPaiement->getMoisExpiration() !== $_POST['facturation_moisExpiration'] || $ancienPaiement->getAnneeExpiration() !== $_POST['facturation_anneeExpiration']|| $ancienPaiement->getCvv() !== $_POST['facturation_cvv'])) {
                 if ($_POST['paiement_id'] === ''|| $ancienPaiement->getTitulaire() !== $_POST['facturation_nomTitulaire']) $ancienPaiement->setTitulaire($_POST['facturation_nomTitulaire']);
-                if ($_POST['paiement_id'] === ''|| $ancienPaiement->getNumeroCarte() !== $_POST['facturation_numeroCarte']) $ancienPaiement->setNumeroCarte(intval($_POST['facturation_numeroCarte']));
+                if ($_POST['paiement_id'] === ''|| $ancienPaiement->getNumeroCarte() !== $_POST['facturation_numeroCarte']) $ancienPaiement->setNumeroCarte($_POST['facturation_numeroCarte']);
                 if ($_POST['paiement_id'] === ''|| $ancienPaiement->getMoisExpiration() !== $_POST['facturation_moisExpiration']) $ancienPaiement->setMoisExpiration(intval($_POST['facturation_moisExpiration']));
                 if ($_POST['paiement_id'] === ''|| $ancienPaiement->getAnneeExpiration() !== $_POST['facturation_anneeExpiration']) $ancienPaiement->setAnneeExpiration(intval($_POST['facturation_anneeExpiration']));
                 if ($_POST['paiement_id'] === ''|| $ancienPaiement->getCvv() !== $_POST['facturation_cvv']) $ancienPaiement->setCvv(intval($_POST['facturation_cvv']));
@@ -145,7 +145,7 @@ class ControleurStepLeft
             $compteModifierPanier->setPanierId($panier->getId());
             $compteModifierPanier->mettreAJour();
 
-            header('Location: index.php?controleur=panier&action=confirmation');
+           // header('Location: index.php?controleur=panier&action=confirmation');
         }
 
     }

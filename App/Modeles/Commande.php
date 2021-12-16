@@ -161,6 +161,7 @@ class Commande
 
     /**
      * Méthode pour insérer une commande dans la table commande
+     * @return void
      */
     public function inserer():void {
         // Définir la chaine SQL

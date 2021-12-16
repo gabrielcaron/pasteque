@@ -8,7 +8,7 @@
  *
  */
 declare(strict_types=1);
-
+// Classe utilitaire
 namespace App\Utilitaires;
 
 use App\App;
@@ -20,24 +20,31 @@ class ValiderChampsFormulaire
     {
         // Constructeur vide
     }
+
+    /**
+     * Méthode pour valider si un champ est vide
+     * @param string $unChamp - Le champ à valider
+     * @return bool - True ou false si le champ n'est pas vide
+    */
     public static function verifierSiChampVide(string $unChamp):bool{
         return !($unChamp === '');
     }
-    public static function validerChampRegex($unRegex, $unValueChamp):bool {
-        /*$rgx = [
-            'prenom'=>'#^[ a-zA-ZÀ-ÿ\-‘]+$#',
-            'nom'=>'#^[ a-zA-ZÀ-ÿ\-‘]+$#',
-            'adresse'=>'#^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$#',
-            'ville'=>'#^[a-zA-ZÀ-ÿ0-9 \-]+$#',
-            'pays'=>'',
-            'code_postal'=>'#^[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]$#',
-            'courriel'=>'#^[a-zA-Z0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,}$#',
-            'connexionEmail'=>'#^[a-zA-Z0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,}$#',
-            'connexionPassword'=>'#^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_#!@$%?&*]).{8,}$#',
-            'mot_de_passe'=>'#^[ a-zA-ZÀ-ÿ\-‘]+$#'
-        ];*/
+
+    /**
+     * Méthode pour valider si un champ respecte le regex
+     * @param string $unRegex - Le regex pour la validation
+     * @param string $unValueChamp - Le champ à valider
+     * @return bool - True ou false si le champ respectent le regex
+     */
+    public static function validerChampRegex(string $unRegex, string $unValueChamp):bool {
         return preg_match($unRegex, $unValueChamp) === 1;
     }
+
+    /**
+     * Méthode pour valider tous les champs d'un formulaire à partir d'un json
+     * @param array $tMessagesJson - Le tableau json à valider
+     * @return array - Tableau des résultats de la vérification contenant : Le message (si erreur), la valeur du champ et s'il est valide
+     */
     public static function validerFormulaire(array $tMessagesJson):array{
         $tDonnes = [];
         foreach (array_keys($tMessagesJson) as $champValider) {
@@ -65,16 +72,15 @@ class ValiderChampsFormulaire
         return $tDonnes;
     }
 
+    /**
+     * Méthode pour valider les données d'un tableau pour voir s'il y a des erreurs dans le formualire
+     * @param array $tDonnes - Le tableau à valider
+     * @return array - Tableau des erreurs contenant true ou false si erreurs
+     */
     public static function verifierErreurFormulaire(array $tDonnes):array{
         $tableauErreur = [];
         foreach ($tDonnes as $champ){
-            if($champ['valide'] === false){
-                array_push($tableauErreur, false);
-
-            }
-            else{
-                array_push($tableauErreur, true);
-            }
+            $champ['valide'] === false ? array_push($tableauErreur, false) : array_push($tableauErreur, true);
         }
         return $tableauErreur;
     }

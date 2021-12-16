@@ -117,6 +117,7 @@ class Panier
 
     /**
      * Méthode pour insérer un panier dans la table paniers
+     * @return void
      */
     public function inserer():void {
         // Définir la chaine SQL
@@ -132,6 +133,7 @@ class Panier
 
     /**
      * Méthode pour mettre à jour un panier dans la table paniers
+     * @return void
      */
     public function mettreAJour():void {
         // Définir la chaine SQL

@@ -63,7 +63,10 @@ class Adresse
         $this->code_postal= $unCodePostal;
     }
 
-    //Trouver la province associe à un id
+    /**
+     * Méthode pour trouver la province associe
+     * @return Province - La province
+    */
     public function getProvinceAssocie():Province {
         return Province::trouverParId($this->province_id);
     }
@@ -166,6 +169,7 @@ class Adresse
 
     /**
      * Méthode pour insérer une adresse dans la table adresses
+     * @return void
      */
     public function inserer():void {
         // Définir la chaine SQL
@@ -183,6 +187,7 @@ class Adresse
 
     /**
      * Méthode pour mettre à jour une adresse dans la table adresses
+     * @return void
      */
     public function mettreAJour():void
     {

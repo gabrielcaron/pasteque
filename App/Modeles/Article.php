@@ -148,6 +148,7 @@ class Article
 
     /**
      * Méthode pour insérer un article dans la table articles
+     * @return void
      */
     public function inserer():void {
         // Définir la chaine SQL
@@ -164,6 +165,7 @@ class Article
 
     /**
      * Méthode pour mettre à jour un article dans la table articles
+     * @return void
      */
     public function mettreAJour():void {
 
@@ -181,6 +183,7 @@ class Article
 
     /**
      * Méthode pour supprimer un article dans la table articles
+     * @return void
      */
     public function supprimer():void {
         // Définir la chaine SQL

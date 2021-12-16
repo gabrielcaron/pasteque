@@ -205,6 +205,7 @@ class Compte
 
     /**
      * Méthode pour insérer un compte dans la table comptes
+     * @return void
      */
     public function inserer():void{
         // Définir la chaine SQL
@@ -223,6 +224,7 @@ class Compte
 
     /**
      * Méthode pour mettre à jour un compte dans la table comptes
+     * @return void
      */
     public function mettreAJour():void {
         // Définir la chaine SQL

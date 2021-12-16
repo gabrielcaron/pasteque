@@ -145,7 +145,7 @@ class ControleurStepLeft
             $compteModifierPanier->setPanierId($panier->getId());
             $compteModifierPanier->mettreAJour();
 
-           // header('Location: index.php?controleur=panier&action=confirmation');
+           header('Location: index.php?controleur=panier&action=confirmation');
         }
 
     }

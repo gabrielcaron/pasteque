@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Panier == un enregistrement dans la table paniers
 namespace App\Modeles;
 
 use \PDO;
@@ -117,6 +117,7 @@ class Panier
 
     /**
      * Méthode pour insérer un panier dans la table paniers
+     * @return void
      */
     public function inserer():void {
         // Définir la chaine SQL
@@ -132,6 +133,7 @@ class Panier
 
     /**
      * Méthode pour mettre à jour un panier dans la table paniers
+     * @return void
      */
     public function mettreAJour():void {
         // Définir la chaine SQL

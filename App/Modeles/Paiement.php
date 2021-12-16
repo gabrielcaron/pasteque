@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Paiement == un enregistrement dans la table paiements
 namespace App\Modeles;
 
 use \PDO;
@@ -167,7 +167,6 @@ class Paiement
      */
     public function mettreAJour():void
     {
-
         // Définir la chaine SQL
         $chaineSQL = 'UPDATE paiements SET titulaire=:titulaire, numero_carte=:numero_carte, mois_expiration=:mois_expiration, annee_expiration=:annee_expiration, cvv=:cvv WHERE id=:id';
         // Préparer la requête (optimisation)

@@ -9,12 +9,11 @@
  */
 declare(strict_types=1);
 // Classe modèle
-// Une instance de la classe Participant == un enregistrement dans la table participants
+// Une instance de la classe Categorie == un enregistrement dans la table categories
 namespace App\Modeles;
 
 use App\App;
 use \PDO;
-
 class Categorie
 {
     private int $id;
@@ -55,7 +54,6 @@ class Categorie
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        //var_dump($participants);
         return $requetePreparee->fetchAll();
     }
 

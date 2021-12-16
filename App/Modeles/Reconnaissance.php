@@ -62,9 +62,7 @@ class Reconnaissance
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        $reconnaissances = $requetePreparee->fetchAll();
-        //var_dump($participants);
-        return $reconnaissances;
+        return $requetePreparee->fetchAll();
     }
 
     /**
@@ -86,8 +84,7 @@ class Reconnaissance
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer le résultat
-        $reconnaissances = $requetePreparee->fetchAll();
-        return $reconnaissances;
+        return $requetePreparee->fetchAll();
 
     }
 }

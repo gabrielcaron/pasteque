@@ -8,6 +8,8 @@
  *
  */
 declare(strict_types=1);
+// Classe modèle
+// Une instance de la classe Compte == un enregistrement dans la table comptes
 namespace App\Modeles;
 
 use App\App;
@@ -139,6 +141,26 @@ class Compte
     }
 
     /**
+     * Méthode pour trouver tout de la table comptes
+     * @param int $unId - Un compte id
+     * @return Compte - Tableau du compte
+     */
+    public static function trouverParId(int $unId): Compte
+    {
+        // Définir la chaine SQL
+        $chaineSQL = 'SELECT * FROM comptes WHERE id = :id';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir le mode de récupération
+        $requetePreparee->bindParam(':id', $unId, PDO::PARAM_INT);
+        $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Compte');
+        // Exécuter la requête
+        $requetePreparee->execute();
+        // Récupérer une seule occurrence à la fois
+        return $requetePreparee->fetch();
+    }
+
+    /**
      * Méthode pour trouver un compte par courriel
      * @param string $courriel - Un courriel
      * @return Compte - Un compte
@@ -150,7 +172,7 @@ class Compte
         // Préparer la requête (optimisation)
 
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
-        $requetePreparee->bindParam(':courriel', $courriel, PDO::PARAM_STR); // validation => Sécurité
+        $requetePreparee->bindParam(':courriel', $courriel, PDO::PARAM_STR);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_CLASS, 'App\Modeles\Compte');
         // Exécuter la requête
@@ -171,7 +193,7 @@ class Compte
         // Préparer la requête (optimisation)
 
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
-        $requetePreparee->bindParam(':courriel', $courriel, PDO::PARAM_STR); // validation => Sécurité
+        $requetePreparee->bindParam(':courriel', $courriel, PDO::PARAM_STR);
         // Définir le mode de récupération
         $requetePreparee->setFetchMode(PDO::FETCH_OBJ);
         // Exécuter la requête
@@ -183,6 +205,7 @@ class Compte
 
     /**
      * Méthode pour insérer un compte dans la table comptes
+     * @return void
      */
     public function inserer():void{
         // Définir la chaine SQL
@@ -190,12 +213,31 @@ class Compte
         // Préparer la requête (optimisation)
         $requetePreparee = App::getPDO()->prepare($chaineSQL);
         // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
-        $requetePreparee->bindParam(':prenom', $this->prenom, PDO::PARAM_STR); // validation => Sécurité
-        $requetePreparee->bindParam(':nom', $this->nom, PDO::PARAM_STR); // validation => Sécurité
-        $requetePreparee->bindParam(':courriel', $this->courriel, PDO::PARAM_STR); // validation => Sécurité
-        $requetePreparee->bindParam(':mot_de_passe', $this->mot_de_passe, PDO::PARAM_STR); // validation => Sécurité
-        $requetePreparee->bindParam(':panier_id', $this->panier_id, PDO::PARAM_INT); // validation => Sécurité
+        $requetePreparee->bindParam(':prenom', $this->prenom, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':nom', $this->nom, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':courriel', $this->courriel, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':mot_de_passe', $this->mot_de_passe, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':panier_id', $this->panier_id, PDO::PARAM_INT);
+        // Exécuter la requête
+        $requetePreparee->execute();
+    }
 
+    /**
+     * Méthode pour mettre à jour un compte dans la table comptes
+     * @return void
+     */
+    public function mettreAJour():void {
+        // Définir la chaine SQL
+        $chaineSQL = 'UPDATE comptes SET prenom=:prenom, nom=:nom, courriel=:courriel, mot_de_passe=:mot_de_passe, panier_id=:panier_id WHERE id = :id';
+        // Préparer la requête (optimisation)
+        $requetePreparee = App::getPDO()->prepare($chaineSQL);
+        // Définir la méthode de validation des variables associées aux marqueurs nommés de la requête
+        $requetePreparee->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $requetePreparee->bindParam(':prenom', $this->prenom, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':nom', $this->nom, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':courriel', $this->courriel, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':mot_de_passe', $this->mot_de_passe, PDO::PARAM_STR);
+        $requetePreparee->bindParam(':panier_id', $this->panier_id, PDO::PARAM_INT);
         // Exécuter la requête
         $requetePreparee->execute();
     }

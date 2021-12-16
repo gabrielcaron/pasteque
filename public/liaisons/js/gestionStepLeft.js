@@ -37,9 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 /**
  * @file Fichier js servant à la gestion du stepleft
  * @author @Michel Veillette <1965623@csfoy.ca>
- * @author @Nicolas Thibault <1635751@csfoy.ca>
  * @version 1.2.3
- *
  */
 /** Formulaire : Élément pouvant être en display none pour l'affichage du step-left **/
 var refEtapeLivraison = document.getElementById('etapeLivraison');
@@ -140,7 +138,7 @@ var gestionStepLeft = {
     /** Continuer de la livraison vers facturation / validation **/
     continuerLivraison: function () {
         var _this = this;
-        if (this.validerChampSectionAdresse('livraison') === true) {
+        if (this.validerChampSectionFormulaire('livraison') === true) {
             gestionStepLeft.remettreAZero();
             refLivraisonAdresseValidationRecap.innerHTML = refLivraisonInputAdresse.value;
             refLivraisonVilleValidationRecap.innerHTML = refLivraisonInputVille.value;
@@ -199,7 +197,7 @@ var gestionStepLeft = {
     /** Continuer de adresse Facturation vers paiement Facturation **/
     continuerAdresseFacturation: function () {
         var _this = this;
-        if (this.validerChampSectionAdresse('facturation') === true) {
+        if (this.validerChampSectionFormulaire('facturation') === true) {
             gestionStepLeft.remettreAZero();
             //Facturation Mettre à jour recap adresse Facturation
             refFacturationAdresseFacturationRecap.innerHTML = refFacturationInputAdresse.value;
@@ -231,7 +229,7 @@ var gestionStepLeft = {
     },
     /** Continuer de facturation vers validation **/
     continuerFacturation: function () {
-        if (this.validerChampSectionAdresse('paiement') === true) {
+        if (this.validerChampSectionFormulaire('paiement') === true) {
             gestionStepLeft.remettreAZero();
             //Validation : Mettre à jour recap paiement Facturation
             refFacturationTitulaireValidationRecap.innerHTML = refFacturationInputTitulaire.value;
@@ -269,7 +267,7 @@ var gestionStepLeft = {
     /** Confirmer ajouter une adresse de Livraison **/
     confirmerAjouterLivraison: function () {
         var _this = this;
-        if (gestionStepLeft.validerChampSectionAdresse('livraison') === true) {
+        if (gestionStepLeft.validerChampSectionFormulaire('livraison') === true) {
             gestionStepLeft.remettreAZero();
             document.getElementById('continuerLivraison').removeAttribute("style");
             refSectionAnciennesAdressesLivraison.removeAttribute("style");
@@ -302,6 +300,7 @@ var gestionStepLeft = {
             });
         }
     },
+    /** Annuler d'ajouter la livraison **/
     annulerAjouterLivraison: function () {
         gestionStepLeft.remettreAZero();
         refSectionAnciennesAdressesLivraison.removeAttribute("style");
@@ -312,6 +311,7 @@ var gestionStepLeft = {
         refLivraisonInputCodePostal.value = this.adresseLivraisonMemoire[3];
         this.adresseLivraisonMemoire = [];
     },
+    /** Ajouter une adresse de livraison au radio des adresses **/
     ajouterLivraisonAncienAdresse: function () {
         var refLi = document.createElement('li');
         var refInput = document.createElement('input');
@@ -324,21 +324,21 @@ var gestionStepLeft = {
         var refVille = document.createElement('span');
         var refProvince = document.createElement('span');
         var refCodePostal = document.createElement('span');
-        refInput.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_inputAdresse");
+        refInput.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_inputAdresse"));
         refInput.setAttribute('type', 'radio');
         refInput.setAttribute('name', 'ancienAdresses');
         refInput.checked = true;
         refInput.addEventListener('click', function () { gestionStepLeft.changerSelected(event); });
         refInput.setAttribute('value', parseInt(refNombresLivraisonsCompte.value).toString());
-        refLabel.setAttribute('for', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_inputAdresse");
-        refAdress.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_radioAdresse");
-        refRue.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapAdresse");
+        refLabel.setAttribute('for', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_inputAdresse"));
+        refAdress.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_radioAdresse"));
+        refRue.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapAdresse"));
         refRue.setAttribute('data-rue', refLivraisonInputAdresse.value);
-        refVille.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapVille");
+        refVille.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapVille"));
         refVille.setAttribute('data-ville', refLivraisonInputVille.value);
-        refProvince.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapProvince");
+        refProvince.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapProvince"));
         refProvince.setAttribute('data-province', refLivraisonInputProvince.value);
-        refCodePostal.setAttribute('id', refNombresLivraisonsCompte.value + "_livraisonAncienneAdresse_recapCodePostal");
+        refCodePostal.setAttribute('id', "".concat(refNombresLivraisonsCompte.value, "_livraisonAncienneAdresse_recapCodePostal"));
         refCodePostal.setAttribute('data-codePostal', refLivraisonInputCodePostal.value);
         //refPId.innerHTML = 'NA';
         refRue.innerHTML = refLivraisonInputAdresse.value;
@@ -383,8 +383,6 @@ var gestionStepLeft = {
     /** Changer le selected **/
     changerSelected: function (event) {
         var index = event.target.id.charAt(0);
-        console.log(index);
-        console.log(document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue'));
         refLivraisonInputAdresse.value = document.getElementById(index + '_livraisonAncienneAdresse_recapAdresse').getAttribute('data-rue');
         refLivraisonInputVille.value = document.getElementById(index + '_livraisonAncienneAdresse_recapVille').getAttribute('data-ville');
         refLivraisonInputProvince.value = document.getElementById(index + '_livraisonAncienneAdresse_recapProvince').getAttribute('data-province');
@@ -397,7 +395,8 @@ var gestionStepLeft = {
             console.log(refLivraisonId.value);
         });
     },
-    validerChampSectionAdresse: function (livraisoFacturationOuPaiement) {
+    /** Valider les champs d'une section du formulaire **/
+    validerChampSectionFormulaire: function (livraisoFacturationOuPaiement) {
         var _this = this;
         var tableauErreur = [];
         var tableauValider = livraisoFacturationOuPaiement === 'paiement' ? this.tableauChampPaiementId : this.tableauChampAdresseId;
@@ -412,7 +411,7 @@ var gestionStepLeft = {
             document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = '';
             if (_this.refInput.hasAttribute('required') && _this.refInput.value === '') {
                 _this.refInput.classList.add('erreurInput');
-                _this.refErreur = "Le champ " + tableauRefNom[index] + " est obligatoire.";
+                _this.refErreur = "Le champ ".concat(tableauRefNom[index], " est obligatoire.");
                 _this.refChampErreur.style = 'display:block;';
                 document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
                 document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
@@ -422,7 +421,7 @@ var gestionStepLeft = {
                 var bool = _this.validerAttributPattern(_this.refInput.pattern, _this.refInput.value);
                 if (bool === false) {
                     _this.refInput.classList.add('erreurInput');
-                    _this.refErreur = "Veuillez verifier que la valeur du champ " + tableauRefNom[index] + " correspond aux crit\u00E8res demand\u00E9s.";
+                    _this.refErreur = "Veuillez verifier que la valeur du champ ".concat(tableauRefNom[index], " correspond aux crit\u00E8res demand\u00E9s.");
                     _this.refChampErreur.style = 'display:block;';
                     document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
                     document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
@@ -430,26 +429,27 @@ var gestionStepLeft = {
                 }
             }
         });
-        // console.log(tableauErreur)
         return tableauErreur.length === 0;
     },
+    /** Valider le regex d'un champ **/
     validerAttributPattern: function (pattern, value) {
         return new RegExp(pattern).test(value);
     },
+    /** Trouver une adresse **/
     ajouterAdresse: function (adresse, ville, province, codePostal) {
-        var response = fetch("index.php?controleur=requete&classe=stepleft&action=insererAdresse&adresse=" + adresse + "&ville=" + ville + "&province_id=" + province + "&code_postal=" + codePostal);
+        var response = fetch("index.php?controleur=requete&classe=stepleft&action=insererAdresse&adresse=".concat(adresse, "&ville=").concat(ville, "&province_id=").concat(province, "&code_postal=").concat(codePostal));
         return response;
     },
+    /** Trouver une adresse en ajax **/
     trouverIdAdresse: function (adresse, ville, province, codePostal) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=stepleft&action=trouverParChamp&adresse=" + adresse + "&ville=" + ville + "&province_id=" + province + "&code_postal=" + codePostal)
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=stepleft&action=trouverParChamp&adresse=".concat(adresse, "&ville=").concat(ville, "&province_id=").concat(province, "&code_postal=").concat(codePostal))
                             .then(function (response) { return response.json(); })];
                     case 1:
                         response = _a.sent();
-                        // console.log(response)
                         return [2 /*return*/, response];
                 }
             });
@@ -492,7 +492,6 @@ document.getElementById('modifierAdresseLivraison').addEventListener('click', fu
 document.getElementById('modifierAdresseFacturation').addEventListener('click', function () { gestionStepLeft.modifierAdresseFacturation(); });
 document.getElementById('modifierPaiementFacturation').addEventListener('click', function () { gestionStepLeft.modifierPaiementFacturation(); });
 //Radios
-console.log(refRadiosLivraisons);
 for (var i = 0; i < refRadiosLivraisons.length; i++) {
     refRadiosLivraisons[i].addEventListener('click', function () { gestionStepLeft.changerSelected(event); });
 }

@@ -34,6 +34,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+/**
+ * @file Fichier js servant à la gestion des validations de formulaires
+ * @author @Michel Veillette <1965623@csfoy.ca>
+ * @author @Nicolas Thibault <1635751@csfoy.ca>
+
+ * @version 1.2.3
+ *
+ */
 var formulaire = {
     refInput: null,
     refErreur: '',

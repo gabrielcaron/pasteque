@@ -1,4 +1,11 @@
 <?php
+/**
+ * @file Classe qui sert à démarrer la session, initialiser PDO, Blades One, et de router requete * @author @Nicolas Thibault <1635157@csfoy.ca>
+ * @author @Gabriel Caron <1861095@csfoy.ca>
+ * @author @Michel Veillette <1965623@csfoy.ca>
+ * @version 1.2.3
+ *
+ */
 declare(strict_types=1);
 namespace App;
 use App\Controleurs\ControleurArticle;

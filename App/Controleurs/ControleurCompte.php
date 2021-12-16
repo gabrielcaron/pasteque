@@ -1,4 +1,12 @@
 <?php
+/**
+ * @file Controleur qui sert à gérer les comptes
+ * @author @Nicolas Thibault <1635157@csfoy.ca>
+ * @author @Gabriel Caron <1861095@csfoy.ca>
+ * @author @Michel Veillette <1965623@csfoy.ca>
+ * @version 1.2.3
+ *
+ */
 declare(strict_types=1);
 
 namespace App\Controleurs;

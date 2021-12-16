@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * @file Classe qui sert à instancier les événements
+ * @author @Nicolas Thibault <1635157@csfoy.ca>
+ * @author @Gabriel Caron <1861095@csfoy.ca>
+ * @author @Michel Veillette <1965623@csfoy.ca>
+ * @version 1.2.3
+ *
+ */
 namespace App\Modeles;
 
 use App\App;

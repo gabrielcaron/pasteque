@@ -39,10 +39,13 @@
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}_codePostal" class="champ__etiquette">Code Postal</label>
         <input class="champ__input @if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_codePostal']['message'] !== '') erreurInput @endif" id="{{$livraisonOuFacturation}}_codePostal" name="{{$livraisonOuFacturation}}_codePostal" type="text"
-               autocomplete="codePostal" required="required" pattern="^[A-Za-z]{1}[0-9]{1}[A-Za-z]{1} [0-9]{1}[A-Za-z]{1}[0-9]{1}$" aria-labelledby="{{$livraisonOuFacturation}}_messagesCodePostal" min="2" placeholder="Ex: G1W 4S2"
+               autocomplete="codePostal" required="required" pattern="^[A-Za-z]{1}[0-9]{1}[A-Za-z]{1} [0-9]{1}[A-Za-z]{1}[0-9]{1}$" aria-labelledby="{{$livraisonOuFacturation}}_messagesCodePostal" min="2"
                @if($tValidation !== null) value="{{$tValidation[$livraisonOuFacturation . '_codePostal']['valeur']}}" @else value="{{$codePostal}}" @endif/>
     </div>
     <div id="{{$livraisonOuFacturation}}_messagesCodePostal" class="champ__messages @if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_codePostal']['message'] !== '') erreur @endif">
         <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_codePostal']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_codePostal']['message'] !== '') {{$tValidation[$livraisonOuFacturation . '_codePostal']['message']}} @endif</p>
+        <p class="champ__message-aide">
+            Ex: G1W 4S2
+        </p>
     </div>
 </div>

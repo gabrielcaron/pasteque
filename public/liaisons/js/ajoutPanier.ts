@@ -1,3 +1,10 @@
+/**
+ * @file Fichier js servant à l'ajout au panier à partir de la fiche d'un livre
+ * @author @Gabriel Caron <1861095@csfoy.ca>
+ * @author @Michel Veillette <1965623@csfoy.ca>
+ * @version 1.2.3
+ *
+ */
 // Ajout au panier lorsque JS est activé, affiche la fenêtre modale
 
 const refFormulaire: HTMLButtonElement = document.getElementById("formulaireAjoutPanier") as HTMLButtonElement;

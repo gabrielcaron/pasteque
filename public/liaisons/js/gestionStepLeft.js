@@ -34,6 +34,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+/**
+ * @file Fichier js servant à la gestion du stepleft
+ * @author @Michel Veillette <1965623@csfoy.ca>
+ * @author @Nicolas Thibault <1635751@csfoy.ca>
+ * @version 1.2.3
+ *
+ */
 /** Formulaire : Élément pouvant être en display none pour l'affichage du step-left **/
 var refEtapeLivraison = document.getElementById('etapeLivraison');
 var refEtapeFacturation = document.getElementById('etapeFacturation');

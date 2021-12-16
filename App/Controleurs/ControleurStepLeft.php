@@ -36,7 +36,6 @@ class ControleurStepLeft
         else{
             $tValidation = $_SESSION['tValidation'] ?? null;
             unset($_SESSION['tValidation']);
-            var_dump($tValidation);
             $panier = Panier::trouverParIdSession(session_id());
             $articles = $panier->getArticlesAssocies();
             $prixTotal = 0;
@@ -142,9 +141,10 @@ class ControleurStepLeft
             $commande->inserer();
 
 
+            /**
+             * Message à Michelle. Avoir eu le temps, j'aurais changé notre bd pour avoir un panier_id dans commande.
+            */
             session_regenerate_id();
-
-
             $nouveauPanier =  new Panier;
             $nouveauPanier->setIdSession(session_id());
             $nouveauPanier->setDateUnix(time());

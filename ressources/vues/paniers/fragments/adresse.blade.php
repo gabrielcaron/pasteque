@@ -24,7 +24,7 @@
 <div id="{{$livraisonOuFacturation}}_champProvince" class="champ champ--4c">
     <div class="champ__boite">
         <label for="{{$livraisonOuFacturation}}_province" class="champ__etiquette">Province</label>
-        <select class="champ__input  @if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_province']['message'] !== '') erreurInput @endif" id="{{$livraisonOuFacturation}}_province" name="{{$livraisonOuFacturation}}_province" required="required" aria-labelledby="{{$livraisonOuFacturation}}_messagesProvince">
+        <select class="champ__input @if($tValidation !== null && $tValidation[$livraisonOuFacturation . '_province']['message'] !== '') erreurInput @endif" id="{{$livraisonOuFacturation}}_province" name="{{$livraisonOuFacturation}}_province" required="required" aria-labelledby="{{$livraisonOuFacturation}}_messagesProvince">
             <option value="" @if($provinceChoisi === '') selected @endif>Veuillez choisir une province</option>
             @foreach($provinces as $province)
                 <option id="{{$livraisonOuFacturation}}_province_{{$province->getId()}}" value="{{$province->getId()}}" @if($tValidation !== null && intval($tValidation[$livraisonOuFacturation . '_province']['valeur']) === $province->getId()) selected @elseif(intval($provinceChoisi) === $province->getId()) selected @endif>{{$province->getNom()}}</option>

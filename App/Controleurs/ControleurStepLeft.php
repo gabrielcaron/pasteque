@@ -141,6 +141,20 @@ class ControleurStepLeft
             $commande->setDateUnixCommande(time());
             $commande->inserer();
 
+
+            session_regenerate_id();
+
+
+            $nouveauPanier =  new Panier;
+            $nouveauPanier->setIdSession(session_id());
+            $nouveauPanier->setDateUnix(time());
+            $nouveauPanier->inserer();
+
+            $panier = Panier::trouverParIdSession(session_id());
+            $compteModifierPanier = Compte::trouverParId(intval($_POST['compte_id']));
+            $compteModifierPanier->setPanierId($panier->getId());
+            $compteModifierPanier->mettreAJour();
+
             header('Location: index.php?controleur=panier&action=confirmation');
         }
 

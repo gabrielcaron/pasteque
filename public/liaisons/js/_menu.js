@@ -44,7 +44,6 @@ var menu = {
         this.refBouton.addEventListener('click', function () {
             menu.ouvrirFermerNav();
         });
-        console.log("configurerNav")
 
         //this.refBouton.addEventListener('click', this.ouvrirFermerNav.bind(this));
     },
@@ -74,7 +73,7 @@ var menu = {
                     document.getElementById('apropos').classList.add('activeMenuItem');
                     break;
             }
-        } else {
+        } else if(document.getElementById(controleur) !== null) {
             document.getElementById(controleur).classList.add('activeMenuItem');
         }
     },

@@ -163,3 +163,9 @@
     </section>
 @endsection
 
+@section('scripts')
+    <script src="liaisons/js/_tabsection.js"></script>
+    <script src="liaisons/js/validationFormulaire.js" type="text/javascript"></script>
+    <script src="liaisons/js/password.js"></script>
+@endsection
+

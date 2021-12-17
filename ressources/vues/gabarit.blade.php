@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     </head>
     <body class="@yield('classeBody') js">
+        @yield('scriptLoader')
         <header class="entete">
             @include('fragments.entete')
         </header>
@@ -27,15 +28,7 @@
         </footer>
         @yield('scripts')
         <script src="liaisons/js/_menu.js"></script>
-        <script src="liaisons/js/_tabsection.js"></script>
-        <script src="liaisons/js/livres.ts"></script>
         <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>
-        <script src="liaisons/js/productPage.js" type="text/javascript"></script>
-        <script src="liaisons/js/validationFormulaire.js" type="text/javascript"></script>
-        <script src="liaisons/js/compte.js" ></script>
-        <script src="liaisons/js/password.js"></script>
-        <script src="liaisons/js/loader.js" ></script>
-        <script src="liaisons/js/gestionStepLeft.js" type="text/javascript"></script>
         <script>
             document.body.classList.add('js');
         </script>

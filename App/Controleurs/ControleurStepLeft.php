@@ -132,7 +132,7 @@ class ControleurStepLeft
 
             /**
              * Message à Michelle. Avoir eu le temps, j'aurais changée notre bd pour avoir un panier_id dans la table
-             * commandes afin de savoir ce qu'il y avait dans le panier associe a la commande.
+             * commandes afin de savoir ce qu'il y avait dans le panier associe à la commande.
             */
             session_regenerate_id();
             $nouveauPanier =  new Panier;

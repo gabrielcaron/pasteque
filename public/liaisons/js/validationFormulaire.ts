@@ -18,7 +18,7 @@ let formulaire = {
     formulaireConnexionValide: false,
 
 
-    async validerCourriel(courriel) {
+     async validerCourriel(courriel:string) {
         let response = await fetch(`index.php?controleur=validercourriel&action=index&courriel=${courriel}`)
                                 .then(response=>response.json());
         console.log(response);
@@ -26,16 +26,17 @@ let formulaire = {
             this.refChampErreur = document.getElementById('champEmail').querySelector('.champ__message-erreur');
             this.refChampErreur.display = 'block';
         }
+         console.log(response.isValidEmail)
         return response.isValidEmail
     },
 
-    async validerConnexionCourriel(courriel) {
+    async validerConnexionCourriel(courriel:string) {
         let response = await fetch(`index.php?controleur=validercourriel&action=connexion&courriel=${courriel}`)
             .then(response => response.json())
         return response;
     },
 
-    validerConnexion() {
+    validerConnexion():boolean {
         this.refInput = document.getElementById('champConnexionEmail').querySelector('input');
         this.refChampErreur = document.getElementById('champConnexionEmail').querySelector('.champ__message-erreur');
         this.refChampErreur.style = 'display:none;';
@@ -91,7 +92,7 @@ let formulaire = {
         return this.formulaireConnexionValide;
     },
 
-    validerInput(id) {
+    validerInput(id:string) {
         this.refInput = document.getElementById(id).querySelector('input');
         this.refChampErreur = document.getElementById(id).querySelector('.champ__message-erreur');
 
@@ -131,7 +132,7 @@ let formulaire = {
             });
         }
     },
-    validerFormulaire() {
+    validerFormulaire():boolean {
         let tabErreur = [];
         for (let i = 0; i < this.refTableauChampGlobal.length; i++) {
             this.validerInput(this.refTableauChampGlobal[i]);
@@ -148,10 +149,10 @@ let formulaire = {
 
         return tabErreur.indexOf(false) === -1;
     },
-    validerAttributPattern(pattern, value): boolean {
+    validerAttributPattern(pattern:string, value:string): boolean {
         return new RegExp(pattern).test(value);
     },
-    reinitialiserChamp(){
+    reinitialiserChamp():void{
         for (let i = 0; i < this.refTableauChamp.length; i++) {
             document.getElementById(this.refTableauChamp[i]).innerHTML === '';
         }

@@ -58,6 +58,20 @@ class Panier
     }
 
     /**
+     * Méthode pour calculer le nombre d'articles dans un panier
+     * @return int - Nom d'articles associés
+     */
+    public function getNbItemsPanier():?int {
+        $panier = Panier::trouverParIdSession(session_id());
+        $articles = $panier->getArticlesAssocies();
+        $nombreArticles = 0;
+        foreach ($articles as $article) {
+            $nombreArticles += $article->getQuantite();
+        }
+        return $nombreArticles;
+    }
+
+    /**
      * Méthode pour trouver tout dans la table paniers
      * @return array - Tableau des paniers
      */

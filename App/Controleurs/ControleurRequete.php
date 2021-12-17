@@ -13,6 +13,7 @@ namespace App\Controleurs;
 use App\App;
 use App\Modeles\Adresse;
 use App\Modeles\Article;
+use App\Modeles\Panier;
 use App\Modeles\Compte;
 use App\Modeles\Livre;
 use App\Modeles\Paiement;
@@ -64,13 +65,14 @@ class ControleurRequete
             $monNouvelArticle->setPanierId(intval($_GET['panier_id']));
             $monNouvelArticle->setQuantite(intval($_GET['quantite']));
             $monNouvelArticle->inserer();
+            $_SESSION['nbItemsPanier'] = Panier::trouverParIdSession(session_id())->getNbItemsPanier();
         }
         else {
             $ancienArticle = Article::trouverParIdProduitIdPanier(intval($_GET['panier_id']), intval($_GET['produit_id']));
             $quantite = $ancienArticle->getQuantite() + intval($_GET['quantite']) <= 10 ? $ancienArticle->getQuantite() + intval($_GET['quantite']) : 10 ;
             $ancienArticle->setQuantite($quantite);
             $ancienArticle->mettreAJour();
+            $_SESSION['nbItemsPanier'] = Panier::trouverParIdSession(session_id())->getNbItemsPanier();
         }
     }
-
 }

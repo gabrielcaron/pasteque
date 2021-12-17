@@ -84,7 +84,6 @@ let gestionStepLeft = {
     paiementCompleted: false,
     adresseLivraisonMemoire: [],
 
-
     tableauChampAdresseId: ['_champAdresse', '_champVille', '_champProvince', '_champCodePostal'],
     tableauInputAdresseId: ['adresse', 'ville', 'province', 'code postal'],
 
@@ -94,6 +93,7 @@ let gestionStepLeft = {
     /** Initialisation du step-left **/
     initialiser():void {
         gestionStepLeft.remettreAZero();
+        gestionStepLeft.ajouterEcouteurs();
         if (refLivraisonInputAdresse.value === '') {
             refEtapeLivraison.classList.add('courante');
             refSectionAdresseLivraison.removeAttribute("style");
@@ -300,7 +300,6 @@ let gestionStepLeft = {
                 .then(response => {
                     this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
                         .then(response=> {
-                            // console.log(response)
                             refLivraisonId.value = response;
                         });
                 })
@@ -413,7 +412,8 @@ let gestionStepLeft = {
             });
     },
 
-    validerInput(prefixe: string, id: string, nom:string) {
+    /** Valider un input **/
+    validerInput(prefixe: string, id: string, nom:string):boolean {
         let erreur = false;
         this.refInput = document.getElementById(prefixe + id).querySelector('input') === null ? document.getElementById(prefixe + id).querySelector('select') :document.getElementById(prefixe + id).querySelector('input');
         this.refChampErreur = document.getElementById(prefixe + id).querySelector('.champ__message-erreur');
@@ -477,6 +477,19 @@ let gestionStepLeft = {
         let response =  await fetch(`index.php?controleur=requete&classe=stepleft&action=trouverParChamp&adresse=${adresse}&ville=${ville}&province_id=${province}&code_postal=${codePostal}`)
             .then(response => response.json());
         return response;
+    },
+
+    /** Ajouter tous les écouteurs d'événements focusout **/
+    ajouterEcouteurs():void {
+        this.tableauChampAdresseId.forEach((input, index) =>{
+            let nomChamp = this.tableauInputAdresseId[index];
+            document.getElementById('livraison' + input).addEventListener('focusout', function(){gestionStepLeft.validerInput('livraison', input, nomChamp)});
+            document.getElementById('facturation' + input).addEventListener('focusout', function(){gestionStepLeft.validerInput('facturation', input, nomChamp)});
+        })
+        this.tableauChampPaiementId.forEach((input, index) =>{
+            let nomChamp = this.tableauInputPaiementId[index];
+            document.getElementById('facturation' + input).addEventListener('focusout', function(){gestionStepLeft.validerInput('facturation', input, nomChamp)});
+        })
     },
 
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/

@@ -103,6 +103,7 @@ var gestionStepLeft = {
     /** Initialisation du step-left **/
     initialiser: function () {
         gestionStepLeft.remettreAZero();
+        gestionStepLeft.ajouterEcouteurs();
         if (refLivraisonInputAdresse.value === '') {
             refEtapeLivraison.classList.add('courante');
             refSectionAdresseLivraison.removeAttribute("style");
@@ -294,7 +295,6 @@ var gestionStepLeft = {
                 .then(function (response) {
                 _this.trouverIdAdresse(refLivraisonInputAdresse.value, refLivraisonInputVille.value, parseInt(refLivraisonInputProvince.value), refLivraisonInputCodePostal.value)
                     .then(function (response) {
-                    // console.log(response)
                     refLivraisonId.value = response;
                 });
             });
@@ -392,6 +392,7 @@ var gestionStepLeft = {
             refLivraisonId.value = response;
         });
     },
+    /** Valider un input **/
     validerInput: function (prefixe, id, nom) {
         var erreur = false;
         this.refInput = document.getElementById(prefixe + id).querySelector('input') === null ? document.getElementById(prefixe + id).querySelector('select') : document.getElementById(prefixe + id).querySelector('input');
@@ -457,6 +458,19 @@ var gestionStepLeft = {
                         return [2 /*return*/, response];
                 }
             });
+        });
+    },
+    /** Ajouter tous les écouteurs d'événements focusout **/
+    ajouterEcouteurs: function () {
+        var _this = this;
+        this.tableauChampAdresseId.forEach(function (input, index) {
+            var nomChamp = _this.tableauInputAdresseId[index];
+            document.getElementById('livraison' + input).addEventListener('focusout', function () { gestionStepLeft.validerInput('livraison', input, nomChamp); });
+            document.getElementById('facturation' + input).addEventListener('focusout', function () { gestionStepLeft.validerInput('facturation', input, nomChamp); });
+        });
+        this.tableauChampPaiementId.forEach(function (input, index) {
+            var nomChamp = _this.tableauInputPaiementId[index];
+            document.getElementById('facturation' + input).addEventListener('focusout', function () { gestionStepLeft.validerInput('facturation', input, nomChamp); });
         });
     },
     /** Remet à display none toutes les étapes et section d'étapes nécessaires **/

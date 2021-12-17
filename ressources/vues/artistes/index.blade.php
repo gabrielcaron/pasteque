@@ -27,11 +27,11 @@
                     <ul class="formulaire__listeModes selecteur" id="modesAffichage">
                         <li class="bloc">
                             <input  onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="vignette" value="vignette" name="choixVue" type="radio" @if($choixVue === 'vignette') checked @endIf>
-                            <label  class="libelle selecteur__enfant vignettes" for="vignette">Vue en vignette</label>
+                            <label  class="libelle selecteur__enfant vignettes" for="vignette">Vignettes</label>
                         </li>
                         <li class="bloc">
                             <input onchange="document.getElementById('formTri').submit()" class="radio screen-reader-only" id="liste" value="liste" name="choixVue" type="radio" @if($choixVue === 'liste') checked @endIf>
-                            <label class="libelle selecteur__enfant liste" for="liste">Vue en liste</label>
+                            <label class="libelle selecteur__enfant liste" for="liste">Liste</label>
                         </li>
                     </ul>
                 </fieldset>

@@ -10,11 +10,19 @@
 //*******************
 
 var menu = {
-    lblMenuFerme: '<div class="menu__flex"><img src="liaisons/images/menuicone.png"><span class="menu__flexOuvert">MENU</span></div>',
-    lblMenuOuvert: '<div class="menu__flex"><span>X</span><span class="menu__flexFerme">FERMER</span></div>',
+    lblMenuFerme: '<svg class="iconeSVG" width="49" height="33" viewBox="0 0 49 33" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
+        '<line y1="1.5" x2="49" y2="1.5" stroke="#0050AF" stroke-width="3"/>\n' +
+        '<line y1="15.8478" x2="49" y2="15.8478" stroke="#0050AF" stroke-width="3"/>\n' +
+        '<line y1="31.5" x2="49" y2="31.5" stroke="#0050AF" stroke-width="3"/>\n' +
+        '</svg>\n<span class="menu__flexLibelleTexte">MENU</span>',
+    lblMenuOuvert: '<svg class="iconeSVG" width="36" height="33" viewBox="0 0 36 33" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
+        '<line x1="1.93934" y1="31.9393" x2="31.9393" y2="1.93934" stroke="#0050AF" stroke-width="3"/>\n' +
+        '<line x1="4.06066" y1="1.93934" x2="34.0607" y2="31.9393" stroke="#0050AF" stroke-width="3"/>\n' +
+        '</svg>\n<span class="menu__flexLibelleTexte">FERMER</span>',
     refBouton: null,
     refLibelle: null,
     refMenu: null,
+    refEntete: null,
 
     configurerNav: function () {
 
@@ -22,6 +30,7 @@ var menu = {
 
         // On sélectionne le menu dans le HTML
         this.refMenu = document.querySelector(".menu");
+        this.refEntete = document.querySelector(".entete");
 
         // Création du bouton et du libellé
         this.refBouton = document.createElement("button");
@@ -50,9 +59,10 @@ var menu = {
 
     ouvrirFermerNav: function () {
         // On bascule la classe de fermeture du menu
+        this.refEntete.classList.toggle("menu--ouvert"); // Pour baisser la page dans le flux lorsque le menu est ouvert
         this.refMenu.classList.toggle("menu--ferme");
 
-        // On change le libellé du bouton selon l'état du menu
+
         // On change le libellé du bouton selon l'état du menu
         if (this.refMenu.classList.contains("menu--ferme")) {
             this.refLibelle.innerHTML = this.lblMenuFerme;

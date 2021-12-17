@@ -21,21 +21,20 @@
   @media screen and (min-width: $desktop1000px) {
 	@include paddingConteneur;
   }
-	&__flex{
-		display: grid;
-
-		&Ferme{
-			font-size: 16px;
-		}
-		&Ouvert{
-			font-size: 16px;
-			color: black!important;
-		}
+	&__flexLibelleTexte {
+	  padding-top: 0.25rem;
 	}
 
   &__libelle {
-	font-size: 35px;
-	color: $bleuRoyal;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.6rem;
+	font-family: $RobotoBold;
+	letter-spacing: 0.05em;
+
+	& .iconeSVG {
+	  margin: 0 auto;
+	}
   }
 
   &__entete {
@@ -137,13 +136,13 @@
 
 	&Item {
 	  background-color: $blanc;
-	  //border-bottom: 5px solid $bleuRoyal;
+	  border-bottom: 5px solid $bleuRoyal;
 
-	  //@media (max-width: $desktop1000px - 1) {
-		//&:nth-child(1) {
-		//  border-top: 5px solid $bleuRoyal;
-		//}
-	  //}
+	  @media (max-width: $desktop1000px - 1) {
+		&:nth-child(1) {
+		  border-top: 5px solid $bleuRoyal;
+		}
+	  }
 
 	  @media (min-width: $desktop1000px) {
 		display: inline-block;
@@ -171,7 +170,7 @@
 	padding: 1rem 2rem 0.3em 2rem;
 	width: 100%;
 	border-bottom: 5px solid transparent;
-	  transition: all .3s ease-out;
+	transition: 200ms background-color ease-in-out;
 
 	@media screen and (min-width: $mobile600px) {
 	  margin-right: 3rem;
@@ -200,14 +199,12 @@
 	&:active {
 	  background-color: $bleuRoyal;
 	  color: $blanc;
-		transform: translate(0, -5px);
 
 	  @media screen and (min-width: $desktop1000px) {
 		border-bottom: 5px solid #CCCCCC;
 		background-color: initial;
 		color: initial;
 	  }
-	  transition: 0.3s;
 	}
 
 	&:focus {
@@ -215,7 +212,6 @@
 	}
 
 	&--actif {
-
 	  border-bottom: 5px solid $bleuRoyal;
 	}
   }
@@ -266,25 +262,6 @@ header {
 	flex-basis: initial;
   }
 }
-//
-//.fa {
-//  display: inline-block;
-//  font: normal normal normal 14 px/1 FontAwesome;
-//  font-size: 25px !important;
-//  text-rendering: auto;
-//  -webkit-font-smoothing: antialiased;
-//  -moz-osx-font-smoothing: grayscale;
-//}
-//.user{
-//	display: flex!important;
-//}
-//.fa-shopping-cart, .user{
-//	transition: all .3s ease-out;
-//	&:hover{
-//		transform: translate(0, -5px);
-//		opacity: 0.5;
-//	}
-//}
 
 /* Si le javascript est activé */
 
@@ -296,7 +273,7 @@ header {
 .js .menu__liste {
   max-height: 100vh;
   overflow: hidden;
-  transition: max-height 0.5s;
+  transition: all 400ms ease-in-out;
   text-align: left;
 }
 

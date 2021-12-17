@@ -24,4 +24,14 @@
 	align-items: center;
 	gap: 2rem;
   }
+
+  & .topNavLink {
+	margin-top: 0;
+	transition: 400ms all ease-in-out;
+  }
+
+  &.menu--ouvert .topNavLink {
+	margin-top: 42rem;
+
+  }
 }

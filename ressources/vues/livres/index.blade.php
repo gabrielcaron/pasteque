@@ -186,3 +186,8 @@
     </section>
 @endsection
 
+@section('scripts')
+    <script src="liaisons/js/loader.js" ></script>
+    <script src="liaisons/js/livres.ts"></script>
+@endsection
+

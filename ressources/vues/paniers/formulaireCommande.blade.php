@@ -37,3 +37,7 @@
         </fieldset>
     </form>
 @endsection
+
+@section('scripts')
+    <script src="liaisons/js/gestionStepLeft.js" type="text/javascript"></script>
+@endsection

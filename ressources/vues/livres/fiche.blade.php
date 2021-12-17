@@ -217,6 +217,7 @@
 
 @section('scripts')
     @include('livres.fragments.panier')
+    <script src="liaisons/js/productPage.js" type="text/javascript"></script>
     <script src="../public/liaisons/js/ajoutPanier.js" type="text/javascript"></script>
 @endsection
 

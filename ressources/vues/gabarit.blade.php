@@ -25,6 +25,7 @@
             @include('fragments.infolettre')
             @include('fragments.pieddepage')
         </footer>
+
         @yield('scripts')
         <script src="liaisons/js/_menu.js"></script>
         <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>

@@ -392,6 +392,35 @@ var gestionStepLeft = {
             refLivraisonId.value = response;
         });
     },
+    validerInput: function (prefixe, id, nom) {
+        var erreur = false;
+        this.refInput = document.getElementById(prefixe + id).querySelector('input') === null ? document.getElementById(prefixe + id).querySelector('select') : document.getElementById(prefixe + id).querySelector('input');
+        this.refChampErreur = document.getElementById(prefixe + id).querySelector('.champ__message-erreur');
+        this.refInput.classList.remove('erreurInput');
+        this.refChampErreur.style = 'display:none;';
+        document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.remove('erreur');
+        document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = '';
+        if (this.refInput.hasAttribute('required') && this.refInput.value === '') {
+            this.refInput.classList.add('erreurInput');
+            this.refErreur = "Le champ ".concat(nom, " est obligatoire.");
+            this.refChampErreur.style = 'display:block;';
+            document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
+            document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;
+            erreur = true;
+        }
+        else if (this.refInput.hasAttribute('pattern') && this.validerAttributPattern(this.refInput.pattern, this.refInput.value) === false) {
+            var bool = this.validerAttributPattern(this.refInput.pattern, this.refInput.value);
+            if (bool === false) {
+                this.refInput.classList.add('erreurInput');
+                this.refErreur = "Veuillez verifier que la valeur du champ ".concat(nom, " correspond aux crit\u00E8res demand\u00E9s.");
+                this.refChampErreur.style = 'display:block;';
+                document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
+                document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = this.refErreur;
+                erreur = true;
+            }
+        }
+        return erreur;
+    },
     /** Valider les champs d'une section du formulaire **/
     validerChampSectionFormulaire: function (livraisoFacturationOuPaiement) {
         var _this = this;
@@ -400,30 +429,8 @@ var gestionStepLeft = {
         var tableauRefNom = livraisoFacturationOuPaiement === 'paiement' ? this.tableauInputPaiementId : this.tableauInputAdresseId;
         var prefixe = livraisoFacturationOuPaiement === 'paiement' ? 'facturation' : livraisoFacturationOuPaiement;
         tableauValider.forEach(function (id, index) {
-            _this.refInput = document.getElementById(prefixe + id).querySelector('input') === null ? document.getElementById(prefixe + id).querySelector('select') : document.getElementById(prefixe + id).querySelector('input');
-            _this.refChampErreur = document.getElementById(prefixe + id).querySelector('.champ__message-erreur');
-            _this.refInput.classList.remove('erreurInput');
-            _this.refChampErreur.style = 'display:none;';
-            document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.remove('erreur');
-            document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = '';
-            if (_this.refInput.hasAttribute('required') && _this.refInput.value === '') {
-                _this.refInput.classList.add('erreurInput');
-                _this.refErreur = "Le champ ".concat(tableauRefNom[index], " est obligatoire.");
-                _this.refChampErreur.style = 'display:block;';
-                document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
-                document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
+            if (_this.validerInput(prefixe, id, tableauRefNom[index]) === true) {
                 tableauErreur.push(true);
-            }
-            else if (_this.refInput.hasAttribute('pattern') && _this.validerAttributPattern(_this.refInput.pattern, _this.refInput.value) === false) {
-                var bool = _this.validerAttributPattern(_this.refInput.pattern, _this.refInput.value);
-                if (bool === false) {
-                    _this.refInput.classList.add('erreurInput');
-                    _this.refErreur = "Veuillez verifier que la valeur du champ ".concat(tableauRefNom[index], " correspond aux crit\u00E8res demand\u00E9s.");
-                    _this.refChampErreur.style = 'display:block;';
-                    document.getElementById(prefixe + id).querySelector('.champ__message-erreur').classList.add('erreur');
-                    document.getElementById(prefixe + id).querySelector('.champ__message-erreur').innerHTML = _this.refErreur;
-                    tableauErreur.push(true);
-                }
             }
         });
         return tableauErreur.length === 0;
@@ -471,8 +478,8 @@ var gestionStepLeft = {
     },
 };
 /*************************************************************************************
-************************ Écouteurs d'événements du step-left *************************
-**************************************************************************************/
+ ************************ Écouteurs d'événements du step-left *************************
+ **************************************************************************************/
 //Load
 window.addEventListener('load', function () { gestionStepLeft.initialiser(); });
 //Livraison : Écouteurs d'événements

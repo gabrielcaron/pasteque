@@ -4,20 +4,11 @@
     livresIndex
 @endsection
 
+@section('scriptLoader')
+    <script src="liaisons/js/creationLoader.js"></script>
+@endsection
+
 @section('contenu')
-    <div id="page-loader" class="page-loader">
-        <div class="loader">
-            <div class="binding"></div>
-            <div class="pad">
-                <div class="line line1"></div>
-                <div class="line line2"></div>
-                <div class="line line3"></div>
-            </div>
-            <div class="text">
-                Chargement...
-            </div>
-        </div>
-    </div>
     @if($choixVue==='liste')
     <section class="indexLivres livres modeliste">
     @else

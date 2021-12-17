@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     </head>
     <body class="@yield('classeBody') js">
+        @yield('scriptLoader')
         <header class="entete">
             @include('fragments.entete')
         </header>
@@ -25,7 +26,6 @@
             @include('fragments.infolettre')
             @include('fragments.pieddepage')
         </footer>
-
         @yield('scripts')
         <script src="liaisons/js/_menu.js"></script>
         <script src="liaisons/js/barreRecherche.js" type="text/javascript"></script>

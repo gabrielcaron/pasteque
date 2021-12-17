@@ -155,7 +155,7 @@
 		& .bloc {
 		  display: flex;
 		  margin: 0;
-		  @media screen and (max-width: $mobile600px) {
+		  @media screen and (max-width: $mobile600px - 1) {
 			width: calc(50% - 1rem);
 		  }
 
@@ -202,7 +202,7 @@
 
 	&__liste {
 	  @include rangeeGrid12col();
-	  @media screen and (min-width: $tablet900px) {
+	  @media screen and (min-width: $mobile600px) {
 		& > * {
 		  grid-column: span 4;
 		}

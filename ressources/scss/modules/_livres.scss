@@ -55,9 +55,8 @@
   .livre {
 
 	&.conteneurGrille {
-
 	  @include rangeeGrid12col($pointRupture: 500px);
-
+	  z-index: 1000;
 	}
 
 	&__lien {

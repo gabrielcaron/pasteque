@@ -41,14 +41,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var refFormulaire = document.getElementById("formulaireAjoutPanier");
 var refSectionFicheLivre = document.querySelector(".ficheLivre__format");
 var refBoutonAjouterPHP = document.getElementById("boutonAjouterPanierPHP");
 var refBoutonAjouterJS = document.createElement("a");
 var refProduitId = document.getElementById("produit_id");
 var refPanierId = document.getElementById("panier_id");
-var refQuantite = document.getElementById("quantite");
-// Redessiner certaines balises lorsque le JS est activé
+var refQuantite = document.querySelector(".ficheLivre__ajoutInput");
+var refLienPanier = document.getElementById("lienPanier");
+var refSpanNbArticles = document.getElementById("spanNbItemsPanier");
+// Redessine certaines balises lorsque le JS est activé
 refBoutonAjouterPHP.remove();
 refBoutonAjouterJS.id = "boutonAjouterPanierJS";
 refBoutonAjouterJS.classList.add("bouton", "action", "ajoutPanier");
@@ -56,15 +57,28 @@ refBoutonAjouterJS.href = "#panier";
 refBoutonAjouterJS.innerHTML = "Ajouter au panier";
 refSectionFicheLivre.append(refBoutonAjouterJS);
 var ajoutPanier = {
-    // get à la place de post, envoyer dans querystring
     ajouterAuPanier: function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response;
+            var response, quantite, nbArticlesPanier, nouveauTotalPanier;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=livre&action=insererLivre&produit_id=".concat(refProduitId.value, "&panier_id=").concat(refPanierId.value, "&quantite=").concat(refQuantite.value))];
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=livre&action=insererLivre&produit_id=" + refProduitId.value + "&panier_id=" + refPanierId.value + "&quantite=" + refQuantite.value)];
                     case 1:
                         response = _a.sent();
+                        quantite = parseInt(refQuantite.value);
+                        if (refSpanNbArticles === null) {
+                            refSpanNbArticles = document.createElement("span");
+                            refSpanNbArticles.classList.add("menuTop__itemsPanier");
+                            refLienPanier.append(refSpanNbArticles);
+                        }
+                        if (refSpanNbArticles.innerHTML === "") {
+                            refSpanNbArticles.innerHTML = quantite.toString();
+                        }
+                        else {
+                            nbArticlesPanier = parseInt(refSpanNbArticles.innerHTML);
+                            nouveauTotalPanier = nbArticlesPanier + quantite;
+                            refSpanNbArticles.innerHTML = nouveauTotalPanier.toString();
+                        }
                         return [2 /*return*/, response];
                 }
             });
@@ -73,9 +87,3 @@ var ajoutPanier = {
 };
 // Écouteurs d'événements
 refBoutonAjouterJS.addEventListener("click", ajoutPanier.ajouterAuPanier);
-// document.getElementById("fermerModale").addEventListener("click", function () {
-//     const refModale = document.getElementById("panier");
-//     refModale.style.visibility = "hidden";
-//     refModale.style.opacity = "0";
-//     refModale.style.bottom = "-40rem";
-// });

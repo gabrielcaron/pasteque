@@ -62,7 +62,7 @@
                 <input style="display: none" class="" type="submit" id="auteurTrie">
             </form>
         </section>
-        <section >
+        <section>
             <h1>Auteurs</h1>
             <!-- un titre display none? -->
             <div class="livre conteneurGrille">
@@ -97,7 +97,7 @@
             </div>
         </section>
         @if($nbAuteursParPage === '9' || $nbAuteursParPage === '15' ||  $nbAuteursParPage === '30')
-            <section>
+            <section class="livres__pagination">
                 @include('artistes.fragments.pagination')
             </section>
         @endif

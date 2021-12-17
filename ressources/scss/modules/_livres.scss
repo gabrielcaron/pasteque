@@ -164,24 +164,27 @@
 	  display: inline-block;
 
 	  &:hover {
-		  /*background-color: $bleuRoyal;
-		  color: $blanc;
-		  border: 2px solid $bleuRoyal;*/
+		/*background-color: $bleuRoyal;
+		color: $blanc;
+		border: 2px solid $bleuRoyal;*/
 	  }
 	}
   }
 }
+
 @media screen and (max-width: 900px) {
-	#formTri{
-		display: none;
-	}
+  #formTri {
+	display: none;
+  }
 }
+
 @media screen and (min-width: 900px) {
-	#lienFiltre{
-		display: none;
-	}
+  #lienFiltre {
+	display: none;
+  }
 }
-.modeliste.livres  {
+
+.modeliste.livres {
   .livre {
 	&__lien {
 
@@ -240,21 +243,27 @@
 	}
   }
 }
-.livres__pagination{
-	text-align: center;
+
+.livres__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
-.livre__filtrer, .auteur__filtrer{
+.livre__filtrer, .auteur__filtrer {
   width: 100%;
   margin-top: 2rem;
 }
+
 .livresIndex .formulaire__groupeChamps.tuiles .bloc .libelle, .artistes .formulaire__groupeChamps.tuiles .bloc .libelle, .ficheLivre .formulaire__groupeChamps.tuiles .bloc .libelle {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 @media (max-width: 900px) {
-	.livresIndex .formulaire__listeModes, .artistes .formulaire__listeModes, .ficheLivre .formulaire__listeModes{
-		display: none;
-	}
+  .livresIndex .formulaire__listeModes, .artistes .formulaire__listeModes, .ficheLivre .formulaire__listeModes {
+	display: none;
+  }
 }

@@ -25,6 +25,7 @@
   /* Bouton secondaire avec contour par défaut */
 
   display: inline-block;
+  background-color: $blanc;
   border-radius: 15px;
   border: solid 5px $bleuRoyal;
   padding: 0.5rem 3rem;
@@ -73,6 +74,18 @@
         content: "";
         background-image: url(../images/icones/ajouterPanier.svg);
       }
+    }
+  }
+
+  /* Bouton désactivé */
+
+  &.inactif {
+    border: solid 5px $gris80;
+    color: $gris80;
+
+    &:hover {
+      background-color: transparent;
+      color: $gris80;
     }
   }
 

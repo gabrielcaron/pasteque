@@ -219,13 +219,11 @@
 }
 
 .activeMenuItem {
+  color: $blanc;
   border-bottom: 5px solid $bleuRoyal;
   @media (max-width: 1000px - 1) {
 	background: $bleuRoyal;
 	border-bottom: 0;
-	a {
-	  color: white !important;
-	}
   }
 
 }

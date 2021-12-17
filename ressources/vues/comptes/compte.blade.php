@@ -120,29 +120,27 @@
                                             <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['courriel']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['courriel']['message'] !== ''){{$tValidation['courriel']['message']}}@endif</p>
                                         </div>
                                     </div>
-                            </section>
-                            <section class="compte__mdp compte__flex">
-                                    <div id="champPassword" class="champ champ--lg">
-                                        <div class="champ__boite">
-                                            <label for="mot_de_passe" class="champ__etiquette">Créer un mot de passe *</label>
-                                            <input class="champ__input" id="mot_de_passe" name="mot_de_passe" type="password"
-                                                   autocomplete="current-password"
-                                                   required="required" aria-labelledby="messagesPassword"
-                                                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})$"
-                                                   min="8"
-                                                   @if($tValidation !== null) value="{{$tValidation['mot_de_passe']['valeur']}}" @endif/>
-                                            <i class="far fa-eye" id="togglePasswordCreation" style="margin-left: -30px; cursor: pointer; margin-top: 10px"></i>
-                                        </div>
-                                        <div id="messagesPassword" class="champ__messages">
-                                            <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['mot_de_passe']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['mot_de_passe']['message'] !== ''){{$tValidation['mot_de_passe']['message']}}@endif</p>
-                                            <p class="champ__message-aide">
-                                                Le&nbsp;mot&nbsp;de&nbsp;passe&nbsp;doit&nbsp;contenir&nbsp;au&nbsp;moins&nbsp;huit&nbsp;caractères,
-                                                dont&nbsp;au&nbsp;moins&nbsp;un&nbsp;chiffre&nbsp;et&nbsp;comprend&nbsp;les&nbsp;lettres
-                                                majuscules&nbsp;et&nbsp;minuscules&nbsp;et&nbsp;des&nbsp;caractères&nbsp;spéciaux,
-                                                par&nbsp;exemple&nbsp;#,&nbsp;?,&nbsp;!.
-                                            </p>
-                                        </div>
+                                <div id="champPassword" class="champ champ--lg">
+                                    <div class="champ__boite">
+                                        <label for="mot_de_passe" class="champ__etiquette">Créer un mot de passe *</label>
+                                        <input class="champ__input" id="mot_de_passe" name="mot_de_passe" type="password"
+                                               autocomplete="current-password"
+                                               required="required" aria-labelledby="messagesPassword"
+                                               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})$"
+                                               min="8"
+                                               @if($tValidation !== null) value="{{$tValidation['mot_de_passe']['valeur']}}" @endif/>
+                                        <i class="far fa-eye" id="togglePasswordCreation" style="margin-left: -30px; cursor: pointer; margin-top: 10px"></i>
                                     </div>
+                                    <div id="messagesPassword" class="champ__messages">
+                                        <p class="champ__message-erreur" aria-live="polite" aria-atomic="false" @if($tValidation !== null && $tValidation['mot_de_passe']['message'] !== '')style="display: block;"@endif>@if($tValidation !== null && $tValidation['mot_de_passe']['message'] !== ''){{$tValidation['mot_de_passe']['message']}}@endif</p>
+                                        <p class="champ__message-aide">
+                                            Le&nbsp;mot&nbsp;de&nbsp;passe&nbsp;doit&nbsp;contenir&nbsp;au&nbsp;moins&nbsp;huit&nbsp;caractères,
+                                            dont&nbsp;au&nbsp;moins&nbsp;un&nbsp;chiffre&nbsp;et&nbsp;comprend&nbsp;les&nbsp;lettres
+                                            majuscules&nbsp;et&nbsp;minuscules&nbsp;et&nbsp;des&nbsp;caractères&nbsp;spéciaux,
+                                            par&nbsp;exemple&nbsp;#,&nbsp;?,&nbsp;!.
+                                        </p>
+                                    </div>
+                                </div>
                             </section>
                             <section class="form__etape" data-etape="confirmation" style="display: none" tabindex="-1"
                                      aria-labelledby="titreConfirmation">

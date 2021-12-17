@@ -16,7 +16,7 @@
         <section>
             <!-- Éventuellement être caché en mobile
             <button class="enveloppe__">Filtres</button> -->
-            <button class="bouton auteur__filtrer" id="lienFiltre" value="yes" onclick="gererFiltres(this)">Filtrer les artistes</button>
+            <button class="bouton auteur__filtrer" id="lienFiltre" value="Yes" onclick="gererFiltres(this)">Filtrer les artistes</button>
             <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=auteur&action=index" method="POST">
                 <input id="id_page" value="0" type="hidden" name="id_page">
                 <div class="formulaire__conteneursInlineFlex">

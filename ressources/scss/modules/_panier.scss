@@ -80,15 +80,19 @@
 
   &__tableauSousTotal {
 	grid-column: 9 / 13;
+	margin-bottom: 2rem;
   }
 
   &__continuerAchats {
-	grid-column: 6 / 9;
+	grid-column: 7 / 10;
 	align-self: center;
   }
 
   &__passerCommande {
-	grid-column: 9 / 12;
+	grid-column: 10 / 13;
+	& > button {
+	  background-color: transparent;
+	}
   }
 }
 

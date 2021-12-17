@@ -86,9 +86,7 @@
             </table>
                 <a class="panier__continuerAchats bouton texte" href="index.php?controleur=livre&action=index">Continuer à magasiner</a>
                 @if($nombreArticles > 0)
-                    <a class="panier__continuerAchats bouton texte" href="index.php?controleur=stepLeft&action=debuterStepLeft"><button class="panier__passerCommande bouton" type="button">Passer la commande</button></a>
-                @else
-                    <button class="panier__passerCommande bouton btnDesactiver" type="button">Passer la commande</button>
+                    <a class="panier__passerCommande bouton action" href="index.php?controleur=stepLeft&action=debuterStepLeft"><button type="button">Passer la commande</button></a>
                 @endif
     </section>
     @else

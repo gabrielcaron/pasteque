@@ -1,6 +1,6 @@
 /**
 * @author Gabriel Caron <gabriel.caron@gmail.com>
-* @version 2021.4
+* @version 5.0
 *
 * ------------------
 * TABLE DES MATIERES
@@ -53,6 +53,7 @@
 	  flex-wrap: wrap;
 	  flex-basis: 100%;
 	  justify-content: space-between;
+	  gap: 2rem;
 	}
 
 	.bloc {
@@ -115,6 +116,13 @@
 	  &Rangee {
 		border: 5px solid $bleuRoyal;
 		border-radius: 1.5rem;
+		&:hover {
+		  background-color: $bleuRoyal;
+		  color: $blanc;
+		  & .formulaire__select {
+			background-color: $bleuRoyal;
+		  }
+		}
 	  }
 	}
 
@@ -195,6 +203,12 @@
 	&__liste {
 	  @include rangeeGrid12col();
 	  @media screen and (min-width: $tablet900px) {
+		& > * {
+		  grid-column: span 4;
+		}
+	  }
+
+	  @media screen and (min-width: $desktop1200px) {
 		& > * {
 		  grid-column: span 2;
 		}

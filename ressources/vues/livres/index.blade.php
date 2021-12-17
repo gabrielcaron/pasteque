@@ -73,7 +73,7 @@
                             {{--<label class="" for="nbAuteursParPage"> </label>--}}
                             <label class="screen-reader-only" for="nbLivreParPage">Nombre de livre par page :</label>
                             <select onchange="document.getElementById('formTri').submit()" name="nbLivreParPage"
-                                    id="nbLivreParPage" class="">
+                                    id="nbLivreParPage" class="formulaire__select">
                                 <option value="9" @if($intNbLivreParPage === '9') selected @endIf>9 livres par page
                                 </option>
                                 <option value="15" @if($intNbLivreParPage === '15') selected @endIf>15 livres par page
@@ -96,7 +96,7 @@
                         <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
                             <label class="screen-reader-only" for="trierPar">Trier par : </label>
                             <select onchange="document.getElementById('formTri').submit()" name="trierPar" id="trierPar"
-                                    class="">
+                                    class="formulaire__select">
                                 <option value="categories.nomA" @if($trierPar === 'categories.nomA') selected @endIf>
                                     Categories A-Z
                                 </option>

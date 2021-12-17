@@ -7,6 +7,7 @@
  */
 function gererFiltres(btnFiltre) {
     var dvFiltre = document.getElementById("formTri");
+    console.log(btnFiltre.value);
     if (btnFiltre.value === "Yes") {
         dvFiltre.style.display = "block";
         btnFiltre.value = "No";

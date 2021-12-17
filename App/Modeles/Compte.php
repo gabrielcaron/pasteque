@@ -163,9 +163,9 @@ class Compte
     /**
      * Méthode pour trouver un compte par courriel
      * @param string $courriel - Un courriel
-     * @return Compte - Un compte
+     * @return ?Compte - Un compte ou null
      */
-    public static function trouverParCourriel(string $courriel):Compte
+    public static function trouverParCourriel(string $courriel):?Compte
     {
         // Définir la chaine SQL
         $chaineSQL = 'SELECT * FROM `comptes` WHERE courriel = :courriel';
@@ -178,7 +178,8 @@ class Compte
         // Exécuter la requête
         $requetePreparee->execute();
         // Récupérer une seule occurrence à la fois
-        return $requetePreparee->fetch();
+        $result = $requetePreparee->fetch();
+        return $result === false ? null : $result ;
     }
 
     /**

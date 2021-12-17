@@ -81,12 +81,17 @@ class ControleurCompte
                     }
                 }
                 elseif($champValide === 'connexionPassword'){
-                    $compte = Compte::trouverParCourriel($_POST['connexionEmail']);
-                    if($compte -> getMotDePasse() !== $_POST[$champValide]){
-                        $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['pattern']];
+                    if (Compte::trouverParCourriel($_POST['connexionEmail']) !== null) {
+                        $compte = Compte::trouverParCourriel($_POST['connexionEmail']);
+                        if($compte -> getMotDePasse() !== $_POST[$champValide]){
+                            $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>$tMessagesJson[$champValide]['pattern']];
+                        }
+                        else{
+                            $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>true, 'message'=>''];
+                        }
                     }
-                    else{
-                        $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>true, 'message'=>''];
+                    else {
+                        $tDonnes[$champValide] = ['valeur' => $_POST[$champValide], 'validation'=>false, 'message'=>'Vérifier votre courriel'];
                     }
                 }
             }

@@ -49,6 +49,7 @@ var refPanierId = document.getElementById("panier_id");
 var refQuantite = document.querySelector(".ficheLivre__ajoutInput");
 var refLienPanier = document.getElementById("lienPanier");
 var refSpanNbArticles = document.getElementById("spanNbItemsPanier");
+var refQuantiteModale = document.querySelector(".livre__item.livre__categorie.quantite");
 // Redessine certaines balises lorsque le JS est activé
 refBoutonAjouterPHP.remove();
 refBoutonAjouterJS.id = "boutonAjouterPanierJS";
@@ -62,10 +63,11 @@ var ajoutPanier = {
             var response, quantite, nbArticlesPanier, nouveauTotalPanier;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=livre&action=insererLivre&produit_id=".concat(refProduitId.value, "&panier_id=").concat(refPanierId.value, "&quantite=").concat(refQuantite.value))];
+                    case 0: return [4 /*yield*/, fetch("index.php?controleur=requete&classe=livre&action=insererLivre&produit_id=" + refProduitId.value + "&panier_id=" + refPanierId.value + "&quantite=" + refQuantite.value)];
                     case 1:
                         response = _a.sent();
                         quantite = parseInt(refQuantite.value);
+                        refQuantiteModale.innerHTML = "Quantit\u00E9: " + refQuantite.value;
                         if (refSpanNbArticles === null) {
                             refSpanNbArticles = document.createElement("span");
                             refSpanNbArticles.classList.add("menuTop__itemsPanier");

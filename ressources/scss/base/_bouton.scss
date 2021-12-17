@@ -1,3 +1,15 @@
+/**
+* @author Gabriel Caron
+* @author Nicolas Thibault
+* @version 2.0
+*
+* ------------------
+* BOUTONS
+* ------------------
+*
+*/
+
+
 .btnDesactiver{
   background: grey;
   border: 0!important;
@@ -13,7 +25,6 @@
   /* Bouton secondaire avec contour par défaut */
 
   display: inline-block;
-  background-color: $blanc;
   border-radius: 15px;
   border: solid 5px $bleuRoyal;
   padding: 0.5rem 3rem;

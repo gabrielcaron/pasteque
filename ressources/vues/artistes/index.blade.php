@@ -16,7 +16,7 @@
         <section>
             <!-- Éventuellement être caché en mobile
             <button class="enveloppe__">Filtres</button> -->
-            <button class="auteur__filtrer" id="lienFiltre" value="Yes" onclick="gererFiltres(this)">Filtrer par</button>
+            <button class="bouton auteur__filtrer" id="lienFiltre" value="yes" onclick="gererFiltres(this)">Filtrer les artistes</button>
             <form id="formTri" class="enveloppe__Tris" action="index.php?controleur=auteur&action=index" method="POST">
                 <input id="id_page" value="0" type="hidden" name="id_page">
                 <div class="formulaire__conteneursInlineFlex">
@@ -35,7 +35,7 @@
                         </li>
                     </ul>
                 </fieldset>
-                    <fieldset class="formulaire__groupeChamps tris">
+                    <fieldset class="formulaire__groupeChamps modeAffichage">
                     <legend class="formulaire__sectionLegende">
                         <h3 class="formulaire__sectionTitre screen-reader-only">Nombre d'auteurs par page :</h3>
                     </legend>

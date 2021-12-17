@@ -142,7 +142,11 @@
   }
 
   &__rangeeBoutons {
-	grid-column: span 6;
+	grid-column: span 12;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 2rem;
   }
 
   &__fermer {

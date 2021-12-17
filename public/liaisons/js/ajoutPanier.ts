@@ -14,6 +14,7 @@ const refPanierId: HTMLInputElement = document.getElementById("panier_id") as HT
 const refQuantite: HTMLInputElement = document.querySelector(".ficheLivre__ajoutInput") as HTMLInputElement;
 const refLienPanier: HTMLAnchorElement = document.getElementById("lienPanier") as HTMLAnchorElement;
 let refSpanNbArticles: HTMLSpanElement = document.getElementById("spanNbItemsPanier") as HTMLSpanElement;
+const refQuantiteModale: HTMLLIElement = document.querySelector(".livre__item.livre__categorie.quantite") as HTMLLIElement;
 
 // Redessine certaines balises lorsque le JS est activé
 
@@ -28,6 +29,7 @@ let ajoutPanier = {
     async ajouterAuPanier() {
         let response = await fetch(`index.php?controleur=requete&classe=livre&action=insererLivre&produit_id=${refProduitId.value}&panier_id=${refPanierId.value}&quantite=${refQuantite.value}`);
         const quantite: number = parseInt(refQuantite.value);
+        refQuantiteModale.innerHTML = `Quantité: ${refQuantite.value}`;
 
         if (refSpanNbArticles === null) {
             refSpanNbArticles = document.createElement("span");

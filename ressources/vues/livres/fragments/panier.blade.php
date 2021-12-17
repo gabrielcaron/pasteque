@@ -28,7 +28,7 @@
                                 <li class="livre__item livre__auteur">{{$auteur->getPrenom()}} {{$auteur->getNom()}}</li>
                             @endforeach
                             <li class="livre__item livre__categorie">{{$livre->getPrixCan()}} $</li>
-                            <li class="livre__item livre__categorie">Quantité : 1</li>
+                            <li class="livre__item livre__categorie quantite"></li>
                         </ul>
 
                     </section>

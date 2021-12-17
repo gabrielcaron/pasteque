@@ -1,4 +1,14 @@
-/* Entete*/
+/**
+* @author Gabriel Caron
+* @author Nicolas Thibault
+* @version 1.1
+*
+* ------------------
+* EN-TÊTE
+* ------------------
+*
+*/
+
 
 .entete {
   @include conteneur1400px($conteneurBleed: true);

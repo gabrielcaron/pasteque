@@ -15,6 +15,7 @@ use App\Modeles\Article;
 use App\Modeles\Commande;
 use App\Modeles\Compte;
 use App\Modeles\Panier;
+use App\Utilitaires\ValiderChampsFormulaire;
 
 class ControleurPanier
 {
@@ -29,7 +30,7 @@ class ControleurPanier
     {
         $panier = Panier::trouverParIdSession(session_id());
         $articles = $panier->getArticlesAssocies();
-
+        $date = ValiderChampsFormulaire::dateToFrench('now', ' l d F Y');
         $prixTotal = 0;
         $nombreArticles = 0;
         foreach ($articles as $article) {
@@ -38,7 +39,8 @@ class ControleurPanier
         }
         $_SESSION['nbItemsPanier'] = $nombreArticles;
         $prixLivraison = $prixTotal > 60 ? 0 : 7;
-        $tDonnees = array("titrePage"=>"Mon panier", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles, "prixLivraison" => $prixLivraison);
+        $tDonnees = array("titrePage"=>"Mon panier", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal,
+            "nombreArticles"=>$nombreArticles, "prixLivraison" => $prixLivraison, "dateLivraison"=>$date);
         echo App::getBlade()->run("paniers.panier",$tDonnees);
     }
 
@@ -75,10 +77,11 @@ class ControleurPanier
         $prixLivraison = $prixTotal > 60 ? 0 : 7;
         $commande = $compte->getCommandesAssocies();
         $livraison = $commande->getLivraisonAdresseAssocie();
+        $date = ValiderChampsFormulaire::dateToFrench('now', ' l d F Y');
 
         $tDonnees = array("titrePage"=>"Commande confirmée", "action"=>"panier", "panier"=>$panier, "prixTotal"=>$prixTotal,
         "nombreArticles"=>$nombreArticles, "commande"=>$commande, "prixLivraison"=>$prixLivraison, "livraison"=>$livraison,
-        "compte"=>$compte);
+        "compte"=>$compte, "dateLivraison"=>$date);
         echo App::getBlade()->run("paniers.confirmation",$tDonnees);
     }
 }

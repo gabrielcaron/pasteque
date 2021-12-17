@@ -76,7 +76,7 @@
                 </tr>
                 <tr>
                     <td>Date de livraison estimée</td>
-                    <td>4 décembre 2021</td>
+                    <td>{{$dateLivraison}}</td>
                 </tr>
                 <tr>
                     <td>Total estimé</td>

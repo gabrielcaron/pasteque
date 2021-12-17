@@ -84,4 +84,21 @@ class ValiderChampsFormulaire
         }
         return $tableauErreur;
     }
+
+    /**
+     * Méthode pour changer la date de livraison en français +1 mois
+     * @param string $date - La date a convertir
+     * @param string $format - Le format de la date
+     * @return string La date en francais +1 mois
+    */
+    public static function dateToFrench(string $date, string $format):string
+    {
+        $english_days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+        $french_days = array('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche');
+        $english_months = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+        $french_months = array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
+        $time = strtotime($date);
+        return str_replace($english_months, $french_months, str_replace($english_days, $french_days, date($format, strtotime('+1 month', $time) ) ) );
+    }
+
 }

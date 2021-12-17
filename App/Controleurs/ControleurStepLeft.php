@@ -18,6 +18,7 @@ use App\Modeles\Paiement;
 use App\Modeles\Panier;
 use App\Modeles\Province;
 use App\Utilitaires\ValiderChampsFormulaire;
+use Cassandra\Date;
 
 
 class ControleurStepLeft
@@ -44,7 +45,7 @@ class ControleurStepLeft
                 $prixTotal += $article->getQuantite() * $article->getLivreAssocie()->getPrixCan();
             }
             $prixLivraison = $prixTotal > 60 ? 0 : 7;
-
+            $date = ValiderChampsFormulaire::dateToFrench('now', ' l d F Y');
             $compte = Compte::trouverParCourriel($_SESSION['email']);
             $commande = $compte->getCommandesAssocies() ?? null;
             $provinces = Province::trouverTout();
@@ -58,7 +59,7 @@ class ControleurStepLeft
                 $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"premierCommande", "compte"=>$compte,
                     "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces,
                     "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles, "livraisonToutesLesAdresses"=>$livraisonToutesLesAdresses,
-                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison, "tValidation"=>$tValidation);
+                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison, "tValidation"=>$tValidation, "dateLivraison"=>$date);
             }
             else{
                 $livraisonToutesLesAdresses = null;
@@ -66,7 +67,7 @@ class ControleurStepLeft
                 $tDonnees = array("titrePage"=>"commande", "classeBody"=>"commande", "action"=>"plusieursCommandes", "compte"=>$compte,
                     "commande"=>$commande,"livraison"=>$livraison, "facturation"=>$facturation, "paiement"=>$paiement, "provinces"=>$provinces,
                     "panier"=>$panier, "prixTotal"=>$prixTotal, "nombreArticles"=>$nombreArticles, "livraisonToutesLesAdresses"=>$livraisonToutesLesAdresses,
-                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison, "tValidation"=>$tValidation);
+                    "facturationToutesLesAdresses"=>$facturationToutesLesAdresses, "prixLivraison" => $prixLivraison, "tValidation"=>$tValidation, "dateLivraison"=>$date);
             }
            echo App::getBlade()->run("paniers.formulaireCommande",$tDonnees);
         }

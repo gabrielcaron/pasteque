@@ -20,7 +20,7 @@
         <section id="validationAdresseLivraison" class="validationAdresseLivraison">
             <section id="sectionRecapAdresseLivraison">
                 <h2 class="confirmation__titreH2">Date de livraison estimée</h2>
-                <p>Dimanche 19 décembre 2021</p>
+                <p>{{$dateLivraison}}</p>
                 <h2 class="confirmation__titreH2">Mode de livraison</h2>
                 <p>Régulière @if($prixLivraison === 0) gratuite @else au coût de 7.00$ @endif</p>
                 <h2 class="confirmation__titreH2">Adresse de livraison de la commande</h2>

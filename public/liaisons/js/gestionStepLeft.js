@@ -210,6 +210,7 @@ var gestionStepLeft = {
                 refSectionRecapAdresseLivraison.removeAttribute("style");
                 refSectionRecapAdresseFacturation.removeAttribute("style");
                 refSectionPaiementFacturation.removeAttribute("style");
+                document.getElementById('continuerFacturation').removeAttribute('style');
             }
             else {
                 refSectionRecapAdresseLivraison.removeAttribute("style");

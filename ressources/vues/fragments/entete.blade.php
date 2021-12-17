@@ -42,7 +42,7 @@
             <li class="menuTop__listeItem">
                 <a href="index.php?controleur=panier&action=panier" id="lienPanier" class="menuTop__lien">
                     <svg id="svgPanier" fill="none" height="27" viewBox="0 0 27 27" width="27" xmlns="http://www.w3.org/2000/svg" class="menuTop__listeItemSVG"><path d="m8.1 21.6c-1.485 0-2.6865 1.215-2.6865 2.7s1.2015 2.7 2.6865 2.7 2.7-1.215 2.7-2.7-1.215-2.7-2.7-2.7zm-8.1-21.6v2.7h2.7l4.86 10.2465-1.8225 3.3075c-.216.378-.3375.8235-.3375 1.296 0 1.485 1.215 2.7 2.7 2.7h16.2v-2.7h-15.633c-.189 0-.3375-.1485-.3375-.3375l.0405-.162 1.215-2.2005h10.0575c1.0125 0 1.9035-.5535 2.3625-1.3905l4.833-8.7615c.108-.189.162-.4185.162-.648 0-.7425-.6075-1.35-1.35-1.35h-19.9665l-1.269-2.7zm21.6 21.6c-1.485 0-2.6865 1.215-2.6865 2.7s1.2015 2.7 2.6865 2.7 2.7-1.215 2.7-2.7-1.215-2.7-2.7-2.7z" fill="#000"/></svg>@if($_SESSION['nbItemsPanier'] > 0)
-                            <span id="spanNbItemsPanier" class="menuTop__itemsPanier">@php echo $_SESSION['nbItemsPanier'] @endphp</span>
+                            <span id="spanNbItemsPanier" class="menuTop__itemsPanier">@if(isset($_SESSION['nbItemsPanier'])) {{$_SESSION['nbItemsPanier']}} @endif</span>
                         @endif
                 </a>
             </li>

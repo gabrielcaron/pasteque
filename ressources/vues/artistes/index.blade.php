@@ -42,7 +42,7 @@
                     <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
                         {{--<label class="" for="nbAuteursParPage"> </label>--}}
                         <label class="screen-reader-only" for="nbAuteursParPage">Nombre d'auteurs par page :</label>
-                        <select onchange="document.getElementById('formTri').submit()" name="nbAuteursParPage" id="nbAuteursParPage">
+                        <select class="formulaire__select" onchange="document.getElementById('formTri').submit()" name="nbAuteursParPage" id="nbAuteursParPage">
                             <option value="9" @if($nbAuteursParPage === '9') selected @endIf>9 auteurs par page</option>
                             <option value="15" @if($nbAuteursParPage === '15') selected @endIf>15 auteurs par page</option>
                             <option value="30" @if($nbAuteursParPage === '30') selected @endIf>30 auteurs par page</option>
@@ -52,7 +52,7 @@
                     <p class="formulaire__champEnveloppe"><strong>{{$nbAuteursParPage}} résultats affichés</strong> de {{$nombreAuteurs}}</p>
                     <p class="formulaire__champEnveloppe formulaire__champEnveloppeRangee">
                         <label class="screen-reader-only" for="trierPar">Trier par : </label>
-                        <select onchange="document.getElementById('formTri').submit()" name="trierPar" id="trierPar" class="">
+                        <select class="formulaire__select" onchange="document.getElementById('formTri').submit()" name="trierPar" id="trierPar" class="">
                             <option value="auteurs.nomA" @if($trierPar === 'auteurs.nomA') selected @endIf>Auteurs A-Z</option>
                             <option value="auteurs.nomD" @if($trierPar === 'auteurs.nomD') selected @endIf>Auteurs Z-A</option>
                         </select>
